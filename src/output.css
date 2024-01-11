@@ -1199,7 +1199,7 @@ button[aria-expanded='true'] .hamburger .path2 {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  :has(:target) {
+  *:has(:target) {
     scroll-behavior: smooth;
   }
 }
