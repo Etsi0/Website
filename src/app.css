@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--hue-color: 240;
+	--warning-hue: 4;
+
+	--warning-color-darker: hsl(var(--warning-hue), 57%, 53%);
+	--warning-color: hsl(var(--warning-hue), 69%, 61%);
+	--warning-color-lighter: hsl(var(--warning-hue), 92%, 85%);
+
+	--input-color: hsl(var(--hue-color), 70%, 96%);
+}
+@media (prefers-color-scheme: light) {
+	:root {
+		--body-color: hsl(var(--hue-color), 60%, 99%);
+
+		--border-color: hsl(var(--hue-color), 13%, 91%);
+
+		--main-color-darker: hsl(var(--hue-color), 57%, 53%);
+		--main-color: hsl(var(--hue-color), 69%, 61%);
+		--main-color-lighter: hsl(var(--hue-color), 92%, 85%);
+
+		--text-color-darker: hsl(var(--hue-color), 8%, 15%);
+		--text-color: hsl(var(--hue-color), 8%, 45%);
+		--text-color-lighter: hsl(var(--hue-color), 8%, 65%);
+
+		--glass-bg: hsla(var(--hue-color), 60%, 99%, 0.24);
+		--glass-border: hsla(var(--hue-color), 60%, 99%, 0.16);
+	}
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--body-color: hsl(var(--hue-color), 60%, 2.5%);
+
+		--border-color: hsl(var(--hue-color), 13%, 10.5%);
+
+		--main-color-darker: hsl(var(--hue-color), 57%, 48.5%);
+		--main-color: hsl(var(--hue-color), 69%, 40.5%);
+		--main-color-lighter: hsl(var(--hue-color), 92%, 16.5%);
+
+		--text-color-darker: hsl(var(--hue-color), 8%, 86.5%);
+		--text-color: hsl(var(--hue-color), 8%, 56.5%);
+		--text-color-lighter: hsl(var(--hue-color), 8%, 36.5%);
+
+		--glass-bg: hsla(var(--hue-color), 60%, 2.5%, 0.24);
+		--glass-border: hsla(var(--hue-color), 60%, 2.5%, 0.16);
+	}
+}
+:root.light {
+	--body-color: hsl(var(--hue-color), 60%, 99%);
+
+	--border-color: hsl(var(--hue-color), 13%, 91%);
+
+	--main-color-darker: hsl(var(--hue-color), 57%, 53%);
+	--main-color: hsl(var(--hue-color), 69%, 61%);
+	--main-color-lighter: hsl(var(--hue-color), 92%, 85%);
+
+	--text-color-darker: hsl(var(--hue-color), 8%, 15%);
+	--text-color: hsl(var(--hue-color), 8%, 45%);
+	--text-color-lighter: hsl(var(--hue-color), 8%, 65%);
+
+	--glass-bg: hsla(var(--hue-color), 60%, 99%, 0.24);
+	--glass-border: hsla(var(--hue-color), 60%, 99%, 0.16);
+}
+:root.dark {
+	--body-color: hsl(var(--hue-color), 60%, 2.5%);
+
+	--border-color: hsl(var(--hue-color), 13%, 10.5%);
+
+	--main-color-darker: hsl(var(--hue-color), 57%, 48.5%);
+	--main-color: hsl(var(--hue-color), 69%, 40.5%);
+	--main-color-lighter: hsl(var(--hue-color), 92%, 16.5%);
+
+	--text-color-darker: hsl(var(--hue-color), 8%, 86.5%);
+	--text-color: hsl(var(--hue-color), 8%, 56.5%);
+	--text-color-lighter: hsl(var(--hue-color), 8%, 36.5%);
+
+	--glass-bg: hsla(var(--hue-color), 60%, 2.5%, 0.24);
+	--glass-border: hsla(var(--hue-color), 60%, 2.5%, 0.16);
+}
+
+*::before,
+*,
+*::after {
+	border-color: var(--border-color);
+
+	/* from tailwind */
+	transition-property: color, background-color, border-color, text-decoration-color, fill, stroke,
+		opacity, box-shadow, transform, filter, backdrop-filter;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 150ms;
+}
+
+*:focus-visible {
+	outline: solid 2px var(--main-color);
+}
+
+html {
+	scroll-padding-top: 4rem; /* header is 4rem */
+	hanging-punctuation: first last;
+	color-scheme: light dark;
+}
+
+body,
+dialog > * {
+	color: var(--text-color-lighter);
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--text-color);
+	font-weight: 600;
+	text-wrap: balance;
+}
+
+h1 {
+	color: var(--text-color-darker);
+	font-size: 3rem;
+	line-height: 1;
+}
+
+h2 {
+	font-size: 2.25rem;
+	line-height: 2.5rem;
+}
+
+h3 {
+	font-size: 1.875rem;
+	line-height: 2.25rem;
+}
+
+h4 {
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
+
+h5 {
+	font-size: 1.25rem;
+	line-height: 1.75rem;
+}
+
+h6 {
+	font-size: 1.125rem;
+	line-height: 1.75rem;
+}
+
+p {
+	max-width: 65ch;
+	text-wrap: pretty;
+}
+
+img,
+picture,
+svg,
+video {
+	display: block;
+	max-width: 100%;
+}
+
+/*==================================================
+	hamburger icon
+==================================================*/
+.hamburger .path1,
+.hamburger .path3 {
+	stroke-dasharray: 60 207;
+}
+.hamburger .path2 {
+	stroke-dasharray: 60 60;
+}
+button[aria-expanded='true'] .hamburger .path1,
+button[aria-expanded='true'] .hamburger .path3 {
+	stroke-dasharray: 90 207;
+	stroke-dashoffset: -134;
+}
+button[aria-expanded='true'] .hamburger .path2 {
+	stroke-dasharray: 1 60;
+	stroke-dashoffset: -30;
+}
+
+/*==================================================
+	selfie
+==================================================*/
+.heroSection {
+	min-height: calc(min(1000px, 100vh) - 4rem);
+	min-height: calc(min(1000px, 100svh) - 4rem);
+}
+
+/*==================================================
+	selfie
+==================================================*/
+@screen lg {
+	img.blob {
+		mask-image: url('../public/img/raw SVGs/small blob.svg');
+		mask-size: contain;
+		mask-repeat: no-repeat;
+		mask-position: center;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	:has(:target) {
+		scroll-behavior: smooth;
+	}
+}
+
+/*==================================================
+	dialog inside SkillCard
+==================================================*/
+.dialogSkillCard {
+	/* From https://css.glass */
+	background: var(--glass-bg);
+	backdrop-filter: blur(24px);
+	-webkit-backdrop-filter: blur(24px);
+	border: 1px solid var(--glass-border);
+}

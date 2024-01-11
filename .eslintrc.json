@@ -1,0 +1,7 @@
+// prettier-ignore
+{
+	"extends": [
+    "next/core-web-vitals",
+    "prettier"
+  ]
+}
