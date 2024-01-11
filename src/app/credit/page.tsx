@@ -34,6 +34,7 @@ export default function App() {
 				>
 					{creditJson().map((item, index) => (
 						<SkillCard
+							key={index}
 							SVG={<item.SVG svg='text-input' />}
 							title={item.title}
 							description={item.description}
