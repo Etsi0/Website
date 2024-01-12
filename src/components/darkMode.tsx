@@ -24,7 +24,9 @@ function FunDarkMode() {
 	function darkModeSet(isDarkModeEnabled) {
 		const root = document.querySelector(':root') as HTMLElement;
 		root.classList.toggle('dark', isDarkModeEnabled);
-		root.classList.toggle('light', !isDarkModeEnabled);
+		if (localStorage.getItem('ThemeSwitch') != null) {
+			root.classList.toggle('light', !isDarkModeEnabled);
+		}
 	}
 
 	return (
