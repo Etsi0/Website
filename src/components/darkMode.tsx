@@ -3,35 +3,36 @@ import { useState, useEffect } from 'react';
 
 function FunDarkMode() {
 	const [isMounted, setMounted] = useState(false);
+	const [darkMode, setDarkMode] = useState(false);
+
 	useEffect(() => {
 		if (isMounted) {
-			setDarkMode(localStorage.getItem('ThemeSwitch') === 'true');
+			const prefersDarkMode = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+			const savedTheme = localStorage.getItem('ThemeSwitch');
+			const initialDarkMode = savedTheme === null ? prefersDarkMode() : savedTheme === 'true';
+			setDarkMode(initialDarkMode);
 		} else {
 			setMounted(true);
 		}
 	}, [isMounted]);
-	const [darkMode, setDarkMode] = useState(false);
 
 	useEffect(() => {
-		darkModeSet(darkMode);
-	}, [darkMode]);
+		if (isMounted) {
+			const root = document.querySelector(':root');
+			root.classList.toggle('dark', darkMode);
+			root.classList.toggle('light', !darkMode);
 
-	function darkModeClick() {
-		localStorage.setItem('ThemeSwitch', (!darkMode).toString());
-		setDarkMode(!darkMode);
-	}
-
-	function darkModeSet(isDarkModeEnabled) {
-		const root = document.querySelector(':root') as HTMLElement;
-		root.classList.toggle('dark', isDarkModeEnabled);
-		if (localStorage.getItem('ThemeSwitch') != null) {
-			root.classList.toggle('light', !isDarkModeEnabled);
+			localStorage.setItem('ThemeSwitch', darkMode.toString());
 		}
+	}, [darkMode, isMounted]);
+
+	function toggleDarkMode() {
+		setDarkMode(!darkMode);
 	}
 
 	return (
 		<button
-			onClick={darkModeClick}
+			onClick={toggleDarkMode}
 			className='
 				h-full
 				aspect-square
