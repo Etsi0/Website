@@ -1,2 +1,2 @@
 # Website
-Website using Firebase hosting, Next.js, TailwindCSS and ESlint
+Website using Cloudflare DNC and Domain, Vercel, Next.js, TailwindCSS, ESLint and Prettier
