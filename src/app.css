@@ -169,19 +169,19 @@ video {
 /*==================================================
 	hamburger icon
 ==================================================*/
-.hamburger .path1,
-.hamburger .path3 {
+.path1,
+.path3 {
 	stroke-dasharray: 60 207;
 }
-.hamburger .path2 {
+.path2 {
 	stroke-dasharray: 60 60;
 }
-button[aria-expanded='true'] .hamburger .path1,
-button[aria-expanded='true'] .hamburger .path3 {
+button[aria-expanded='true'] .path1,
+button[aria-expanded='true'] .path3 {
 	stroke-dasharray: 90 207;
 	stroke-dashoffset: -134;
 }
-button[aria-expanded='true'] .hamburger .path2 {
+button[aria-expanded='true'] .path2 {
 	stroke-dasharray: 1 60;
 	stroke-dashoffset: -30;
 }

@@ -5,53 +5,58 @@ export default function App() {
 		{
 			SVG: Figma,
 			title: 'HTML',
-			description: '',
+			description: <p></p>,
 		},
 		{
 			SVG: Figma,
 			title: 'CSS',
-			description: '',
+			description: <p></p>,
 		},
 		{
 			SVG: Figma,
 			title: 'JavaScript',
-			description: '',
+			description: <p></p>,
 		},
 		{
 			SVG: Figma,
 			title: 'Mobile First',
-			description: '',
+			description: <p></p>,
 		},
 		{
 			SVG: Figma,
 			title: 'Design',
-			description: 'Figma and AdobeXD',
+			description: <p>Figma and AdobeXD</p>,
 		},
 		{
 			SVG: Figma,
 			title: 'CSS Frameworks',
-			description: '',
+			description: <p></p>,
 		},
 		{
 			SVG: Figma,
 			title: 'Frontend Frameworks',
-			description: '',
+			description: <p></p>,
 		},
 		{
 			SVG: Figma,
 			title: 'Version Control',
-			description: 'Git/SVN',
+			description: <p>Git/SVN</p>,
 		},
 		{
 			SVG: Figma,
 			title: 'Firebase',
-			description: '',
+			description: <p></p>,
 		},
 		{
 			SVG: Figma,
 			title: 'UI/UX Design',
-			description:
-				'Knowing how to design websites in a way that makes them easy and pleasant to use, by focusing on both the appearance of the website and the experience of the user.',
+			description: (
+				<p>
+					Knowing how to design websites in a way that makes them easy and pleasant to
+					use, by focusing on both the appearance of the website and the experience of the
+					user.
+				</p>
+			),
 		},
 	];
 }

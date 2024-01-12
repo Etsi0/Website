@@ -752,12 +752,12 @@ video {
   gap: 0.75rem;
 }
 
-.self-center {
-  align-self: center;
+.gap-6 {
+  gap: 1.5rem;
 }
 
-.justify-self-end {
-  justify-self: end;
+.self-center {
+  align-self: center;
 }
 
 .overflow-hidden {
@@ -824,8 +824,8 @@ video {
   fill: var(--main-color);
 }
 
-.stroke-text-darker {
-  stroke: var(--text-color-darker);
+.stroke-current {
+  stroke: currentColor;
 }
 
 .object-cover {
@@ -939,6 +939,10 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.opacity-0 {
+  opacity: 0;
+}
+
 .shadow-\[0_0_0_100vmax_var\(--main-color\)\] {
   --tw-shadow: 0 0 0 100vmax var(--main-color);
   --tw-shadow-colored: 0 0 0 100vmax var(--tw-shadow-color);
@@ -964,6 +968,14 @@ video {
 
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 .transition-\[height\] {
@@ -1152,22 +1164,22 @@ video {
 	hamburger icon
 ==================================================*/
 
-.hamburger .path1,
-.hamburger .path3 {
+.path1,
+.path3 {
   stroke-dasharray: 60 207;
 }
 
-.hamburger .path2 {
+.path2 {
   stroke-dasharray: 60 60;
 }
 
-button[aria-expanded='true'] .hamburger .path1,
-button[aria-expanded='true'] .hamburger .path3 {
+button[aria-expanded='true'] .path1,
+button[aria-expanded='true'] .path3 {
   stroke-dasharray: 90 207;
   stroke-dashoffset: -134;
 }
 
-button[aria-expanded='true'] .hamburger .path2 {
+button[aria-expanded='true'] .path2 {
   stroke-dasharray: 1 60;
   stroke-dashoffset: -30;
 }
@@ -1340,6 +1352,20 @@ button[aria-expanded='true'] .hamburger .path2 {
 
 .aria-selected\:text-input[aria-selected="true"] {
   color: var(--input-color);
+}
+
+@media (min-width: 640px) {
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:w-72 {
+    width: 18rem;
+  }
+
+  .sm\:justify-self-end {
+    justify-self: end;
+  }
 }
 
 @media (min-width: 1024px) {

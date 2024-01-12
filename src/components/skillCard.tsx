@@ -1,10 +1,10 @@
 'use client';
-import { useRef, useState } from 'react';
+import { ReactElement, useRef, useState } from 'react';
 
 interface AppProps {
 	SVG: React.ElementType<any, any>;
 	title: string;
-	description: string;
+	description: ReactElement;
 	modalSVG?: React.ElementType<any, any>;
 }
 
@@ -64,42 +64,49 @@ export default function App(props: AppProps) {
 				<dialog
 					ref={dialogRef}
 					className='
-					bg-body
-					p-8
-					rounded-lg
-					shadow-lg
-					dark:shadow-[0px_5px_25px_-5px]
-					dark:shadow-main
-				'
+						bg-body
+						p-8
+						rounded-lg
+						shadow-lg
+						dark:shadow-[0px_5px_25px_-5px]
+						dark:shadow-main
+					'
 				>
 					<div
 						className='
-						flex
+						grid
+						justify-items-center
+						sm:flex
+						gap-3
 					'
 					>
 						{modalSVG}
 						<div
 							className='
-							grid
-							self-center
-							gap-3
-						'
+								grid
+								self-center
+								gap-6
+								sm:w-72
+							'
 						>
-							<h3>{title}</h3>
-							<p>{description}</p>
+							<div>
+								<h3>{title}</h3>
+								{description}
+							</div>
 							<button
 								className='
-								justify-self-end
-								bg-main
-								text-input
-								py-3
-								px-9
-								rounded-md
-								hover:bg-main-lighter
-								hover:text-main
-								focus-visible:bg-main-lighter
-								focus-visible:text-main
-							'
+									justify-items-center
+									sm:justify-self-end
+									bg-main
+									text-input
+									py-3
+									px-9
+									rounded-md
+									hover:bg-main-lighter
+									hover:text-main
+									focus-visible:bg-main-lighter
+									focus-visible:text-main
+								'
 								onClick={OpenDialog}
 							>
 								Close
