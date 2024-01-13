@@ -2,10 +2,10 @@
 import { ReactElement, useRef, useState } from 'react';
 
 interface AppProps {
-	SVG: React.ElementType<any, any>;
+	SVG: ReactElement;
 	title: string;
 	description: ReactElement;
-	modalSVG?: React.ElementType<any, any>;
+	modalSVG?: ReactElement;
 }
 
 export default function App(props: AppProps) {

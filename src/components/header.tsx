@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { m, Variants, LazyMotion, domAnimation } from 'framer-motion';
 
 import navLinks from './navLinks.json';
 import DarkMode from './darkMode';
@@ -54,47 +55,69 @@ export default function App() {
 	}
 	function navigation() {
 		return (
-			<nav
-				style={{ transform: `translateX(${NavTransform})` }}
-				className='
-					overflow-hidden
-					bg-body
-					min-w-72
-					h-screen
-					float-right
-					border-l-[1px]
-					pointer-events-auto
-				'
-				aria-label='Main Navigation'
-			>
-				<ul>
-					{navLinks.map((link, i) => (
-						<li key={link.path}>
-							<Link
-								tabIndex={navOpened ? 0 : -1}
-								className={`
-									block
-									p-3
-									text-text-darker
-									aria-selected:bg-main
-									aria-selected:text-input
-									[&:not([aria-selected='true'])]:hover:bg-main-lighter
-									[&:not([aria-selected='true'])]:hover:text-main-darker
-									[&:not([aria-selected='true'])]:focus-visible:bg-main-lighter
-									[&:not([aria-selected='true'])]:focus-visible:text-main-darker
-								`}
-								href={link.path}
-								onClick={() => navClick(link.path)}
-								aria-selected={
-									currentPath === link.path || (currentPath === '/' && i === 0)
-								}
-							>
-								{link.name}
-							</Link>
-						</li>
-					))}
-				</ul>
-			</nav>
+			<LazyMotion features={domAnimation}>
+				<m.nav
+					initial={{
+						x: '100%',
+					}}
+					variants={{
+						open: {
+							x: 0,
+							transition: {
+								ease: 'easeInOut',
+								duration: 0.25,
+							},
+						},
+						close: {
+							x: '100%',
+							transition: {
+								ease: 'easeInOut',
+								duration: 0.25,
+							},
+						},
+					}}
+					animate={navOpened ? 'open' : 'close'}
+					className='
+						overflow-hidden
+						bg-body
+						min-w-72
+						h-screen
+						float-right
+						border-l-[1px]
+						pointer-events-auto
+					'
+					aria-label='Main Navigation'
+				>
+					<ul>
+						{navLinks.map((link, i) => (
+							<li key={link.path}>
+								<Link
+									tabIndex={navOpened ? 0 : -1}
+									className={`
+										block
+										p-3
+										text-text-darker
+										aria-selected:bg-main
+										aria-selected:text-input
+										[&:not([aria-selected='true'])]:hover:bg-main-lighter
+										[&:not([aria-selected='true'])]:hover:text-main-darker
+										[&:not([aria-selected='true'])]:focus-visible:bg-main-lighter
+										[&:not([aria-selected='true'])]:focus-visible:text-main-darker
+									`}
+									href={link.path}
+									onClick={() => navClick(link.path)}
+									aria-selected={
+										currentPath === link.path ||
+										(currentPath === '/' && i === 0)
+									}
+								>
+									{link.name}
+								</Link>
+							</li>
+						))}
+					</ul>
+				</m.nav>
+			</LazyMotion>
 		);
 	}
 
@@ -126,24 +149,28 @@ export default function App() {
 					{/*==================================================
 						Page icon
 					==================================================*/}
-					<Link
-						className='
-							h-full
-						'
-						href='/'
-					>
-						<Image
-							className='
+					<LazyMotion features={domAnimation}>
+						<m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+							<Link
+								className='
 								h-full
 							'
-							src={'/img/unedited SVGs/phadoniaLogoRightPalette.svg'}
-							alt='Logo'
-							width={40}
-							height={40}
-							blurDataURL='data:...'
-							placeholder='blur'
-						/>
-					</Link>
+								href='/'
+							>
+								<Image
+									className='
+								h-full
+							'
+									src={'/img/unedited SVGs/phadoniaLogoRightPalette.svg'}
+									alt='Logo'
+									width={40}
+									height={40}
+									blurDataURL='data:...'
+									placeholder='blur'
+								/>
+							</Link>
+						</m.div>
+					</LazyMotion>
 					{/*==================================================
 						Hamburger icon
 					==================================================*/}
@@ -155,16 +182,20 @@ export default function App() {
 					>
 						<DarkMode />
 						{/* !!! I did not make this hamburgerBtn, https://codepen.io/ainalem/pen/wvKOEMV !!! */}
-						<button
-							className='
-								h-full
-								aspect-square
-							'
-							aria-expanded={navOpened}
-							onClick={hamburgerBtnClick}
-						>
-							<Hamburger svg={'text-text-darker'} />
-						</button>
+						<LazyMotion features={domAnimation}>
+							<m.button
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
+								className='
+									h-full
+									aspect-square
+								'
+								aria-expanded={navOpened}
+								onClick={hamburgerBtnClick}
+							>
+								<Hamburger svg={'text-text-darker'} />
+							</m.button>
+						</LazyMotion>
 					</div>
 				</div>
 				<hr />

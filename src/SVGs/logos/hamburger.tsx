@@ -6,7 +6,7 @@ export default function App(props: AppProps) {
 	const { svg } = props;
 
 	const hamburgerPathStyle = `
-		transition-all
+		transition-[stroke-dashoffset,_stroke-dasharray]
 		duration-500
 	`;
 

@@ -661,6 +661,10 @@ video {
   width: 100%;
 }
 
+.w-screen {
+  width: 100vw;
+}
+
 .min-w-72 {
   min-width: 18rem;
 }
@@ -683,6 +687,11 @@ video {
 
 .translate-x-\[-50\%\] {
   --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-x-\[100px\] {
+  --tw-translate-x: 100px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -766,6 +775,10 @@ video {
 
 .overflow-x-hidden {
   overflow-x: hidden;
+}
+
+.overflow-x-clip {
+  overflow-x: clip;
 }
 
 .rounded-2xl {
@@ -887,6 +900,14 @@ video {
   text-align: center;
 }
 
+.align-top {
+  vertical-align: top;
+}
+
+.align-middle {
+  vertical-align: middle;
+}
+
 .text-\[clamp\(1rem\2c 50vw\2c 16rem\)\] {
   font-size: clamp(1rem,50vw,16rem);
 }
@@ -984,8 +1005,8 @@ video {
   transition-duration: 150ms;
 }
 
-.transition-all {
-  transition-property: all;
+.transition-\[stroke-dashoffset\2c _stroke-dasharray\] {
+  transition-property: stroke-dashoffset, stroke-dasharray;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1004,6 +1025,10 @@ video {
 
 .duration-500 {
   transition-duration: 500ms;
+}
+
+.will-change-transform {
+  will-change: transform;
 }
 
 :root {
@@ -1075,15 +1100,6 @@ video {
 *,
 *::after {
   border-color: var(--border-color);
-  /* from tailwind */
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke,
-		opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke,
-		opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke,
-		opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
 }
 
 *:focus-visible {
@@ -1326,24 +1342,24 @@ button[aria-expanded='true'] .path2 {
   fill: var(--main-color-lighter);
 }
 
-.group:hover .group-hover\:text-main {
-  color: var(--main-color);
-}
-
 .group:hover .group-hover\:text-main-lighter {
   color: var(--main-color-lighter);
+}
+
+.group:hover .group-hover\:text-main {
+  color: var(--main-color);
 }
 
 .group:focus-visible .group-focus-visible\:fill-main-lighter {
   fill: var(--main-color-lighter);
 }
 
-.group:focus-visible .group-focus-visible\:text-main {
-  color: var(--main-color);
-}
-
 .group:focus-visible .group-focus-visible\:text-main-lighter {
   color: var(--main-color-lighter);
+}
+
+.group:focus-visible .group-focus-visible\:text-main {
+  color: var(--main-color);
 }
 
 .aria-selected\:bg-main[aria-selected="true"] {
