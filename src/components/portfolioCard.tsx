@@ -57,8 +57,8 @@ export default function App(props: AppProps) {
 							'
 							src={bg}
 							alt={`Background image of a tree`}
-							width={bg.width}
-							height={bg.height}
+							width={584}
+							height={328.5}
 						/>
 					)}
 					{imgs.map((img, index) => (
@@ -81,8 +81,8 @@ export default function App(props: AppProps) {
 								`}
 								src={img}
 								alt={`Image ${index}`}
-								width={img.width}
-								height={img.height}
+								width={584}
+								height={328.5}
 							/>
 						</MotionDiv>
 					))}
