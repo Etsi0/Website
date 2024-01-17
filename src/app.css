@@ -2,89 +2,167 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-	--hue-color: 240;
-	--warning-hue: 4;
+@layer base {
+	:root {
+		--hue-color: 240deg;
+		--warning-hue: 4;
 
-	--warning-color-darker: hsl(var(--warning-hue), 57%, 53%);
-	--warning-color: hsl(var(--warning-hue), 69%, 61%);
-	--warning-color-lighter: hsl(var(--warning-hue), 92%, 85%);
+		--warning-color-darker: hsl(var(--warning-hue), 57%, 53%);
+		--warning-color: hsl(var(--warning-hue), 69%, 61%);
+		--warning-color-lighter: hsl(var(--warning-hue), 92%, 85%);
 
-	--input-color: hsl(var(--hue-color), 70%, 96%);
+		--input-color: hsl(var(--hue-color), 70%, 96%);
+
+		--body-color: hsl(
+			var(--hue-color),
+			60%,
+			max(99% - var(--dark-mode), var(--dark-mode) - 99%)
+		);
+
+		--border-color: hsl(
+			var(--hue-color),
+			13%,
+			max(91% - var(--dark-mode), var(--dark-mode) - 91%)
+		);
+
+		--primary-lightness-50: 88.935%;
+		--primary-color-50: var(--hue-color, 240deg) 81.92498870311792%
+			max(
+				var(--primary-lightness-50) - var(--dark-mode),
+				var(--dark-mode) - var(--primary-lightness-50)
+			);
+		--primary-lightness-100: 83.03999999999999%;
+		--primary-color-100: var(--hue-color, 240deg) 76.4150943396226%
+			max(
+				var(--primary-lightness-100) - var(--dark-mode),
+				var(--dark-mode) - var(--primary-lightness-100)
+			);
+		--primary-lightness-200: 77.315%;
+		--primary-color-200: var(--hue-color, 240deg) 73.55080449636321%
+			max(
+				var(--primary-lightness-200) - var(--dark-mode),
+				var(--dark-mode) - var(--primary-lightness-200)
+			);
+		--primary-lightness-300: 71.76%;
+		--primary-color-300: var(--hue-color, 240deg) 71.671388101983%
+			max(
+				var(--primary-lightness-300) - var(--dark-mode),
+				var(--dark-mode) - var(--primary-lightness-300)
+			);
+		--primary-lightness-400: 66.375%;
+		--primary-color-400: var(--hue-color, 240deg) 70.26022304832715%
+			max(
+				var(--primary-lightness-400) - var(--dark-mode),
+				var(--dark-mode) - var(--primary-lightness-400)
+			);
+		--primary-lightness-500: 61.160000000000004%;
+		--primary-color-500: var(--hue-color, 240deg) 69.10401647785788%
+			max(
+				var(--primary-lightness-500) - var(--dark-mode),
+				var(--dark-mode) - var(--primary-lightness-500)
+			);
+		--primary-lightness-600: 49.68749999999999%;
+		--primary-color-600: var(--hue-color, 240deg) 50.9433962264151%
+			max(
+				var(--primary-lightness-600) - var(--dark-mode),
+				var(--dark-mode) - var(--primary-lightness-600)
+			);
+		--primary-lightness-700: 39.06%;
+		--primary-color-700: var(--hue-color, 240deg) 58.730158730158735%
+			max(
+				var(--primary-lightness-700) - var(--dark-mode),
+				var(--dark-mode) - var(--primary-lightness-700)
+			);
+		--primary-lightness-800: 29.277499999999996%;
+		--primary-color-800: var(--hue-color, 240deg) 67.3640167364017%
+			max(
+				var(--primary-lightness-800) - var(--dark-mode),
+				var(--dark-mode) - var(--primary-lightness-800)
+			);
+		--primary-lightness-900: 20.339999999999996%;
+		--primary-color-900: var(--hue-color, 240deg) 76.99115044247789%
+			max(
+				var(--primary-lightness-900) - var(--dark-mode),
+				var(--dark-mode) - var(--primary-lightness-900)
+			);
+		--primary-lightness-950: 12.2475%;
+		--primary-color-950: var(--hue-color, 240deg) 87.79342723004696%
+			max(
+				var(--primary-lightness-950) - var(--dark-mode),
+				var(--dark-mode) - var(--primary-lightness-950)
+			);
+
+		--main-color-darker: hsl(
+			var(--hue-color),
+			57%,
+			max(53% - var(--dark-mode), var(--dark-mode) - 53%)
+		);
+		--main-color: hsl(
+			var(--hue-color),
+			69%,
+			max(61% - var(--dark-mode), var(--dark-mode) - 61%)
+		);
+		--main-color-lighter: hsl(
+			var(--hue-color),
+			92%,
+			max(85% - var(--dark-mode), var(--dark-mode) - 85%)
+		);
+
+		--text-color-darker: hsl(
+			var(--hue-color),
+			8%,
+			max(15% - var(--dark-mode), var(--dark-mode) - 15%)
+		);
+		--text-color: hsl(
+			var(--hue-color),
+			8%,
+			max(45% - var(--dark-mode), var(--dark-mode) - 45%)
+		);
+		--text-color-lighter: hsl(
+			var(--hue-color),
+			8%,
+			max(65% - var(--dark-mode), var(--dark-mode) - 65%)
+		);
+
+		--glass-bg: hsla(
+			var(--hue-color),
+			60%,
+			max(99% - var(--dark-mode), var(--dark-mode) - 99%),
+			0.24
+		);
+		--glass-border: hsla(
+			var(--hue-color),
+			60%,
+			max(99% - var(--dark-mode), var(--dark-mode) - 99%),
+			0.16
+		);
+	}
 }
 @media (prefers-color-scheme: light) {
 	:root {
-		--body-color: hsl(var(--hue-color), 60%, 99%);
-
-		--border-color: hsl(var(--hue-color), 13%, 91%);
-
-		--main-color-darker: hsl(var(--hue-color), 57%, 53%);
-		--main-color: hsl(var(--hue-color), 69%, 61%);
-		--main-color-lighter: hsl(var(--hue-color), 92%, 85%);
-
-		--text-color-darker: hsl(var(--hue-color), 8%, 15%);
-		--text-color: hsl(var(--hue-color), 8%, 45%);
-		--text-color-lighter: hsl(var(--hue-color), 8%, 65%);
-
-		--glass-bg: hsla(var(--hue-color), 60%, 99%, 0.24);
-		--glass-border: hsla(var(--hue-color), 60%, 99%, 0.16);
+		--dark-mode: 0%;
 	}
 }
 @media (prefers-color-scheme: dark) {
 	:root {
-		--body-color: hsl(var(--hue-color), 60%, 2.5%);
-
-		--border-color: hsl(var(--hue-color), 13%, 10.5%);
-
-		--main-color-darker: hsl(var(--hue-color), 57%, 48.5%);
-		--main-color: hsl(var(--hue-color), 69%, 40.5%);
-		--main-color-lighter: hsl(var(--hue-color), 92%, 16.5%);
-
-		--text-color-darker: hsl(var(--hue-color), 8%, 86.5%);
-		--text-color: hsl(var(--hue-color), 8%, 56.5%);
-		--text-color-lighter: hsl(var(--hue-color), 8%, 36.5%);
-
-		--glass-bg: hsla(var(--hue-color), 60%, 2.5%, 0.24);
-		--glass-border: hsla(var(--hue-color), 60%, 2.5%, 0.16);
+		--dark-mode: 101.5%;
 	}
 }
 :root.light {
-	--body-color: hsl(var(--hue-color), 60%, 99%);
-
-	--border-color: hsl(var(--hue-color), 13%, 91%);
-
-	--main-color-darker: hsl(var(--hue-color), 57%, 53%);
-	--main-color: hsl(var(--hue-color), 69%, 61%);
-	--main-color-lighter: hsl(var(--hue-color), 92%, 85%);
-
-	--text-color-darker: hsl(var(--hue-color), 8%, 15%);
-	--text-color: hsl(var(--hue-color), 8%, 45%);
-	--text-color-lighter: hsl(var(--hue-color), 8%, 65%);
-
-	--glass-bg: hsla(var(--hue-color), 60%, 99%, 0.24);
-	--glass-border: hsla(var(--hue-color), 60%, 99%, 0.16);
+	--dark-mode: 0%;
 }
 :root.dark {
-	--body-color: hsl(var(--hue-color), 60%, 2.5%);
-
-	--border-color: hsl(var(--hue-color), 13%, 10.5%);
-
-	--main-color-darker: hsl(var(--hue-color), 57%, 48.5%);
-	--main-color: hsl(var(--hue-color), 69%, 40.5%);
-	--main-color-lighter: hsl(var(--hue-color), 92%, 16.5%);
-
-	--text-color-darker: hsl(var(--hue-color), 8%, 86.5%);
-	--text-color: hsl(var(--hue-color), 8%, 56.5%);
-	--text-color-lighter: hsl(var(--hue-color), 8%, 36.5%);
-
-	--glass-bg: hsla(var(--hue-color), 60%, 2.5%, 0.24);
-	--glass-border: hsla(var(--hue-color), 60%, 2.5%, 0.16);
+	--dark-mode: 101.5%;
 }
 
 *::before,
 *,
 *::after {
 	border-color: var(--border-color);
+
+	transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 150ms;
 }
 
 *:focus-visible {
@@ -201,7 +279,7 @@ button[aria-expanded='true'] .path2 {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	*:has(:target) {
+	:has(:target) {
 		scroll-behavior: smooth;
 	}
 }

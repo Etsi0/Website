@@ -3,121 +3,92 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { m, Variants, LazyMotion, domAnimation } from 'framer-motion';
 
 import navLinks from './navLinks.json';
 import DarkMode from './darkMode';
 
 import Hamburger from '@/SVGs/logos/hamburger';
+import { MotionNav } from './motionElemets';
 
 export default function App() {
 	const [isMounted, setMounted] = useState(false);
+	const pathname = usePathname();
 	useEffect(() => {
 		if (isMounted) {
 			setCurrentPath(pathname + window.location.hash);
 		} else {
 			setMounted(true);
 		}
-	}, [isMounted]);
-	{
-		/*==================================================
-			Gets the page you are on
-		==================================================*/
-	}
-	const pathname = usePathname();
+	}, [isMounted, pathname]);
+
+	const [navOpened, setNavOpened] = useState(false);
 	const [currentPath, setCurrentPath] = useState('');
 	function navClick(str: string) {
 		setCurrentPath(str);
 	}
 
-	{
-		/*==================================================
-			Changes the state of the hamburger icon
-		==================================================*/
-	}
-	const [navOpened, setNavOpened] = useState(false);
-	const [NavTransform, setNavTransform] = useState('100%');
-	function hamburgerBtnClick() {
-		setNavTransform(navOpened ? `100%` : `0`);
-		setNavOpened(!navOpened);
-	}
-
-	{
-		/*==================================================
-			Styling for my hamburgerBtn
-		==================================================*/
-	}
-
-	{
-		/*==================================================
-			Navbar that pops up when you press on the hamburgerBtn
-		==================================================*/
-	}
 	function navigation() {
 		return (
-			<LazyMotion features={domAnimation}>
-				<m.nav
-					initial={{
+			<MotionNav
+				initial={{
+					x: '100%',
+				}}
+				variants={{
+					open: {
+						x: 0,
+						transition: {
+							ease: 'easeInOut',
+							duration: 0.25,
+						},
+					},
+					close: {
 						x: '100%',
-					}}
-					variants={{
-						open: {
-							x: 0,
-							transition: {
-								ease: 'easeInOut',
-								duration: 0.25,
-							},
+						transition: {
+							ease: 'easeInOut',
+							duration: 0.25,
 						},
-						close: {
-							x: '100%',
-							transition: {
-								ease: 'easeInOut',
-								duration: 0.25,
-							},
-						},
-					}}
-					animate={navOpened ? 'open' : 'close'}
-					className='
-						overflow-hidden
-						bg-body
-						min-w-72
-						h-screen
-						float-right
-						border-l-[1px]
-						pointer-events-auto
-					'
-					aria-label='Main Navigation'
-				>
-					<ul>
-						{navLinks.map((link, i) => (
-							<li key={link.path}>
-								<Link
-									tabIndex={navOpened ? 0 : -1}
-									className={`
-										block
-										p-3
-										text-text-darker
-										aria-selected:bg-main
-										aria-selected:text-input
-										[&:not([aria-selected='true'])]:hover:bg-main-lighter
-										[&:not([aria-selected='true'])]:hover:text-main-darker
-										[&:not([aria-selected='true'])]:focus-visible:bg-main-lighter
-										[&:not([aria-selected='true'])]:focus-visible:text-main-darker
-									`}
-									href={link.path}
-									onClick={() => navClick(link.path)}
-									aria-selected={
-										currentPath === link.path ||
-										(currentPath === '/' && i === 0)
-									}
-								>
-									{link.name}
-								</Link>
-							</li>
-						))}
-					</ul>
-				</m.nav>
-			</LazyMotion>
+					},
+				}}
+				animate={navOpened ? 'open' : 'close'}
+				className='
+					overflow-hidden
+					bg-body
+					min-w-72
+					h-screen
+					float-right
+					border-l-[1px]
+					pointer-events-auto
+				'
+				aria-label='Main Navigation'
+			>
+				<ul>
+					{navLinks.map((link, i) => (
+						<li key={link.path}>
+							<Link
+								tabIndex={navOpened ? 0 : -1}
+								className={`
+									block
+									p-3
+									text-text-darker
+									aria-selected:bg-main
+									aria-selected:text-input
+									[&:not([aria-selected='true'])]:hover:bg-main-lighter
+									[&:not([aria-selected='true'])]:hover:text-main-darker
+									[&:not([aria-selected='true'])]:focus-visible:bg-main-lighter
+									[&:not([aria-selected='true'])]:focus-visible:text-main-darker
+								`}
+								href={link.path}
+								onClick={() => navClick(link.path)}
+								aria-selected={
+									currentPath === link.path || (currentPath === '/' && i === 0)
+								}
+							>
+								{link.name}
+							</Link>
+						</li>
+					))}
+				</ul>
+			</MotionNav>
 		);
 	}
 
@@ -149,28 +120,24 @@ export default function App() {
 					{/*==================================================
 						Page icon
 					==================================================*/}
-					<LazyMotion features={domAnimation}>
-						<m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-							<Link
-								className='
-								h-full
-							'
-								href='/'
-							>
-								<Image
-									className='
-								h-full
-							'
-									src={'/img/unedited SVGs/phadoniaLogoRightPalette.svg'}
-									alt='Logo'
-									width={40}
-									height={40}
-									blurDataURL='data:...'
-									placeholder='blur'
-								/>
-							</Link>
-						</m.div>
-					</LazyMotion>
+					<Link
+						className='
+							h-full
+						'
+						href='/'
+					>
+						<Image
+							className='
+						h-full
+					'
+							src={'/img/unedited SVGs/phadoniaLogoRightPalette.svg'}
+							alt='Logo'
+							width={40}
+							height={40}
+							blurDataURL='data:...'
+							placeholder='blur'
+						/>
+					</Link>
 					{/*==================================================
 						Hamburger icon
 					==================================================*/}
@@ -182,20 +149,17 @@ export default function App() {
 					>
 						<DarkMode />
 						{/* !!! I did not make this hamburgerBtn, https://codepen.io/ainalem/pen/wvKOEMV !!! */}
-						<LazyMotion features={domAnimation}>
-							<m.button
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.95 }}
-								className='
-									h-full
-									aspect-square
-								'
-								aria-expanded={navOpened}
-								onClick={hamburgerBtnClick}
-							>
-								<Hamburger svg={'text-text-darker'} />
-							</m.button>
-						</LazyMotion>
+						<button
+							className='
+								group
+								h-full
+								aspect-square
+							'
+							aria-expanded={navOpened}
+							onClick={() => setNavOpened(!navOpened)}
+						>
+							<Hamburger svg={'text-text-darker group-hover:text-text'} />
+						</button>
 					</div>
 				</div>
 				<hr />

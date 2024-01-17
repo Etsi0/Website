@@ -1,11 +1,11 @@
 'use client';
-import { ReactElement, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 interface AppProps {
-	SVG: ReactElement;
+	SVG: JSX.Element;
 	title: string;
-	description: ReactElement;
-	modalSVG?: ReactElement;
+	description: JSX.Element;
+	modalSVG?: JSX.Element;
 }
 
 export default function App(props: AppProps) {
@@ -30,6 +30,7 @@ export default function App(props: AppProps) {
 					flex-col
 					gap-3
 					bg-main-darker
+					w-full
 					aspect-[1/1.125]
 					p-3
 					rounded-lg

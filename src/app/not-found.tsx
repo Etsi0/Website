@@ -19,7 +19,7 @@ export default function App() {
 					<Person
 						svg='
 							absolute
-							color-main-darker
+							text-primary-700
 							h-full
 							left-1/2
 							translate-x-[-50%]
@@ -27,9 +27,9 @@ export default function App() {
 					/>
 					<h1
 						className='
-						text-main-lighter
-						text-[clamp(1rem,50vw,16rem)]
-					'
+							text-primary-500
+							text-[clamp(1rem,50vw,16rem)]
+						'
 					>
 						404
 					</h1>

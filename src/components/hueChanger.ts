@@ -8,4 +8,4 @@ const randomFloatInRange = randomFloat + range[0];
 const randomIntInRange = Math.floor(randomFloatInRange);
 
 const root = document.querySelector(':root') as HTMLElement;
-root.style.setProperty('--hue-color', randomIntInRange.toString());
+root.style.setProperty('--hue-color', randomIntInRange.toString() + 'deg');
