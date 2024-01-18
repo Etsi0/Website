@@ -90,7 +90,7 @@ export default function App(props: AppProps) {
 						className='
 							self-end
 							absolute
-							bg-main
+							bg-primary-500
 							m-2
 							px-5
 							py-3
@@ -99,8 +99,8 @@ export default function App(props: AppProps) {
 							text-input
 							text-center
 							rounded-md
-							hover:bg-main-lighter
-							hover:text-main
+							hover:bg-primary-50
+							hover:text-primary-500
 						'
 						href='/'
 					>

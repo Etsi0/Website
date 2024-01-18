@@ -75,7 +75,7 @@ export default function App({ item }) {
 				rounded-2xl
 				shadow-xl
 				dark:shadow-[0px_5px_25px_-5px]
-				dark:shadow-main
+				dark:shadow-primary-500
 			'
 		>
 			<div
@@ -148,8 +148,8 @@ export default function App({ item }) {
 							<button
 								key={index}
 								className='
-									bg-main-lighter
-									text-main
+									bg-primary-50
+									text-primary-500
 									px-1
 									rounded-md
 									text-xs
@@ -171,7 +171,7 @@ export default function App({ item }) {
 						className='
 							list-disc
 							list-inside
-							marker:text-main
+							marker:text-primary-500
 						'
 					>
 						{item.description &&
@@ -181,7 +181,7 @@ export default function App({ item }) {
 									className='
 										text-base
 										font-medium
-										text-text-lighter
+										text-text-300
 										font-Poppins
 									'
 								>
@@ -189,7 +189,7 @@ export default function App({ item }) {
 										<>
 											{desc[0]} -{' '}
 											<a
-												className='text-main'
+												className='text-primary-500'
 												href={desc[1]}
 												target='_blank'
 												rel='noopener'
@@ -208,7 +208,7 @@ export default function App({ item }) {
 								className='
 									text-base
 									font-medium
-									text-text-lighter
+									text-text-300
 									font-Poppins
 								'
 							>
@@ -228,7 +228,7 @@ export default function App({ item }) {
 							<a
 								key={index}
 								className={`
-									bg-main
+									bg-primary-500
 									w-full
 									even:w-[calc(0.75rem*2+1.5rem)]
 									text-input
@@ -237,14 +237,14 @@ export default function App({ item }) {
 									rounded-md
 									transition-colors
 
-									hover:bg-main-lighter
-									hover:text-main
+									hover:bg-primary-50
+									hover:text-primary-500
 
-									focus-visible:bg-main-lighter
-									focus-visible:text-main
+									focus-visible:bg-primary-50
+									focus-visible:text-primary-500
 									focus-visible:outline
 									focus-visible:outline-2
-									focus-visible:outline-main
+									focus-visible:outline-primary-500
 								`}
 								href={value}
 								target='_blank'

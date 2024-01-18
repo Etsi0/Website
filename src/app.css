@@ -25,6 +25,9 @@
 			max(91% - var(--dark-mode), var(--dark-mode) - 91%)
 		);
 
+		/*==================================================
+		 Primary colors
+		==================================================*/
 		--primary-lightness-50: 88.935%;
 		--primary-color-50: var(--hue-color, 240deg) 81.92498870311792%
 			max(
@@ -92,50 +95,39 @@
 				var(--dark-mode) - var(--primary-lightness-950)
 			);
 
-		--main-color-darker: hsl(
-			var(--hue-color),
-			57%,
-			max(53% - var(--dark-mode), var(--dark-mode) - 53%)
-		);
-		--main-color: hsl(
-			var(--hue-color),
-			69%,
-			max(61% - var(--dark-mode), var(--dark-mode) - 61%)
-		);
-		--main-color-lighter: hsl(
-			var(--hue-color),
-			92%,
-			max(85% - var(--dark-mode), var(--dark-mode) - 85%)
-		);
-
-		--text-color-darker: hsl(
-			var(--hue-color),
-			8%,
-			max(15% - var(--dark-mode), var(--dark-mode) - 15%)
-		);
-		--text-color: hsl(
-			var(--hue-color),
-			8%,
-			max(45% - var(--dark-mode), var(--dark-mode) - 45%)
-		);
-		--text-color-lighter: hsl(
-			var(--hue-color),
-			8%,
-			max(65% - var(--dark-mode), var(--dark-mode) - 65%)
-		);
-
-		--glass-bg: hsla(
-			var(--hue-color),
-			60%,
-			max(99% - var(--dark-mode), var(--dark-mode) - 99%),
-			0.24
-		);
-		--glass-border: hsla(
-			var(--hue-color),
-			60%,
-			max(99% - var(--dark-mode), var(--dark-mode) - 99%),
-			0.16
-		);
+		/*==================================================
+		 Text colors
+		==================================================*/
+		--text-lightness-300: 36.075%;
+		--text-color-300: var(--hue-color, 240deg) 8.108108108108107%
+			max(
+				var(--text-lightness-300) - var(--dark-mode),
+				var(--dark-mode) - var(--text-lightness-300)
+			);
+		--text-lightness-400: 27.888%;
+		--text-color-400: var(--hue-color, 240deg) 19.047619047619047%
+			max(
+				var(--text-lightness-400) - var(--dark-mode),
+				var(--dark-mode) - var(--text-lightness-400)
+			);
+		--text-lightness-500: 20.686999999999998%;
+		--text-color-500: var(--hue-color, 240deg) 32.450331125827816%
+			max(
+				var(--text-lightness-500) - var(--dark-mode),
+				var(--dark-mode) - var(--text-lightness-500)
+			);
+		--text-lightness-600: 14.472000000000001%;
+		--text-color-600: var(--hue-color, 240deg) 49.25373134328358%
+			max(
+				var(--text-lightness-600) - var(--dark-mode),
+				var(--dark-mode) - var(--text-lightness-600)
+			);
+		--text-lightness-700: 9.243%;
+		--text-color-700: var(--hue-color, 240deg) 70.94017094017094%
+			max(
+				var(--text-lightness-700) - var(--dark-mode),
+				var(--dark-mode) - var(--text-lightness-700)
+			);
 	}
 }
 @media (prefers-color-scheme: light) {
@@ -177,7 +169,7 @@ html {
 
 body,
 dialog > * {
-	color: var(--text-color-lighter);
+	color: hsl(var(--text-color-300));
 	font-size: 1rem;
 	font-weight: 500;
 	line-height: 1.5rem;
@@ -189,13 +181,13 @@ h3,
 h4,
 h5,
 h6 {
-	color: var(--text-color);
+	color: hsl(var(--text-color-500));
 	font-weight: 600;
 	text-wrap: balance;
 }
 
 h1 {
-	color: var(--text-color-darker);
+	color: hsl(var(--text-color-700));
 	font-size: 3rem;
 	line-height: 1;
 }
@@ -282,15 +274,4 @@ button[aria-expanded='true'] .path2 {
 	:has(:target) {
 		scroll-behavior: smooth;
 	}
-}
-
-/*==================================================
-	dialog inside SkillCard
-==================================================*/
-.dialogSkillCard {
-	/* From https://css.glass */
-	background: var(--glass-bg);
-	backdrop-filter: blur(24px);
-	-webkit-backdrop-filter: blur(24px);
-	border: 1px solid var(--glass-border);
 }

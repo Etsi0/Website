@@ -69,13 +69,13 @@ export default function App() {
 								className={`
 									block
 									p-3
-									text-text-darker
-									aria-selected:bg-main
+									text-text-700
+									aria-selected:bg-primary-500
 									aria-selected:text-input
-									[&:not([aria-selected='true'])]:hover:bg-main-lighter
-									[&:not([aria-selected='true'])]:hover:text-main-darker
-									[&:not([aria-selected='true'])]:focus-visible:bg-main-lighter
-									[&:not([aria-selected='true'])]:focus-visible:text-main-darker
+									[&:not([aria-selected='true'])]:hover:bg-primary-50
+									[&:not([aria-selected='true'])]:hover:text-primary-500
+									[&:not([aria-selected='true'])]:focus-visible:bg-primary-50
+									[&:not([aria-selected='true'])]:focus-visible:text-primary-500
 								`}
 								href={link.path}
 								onClick={() => navClick(link.path)}
@@ -158,7 +158,7 @@ export default function App() {
 							aria-expanded={navOpened}
 							onClick={() => setNavOpened(!navOpened)}
 						>
-							<Hamburger svg={'text-text-darker group-hover:text-text'} />
+							<Hamburger svg={'text-text-700 group-hover:text-text-300'} />
 						</button>
 					</div>
 				</div>

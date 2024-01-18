@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Image from 'next/image';
 
 import socialLinkJson from '@/components/socialLinkJson';
@@ -53,9 +54,9 @@ export default async function App() {
 							<item.img
 								svg='
 									h-8
-									text-main
-									group-hover:text-main-lighter
-									group-focus-visible:text-main-lighter
+									text-primary-500
+									group-hover:text-primary-50
+									group-focus-visible:text-primary-50
 								'
 							/>
 						</a>
@@ -100,6 +101,9 @@ export default async function App() {
 
 	return (
 		<>
+			<Head>
+				<title>Home - Phadonia</title>
+			</Head>
 			{/*==================================================
 				Home
 			==================================================*/}
@@ -152,7 +156,7 @@ export default async function App() {
 							including a 10-week real-world experience at{' '}
 							<a
 								className='
-									text-main
+									text-primary-500
 								'
 								href='https://www.farsight.se/'
 								target='blank_'
@@ -165,7 +169,7 @@ export default async function App() {
 							achievements is winning the Game On competition at{' '}
 							<a
 								className='
-									text-main
+									text-primary-500
 								'
 								href='https://ntigymnasiet.se/skovde/'
 								target='blank_'
@@ -214,9 +218,9 @@ export default async function App() {
 			==================================================*/}
 			<section
 				className='
-					bg-main
+					bg-primary-500
 					py-8
-					shadow-[0_0_0_100vmax_var(--main-color)]
+					shadow-[0_0_0_100vmax_hsl(var(--primary-color-500))]
 				'
 				style={{ clipPath: 'inset(0 -100vmax)' }}
 			></section>
@@ -298,13 +302,6 @@ export default async function App() {
 							initial='default'
 							whileInView='enter'
 							viewport={{ once: true, amount: 1 }}
-							className='
-								text-base
-								font-medium
-								text-text-lighter
-								font-Poppins
-								max-w-prose
-							'
 						>
 							Hi there! I am a web and software developer currently in my fourth year
 							at TE. Upon completion, I will be a High School Engineer. Throughout my
@@ -322,14 +319,14 @@ export default async function App() {
 								flex
 								items-center
 								gap-1
-								bg-main
+								bg-primary-500
 								text-input
 								p-3
 								rounded-md
-								hover:bg-main-lighter
-								hover:text-main
-								focus-visible:bg-main-lighter
-								focus-visible:text-main
+								hover:bg-primary-50
+								hover:text-primary-500
+								focus-visible:bg-primary-50
+								focus-visible:text-primary-500
 							'
 							href='/Albin_Karlsson_CV.pdf'
 							download="Albin Karlsson's CV"
@@ -342,8 +339,8 @@ export default async function App() {
 									inline
 									text-input
 									h-5
-									group-hover:text-main
-									group-focus-visible:text-main
+									group-hover:text-primary-500
+									group-focus-visible:text-primary-500
 								'
 							/>
 						</MotionA>
@@ -407,7 +404,7 @@ export default async function App() {
 								SVG={<item.SVG svg='text-input' />}
 								title={item.title}
 								description={item.description}
-								modalSVG={<item.SVG svg='text-main w-72' />}
+								modalSVG={<item.SVG svg='text-primary-500 w-72' />}
 							/>
 						</MotionDiv>
 					))}

@@ -29,16 +29,16 @@ export default function App(props: AppProps) {
 					items-center
 					flex-col
 					gap-3
-					bg-main-darker
+					bg-primary-600
 					w-full
 					aspect-[1/1.125]
 					p-3
 					rounded-lg
 					shadow-lg
 
-					hover:brightness-90
+					hover:bg-primary-400
 					hover:shadow-md
-					focus-visible:brightness-90
+					focus-visible:bg-primary-400
 					focus-visible:shadow-md
 				'
 				onClick={OpenDialog}
@@ -70,7 +70,7 @@ export default function App(props: AppProps) {
 						rounded-lg
 						shadow-lg
 						dark:shadow-[0px_5px_25px_-5px]
-						dark:shadow-main
+						dark:shadow-primary-500
 					'
 				>
 					<div
@@ -98,15 +98,15 @@ export default function App(props: AppProps) {
 								className='
 									justify-items-center
 									sm:justify-self-end
-									bg-main
+									bg-primary-500
 									text-input
 									py-3
 									px-9
 									rounded-md
-									hover:bg-main-lighter
-									hover:text-main
-									focus-visible:bg-main-lighter
-									focus-visible:text-main
+									hover:bg-primary-50
+									hover:text-primary-500
+									focus-visible:bg-primary-50
+									focus-visible:text-primary-500
 								'
 								onClick={OpenDialog}
 							>

@@ -461,6 +461,9 @@ video {
 			13%,
 			max(91% - var(--dark-mode), var(--dark-mode) - 91%)
 		);
+  /*==================================================
+		 Primary colors
+		==================================================*/
   --primary-lightness-50: 88.935%;
   --primary-color-50: var(--hue-color, 240deg) 81.92498870311792%
 			max(
@@ -527,48 +530,39 @@ video {
 				var(--primary-lightness-950) - var(--dark-mode),
 				var(--dark-mode) - var(--primary-lightness-950)
 			);
-  --main-color-darker: hsl(
-			var(--hue-color),
-			57%,
-			max(53% - var(--dark-mode), var(--dark-mode) - 53%)
-		);
-  --main-color: hsl(
-			var(--hue-color),
-			69%,
-			max(61% - var(--dark-mode), var(--dark-mode) - 61%)
-		);
-  --main-color-lighter: hsl(
-			var(--hue-color),
-			92%,
-			max(85% - var(--dark-mode), var(--dark-mode) - 85%)
-		);
-  --text-color-darker: hsl(
-			var(--hue-color),
-			8%,
-			max(15% - var(--dark-mode), var(--dark-mode) - 15%)
-		);
-  --text-color: hsl(
-			var(--hue-color),
-			8%,
-			max(45% - var(--dark-mode), var(--dark-mode) - 45%)
-		);
-  --text-color-lighter: hsl(
-			var(--hue-color),
-			8%,
-			max(65% - var(--dark-mode), var(--dark-mode) - 65%)
-		);
-  --glass-bg: hsla(
-			var(--hue-color),
-			60%,
-			max(99% - var(--dark-mode), var(--dark-mode) - 99%),
-			0.24
-		);
-  --glass-border: hsla(
-			var(--hue-color),
-			60%,
-			max(99% - var(--dark-mode), var(--dark-mode) - 99%),
-			0.16
-		);
+  /*==================================================
+		 Text colors
+		==================================================*/
+  --text-lightness-300: 36.075%;
+  --text-color-300: var(--hue-color, 240deg) 8.108108108108107%
+			max(
+				var(--text-lightness-300) - var(--dark-mode),
+				var(--dark-mode) - var(--text-lightness-300)
+			);
+  --text-lightness-400: 27.888%;
+  --text-color-400: var(--hue-color, 240deg) 19.047619047619047%
+			max(
+				var(--text-lightness-400) - var(--dark-mode),
+				var(--dark-mode) - var(--text-lightness-400)
+			);
+  --text-lightness-500: 20.686999999999998%;
+  --text-color-500: var(--hue-color, 240deg) 32.450331125827816%
+			max(
+				var(--text-lightness-500) - var(--dark-mode),
+				var(--dark-mode) - var(--text-lightness-500)
+			);
+  --text-lightness-600: 14.472000000000001%;
+  --text-color-600: var(--hue-color, 240deg) 49.25373134328358%
+			max(
+				var(--text-lightness-600) - var(--dark-mode),
+				var(--dark-mode) - var(--text-lightness-600)
+			);
+  --text-lightness-700: 9.243%;
+  --text-color-700: var(--hue-color, 240deg) 70.94017094017094%
+			max(
+				var(--text-lightness-700) - var(--dark-mode),
+				var(--dark-mode) - var(--text-lightness-700)
+			);
 }
 
 *, ::before, ::after {
@@ -947,21 +941,19 @@ video {
   background-color: var(--body-color);
 }
 
-.bg-main {
-  background-color: var(--main-color);
-}
-
-.bg-main-darker {
-  background-color: var(--main-color-darker);
-}
-
-.bg-main-lighter {
-  background-color: var(--main-color-lighter);
+.bg-primary-50 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--primary-color-50) / var(--tw-bg-opacity));
 }
 
 .bg-primary-500 {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--primary-color-500) / var(--tw-bg-opacity));
+}
+
+.bg-primary-600 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--primary-color-600) / var(--tw-bg-opacity));
 }
 
 .bg-transparent {
@@ -976,8 +968,8 @@ video {
   fill: currentColor;
 }
 
-.fill-main {
-  fill: var(--main-color);
+.fill-primary-500 {
+  fill: hsl(var(--primary-color-500) / 1);
 }
 
 .stroke-current {
@@ -1079,10 +1071,6 @@ video {
   color: var(--input-color);
 }
 
-.text-main {
-  color: var(--main-color);
-}
-
 .text-primary-500 {
   --tw-text-opacity: 1;
   color: hsl(var(--primary-color-500) / var(--tw-text-opacity));
@@ -1093,12 +1081,14 @@ video {
   color: hsl(var(--primary-color-700) / var(--tw-text-opacity));
 }
 
-.text-text-darker {
-  color: var(--text-color-darker);
+.text-text-300 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--text-color-300) / var(--tw-text-opacity));
 }
 
-.text-text-lighter {
-  color: var(--text-color-lighter);
+.text-text-700 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--text-color-700) / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -1108,12 +1098,6 @@ video {
 
 .shadow-\[0_0_0_100vmax_hsl\(var\(--primary-color-500\)\)\] {
   --tw-shadow: 0 0 0 100vmax hsl(var(--primary-color-500));
-  --tw-shadow-colored: 0 0 0 100vmax var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-\[0_0_0_100vmax_var\(--main-color\)\] {
-  --tw-shadow: 0 0 0 100vmax var(--main-color);
   --tw-shadow-colored: 0 0 0 100vmax var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
@@ -1217,7 +1201,7 @@ html {
 
 body,
 dialog > * {
-  color: var(--text-color-lighter);
+  color: hsl(var(--text-color-300));
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5rem;
@@ -1229,13 +1213,13 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--text-color);
+  color: hsl(var(--text-color-500));
   font-weight: 600;
   text-wrap: balance;
 }
 
 h1 {
-  color: var(--text-color-darker);
+  color: hsl(var(--text-color-700));
   font-size: 3rem;
   line-height: 1;
 }
@@ -1334,24 +1318,12 @@ button[aria-expanded='true'] .path2 {
   }
 }
 
-/*==================================================
-	dialog inside SkillCard
-==================================================*/
-
-.dialogSkillCard {
-  /* From https://css.glass */
-  background: var(--glass-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--glass-border);
+.marker\:text-primary-500 *::marker {
+  color: hsl(var(--primary-color-500) );
 }
 
-.marker\:text-main *::marker {
-  color: var(--main-color);
-}
-
-.marker\:text-main::marker {
-  color: var(--main-color);
+.marker\:text-primary-500::marker {
+  color: hsl(var(--primary-color-500) );
 }
 
 .even\:w-\[calc\(0\.75rem\*2\+1\.5rem\)\]:nth-child(even) {
@@ -1364,16 +1336,23 @@ button[aria-expanded='true'] .path2 {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.hover\:bg-main-lighter:hover {
-  background-color: var(--main-color-lighter);
+.hover\:bg-primary-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--primary-color-400) / var(--tw-bg-opacity));
+}
+
+.hover\:bg-primary-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--primary-color-50) / var(--tw-bg-opacity));
 }
 
 .hover\:bg-warning-lighter:hover {
   background-color: var(--warning-color-lighter);
 }
 
-.hover\:text-main:hover {
-  color: var(--main-color);
+.hover\:text-primary-500:hover {
+  --tw-text-opacity: 1;
+  color: hsl(var(--primary-color-500) / var(--tw-text-opacity));
 }
 
 .hover\:text-warning-darker:hover {
@@ -1386,27 +1365,29 @@ button[aria-expanded='true'] .path2 {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.hover\:brightness-90:hover {
-  --tw-brightness: brightness(.9);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .focus-visible\:scale-110:focus-visible {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.focus-visible\:bg-main-lighter:focus-visible {
-  background-color: var(--main-color-lighter);
+.focus-visible\:bg-primary-400:focus-visible {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--primary-color-400) / var(--tw-bg-opacity));
+}
+
+.focus-visible\:bg-primary-50:focus-visible {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--primary-color-50) / var(--tw-bg-opacity));
 }
 
 .focus-visible\:bg-warning-lighter:focus-visible {
   background-color: var(--warning-color-lighter);
 }
 
-.focus-visible\:text-main:focus-visible {
-  color: var(--main-color);
+.focus-visible\:text-primary-500:focus-visible {
+  --tw-text-opacity: 1;
+  color: hsl(var(--primary-color-500) / var(--tw-text-opacity));
 }
 
 .focus-visible\:text-warning-darker:focus-visible {
@@ -1427,49 +1408,46 @@ button[aria-expanded='true'] .path2 {
   outline-width: 2px;
 }
 
-.focus-visible\:outline-main:focus-visible {
-  outline-color: var(--main-color);
+.focus-visible\:outline-primary-500:focus-visible {
+  outline-color: hsl(var(--primary-color-500) / 1);
 }
 
 .focus-visible\:outline-warning:focus-visible {
   outline-color: var(--warning-color);
 }
 
-.focus-visible\:brightness-90:focus-visible {
-  --tw-brightness: brightness(.9);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+.group:hover .group-hover\:fill-primary-50 {
+  fill: hsl(var(--primary-color-50) / 1);
 }
 
-.group:hover .group-hover\:fill-main-lighter {
-  fill: var(--main-color-lighter);
+.group:hover .group-hover\:text-primary-50 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--primary-color-50) / var(--tw-text-opacity));
 }
 
-.group:hover .group-hover\:text-main {
-  color: var(--main-color);
+.group:hover .group-hover\:text-primary-500 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--primary-color-500) / var(--tw-text-opacity));
 }
 
-.group:hover .group-hover\:text-main-lighter {
-  color: var(--main-color-lighter);
+.group:hover .group-hover\:text-text-300 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--text-color-300) / var(--tw-text-opacity));
 }
 
-.group:hover .group-hover\:text-text {
-  color: var(--text-color);
+.group:focus-visible .group-focus-visible\:text-primary-50 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--primary-color-50) / var(--tw-text-opacity));
 }
 
-.group:focus-visible .group-focus-visible\:fill-main-lighter {
-  fill: var(--main-color-lighter);
+.group:focus-visible .group-focus-visible\:text-primary-500 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--primary-color-500) / var(--tw-text-opacity));
 }
 
-.group:focus-visible .group-focus-visible\:text-main {
-  color: var(--main-color);
-}
-
-.group:focus-visible .group-focus-visible\:text-main-lighter {
-  color: var(--main-color-lighter);
-}
-
-.aria-selected\:bg-main[aria-selected="true"] {
-  background-color: var(--main-color);
+.aria-selected\:bg-primary-500[aria-selected="true"] {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--primary-color-500) / var(--tw-bg-opacity));
 }
 
 .aria-selected\:text-input[aria-selected="true"] {
@@ -1522,23 +1500,27 @@ button[aria-expanded='true'] .path2 {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-:is(:where(.dark) .dark\:shadow-main) {
-  --tw-shadow-color: var(--main-color);
+:is(:where(.dark) .dark\:shadow-primary-500) {
+  --tw-shadow-color: hsl(var(--primary-color-500) / 1);
   --tw-shadow: var(--tw-shadow-colored);
 }
 
-.\[\&\:not\(\[aria-selected\=\'true\'\]\)\]\:hover\:bg-main-lighter:hover:not([aria-selected='true']) {
-  background-color: var(--main-color-lighter);
+.\[\&\:not\(\[aria-selected\=\'true\'\]\)\]\:hover\:bg-primary-50:hover:not([aria-selected='true']) {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--primary-color-50) / var(--tw-bg-opacity));
 }
 
-.\[\&\:not\(\[aria-selected\=\'true\'\]\)\]\:hover\:text-main-darker:hover:not([aria-selected='true']) {
-  color: var(--main-color-darker);
+.\[\&\:not\(\[aria-selected\=\'true\'\]\)\]\:hover\:text-primary-500:hover:not([aria-selected='true']) {
+  --tw-text-opacity: 1;
+  color: hsl(var(--primary-color-500) / var(--tw-text-opacity));
 }
 
-.\[\&\:not\(\[aria-selected\=\'true\'\]\)\]\:focus-visible\:bg-main-lighter:focus-visible:not([aria-selected='true']) {
-  background-color: var(--main-color-lighter);
+.\[\&\:not\(\[aria-selected\=\'true\'\]\)\]\:focus-visible\:bg-primary-50:focus-visible:not([aria-selected='true']) {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--primary-color-50) / var(--tw-bg-opacity));
 }
 
-.\[\&\:not\(\[aria-selected\=\'true\'\]\)\]\:focus-visible\:text-main-darker:focus-visible:not([aria-selected='true']) {
-  color: var(--main-color-darker);
+.\[\&\:not\(\[aria-selected\=\'true\'\]\)\]\:focus-visible\:text-primary-500:focus-visible:not([aria-selected='true']) {
+  --tw-text-opacity: 1;
+  color: hsl(var(--primary-color-500) / var(--tw-text-opacity));
 }

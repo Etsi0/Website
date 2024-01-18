@@ -4,8 +4,6 @@ import GitHub from '@/SVGs/company logos/github-alt';
 import CodePen from '@/SVGs/company logos/codepen';
 import Dribbble from '@/SVGs/company logos/dribbble';
 
-//class='fill-main transition-colors group-hover:fill-main-lighter group-focus-visible:fill-main-lighter'
-
 export default function App() {
 	return [
 		{

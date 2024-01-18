@@ -38,7 +38,7 @@ export default function App() {
 							SVG={<item.SVG svg='text-input' />}
 							title={item.title}
 							description={item.description}
-							modalSVG={<item.SVG svg='text-main w-72' />}
+							modalSVG={<item.SVG svg='text-primary-500 w-72' />}
 						/>
 					))}
 				</div>

@@ -7,7 +7,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-var HsbColors = generateColorsOnCurve(11, { x: 61, y: 88 });
+var HsbColors = generateColorsOnCurve(9, { x: 15, y: 39 });
 var HslColors = HsbColors.map(function (HsbColor) { return HSBtoHSL(HsbColor[0], HsbColor[1]); });
 console.log('Here is your saturation and brightness, happy coloring 😘:', HslColors.reverse());
 function generateColorsOnCurve(numberOfColors, middle) {
@@ -37,8 +37,8 @@ function HSBtoHSL(s, b) {
     s /= 100;
     b /= 100;
     var l = ((2 - s) * b) / 2;
-    if (l !== 0) {
-        if (l === 1) {
+    if (l != 0) {
+        if (l == 1) {
             s = 0;
         }
         else if (l < 0.5) {

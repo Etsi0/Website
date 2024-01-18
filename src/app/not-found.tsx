@@ -46,18 +46,18 @@ export default function App() {
 				<Link
 					className='
 						inline-block
-						bg-main
+						bg-primary-500
 						text-input
 						p-4
 						rounded-md
 						transition-colors
-						hover:bg-main-lighter
-						hover:text-main
-						focus-visible:bg-main-lighter
-						focus-visible:text-main
+						hover:bg-primary-50
+						hover:text-primary-500
+						focus-visible:bg-primary-50
+						focus-visible:text-primary-500
 						focus-visible:outline
 						focus-visible:outline-2
-						focus-visible:outline-main
+						focus-visible:outline-primary-500
 					'
 					href='/'
 				>

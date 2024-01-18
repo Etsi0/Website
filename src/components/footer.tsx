@@ -3,7 +3,7 @@ export default function Footer() {
 		<>
 			<footer
 				className='
-					bg-main
+					bg-primary-500
 				'
 			>
 				<hr />

@@ -24,16 +24,13 @@ module.exports = {
 					900: 'hsl(var(--primary-color-900) / <alpha-value>)',
 					950: 'hsl(var(--primary-color-950) / <alpha-value>)',
 				},
-				main: {
-					lighter: 'var(--main-color-lighter)',
-					DEFAULT: 'var(--main-color)',
-					darker: 'var(--main-color-darker)',
-				},
 				input: 'var(--input-color)',
 				text: {
-					lighter: 'var(--text-color-lighter)',
-					DEFAULT: 'var(--text-color)',
-					darker: 'var(--text-color-darker)',
+					300: 'hsl(var(--text-color-300) / <alpha-value>)',
+					400: 'hsl(var(--text-color-400) / <alpha-value>)',
+					500: 'hsl(var(--text-color-500) / <alpha-value>)',
+					600: 'hsl(var(--text-color-600) / <alpha-value>)',
+					700: 'hsl(var(--text-color-700) / <alpha-value>)',
 				},
 				warning: {
 					lighter: 'var(--warning-color-lighter)',
