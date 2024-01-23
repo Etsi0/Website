@@ -211,7 +211,7 @@ export default async function App() {
 								className='
 									text-primary-700
 								'
-								href='https://elevenlabs.io/'
+								href='https://elevenlabs.io/text-to-speech'
 							>
 								ElevenLabs
 							</a>
