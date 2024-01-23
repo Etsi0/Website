@@ -1,24 +1,35 @@
-import Figma from '@/SVGs/company logos/figma';
+import {
+	CSS,
+	Devices,
+	Figma,
+	Framer,
+	GitHub,
+	HTML,
+	React,
+	TailwindCSS,
+	TypeScript,
+	UX,
+} from '@/components/SVGs';
 
 export default function App() {
 	return [
 		{
-			SVG: Figma,
+			SVG: HTML,
 			title: 'HTML',
 			description: <p></p>,
 		},
 		{
-			SVG: Figma,
+			SVG: CSS,
 			title: 'CSS',
 			description: <p></p>,
 		},
 		{
-			SVG: Figma,
-			title: 'JavaScript',
+			SVG: TypeScript,
+			title: 'TypeScript',
 			description: <p></p>,
 		},
 		{
-			SVG: Figma,
+			SVG: Devices,
 			title: 'Mobile First',
 			description: <p></p>,
 		},
@@ -28,27 +39,27 @@ export default function App() {
 			description: <p>Figma and AdobeXD</p>,
 		},
 		{
-			SVG: Figma,
+			SVG: TailwindCSS,
 			title: 'CSS Frameworks',
 			description: <p></p>,
 		},
 		{
-			SVG: Figma,
+			SVG: React,
 			title: 'Frontend Frameworks',
 			description: <p></p>,
 		},
 		{
-			SVG: Figma,
+			SVG: GitHub,
 			title: 'Version Control',
 			description: <p>Git/SVN</p>,
 		},
 		{
-			SVG: Figma,
-			title: 'Firebase',
+			SVG: Framer,
+			title: 'Animations',
 			description: <p></p>,
 		},
 		{
-			SVG: Figma,
+			SVG: UX,
 			title: 'UI/UX Design',
 			description: (
 				<p>

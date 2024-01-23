@@ -9,6 +9,7 @@ export default function App() {
 				className='
 					grid
 					justify-items-center
+					pb-16
 				'
 			>
 				<div
@@ -35,10 +36,10 @@ export default function App() {
 					{creditJson().map((item, index) => (
 						<SkillCard
 							key={index}
-							SVG={<item.SVG svg='text-input' />}
+							SVG={<item.SVG svg='text-input aspect-square' />}
 							title={item.title}
 							description={item.description}
-							modalSVG={<item.SVG svg='text-primary-500 w-72' />}
+							modalSVG={<item.SVG svg='text-primary-500 w-72 aspect-square' />}
 						/>
 					))}
 				</div>

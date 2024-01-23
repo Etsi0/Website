@@ -90,7 +90,12 @@ export default function App(props: AppProps) {
 								sm:w-72
 							'
 						>
-							<div>
+							<div
+								className='
+									grid
+									gap-3
+								'
+							>
 								<h3>{title}</h3>
 								{description}
 							</div>

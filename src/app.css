@@ -158,7 +158,7 @@
 }
 
 *:focus-visible {
-	outline: solid 2px var(--main-color);
+	outline: solid 2px hsl(var(--primary-color-500));
 }
 
 html {
@@ -273,5 +273,11 @@ button[aria-expanded='true'] .path2 {
 @media (prefers-reduced-motion: no-preference) {
 	:has(:target) {
 		scroll-behavior: smooth;
+	}
+}
+
+@keyframes backgroundMove {
+	to {
+		background-position: left top;
 	}
 }

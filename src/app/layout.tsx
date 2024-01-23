@@ -10,9 +10,8 @@ export default function RootLayout({ children }) {
 	return (
 		<>
 			<Head>
-				<meta name='description' content='Description of my page' />
-				<meta property='og:title' content='My Page Title' />
-				<meta property='og:description' content='Description of my page' />
+				<meta property='og:type' content='website' />
+				<meta property='og:type' content='website' />
 				<meta property='og:image' content='URL_to_image.jpg' />
 			</Head>
 			<html lang='en'>

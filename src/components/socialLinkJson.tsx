@@ -1,13 +1,9 @@
-import Linkedin from '@/SVGs/company logos/linkedin-alt';
-import Discord from '@/SVGs/company logos/discord';
-import GitHub from '@/SVGs/company logos/github-alt';
-import CodePen from '@/SVGs/company logos/codepen';
-import Dribbble from '@/SVGs/company logos/dribbble';
+import { CodePen, Discord, Dribbble, GitHub, LinkedIn } from '@/components/SVGs';
 
 export default function App() {
 	return [
 		{
-			img: Linkedin,
+			img: LinkedIn,
 			name: 'Linkedin',
 			path: 'https://www.linkedin.com/in/albinkarlsson2003/',
 		},

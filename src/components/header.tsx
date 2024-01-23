@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import navLinks from './navLinks.json';
 import DarkMode from './darkMode';
 
-import Hamburger from '@/SVGs/logos/hamburger';
+import { Hamburger } from '@/components/SVGs';
 import { MotionNav } from './motionElemets';
 
 export default function App() {

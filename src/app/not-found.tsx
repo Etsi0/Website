@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import Person from '@/SVGs/Person';
+import { Person } from '@/components/SVGs';
 
 export default function App() {
 	return (

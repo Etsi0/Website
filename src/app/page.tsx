@@ -11,24 +11,78 @@ import {
 	MotionP,
 	MotionA,
 	MotionUl,
+	MotionAudio,
 } from '@/components/motionElemets';
 
 import SkillCard from '@/components/skillCard';
 import PortfolioCard from '@/components/portfolioCard';
 
-import Download from '@/SVGs/logos/download';
+import { Download } from '@/components/SVGs';
 import Selfie from '@/../public/img/production/selfie/selfie.png';
 import DesktopDesign from '@/../public/img/desktop-design.jpg';
 import MobileDesign from '@/../public/img/mobile-design.jpg';
 import Tree from '@/../public/img/apple wallpaper/mac tree/Tree/RanchoNight_16_Dyn_Tree-1.webp';
 import TreeDark from '@/../public/img/apple wallpaper/mac tree/Tree/RanchoNight_16_Dyn_Tree-2.webp';
+import Link from 'next/link';
 
 export default async function App() {
 	const latestProjects = skillCardJson()[0];
+
+	const title = 'Home - Phadonia';
+	const description = 'Home - Phadonia';
+
+	function calculateAge(): number {
+		const birth = new Date('2003-08-25');
+		const today = new Date('2024-07-25');
+		let diff = today.getFullYear() - birth.getFullYear();
+
+		if (
+			today.getMonth() < birth.getMonth() ||
+			(today.getMonth() == birth.getMonth() && today.getDate() < birth.getDate())
+		) {
+			return --diff;
+		}
+
+		return diff;
+	}
+
+	const textAnimation = (delay?: number) => ({
+		default: {
+			opacity: 0,
+			y: 100,
+		},
+		enter: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				type: 'spring',
+				damping: 14,
+				stiffness: 110,
+				delay,
+			},
+		},
+	});
+	const imgAnimation = (startPos: number, delay?: number) => ({
+		default: {
+			opacity: 0,
+			x: startPos,
+		},
+		enter: {
+			opacity: 1,
+			x: 0,
+			transition: {
+				type: 'spring',
+				damping: 14,
+				stiffness: 110,
+				delay,
+			},
+		},
+	});
+
 	function socialLinks(whenHidden: string) {
 		return (
 			<MotionUl
-				variants={textAnimation(0.15)}
+				variants={textAnimation(0.2)}
 				initial='default'
 				whileInView='enter'
 				viewport={{ once: true, amount: 1 }}
@@ -66,43 +120,14 @@ export default async function App() {
 		);
 	}
 
-	const textAnimation = (delay?: number) => ({
-		default: {
-			opacity: 0,
-			y: 100,
-		},
-		enter: {
-			opacity: 1,
-			y: 0,
-			transition: {
-				type: 'spring',
-				damping: 14,
-				stiffness: 110,
-				delay,
-			},
-		},
-	});
-	const imgAnimation = (startPos: number, delay?: number) => ({
-		default: {
-			opacity: 0,
-			x: startPos,
-		},
-		enter: {
-			opacity: 1,
-			x: 0,
-			transition: {
-				type: 'spring',
-				damping: 14,
-				stiffness: 110,
-				delay,
-			},
-		},
-	});
-
 	return (
 		<>
 			<Head>
-				<title>Home - Phadonia</title>
+				<title>{title}</title>
+				<meta name='description' content='Description of my page' />
+				<meta property='og:title' content={title} />
+				<meta property='og:description' content='Description of my page' />
+				<meta property='og:url' content='website' />
 			</Head>
 			{/*==================================================
 				Home
@@ -152,34 +177,45 @@ export default async function App() {
 								max-w-prose
 							'
 						>
-							After four years of intensive full-stack development education,
-							including a 10-week real-world experience at{' '}
-							<a
-								className='
-									text-primary-500
-								'
-								href='https://www.farsight.se/'
-								target='blank_'
-								rel='noopener'
-							>
-								Farsight Tech Nordic AB
-							</a>
-							, I&apos;ve refined my skills and developed a keen interest in creating
-							scalable, efficient, and user-friendly solutions. One of my proudest
-							achievements is winning the Game On competition at{' '}
-							<a
-								className='
-									text-primary-500
-								'
-								href='https://ntigymnasiet.se/skovde/'
-								target='blank_'
-								rel='noopener'
-							>
-								NTI Skövde
-							</a>{' '}
-							two years in a row. Currently, I am open to new job opportunities where
-							I can apply my knowledge and contribute to impactful projects.
+							As a {calculateAge()}-year-old full-stack developer from Skövde, Sweden,
+							I specialize in creating web applications that are ADA-compliant,
+							cross-browser compatible, SEO-optimized, and high-performing. When I
+							create my websites, I take a mobile-first design approach. Having
+							dyslexia myself, I am aware of the importance of making websites
+							accessible and user-friendly for everyone. My primary toolkit includes
+							Next.js, TypeScript, Tailwind CSS, and databases like MySQL or
+							PostgreSQL, all upheld to high standards with tools like Prettier and
+							ESLint.
 						</MotionP>
+						<MotionDiv
+							variants={textAnimation(0.15)}
+							initial='default'
+							whileInView='enter'
+							viewport={{ once: true, amount: 1 }}
+						>
+							<audio
+								className='
+									inline-block
+									rounded-full
+								'
+								controls
+							>
+								<source
+									src='/tts/ElevenLabs_2024-01-20T15 30 45_Matilda_pre_s56_sb75_se0_b_m2.mp3'
+									type='audio/mp3'
+								/>
+								Your browser does not support the audio element.
+							</audio>{' '}
+							by{' '}
+							<a
+								className='
+									text-primary-700
+								'
+								href='https://elevenlabs.io/'
+							>
+								ElevenLabs
+							</a>
+						</MotionDiv>
 					</div>
 					{socialLinks(`
 						hidden
@@ -398,13 +434,13 @@ export default async function App() {
 							variants={textAnimation(0.1 + 0.05 * (index % 6))}
 							initial='default'
 							whileInView='enter'
-							viewport={{ once: true, amount: 1 }}
+							viewport={{ once: true, amount: 0.628 }}
 						>
 							<SkillCard
-								SVG={<item.SVG svg='text-input' />}
+								SVG={<item.SVG svg='text-input aspect-square' />}
 								title={item.title}
 								description={item.description}
-								modalSVG={<item.SVG svg='text-primary-500 w-72' />}
+								modalSVG={<item.SVG svg='text-primary-500 w-72 aspect-square' />}
 							/>
 						</MotionDiv>
 					))}
@@ -416,13 +452,15 @@ export default async function App() {
 			<section
 				id='portfolio'
 				className='
+					grid
+					justify-items-center
+					gap-3
 					py-8
 				'
 			>
 				<div
 					className='
-						grid
-						justify-items-center
+						text-center
 					'
 				>
 					<MotionH2
@@ -442,63 +480,46 @@ export default async function App() {
 						Most recent work
 					</MotionP>
 				</div>
-				<div
+				<MotionDiv
+					className='w-full'
+					variants={textAnimation(0.1)}
+					initial='default'
+					whileInView='enter'
+					viewport={{ once: true, amount: 0.5 }}
+				>
+					<PortfolioCard
+						bgs={[Tree, TreeDark]}
+						imgs={[MobileDesign, DesktopDesign]}
+						title={latestProjects.title}
+					/>
+				</MotionDiv>
+				<MotionDiv
 					className='
 						grid
-						grid-cols-2
-						gap-12
-						pt-3
 					'
+					variants={textAnimation(0.05)}
+					initial='default'
+					whileInView='enter'
+					viewport={{ once: true, amount: 1 }}
 				>
-					<MotionDiv
-						variants={textAnimation(0.1)}
-						initial='default'
-						whileInView='enter'
-						viewport={{ once: true, amount: 0.5 }}
+					<Link
+						className='
+							bg-primary-500
+							px-5
+							py-3
+							text-lg
+							text-input
+							rounded-md
+							hover:bg-primary-50
+							hover:text-primary-500
+							focus-visible:bg-primary-50
+							focus-visible:text-primary-500
+						'
+						href='#'
 					>
-						<PortfolioCard
-							bgs={[Tree, TreeDark]}
-							imgs={[MobileDesign, DesktopDesign]}
-							title={latestProjects.title}
-						/>
-					</MotionDiv>
-					<MotionDiv
-						variants={textAnimation(0.15)}
-						initial='default'
-						whileInView='enter'
-						viewport={{ once: true, amount: 0.5 }}
-					>
-						<PortfolioCard
-							bgs={[Tree, TreeDark]}
-							imgs={[MobileDesign, DesktopDesign]}
-							title={latestProjects.title}
-						/>
-					</MotionDiv>
-					<MotionDiv
-						variants={textAnimation(0.1)}
-						initial='default'
-						whileInView='enter'
-						viewport={{ once: true, amount: 0.5 }}
-					>
-						<PortfolioCard
-							bgs={[Tree, TreeDark]}
-							imgs={[MobileDesign, DesktopDesign]}
-							title={latestProjects.title}
-						/>
-					</MotionDiv>
-					<MotionDiv
-						variants={textAnimation(0.15)}
-						initial='default'
-						whileInView='enter'
-						viewport={{ once: true, amount: 0.5 }}
-					>
-						<PortfolioCard
-							bgs={[Tree, TreeDark]}
-							imgs={[MobileDesign, DesktopDesign]}
-							title={latestProjects.title}
-						/>
-					</MotionDiv>
-				</div>
+						See all (Coming soon)
+					</Link>
+				</MotionDiv>
 			</section>
 		</>
 	);
