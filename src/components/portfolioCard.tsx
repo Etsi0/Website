@@ -23,7 +23,7 @@ const variants = {
 	},
 };
 
-const swipeConfidenceThreshold = 10000;
+const swipeConfidenceThreshold = 10000 as const;
 function swipePower(offset: number, velocity: number) {
 	return Math.abs(offset) * velocity;
 }
