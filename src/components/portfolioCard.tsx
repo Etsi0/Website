@@ -65,8 +65,11 @@ export default function App(props: AppProps) {
 		<>
 			<div
 				className='
+					overflow-hidden
 					grid
 					gap-3
+					w-full
+					p-3
 				'
 			>
 				<MotionDiv
