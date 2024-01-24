@@ -1,8 +1,9 @@
 'use client';
+import { useEffect, useRef, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { MotionButton, MotionDiv } from './motionElemets';
-import { useEffect, useRef, useState } from 'react';
 
 const variants = {
 	enter: (direction: number) => {
@@ -125,15 +126,15 @@ export default function App(props: AppProps) {
 								key={index}
 								className='
 									relative
-									h-32
-									w-72
+									basis-72
+									aspect-[3/1]
 									outline-4
 									outline
 									outline-body
 									rounded-lg
-									transition-[width]
+									transition-[flex-basis]
 									duration-500
-									aria-selected:w-96
+									aria-selected:basis-96
 
 									before:absolute
 									before:content
