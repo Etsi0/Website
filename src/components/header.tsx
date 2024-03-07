@@ -1,14 +1,14 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import navLinks from './navLinks.json';
 import DarkMode from './darkMode';
 
-import { Hamburger } from '@/components/SVGs';
+import { Hamburger, PhadoniaLogo } from '@/components/SVGs';
 import { MotionNav } from './motionElemets';
+import { cn } from '@/lib/util';
 
 export default function App() {
 	const [isMounted, setMounted] = useState(false);
@@ -51,13 +51,13 @@ export default function App() {
 				}}
 				animate={navOpened ? 'open' : 'close'}
 				className='
-					overflow-hidden
-					bg-body
-					min-w-72
-					h-screen
-					float-right
-					border-l-[1px]
 					pointer-events-auto
+					float-right
+					h-screen
+					min-w-72
+					overflow-hidden
+					border-l-[1px]
+					bg-body
 				'
 				aria-label='Main Navigation'
 			>
@@ -65,18 +65,20 @@ export default function App() {
 					{navLinks.map((link, i) => (
 						<li key={link.path}>
 							<Link
-								tabIndex={navOpened ? 0 : -1}
-								className={`
-									block
-									p-3
-									text-text-700
-									aria-selected:bg-primary-500
-									aria-selected:text-input
-									[&:not([aria-selected='true'])]:hover:bg-primary-50
-									[&:not([aria-selected='true'])]:hover:text-primary-500
-									[&:not([aria-selected='true'])]:focus-visible:bg-primary-50
-									[&:not([aria-selected='true'])]:focus-visible:text-primary-500
-								`}
+								tabIndex={
+									navOpened
+										? currentPath === link.path ||
+											(currentPath === '/' && i === 0)
+											? -1
+											: 0
+										: -1
+								}
+								className={cn(
+									`block p-3 text-text-700 
+									aria-selected:bg-primary-500 aria-selected:text-input 
+									[&:not([aria-selected='true'])]:hover:bg-primary-50 [&:not([aria-selected='true'])]:hover:text-primary-600 [&:not([aria-selected='true'])]:focus-visible:bg-primary-50 [&:not([aria-selected='true'])]:focus-visible:text-primary-600 
+									dark:[&:not([aria-selected='true'])]:hover:bg-primary-900 dark:[&:not([aria-selected='true'])]:hover:text-primary-400 dark:[&:not([aria-selected='true'])]:focus-visible:bg-primary-900 dark:[&:not([aria-selected='true'])]:focus-visible:text-primary-400`,
+								)}
 								href={link.path}
 								onClick={() => navClick(link.path)}
 								aria-selected={
@@ -95,48 +97,35 @@ export default function App() {
 	return (
 		<div
 			className='
-				fixed
-				w-full
-				z-50
 				pointer-events-none
+				fixed
+				z-50
+				w-full
 			'
 		>
 			<header
 				className='
+					bg-body/90
 					pointer-events-auto
-					bg-body
+					backdrop-blur-xl
 				'
 			>
 				<div
 					className='
-						flex
-						justify-between
-						max-w-7xl
-						h-16
-						p-3
 						mx-auto
+						flex
+						h-16
+						max-w-7xl
+						items-center
+						justify-between
+						p-3
 					'
 				>
 					{/*==================================================
 						Page icon
 					==================================================*/}
-					<Link
-						className='
-							h-full
-						'
-						href='/'
-					>
-						<Image
-							className='
-						h-full
-					'
-							src={'/img/unedited SVGs/phadoniaLogoRightPalette.svg'}
-							alt='Logo'
-							width={40}
-							height={40}
-							blurDataURL='data:...'
-							placeholder='blur'
-						/>
+					<Link href='/'>
+						<PhadoniaLogo className='aspect-[calc(1000/315.97)/1] h-8 text-body hue-rotate-180 invert' />
 					</Link>
 					{/*==================================================
 						Hamburger icon
@@ -152,13 +141,13 @@ export default function App() {
 						<button
 							className='
 								group
-								h-full
 								aspect-square
+								h-full
 							'
 							aria-expanded={navOpened}
 							onClick={() => setNavOpened(!navOpened)}
 						>
-							<Hamburger svg={'text-text-700 group-hover:text-text-300'} />
+							<Hamburger className={'text-text-700 group-hover:text-text-300'} />
 						</button>
 					</div>
 				</div>

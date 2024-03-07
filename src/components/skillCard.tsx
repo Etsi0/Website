@@ -1,4 +1,5 @@
 'use client';
+import { cn } from '@/lib/util';
 import { useRef, useState } from 'react';
 
 interface AppProps {
@@ -23,24 +24,9 @@ export default function App(props: AppProps) {
 	return (
 		<>
 			<button
-				className='
-					flex
-					justify-center
-					items-center
-					flex-col
-					gap-3
-					bg-primary-600
-					w-full
-					aspect-[1/1.125]
-					p-3
-					rounded-lg
-					shadow-lg
-
-					hover:bg-primary-400
-					hover:shadow-md
-					focus-visible:bg-primary-400
-					focus-visible:shadow-md
-				'
+				className={cn(
+					`flex aspect-[1/1.125] w-full flex-col items-center justify-center gap-3 rounded-lg bg-primary-600 p-3 shadow-lg hover:bg-primary-400 hover:shadow-inner focus-visible:bg-primary-400 focus-visible:shadow-md dark:bg-primary-400 dark:hover:bg-primary-600`,
+				)}
 				onClick={OpenDialog}
 			>
 				<div
@@ -50,43 +36,29 @@ export default function App(props: AppProps) {
 				>
 					{SVG}
 				</div>
-				<h3
-					className='
-						text-lg
-						leading-5
-						text-input
-						text-center
-					'
-				>
-					{title}
-				</h3>
+				<h3 className={cn(`text-center text-lg leading-5 text-input`)}>{title}</h3>
 			</button>
 			{modalSVG && (
 				<dialog
 					ref={dialogRef}
-					className='
-						bg-body
-						p-8
-						rounded-lg
-						shadow-lg
-						dark:shadow-[0px_5px_25px_-5px]
-						dark:shadow-primary-500
-					'
+					className={cn(
+						`rounded-lg bg-body p-8 shadow-lg dark:shadow-[0px_5px_25px_-5px] dark:shadow-primary-500`,
+					)}
 				>
 					<div
 						className='
 						grid
 						justify-items-center
-						sm:flex
 						gap-3
+						sm:flex
 					'
 					>
 						{modalSVG}
 						<div
 							className='
 								grid
-								self-center
 								gap-6
+								self-center
 								sm:w-72
 							'
 						>
@@ -102,16 +74,16 @@ export default function App(props: AppProps) {
 							<button
 								className='
 									justify-items-center
-									sm:justify-self-end
-									bg-primary-500
-									text-input
-									py-3
-									px-9
 									rounded-md
+									bg-primary-500
+									px-9
+									py-3
+									text-input
 									hover:bg-primary-50
 									hover:text-primary-500
 									focus-visible:bg-primary-50
 									focus-visible:text-primary-500
+									sm:justify-self-end
 								'
 								onClick={OpenDialog}
 							>

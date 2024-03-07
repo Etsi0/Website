@@ -1,10 +1,31 @@
+import { cn } from '@/lib/util';
+
 interface AppProps {
-	svg: string;
+	className?: string;
 }
-export function CodePen(props: AppProps) {
-	const { svg } = props;
+
+export function PhadoniaLogo({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1792 1792'>
+		<svg
+			className={cn(``, className)}
+			viewBox='0 0 1000 315.97'
+			xmlns='http://www.w3.org/2000/svg'
+		>
+			<path
+				className='fill-current'
+				fill='#E2E2E9'
+				d='M476.239 138.913C471.261 142.579 469.76 146.581 471.755 153.07C476.264 165.091 482.768 170.594 489.128 183.277C499.277 204.613 482.267 218.121 461.95 227.075C423.149 245.121 380.99 264.608 342.19 282.656C337.888 284.657 337.1 282.656 339.188 278.654C355.197 248.137 367.203 216.119 329.128 191.157C301.167 171.595 306.67 134.574 305.169 131.573C304.168 129.071 301.362 127.889 299.165 129.071C286.158 136.075 269.149 153.085 256.449 164.215C241.927 176.525 226.596 189.11 207.265 190.019C181.605 191.225 174.096 199.61 143.272 218.439C104.06 243.134 32.0201 294.163 4.50207 314.174C0.373373 317.175 -1.5009 315.589 1.50033 312.673C19.5136 295.163 101.058 214.118 156.372 159.392C161.732 154.089 167.973 150.953 175.643 151.559C194.191 153.023 209.665 146.411 223.667 134.598C245.222 116.411 268.577 100.315 287.449 79.0374C305.035 59.2087 321.239 60.5332 338.239 72.8629C361.246 89.5493 367.704 102.557 394.134 128.044C412.813 144.441 432.052 160.2 451.611 175.715C441.531 163.113 433.182 152.513 423.235 140.077C419.412 135.299 420.028 132.482 425.236 130.072C452.176 117.603 483.243 93.3692 509.192 71.366C536.797 47.0258 553.807 23.5127 578.307 8.79548C591.828 -1.00068 601.408 -4.50292 617.123 11.9684C665.368 62.5359 714.169 122.519 760.033 177.015C750.652 163.213 741.272 149.412 732.078 135.887C729.826 132.573 729.904 130.678 733.406 128.435C748.132 119.003 772.442 106.856 783.48 101.152C794.599 95.4053 799.661 96.2841 808.441 105.513C872.252 172.595 932.83 243.312 998.053 311.672C1001.76 315.556 1000.05 318.605 994.551 314.674C985.546 308.242 878.234 227.203 819.872 183.907C798.153 208.442 776.514 233.986 745.702 247.351C729.501 254.378 712.664 255.019 695.62 251.862C686.135 250.105 676.584 249.159 667.03 248.092C659.045 247.2 652.92 243.789 650.348 235.694C646.692 224.186 638.621 217.206 627.954 212.12C613.204 205.086 598.201 198.449 584.512 189.374C574.599 182.803 573.896 179.662 579.026 168.825C592.163 141.078 607.544 93.5515 597.539 69.3603C594.503 62.0195 590.826 60.8155 583.93 64.9198C546.384 87.2662 512.977 115.55 476.239 138.913Z'
+			/>
+		</svg>
+	);
+}
+export function CodePen({ className }: AppProps) {
+	return (
+		<svg
+			className={cn(``, className)}
+			xmlns='http://www.w3.org/2000/svg'
+			viewBox='0 0 1792 1792'
+		>
 			<path
 				className='fill-current'
 				fill='#5757E0'
@@ -13,10 +34,9 @@ export function CodePen(props: AppProps) {
 		</svg>
 	);
 }
-export function Discord(props: AppProps) {
-	const { svg } = props;
+export function Discord({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
 			<path
 				className='fill-current'
 				fill='#5757e0'
@@ -25,10 +45,9 @@ export function Discord(props: AppProps) {
 		</svg>
 	);
 }
-export function Dribbble(props: AppProps) {
-	const { svg } = props;
+export function Dribbble({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
 				className='fill-current'
 				fill='#5757E0'
@@ -37,10 +56,9 @@ export function Dribbble(props: AppProps) {
 		</svg>
 	);
 }
-export function Figma(props: AppProps) {
-	const { svg } = props;
+export function Figma({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
 				className='fill-current'
 				fill='#5757e0'
@@ -50,10 +68,9 @@ export function Figma(props: AppProps) {
 		</svg>
 	);
 }
-export function GitHub(props: AppProps) {
-	const { svg } = props;
+export function GitHub({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
 				className='fill-current'
 				fill='#5757E0'
@@ -62,10 +79,9 @@ export function GitHub(props: AppProps) {
 		</svg>
 	);
 }
-export function LinkedIn(props: AppProps) {
-	const { svg } = props;
+export function LinkedIn({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
 				className='fill-current'
 				fill='#5757E0'
@@ -74,10 +90,13 @@ export function LinkedIn(props: AppProps) {
 		</svg>
 	);
 }
-export function Cancel(props: AppProps) {
-	const { svg } = props;
+export function Cancel({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 47.5 47.5'>
+		<svg
+			className={cn(``, className)}
+			xmlns='http://www.w3.org/2000/svg'
+			viewBox='0 0 47.5 47.5'
+		>
 			<path
 				className='fill-current'
 				fill='#5757e0'
@@ -87,10 +106,9 @@ export function Cancel(props: AppProps) {
 		</svg>
 	);
 }
-export function Download(props: AppProps) {
-	const { svg } = props;
+export function Download({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
 				className='fill-current'
 				fill='#5757e0'
@@ -99,18 +117,14 @@ export function Download(props: AppProps) {
 		</svg>
 	);
 }
-export function Hamburger(props: AppProps) {
-	const { svg } = props;
+export function Hamburger({ className }: AppProps) {
 	const hamburgerPathStyle = `
 		transition-[stroke-dashoffset,_stroke-dasharray]
 		duration-500
 	`;
 	return (
 		<svg
-			className={`
-				${svg}
-				scale-125
-			`}
+			className={cn(`scale-125`, className)}
 			xmlns='http://www.w3.org/2000/svg'
 			viewBox='0 0 100 100'
 			fill='none'
@@ -148,10 +162,9 @@ export function Hamburger(props: AppProps) {
 		</svg>
 	);
 }
-export function Moon(props: AppProps) {
-	const { svg } = props;
+export function Moon({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
 				className='fill-current'
 				fill='#5757E0'
@@ -160,10 +173,9 @@ export function Moon(props: AppProps) {
 		</svg>
 	);
 }
-export function Sun(props: AppProps) {
-	const { svg } = props;
+export function Sun({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
 				className='fill-current'
 				fill='#5757E0'
@@ -172,10 +184,9 @@ export function Sun(props: AppProps) {
 		</svg>
 	);
 }
-export function Person(props: AppProps) {
-	const { svg } = props;
+export function Person({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 270'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 270'>
 			<path
 				fill='#FFB8B8'
 				d='m5.6934 253.535 8.724 2.613 14.231-32.408-12.876-3.856-10.079 33.651Z'
@@ -237,10 +248,14 @@ export function Person(props: AppProps) {
 		</svg>
 	);
 }
-export function CSS(props: AppProps) {
-	const { svg } = props;
+export function CSS({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'>
+		<svg
+			className={cn(``, className)}
+			xmlns='http://www.w3.org/2000/svg'
+			viewBox='0 0 16 16'
+			fill='none'
+		>
 			<path
 				className='fill-current'
 				fill='#5757E0'
@@ -251,10 +266,9 @@ export function CSS(props: AppProps) {
 		</svg>
 	);
 }
-export function Devices(props: AppProps) {
-	const { svg } = props;
+export function Devices({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
 			<path
 				className='fill-current'
 				fill='#5757e0'
@@ -278,10 +292,9 @@ export function Devices(props: AppProps) {
 		</svg>
 	);
 }
-export function Framer(props: AppProps) {
-	const { svg } = props;
+export function Framer({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'>
 			<polygon
 				className='stroke-current'
 				fill='none'
@@ -294,10 +307,13 @@ export function Framer(props: AppProps) {
 		</svg>
 	);
 }
-export function HTML(props: AppProps) {
-	const { svg } = props;
+export function HTML({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1792 1792'>
+		<svg
+			className={cn(``, className)}
+			xmlns='http://www.w3.org/2000/svg'
+			viewBox='0 0 1792 1792'
+		>
 			<path
 				className='fill-current'
 				fill='#5757e0'
@@ -306,8 +322,7 @@ export function HTML(props: AppProps) {
 		</svg>
 	);
 }
-export function React(props: AppProps) {
-	const { svg } = props;
+export function React({ className }: AppProps) {
 	function ellipsePreset(transform?: string) {
 		return (
 			<ellipse
@@ -324,7 +339,7 @@ export function React(props: AppProps) {
 		);
 	}
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			{ellipsePreset()}
 			{ellipsePreset('rotate(-60 12 12)')}
 			{ellipsePreset('rotate(60 12 12)')}
@@ -332,10 +347,9 @@ export function React(props: AppProps) {
 		</svg>
 	);
 }
-export function TailwindCSS(props: AppProps) {
-	const { svg } = props;
+export function TailwindCSS({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
 				className='fill-current'
 				fill='#5757e0'
@@ -344,10 +358,9 @@ export function TailwindCSS(props: AppProps) {
 		</svg>
 	);
 }
-export function TypeScript(props: AppProps) {
-	const { svg } = props;
+export function TypeScript({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'>
+		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'>
 			<path
 				className='fill-current'
 				fill='#5757e0'
@@ -356,10 +369,14 @@ export function TypeScript(props: AppProps) {
 		</svg>
 	);
 }
-export function UX(props: AppProps) {
-	const { svg } = props;
+export function UX({ className }: AppProps) {
 	return (
-		<svg className={svg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none'>
+		<svg
+			className={cn(``, className)}
+			xmlns='http://www.w3.org/2000/svg'
+			viewBox='0 0 48 48'
+			fill='none'
+		>
 			<path
 				className='fill-current'
 				fill='#5757E0'

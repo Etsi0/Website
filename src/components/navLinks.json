@@ -14,5 +14,9 @@
 	{
 		"path": "/#portfolio",
 		"name": "Portfolio"
+	},
+	{
+		"path": "/minecraft",
+		"name": "Minecraft Mods"
 	}
 ]

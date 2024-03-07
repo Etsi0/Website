@@ -1,5 +1,7 @@
 import Head from 'next/head';
 
+import { cn } from '@/lib/util';
+
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 
@@ -15,28 +17,9 @@ export default function RootLayout({ children }) {
 				<meta property='og:image' content='URL_to_image.jpg' />
 			</Head>
 			<html lang='en'>
-				<body
-					className='
-						overflow-x-hidden
-						flex
-						flex-col
-						bg-body
-						min-h-screen
-					'
-				>
+				<body className={cn(`flex min-h-screen flex-col overflow-x-hidden bg-body`)}>
 					<Header />
-					<main
-						className='
-							flex
-							flex-col
-							grow
-							w-full
-							max-w-7xl
-							pt-16
-							px-8
-							mx-auto
-						'
-					>
+					<main className={cn(`mx-auto flex w-full max-w-7xl grow flex-col px-8 pt-16`)}>
 						{children}
 					</main>
 					<Footer />

@@ -69,7 +69,6 @@ export default function App(props: AppProps) {
 					grid
 					gap-3
 					w-full
-					p-3
 				'
 			>
 				<MotionDiv
@@ -131,6 +130,7 @@ export default function App(props: AppProps) {
 									relative
 									basis-72
 									aspect-[3/1]
+									m-2
 									outline-4
 									outline
 									outline-body

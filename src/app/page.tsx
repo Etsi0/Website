@@ -1,5 +1,8 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
+
+import { cn } from '@/lib/util';
 
 import socialLinkJson from '@/components/socialLinkJson';
 import skillCardJson from '@/components/skillCardJson';
@@ -18,12 +21,13 @@ import SkillCard from '@/components/skillCard';
 import PortfolioCard from '@/components/portfolioCard';
 
 import { Download } from '@/components/SVGs';
-import Selfie from '@/../public/img/production/selfie/selfie.png';
+import StudentCapSelfie from '@/../public/img/production/student cap selfie/selfie.png';
+import CasualSelfie from '@/../public/img/production/casual selfie/selfie.png';
 import DesktopDesign from '@/../public/img/desktop-design.jpg';
 import MobileDesign from '@/../public/img/mobile-design.jpg';
 import Tree from '@/../public/img/apple wallpaper/mac tree/Tree/RanchoNight_16_Dyn_Tree-1.webp';
 import TreeDark from '@/../public/img/apple wallpaper/mac tree/Tree/RanchoNight_16_Dyn_Tree-2.webp';
-import Link from 'next/link';
+import TypingText from '@/components/typingText';
 
 export default async function App() {
 	const latestProjects = skillCardJson()[0];
@@ -31,15 +35,14 @@ export default async function App() {
 	const title = 'Home - Phadonia';
 	const description = 'Home - Phadonia';
 
-	function calculateAge(): number {
+	function CalculateAge(): number {
 		const birth = new Date('2003-08-25');
-		const today = new Date('2024-07-25');
+		const today = new Date();
 		let diff = today.getFullYear() - birth.getFullYear();
 
-		if (
-			today.getMonth() < birth.getMonth() ||
-			(today.getMonth() == birth.getMonth() && today.getDate() < birth.getDate())
-		) {
+		const monthCheck = today.getMonth() < birth.getMonth();
+		const dayCheck = today.getMonth() == birth.getMonth() && today.getDate() < birth.getDate();
+		if (monthCheck || dayCheck) {
 			return --diff;
 		}
 
@@ -79,40 +82,26 @@ export default async function App() {
 		},
 	});
 
-	function socialLinks(whenHidden: string) {
+	function SocialLinks({ className }: { className: string }) {
 		return (
 			<MotionUl
 				variants={textAnimation(0.2)}
 				initial='default'
 				whileInView='enter'
 				viewport={{ once: true, amount: 1 }}
-				className={`
-					${whenHidden}
-					gap-3
-				`}
+				className={cn(`gap-3`, className)}
 				aria-label='Social Media Links'
 			>
 				{socialLinkJson().map((item, index) => (
 					<li key={index}>
 						<a
-							className='
-								group
-								block
-								rounded-sm
-							'
+							className={cn(`group block rounded-sm`)}
 							href={item.path}
 							target='blank_'
 							rel='noopener'
 							aria-label={item.name}
 						>
-							<item.img
-								svg='
-									h-8
-									text-primary-500
-									group-hover:text-primary-50
-									group-focus-visible:text-primary-50
-								'
-							/>
+							<item.img className='h-8 text-primary-500 group-hover:text-primary-50 group-focus-visible:text-primary-50' />
 						</a>
 					</li>
 				))}
@@ -134,58 +123,50 @@ export default async function App() {
 			==================================================*/}
 			<section
 				id='home'
-				className='
-					heroSection
-					grid
-					justify-items-center
-					content-center
-					gap-3
-					lg:grid-cols-2
-				'
+				className={cn(
+					`heroSection grid content-center justify-items-center gap-3 lg:grid-cols-2`,
+				)}
 			>
-				<div
-					className='
-						grid
-						gap-3
-						self-center
-					'
-				>
+				<div className={cn(`grid gap-3 self-center`)}>
 					<MotionH1
 						variants={textAnimation(0)}
 						initial='default'
 						whileInView='enter'
 						viewport={{ once: true, amount: 1 }}
 					>
-						Hi, I&apos;m Albin
+						Hi, I{"'"}m Albin
 					</MotionH1>
 					<div>
 						<MotionH2
+							className={cn(`h-10`)}
 							variants={textAnimation(0.05)}
 							initial='default'
 							whileInView='enter'
 							viewport={{ once: true, amount: 1 }}
 						>
-							Full stack dev
+							<TypingText
+								textArray={[
+									'// Full-stack Dev',
+									'<!-- Front-end Dev -->',
+									'-- Back-end Dev',
+								]}
+								delay={4000}
+							/>
 						</MotionH2>
 						<MotionP
 							variants={textAnimation(0.1)}
 							initial='default'
 							whileInView='enter'
 							viewport={{ once: true, amount: 1 }}
-							className='
-								group
-								max-w-prose
-							'
+							className={cn(`group max-w-prose`)}
 						>
-							As a {calculateAge()}-year-old full-stack developer from Skövde, Sweden,
-							I specialize in creating web applications that are ADA-compliant,
-							cross-browser compatible, SEO-optimized, and high-performing. When I
-							create my websites, I take a mobile-first design approach. Having
-							dyslexia myself, I am aware of the importance of making websites
-							accessible and user-friendly for everyone. My primary toolkit includes
-							Next.js, TypeScript, Tailwind CSS, and databases like MySQL or
-							PostgreSQL, all upheld to high standards with tools like Prettier and
-							ESLint.
+							I'm a {CalculateAge()}-year-old full-stack maestro from Skövde, Sweden.
+							My world revolves around turning complex digital challenges into playful
+							solutions. With a heart for programming, tech, and gaming, I blend
+							passion with skill to craft remarkable digital experiences. Driven by
+							curiosity and the joy of learning, I'm the teammate you've been
+							searching for. Welcome to my portfolio—let's create something
+							unforgettable together.
 						</MotionP>
 						<MotionDiv
 							variants={textAnimation(0.15)}
@@ -193,34 +174,23 @@ export default async function App() {
 							whileInView='enter'
 							viewport={{ once: true, amount: 1 }}
 						>
-							<audio
-								className='
-									inline-block
-									rounded-lg
-								'
-								controls
-							>
+							<audio className={cn(`inline-block rounded-lg`)} controls>
 								<source
-									src='/tts/ElevenLabs_2024-01-20T15 30 45_Matilda_pre_s56_sb75_se0_b_m2.mp3'
+									src='/tts/ElevenLabs_2024-03-06T20 42 10_Matilda_pre_s60_sb65_se0_b_m2.mp3'
 									type='audio/mp3'
 								/>
 								Your browser does not support the audio element.
 							</audio>{' '}
 							by{' '}
 							<a
-								className='
-									text-primary-700
-								'
+								className={cn(`text-primary-500`)}
 								href='https://elevenlabs.io/text-to-speech'
 							>
 								ElevenLabs
 							</a>
 						</MotionDiv>
 					</div>
-					{socialLinks(`
-						hidden
-						lg:flex
-					`)}
+					<SocialLinks className='hidden lg:flex' />
 				</div>
 				<MotionDiv
 					variants={imgAnimation(100, 0)}
@@ -229,14 +199,10 @@ export default async function App() {
 					viewport={{ once: true, amount: 0.5 }}
 				>
 					<Image
-						className='
-							blob
-							w-full
-							max-w-prose
-							aspect-square
-							rounded-2xl
-						'
-						src={'/img/production/selfie/selfie.png'}
+						className={cn(
+							`blob aspect-square w-full max-w-prose rounded-2xl object-cover object-[50%,25%]`,
+						)}
+						src={CasualSelfie}
 						alt='Portrait of a young man wearing a student cap and a black suit with a red tie.'
 						width={562}
 						height={562}
@@ -245,37 +211,21 @@ export default async function App() {
 						placeholder='blur'
 					/>
 				</MotionDiv>
-				{socialLinks(`
-					flex
-					lg:hidden
-				`)}
+				<SocialLinks className='flex lg:hidden' />
 			</section>
 			{/*==================================================
 				About
 			==================================================*/}
 			<section
-				className='
-					bg-primary-500
-					py-8
-					shadow-[0_0_0_100vmax_hsl(var(--primary-color-500))]
-				'
-				style={{ clipPath: 'inset(0 -100vmax)' }}
+				className={cn(
+					`bg-primary-500 py-8 shadow-[0_0_0_100vmax_hsl(var(--primary-color-500))] [clip-path:inset(0_-100vmax)]`,
+				)}
 			></section>
 			{/*==================================================
 				About
 			==================================================*/}
-			<section
-				id='about'
-				className='
-					py-8
-				'
-			>
-				<div
-					className='
-						grid
-						justify-items-center
-					'
-				>
+			<section id='about' className={cn('py-8')}>
+				<div className={cn('grid justify-items-center')}>
 					<MotionH2
 						variants={textAnimation(0)}
 						initial='default'
@@ -293,16 +243,7 @@ export default async function App() {
 						My Introduction
 					</MotionP>
 				</div>
-				<div
-					className='
-						grid
-						justify-items-center
-						content-center
-						gap-3
-						pt-3
-						lg:grid-cols-2
-					'
-				>
+				<div className={cn('grid place-items-center gap-3 pt-3 lg:grid-cols-2')}>
 					<MotionDiv
 						variants={imgAnimation(-100, 0.1)}
 						initial='default'
@@ -310,14 +251,10 @@ export default async function App() {
 						viewport={{ once: true, amount: 0.5 }}
 					>
 						<Image
-							className='
-								w-full
-								max-w-prose
-								aspect-square
-								rounded-2xl
-								lg:w-4/5
-							'
-							src={Selfie}
+							className={cn(
+								'aspect-square w-full max-w-prose rounded-2xl object-cover',
+							)}
+							src={StudentCapSelfie}
 							alt='Portrait of a young man wearing a student cap and a black suit with a red tie.'
 							width={449}
 							height={449}
@@ -326,15 +263,7 @@ export default async function App() {
 							placeholder='blur'
 						/>
 					</MotionDiv>
-					<div
-						className='
-							flex
-							justify-center
-							items-start
-							flex-col
-							gap-3
-						'
-					>
+					<div className={cn('flex flex-col items-start justify-center gap-3')}>
 						<MotionP
 							variants={textAnimation(0.1)}
 							initial='default'
@@ -352,20 +281,9 @@ export default async function App() {
 							initial='default'
 							whileInView='enter'
 							viewport={{ once: true, amount: 1 }}
-							className='
-								group
-								flex
-								items-center
-								gap-1
-								bg-primary-500
-								text-input
-								p-3
-								rounded-md
-								hover:bg-primary-50
-								hover:text-primary-500
-								focus-visible:bg-primary-50
-								focus-visible:text-primary-500
-							'
+							className={cn(
+								'group flex items-center gap-1 rounded-md bg-primary-500 p-3 text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500',
+							)}
 							href='/Albin_Karlsson_CV.pdf'
 							download="Albin Karlsson's CV"
 							target='_blank'
@@ -373,13 +291,9 @@ export default async function App() {
 						>
 							Download CV
 							<Download
-								svg='
-									inline
-									text-input
-									h-5
-									group-hover:text-primary-500
-									group-focus-visible:text-primary-500
-								'
+								className={cn(
+									'inline h-5 text-input group-hover:text-primary-500 group-focus-visible:text-primary-500',
+								)}
 							/>
 						</MotionA>
 					</div>
@@ -390,25 +304,17 @@ export default async function App() {
 			==================================================*/}
 			<section
 				id='skills'
-				className='
-					bg-primary-500
-					py-8
-					shadow-[0_0_0_100vmax_hsl(var(--primary-color-500))]
-				'
-				style={{ clipPath: 'inset(0 -100vmax)' }}
+				className={cn(
+					`bg-primary-500 py-8 shadow-[0_0_0_100vmax_hsl(var(--primary-color-500))] [clip-path:inset(0_-100vmax)]`,
+				)}
 			>
-				<div
-					className='
-						grid
-						justify-items-center
-					'
-				>
+				<div className={cn('grid justify-items-center')}>
 					<MotionH2
 						variants={textAnimation(0)}
 						initial='default'
 						whileInView='enter'
 						viewport={{ once: true, amount: 1 }}
-						className='text-input'
+						className={cn('text-input')}
 					>
 						Skills
 					</MotionH2>
@@ -417,18 +323,13 @@ export default async function App() {
 						initial='default'
 						whileInView='enter'
 						viewport={{ once: true, amount: 1 }}
-						className='text-input'
+						className={cn('text-input')}
 					>
 						My technical level
 					</MotionP>
 				</div>
 				<div
-					className='
-						grid
-						grid-cols-[repeat(auto-fit,minmax(9rem,1fr))]
-						gap-12
-						pt-3
-					'
+					className={cn('grid grid-cols-[repeat(auto-fit,minmax(9rem,1fr))] gap-12 pt-3')}
 				>
 					{skillCardJson().map((item, index) => (
 						<MotionDiv
@@ -439,10 +340,12 @@ export default async function App() {
 							viewport={{ once: true, amount: 0.628 }}
 						>
 							<SkillCard
-								SVG={<item.SVG svg='text-input aspect-square' />}
+								SVG={<item.SVG className='aspect-square text-input' />}
 								title={item.title}
 								description={item.description}
-								modalSVG={<item.SVG svg='text-primary-500 w-72 aspect-square' />}
+								modalSVG={
+									<item.SVG className='aspect-square w-72 text-primary-500' />
+								}
 							/>
 						</MotionDiv>
 					))}
@@ -451,20 +354,8 @@ export default async function App() {
 			{/*==================================================
 				Portfolio
 			==================================================*/}
-			<section
-				id='portfolio'
-				className='
-					grid
-					justify-items-center
-					gap-3
-					py-8
-				'
-			>
-				<div
-					className='
-						text-center
-					'
-				>
+			<section id='portfolio' className={cn('grid justify-items-center gap-3 py-8')}>
+				<div className={cn('text-center')}>
 					<MotionH2
 						variants={textAnimation(0)}
 						initial='default'
@@ -483,7 +374,7 @@ export default async function App() {
 					</MotionP>
 				</div>
 				<MotionDiv
-					className='w-full'
+					className={cn('w-full')}
 					variants={textAnimation(0.1)}
 					initial='default'
 					whileInView='enter'
@@ -496,27 +387,16 @@ export default async function App() {
 					/>
 				</MotionDiv>
 				<MotionDiv
-					className='
-						grid
-					'
+					className={cn('grid')}
 					variants={textAnimation(0.05)}
 					initial='default'
 					whileInView='enter'
 					viewport={{ once: true, amount: 1 }}
 				>
 					<Link
-						className='
-							bg-primary-500
-							px-5
-							py-3
-							text-lg
-							text-input
-							rounded-md
-							hover:bg-primary-50
-							hover:text-primary-500
-							focus-visible:bg-primary-50
-							focus-visible:text-primary-500
-						'
+						className={cn(
+							'rounded-md bg-primary-500 px-5 py-3 text-lg text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500',
+						)}
 						href='#'
 					>
 						See all (Coming soon)

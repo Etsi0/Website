@@ -10,7 +10,7 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				body: 'var(--body-color)',
+				body: 'hsl(var(--body-color) / <alpha-value>)',
 				primary: {
 					50: 'hsl(var(--primary-color-50) / <alpha-value>)',
 					100: 'hsl(var(--primary-color-100) / <alpha-value>)',
