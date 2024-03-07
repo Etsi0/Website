@@ -18,7 +18,7 @@ const StrToColor = {
 	red: 'bg-red-500 dark:bg-red-600',
 } as const;
 
-const hrefFrom = 'http://127.0.0.1:3000/api/modrinth' as const;
+const hrefFrom = 'https://api.modrinth.com/v2/' as const;
 
 function DoneCategoryWrapper({ className, children }: IDoneCategoryWrapper) {
 	return (
@@ -30,8 +30,10 @@ function DoneCategoryWrapper({ className, children }: IDoneCategoryWrapper) {
 }
 async function getFromAPI(href: string) {
 	const response = await fetch(href, {
-		method: 'GET',
-		next: { revalidate: Revalidate },
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: process.env.DB_USER,
+		},
 	});
 	return await response.json();
 }
@@ -44,7 +46,7 @@ async function GetMod({ project, className }: IGetMod) {
 			.filter((item) => /[a-z]/.exec(item) === null);
 
 		const version = await getFromAPI(
-			`${hrefFrom}/getVersion?query=${encodeURIComponent(project.id)}&versions=${encodeURIComponent(onlyFullReleases[0])}`,
+			`${hrefFrom}project/${encodeURIComponent(project.id)}/version?loaders=["fabric"]&game_versions=["${encodeURIComponent(onlyFullReleases[0])}"]`,
 		);
 		latestVersion = version[0];
 	}
@@ -134,7 +136,7 @@ function ProjectIndex(index: number) {
 export default async function Page() {
 	const projectId = MinecraftModsJson.filter((value) => 'Id' in value).map((value) => value.Id);
 	const projects = await getFromAPI(
-		`${hrefFrom}/getProject?query=${encodeURIComponent(JSON.stringify(projectId))}`,
+		`${hrefFrom}projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`,
 	);
 
 	return (
