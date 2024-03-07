@@ -18,6 +18,8 @@ const StrToColor = {
 	red: 'bg-red-500 dark:bg-red-600',
 } as const;
 
+const hrefFrom = 'http://127.0.0.1:3000/api/modrinth' as const;
+
 function DoneCategoryWrapper({ className, children }: IDoneCategoryWrapper) {
 	return (
 		<div className={cn(`flex items-start gap-2`)}>
@@ -42,7 +44,7 @@ async function GetMod({ project, className }: IGetMod) {
 			.filter((item) => /[a-z]/.exec(item) === null);
 
 		const version = await getFromAPI(
-			`http://localhost:3000/api/modrinth/getVersion?query=${encodeURIComponent(project.id)}&versions=${encodeURIComponent(onlyFullReleases[0])}`,
+			`${hrefFrom}/getVersion?query=${encodeURIComponent(project.id)}&versions=${encodeURIComponent(onlyFullReleases[0])}`,
 		);
 		latestVersion = version[0];
 	}
@@ -132,7 +134,7 @@ function ProjectIndex(index: number) {
 export default async function Page() {
 	const projectId = MinecraftModsJson.filter((value) => 'Id' in value).map((value) => value.Id);
 	const projects = await getFromAPI(
-		`http://localhost:3000/api/modrinth/getProject?query=${encodeURIComponent(JSON.stringify(projectId))}`,
+		`${hrefFrom}/getProject?query=${encodeURIComponent(JSON.stringify(projectId))}`,
 	);
 
 	return (
