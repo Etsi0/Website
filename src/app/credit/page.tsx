@@ -1,23 +1,13 @@
 import SkillCard from '@/components/skillCard';
 
 import creditJson from '@/components/creditJson';
+import { cn } from '@/lib/util';
 
 export default function App() {
 	return (
 		<>
-			<section
-				className='
-					grid
-					justify-items-center
-					pb-16
-				'
-			>
-				<div
-					className='
-						py-16
-						text-center
-					'
-				>
+			<section className={cn('grid justify-items-center pb-16')}>
+				<div className={cn('py-16 text-center')}>
 					<h1>Credit</h1>
 					<p>
 						All credit goes to the fantastic artists that created all of these
@@ -25,21 +15,17 @@ export default function App() {
 					</p>
 				</div>
 				<div
-					className='
-						grid
-						grid-cols-[repeat(auto-fit,minmax(9rem,1fr))]
-						gap-12
-						w-full
-						pt-3
-					'
+					className={cn(
+						'grid w-full grid-cols-[repeat(auto-fit,minmax(9rem,1fr))] gap-12 pt-3',
+					)}
 				>
 					{creditJson().map((item, index) => (
 						<SkillCard
 							key={index}
-							SVG={<item.SVG svg='text-input aspect-square' />}
+							SVG={<item.SVG className='aspect-square text-input' />}
 							title={item.title}
 							description={item.description}
-							modalSVG={<item.SVG svg='text-primary-500 w-72 aspect-square' />}
+							modalSVG={<item.SVG className='aspect-square w-72 text-primary-500' />}
 						/>
 					))}
 				</div>
