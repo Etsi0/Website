@@ -160,12 +160,12 @@ export default async function App() {
 							viewport={{ once: true, amount: 1 }}
 							className={cn(`group max-w-prose`)}
 						>
-							I'm a {CalculateAge()}-year-old full-stack maestro from Skövde, Sweden.
-							My world revolves around turning complex digital challenges into playful
-							solutions. With a heart for programming, tech, and gaming, I blend
-							passion with skill to craft remarkable digital experiences. Driven by
-							curiosity and the joy of learning, I'm the teammate you've been
-							searching for. Welcome to my portfolio—let's create something
+							I{"'"}m a {CalculateAge()}-year-old full-stack maestro from Skövde,
+							Sweden. My world revolves around turning complex digital challenges into
+							playful solutions. With a heart for programming, tech, and gaming, I
+							blend passion with skill to craft remarkable digital experiences. Driven
+							by curiosity and the joy of learning, I{"'"}m the teammate you{"'"}ve
+							been searching for. Welcome to my portfolio—let{"'"}s create something
 							unforgettable together.
 						</MotionP>
 						<MotionDiv
