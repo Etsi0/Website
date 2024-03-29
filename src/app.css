@@ -11,13 +11,28 @@
 		--warning-color: hsl(var(--warning-hue, 4deg), 69%, 61%);
 		--warning-color-lighter: hsl(var(--warning-hue, 4deg), 92%, 85%);
 
-		--body-color: var(--hue-color, 240deg) 12%
-			max(95% - var(--dark-mode-body), var(--dark-mode-body) - 95%);
+		--body-color-50: var(--hue-color, 240deg) 12% 95%;
+		--body-color-100: var(--hue-color, 240deg) 12% 90%;
+		--body-color-200: var(--hue-color, 240deg) 12% 80%;
+		--body-color-300: var(--hue-color, 240deg) 12% 70%;
+		--body-color-400: var(--hue-color, 240deg) 12% 60%;
+		--body-color-500: var(--hue-color, 240deg) 12% 50%;
+		--body-color-600: var(--hue-color, 240deg) 12% 40%;
+		--body-color-700: var(--hue-color, 240deg) 12% 30%;
+		--body-color-800: var(--hue-color, 240deg) 12% 20%;
+		--body-color-900: var(--hue-color, 240deg) 12% 10%;
+		--body-color-950: var(--hue-color, 240deg) 12% 5%;
 
+		/* Legacy body color */
+		--body-dark-mode: calc(85% * var(--dark-mode, 0));
+		--body-color: var(--hue-color, 240deg) 12%
+			max(95% - var(--body-dark-mode), var(--body-dark-mode) - 95%);
+
+		--border-dark-mode: calc(100% * var(--dark-mode, 0));
 		--border-color: hsl(
 			var(--hue-color, 240deg),
 			12%,
-			max(76.5% - var(--dark-mode), var(--dark-mode) - 76.5%)
+			max(76.5% - var(--border-dark-mode, 0%), var(--border-dark-mode, 0%) - 76.5%)
 		);
 
 		--input-color: hsl(var(--hue-color, 240deg), 70%, 96%);
@@ -40,61 +55,57 @@
 		/*==================================================
 			Text colors
 		==================================================*/
-		--text-dark-mode: var(--dark-mode);
+		--text-dark-mode: calc(100% * var(--dark-mode));
 		--text-lightness-300: 36.075%;
 		--text-color-300: var(--hue-color, 240deg) 12%
 			max(
-				var(--text-lightness-300) - var(--text-dark-mode),
-				var(--text-dark-mode) - var(--text-lightness-300)
+				var(--text-lightness-300) - var(--text-dark-mode, 0%),
+				var(--text-dark-mode, 0%) - var(--text-lightness-300)
 			);
 		--text-lightness-400: 27.888%;
 		--text-color-400: var(--hue-color, 240deg) 12%
 			max(
-				var(--text-lightness-400) - var(--text-dark-mode),
-				var(--text-dark-mode) - var(--text-lightness-400)
+				var(--text-lightness-400) - var(--text-dark-mode, 0%),
+				var(--text-dark-mode, 0%) - var(--text-lightness-400)
 			);
 		--text-lightness-500: 20.686999999999998%;
 		--text-color-500: var(--hue-color, 240deg) 12%
 			max(
-				var(--text-lightness-500) - var(--text-dark-mode),
-				var(--text-dark-mode) - var(--text-lightness-500)
+				var(--text-lightness-500) - var(--text-dark-mode, 0%),
+				var(--text-dark-mode, 0%) - var(--text-lightness-500)
 			);
 		--text-lightness-600: 14.472000000000001%;
 		--text-color-600: var(--hue-color, 240deg) 12%
 			max(
-				var(--text-lightness-600) - var(--text-dark-mode),
-				var(--text-dark-mode) - var(--text-lightness-600)
+				var(--text-lightness-600) - var(--text-dark-mode, 0%),
+				var(--text-dark-mode, 0%) - var(--text-lightness-600)
 			);
 		--text-lightness-700: 9.243%;
 		--text-color-700: var(--hue-color, 240deg) 12%
 			max(
-				var(--text-lightness-700) - var(--text-dark-mode),
-				var(--text-dark-mode) - var(--text-lightness-700)
+				var(--text-lightness-700) - var(--text-dark-mode, 0%),
+				var(--text-dark-mode, 0%) - var(--text-lightness-700)
 			);
 	}
 }
 @media (prefers-color-scheme: light) {
 	:root {
-		--dark-mode: 0%;
-		--dark-mode-body: 0%;
+		--dark-mode: 0;
 		color-scheme: light;
 	}
 }
 @media (prefers-color-scheme: dark) {
 	:root {
-		--dark-mode: 100%;
-		--dark-mode-body: 85%;
+		--dark-mode: 1;
 		color-scheme: dark;
 	}
 }
 :root.light {
-	--dark-mode: 0%;
-	--dark-mode-body: 0%;
+	--dark-mode: 0;
 	color-scheme: light;
 }
 :root.dark {
-	--dark-mode: 100%;
-	--dark-mode-body: 85%;
+	--dark-mode: 1;
 	color-scheme: dark;
 }
 

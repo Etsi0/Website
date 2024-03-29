@@ -1,65 +1,52 @@
-import {
-	CSS,
-	Devices,
-	Figma,
-	Framer,
-	GitHub,
-	HTML,
-	React,
-	TailwindCSS,
-	TypeScript,
-	UX,
-} from '@/components/SVGs';
-
 export default function App() {
 	return [
 		{
-			SVG: HTML,
+			SVG: 'HTML',
 			title: 'HTML',
 			description: <p></p>,
 		},
 		{
-			SVG: CSS,
+			SVG: 'CSS',
 			title: 'CSS',
 			description: <p></p>,
 		},
 		{
-			SVG: TypeScript,
+			SVG: 'TypeScript',
 			title: 'TypeScript',
 			description: <p></p>,
 		},
 		{
-			SVG: Devices,
+			SVG: 'Devices',
 			title: 'Mobile First',
 			description: <p></p>,
 		},
 		{
-			SVG: Figma,
+			SVG: 'Figma',
 			title: 'Design',
 			description: <p>Figma and AdobeXD</p>,
 		},
 		{
-			SVG: TailwindCSS,
+			SVG: 'TailwindCSS',
 			title: 'CSS Frameworks',
 			description: <p></p>,
 		},
 		{
-			SVG: React,
+			SVG: 'React',
 			title: 'Frontend Frameworks',
 			description: <p></p>,
 		},
 		{
-			SVG: GitHub,
+			SVG: 'GitHub',
 			title: 'Version Control',
 			description: <p>Git/SVN</p>,
 		},
 		{
-			SVG: Framer,
+			SVG: 'Framer',
 			title: 'Animations',
 			description: <p></p>,
 		},
 		{
-			SVG: UX,
+			SVG: 'UX',
 			title: 'UI/UX Design',
 			description: (
 				<p>

@@ -6,11 +6,25 @@ module.exports = {
 		'./src/app/**/*.{js,ts,jsx,tsx,mdx,json}',
 		'./src/components/**/*.{js,ts,jsx,tsx,mdx,json}',
 		'./src/SVGs/**/*.{js,ts,jsx,tsx,mdx,json}',
+		'./src/json/**/*.{js,ts,jsx,tsx,mdx,json}',
 	],
 	theme: {
 		extend: {
 			colors: {
-				body: 'hsl(var(--body-color) / <alpha-value>)',
+				body: {
+					DEFAULT: 'hsl(var(--body-color) / <alpha-value>)',
+					50: 'hsl(var(--body-color-50) / <alpha-value>)',
+					100: 'hsl(var(--body-color-100) / <alpha-value>)',
+					200: 'hsl(var(--body-color-200) / <alpha-value>)',
+					300: 'hsl(var(--body-color-300) / <alpha-value>)',
+					400: 'hsl(var(--body-color-400) / <alpha-value>)',
+					500: 'hsl(var(--body-color-500) / <alpha-value>)',
+					600: 'hsl(var(--body-color-600) / <alpha-value>)',
+					700: 'hsl(var(--body-color-700) / <alpha-value>)',
+					800: 'hsl(var(--body-color-800) / <alpha-value>)',
+					900: 'hsl(var(--body-color-900) / <alpha-value>)',
+					950: 'hsl(var(--body-color-950) / <alpha-value>)',
+				},
 				primary: {
 					50: 'hsl(var(--primary-color-50) / <alpha-value>)',
 					100: 'hsl(var(--primary-color-100) / <alpha-value>)',

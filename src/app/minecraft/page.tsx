@@ -1,6 +1,7 @@
-import { cn } from '@/lib/util';
 import { ReactNode } from 'react';
-import { MinecraftModsJson } from '@/components/Minecraft/minecraftModsJson';
+import Image from 'next/image';
+import { cn } from '@/lib/util';
+import { MinecraftModsJson } from '@/json/minecraft/minecraftModsJson';
 
 type IDoneCategoryWrapper = {
 	className: string;
@@ -54,17 +55,23 @@ async function GetMod({ project, className }: IGetMod) {
 	return (
 		<div
 			className={cn(
-				`flex w-72 flex-col gap-3 rounded-lg bg-primary-50 p-4 shadow-lg dark:bg-[hsl(240_12_20)]`,
+				`flex w-72 flex-col gap-3 rounded-lg bg-white p-4 shadow-lg dark:bg-body-800`,
 			)}
 		>
-			{project.icon_url && (
-				<img
+			{(project.icon_url && (
+				<Image
 					src={project.icon_url}
 					alt={`logo for the mod called '${project.title}'`}
-					className={cn(
-						`mx-auto w-48 rounded-md bg-primary-100 dark:bg-[hsl(240_12_25)]`,
-					)}
+					width={192}
+					height={192}
+					className={cn(`mx-auto rounded-md bg-primary-50 dark:bg-body-700`)}
 				/>
+			)) || (
+				<div
+					className={cn(
+						`mx-auto aspect-square w-48 rounded-md bg-primary-50 dark:bg-body-700`,
+					)}
+				></div>
 			)}
 			<h2 className={cn(`overflow-hidden text-ellipsis text-center text-3xl`)}>
 				{project.title}

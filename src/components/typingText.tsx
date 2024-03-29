@@ -2,15 +2,12 @@
 import { cn } from '@/lib/util';
 import { useEffect, useState } from 'react';
 
-export default function TypingText({
-	textArray,
-	delay,
-	speed,
-}: {
+type ITypeText = {
 	textArray: string[];
 	delay?: number;
 	speed?: number;
-}) {
+};
+export default function TypingText({ textArray, delay, speed }: ITypeText) {
 	const [text, setText] = useState<string>('');
 	const [index, setIndex] = useState<number>(0);
 	const [className, setClassName] = useState<string>('');
@@ -48,7 +45,7 @@ export default function TypingText({
 		<>
 			{text}
 			<span
-				className={cn(`animate-[cursorBlink_1.5s_steps(1)_infinite_alternate]`, className)}
+				className={cn('animate-[cursorBlink_1.5s_steps(1)_infinite_alternate]', className)}
 			>
 				|
 			</span>

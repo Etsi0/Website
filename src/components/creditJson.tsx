@@ -1,42 +1,12 @@
-import {
-	CSS,
-	Cancel,
-	CodePen,
-	Devices,
-	Discord,
-	Download,
-	Dribbble,
-	Figma,
-	Framer,
-	GitHub,
-	HTML,
-	Hamburger,
-	LinkedIn,
-	Moon,
-	Person,
-	React,
-	Sun,
-	TailwindCSS,
-	UX,
-} from '@/components/SVGs';
-import WalkingOutside from '@/../public/img/raw SVGs/undraw_walking_outside_re_56xo.svg';
+import { cn } from '@/lib/util';
 
 export default function App() {
 	function ATag(href: string) {
 		return (
 			<a
-				className='
-					justify-self-start
-					bg-primary-500
-					text-input
-					py-3
-					px-9
-					rounded-md
-					hover:bg-primary-50
-					hover:text-primary-500
-					focus-visible:bg-primary-50
-					focus-visible:text-primary-500
-				'
+				className={cn(
+					'justify-self-start rounded-md bg-primary-500 px-9 py-3 text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500',
+				)}
 				href={href}
 				rel='noopener'
 				target='_blank'
@@ -47,26 +17,14 @@ export default function App() {
 	}
 	function Author(name: string) {
 		return (
-			<h4
-				className='
-					text-text-400
-				'
-			>
-				<span
-					className='
-						text-base
-						text-text-300
-					'
-				>
-					by
-				</span>{' '}
-				{name}
+			<h4 className={cn('text-text-400')}>
+				<span className={cn('text-base text-text-300')}>by</span> {name}
 			</h4>
 		);
 	}
 	return [
 		{
-			SVG: React,
+			SVG: 'React',
 			title: 'React Icon',
 			description: (
 				<>
@@ -76,7 +34,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: CSS,
+			SVG: 'CSS',
 			title: 'CSS Icon',
 			description: (
 				<>
@@ -86,7 +44,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: Framer,
+			SVG: 'Framer',
 			title: 'Free Framer Logo Icon in Line Style',
 			description: (
 				<>
@@ -97,7 +55,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: UX,
+			SVG: 'UX',
 			title: 'UX Icon',
 			description: (
 				<>
@@ -107,7 +65,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: TailwindCSS,
+			SVG: 'TailwindCSS',
 			title: 'Free Tailwind Css Logo Icon in Glyph Style',
 			description: (
 				<>
@@ -118,7 +76,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: Devices,
+			SVG: 'Devices',
 			title: 'Free Devices Icon in Line Style',
 			description: (
 				<>
@@ -129,20 +87,20 @@ export default function App() {
 			),
 		},
 		{
-			SVG: HTML,
+			SVG: 'HTML',
 			title: 'Free Html Icon in Glyph Style',
 			description: (
 				<>
 					{Author('Font Awesome')}
 					<p>2024-01-19</p>
 					{ATag(
-						'https://iconscout.com/free-icon/html-programming-language-css-editing-style'
+						'https://iconscout.com/free-icon/html-programming-language-css-editing-style',
 					)}
 				</>
 			),
 		},
 		{
-			SVG: Figma,
+			SVG: 'Figma',
 			title: 'Free Figma Logo Icon in Line Style',
 			description: (
 				<>
@@ -153,7 +111,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: Download,
+			SVG: 'Download',
 			title: 'Free Download Icon in Line Style',
 			description: (
 				<>
@@ -164,7 +122,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: Cancel,
+			SVG: 'Cancel',
 			title: 'Free Cancel Icon in Flat Style',
 			description: (
 				<>
@@ -175,7 +133,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: Moon,
+			SVG: 'Moon',
 			title: 'Free Moon Icon in Flat Style',
 			description: (
 				<>
@@ -186,7 +144,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: Sun,
+			SVG: 'Sun',
 			title: 'Free Sun Icon in Flat Style',
 			description: (
 				<>
@@ -197,7 +155,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: CodePen,
+			SVG: 'CodePen',
 			title: 'Free Codepen Logo Icon in Flat Style',
 			description: (
 				<>
@@ -208,7 +166,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: Discord,
+			SVG: 'Discord',
 			title: 'Free Discord Logo Icon in Flat Style',
 			description: (
 				<>
@@ -219,7 +177,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: Dribbble,
+			SVG: 'Dribbble',
 			title: 'Free Dribbble Logo Icon in Line Style',
 			description: (
 				<>
@@ -230,7 +188,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: GitHub,
+			SVG: 'GitHub',
 			title: 'Free Github Logo Icon in Line Style',
 			description: (
 				<>
@@ -241,7 +199,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: LinkedIn,
+			SVG: 'LinkedIn',
 			title: 'Free Linkedin Logo Icon in Line Style',
 			description: (
 				<>
@@ -252,7 +210,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: Person,
+			SVG: 'Person',
 			title: 'Walking outside',
 			description: (
 				<>
@@ -263,7 +221,7 @@ export default function App() {
 			),
 		},
 		{
-			SVG: Hamburger,
+			SVG: 'Hamburger',
 			title: 'Hamburger',
 			description: (
 				<>

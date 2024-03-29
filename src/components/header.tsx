@@ -7,7 +7,6 @@ import navLinks from './navLinks.json';
 import DarkMode from './darkMode';
 
 import { Hamburger, PhadoniaLogo } from '@/components/SVGs';
-import { MotionNav } from './motionElemets';
 import { cn } from '@/lib/util';
 
 export default function App() {
@@ -21,7 +20,7 @@ export default function App() {
 		}
 	}, [isMounted, pathname]);
 
-	const [navOpened, setNavOpened] = useState(false);
+	const [navOpened, setNavOpened] = useState<boolean | undefined>(undefined);
 	const [currentPath, setCurrentPath] = useState('');
 	function navClick(str: string) {
 		setCurrentPath(str);
@@ -29,36 +28,15 @@ export default function App() {
 
 	function navigation() {
 		return (
-			<MotionNav
-				initial={{
-					x: '100%',
-				}}
-				variants={{
-					open: {
-						x: 0,
-						transition: {
-							ease: 'easeInOut',
-							duration: 0.25,
-						},
-					},
-					close: {
-						x: '100%',
-						transition: {
-							ease: 'easeInOut',
-							duration: 0.25,
-						},
-					},
-				}}
-				animate={navOpened ? 'open' : 'close'}
-				className='
-					pointer-events-auto
-					float-right
-					h-screen
-					min-w-72
-					overflow-hidden
-					border-l-[1px]
-					bg-body
-				'
+			<nav
+				className={cn(
+					'pointer-events-auto float-right h-screen min-w-72 translate-x-full overflow-hidden border-l-[1px] bg-body duration-300',
+					navOpened === true
+						? 'translate-x-0 transition-transform'
+						: navOpened === false
+							? 'transition-transform'
+							: '',
+				)}
 				aria-label='Main Navigation'
 			>
 				<ul>
@@ -74,10 +52,12 @@ export default function App() {
 										: -1
 								}
 								className={cn(
-									`block p-3 text-text-700 
-									aria-selected:bg-primary-500 aria-selected:text-input 
-									[&:not([aria-selected='true'])]:hover:bg-primary-50 [&:not([aria-selected='true'])]:hover:text-primary-600 [&:not([aria-selected='true'])]:focus-visible:bg-primary-50 [&:not([aria-selected='true'])]:focus-visible:text-primary-600 
-									dark:[&:not([aria-selected='true'])]:hover:bg-primary-900 dark:[&:not([aria-selected='true'])]:hover:text-primary-400 dark:[&:not([aria-selected='true'])]:focus-visible:bg-primary-900 dark:[&:not([aria-selected='true'])]:focus-visible:text-primary-400`,
+									`
+										block p-3 text-text-700 
+										aria-selected:bg-primary-500 aria-selected:text-input 
+										[&:not([aria-selected='true'])]:hover:bg-primary-50 [&:not([aria-selected='true'])]:hover:text-primary-600 [&:not([aria-selected='true'])]:focus-visible:bg-primary-50 [&:not([aria-selected='true'])]:focus-visible:text-primary-600 
+										dark:[&:not([aria-selected='true'])]:hover:bg-primary-900 dark:[&:not([aria-selected='true'])]:hover:text-primary-400 dark:[&:not([aria-selected='true'])]:focus-visible:bg-primary-900 dark:[&:not([aria-selected='true'])]:focus-visible:text-primary-400
+									`,
 								)}
 								href={link.path}
 								onClick={() => navClick(link.path)}
@@ -90,7 +70,7 @@ export default function App() {
 						</li>
 					))}
 				</ul>
-			</MotionNav>
+			</nav>
 		);
 	}
 
@@ -105,8 +85,8 @@ export default function App() {
 		>
 			<header
 				className='
-					bg-body/90
 					pointer-events-auto
+					bg-body/90
 					backdrop-blur-xl
 				'
 			>

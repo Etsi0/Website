@@ -22,10 +22,11 @@ export default function App() {
 					{creditJson().map((item, index) => (
 						<SkillCard
 							key={index}
-							SVG={<item.SVG className='aspect-square text-input' />}
+							SVG={item.SVG}
+							className='aspect-square text-input'
 							title={item.title}
 							description={item.description}
-							modalSVG={<item.SVG className='aspect-square w-72 text-primary-500' />}
+							modalClassName='aspect-square w-72 text-primary-500'
 						/>
 					))}
 				</div>

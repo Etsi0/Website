@@ -1,10 +1,10 @@
 import { cn } from '@/lib/util';
 
-interface AppProps {
+interface ISvg {
 	className?: string;
 }
 
-export function PhadoniaLogo({ className }: AppProps) {
+export function PhadoniaLogo({ className }: ISvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -19,7 +19,7 @@ export function PhadoniaLogo({ className }: AppProps) {
 		</svg>
 	);
 }
-export function CodePen({ className }: AppProps) {
+export function CodePen({ className }: ISvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -34,7 +34,7 @@ export function CodePen({ className }: AppProps) {
 		</svg>
 	);
 }
-export function Discord({ className }: AppProps) {
+export function Discord({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
 			<path
@@ -45,7 +45,7 @@ export function Discord({ className }: AppProps) {
 		</svg>
 	);
 }
-export function Dribbble({ className }: AppProps) {
+export function Dribbble({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -56,7 +56,7 @@ export function Dribbble({ className }: AppProps) {
 		</svg>
 	);
 }
-export function Figma({ className }: AppProps) {
+export function Figma({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -68,7 +68,7 @@ export function Figma({ className }: AppProps) {
 		</svg>
 	);
 }
-export function GitHub({ className }: AppProps) {
+export function GitHub({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -79,7 +79,7 @@ export function GitHub({ className }: AppProps) {
 		</svg>
 	);
 }
-export function LinkedIn({ className }: AppProps) {
+export function LinkedIn({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -90,7 +90,7 @@ export function LinkedIn({ className }: AppProps) {
 		</svg>
 	);
 }
-export function Cancel({ className }: AppProps) {
+export function Cancel({ className }: ISvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -106,7 +106,7 @@ export function Cancel({ className }: AppProps) {
 		</svg>
 	);
 }
-export function Download({ className }: AppProps) {
+export function Download({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -117,7 +117,7 @@ export function Download({ className }: AppProps) {
 		</svg>
 	);
 }
-export function Hamburger({ className }: AppProps) {
+export function Hamburger({ className }: ISvg) {
 	const hamburgerPathStyle = `
 		transition-[stroke-dashoffset,_stroke-dasharray]
 		duration-500
@@ -162,7 +162,7 @@ export function Hamburger({ className }: AppProps) {
 		</svg>
 	);
 }
-export function Moon({ className }: AppProps) {
+export function Moon({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -173,7 +173,7 @@ export function Moon({ className }: AppProps) {
 		</svg>
 	);
 }
-export function Sun({ className }: AppProps) {
+export function Sun({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -184,7 +184,7 @@ export function Sun({ className }: AppProps) {
 		</svg>
 	);
 }
-export function Person({ className }: AppProps) {
+export function Person({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 270'>
 			<path
@@ -248,7 +248,7 @@ export function Person({ className }: AppProps) {
 		</svg>
 	);
 }
-export function CSS({ className }: AppProps) {
+export function CSS({ className }: ISvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -266,7 +266,7 @@ export function CSS({ className }: AppProps) {
 		</svg>
 	);
 }
-export function Devices({ className }: AppProps) {
+export function Devices({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
 			<path
@@ -292,7 +292,7 @@ export function Devices({ className }: AppProps) {
 		</svg>
 	);
 }
-export function Framer({ className }: AppProps) {
+export function Framer({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'>
 			<polygon
@@ -307,7 +307,7 @@ export function Framer({ className }: AppProps) {
 		</svg>
 	);
 }
-export function HTML({ className }: AppProps) {
+export function HTML({ className }: ISvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -322,7 +322,7 @@ export function HTML({ className }: AppProps) {
 		</svg>
 	);
 }
-export function React({ className }: AppProps) {
+export function React({ className }: ISvg) {
 	function ellipsePreset(transform?: string) {
 		return (
 			<ellipse
@@ -347,7 +347,7 @@ export function React({ className }: AppProps) {
 		</svg>
 	);
 }
-export function TailwindCSS({ className }: AppProps) {
+export function TailwindCSS({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -358,7 +358,7 @@ export function TailwindCSS({ className }: AppProps) {
 		</svg>
 	);
 }
-export function TypeScript({ className }: AppProps) {
+export function TypeScript({ className }: ISvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'>
 			<path
@@ -369,7 +369,7 @@ export function TypeScript({ className }: AppProps) {
 		</svg>
 	);
 }
-export function UX({ className }: AppProps) {
+export function UX({ className }: ISvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -387,3 +387,39 @@ export function UX({ className }: AppProps) {
 		</svg>
 	);
 }
+export function Extension({ className }: ISvg) {
+	return (
+		<svg className={cn('', className)} viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+			<path
+				className='fill-current'
+				fill='#5757E0'
+				d='M20.5 11H19V7C19 6 18 5 17 5H13V3.5C13 2 12 1 10.5 1C9 1 8 2 8 3.5V5H4C3 5 2.01 6 2.01 7L2 11H3.5C5 11 6 12.01 6 13.5C6 14.99 5 16 3.5 16H2V20C2 21 3 22 4 22H8V20.5C8 19.01 9.01 18 10.5 18C11.99 18 13 19.01 13 20.5V22H17C18 22 19 21 19 20V16H20.5C22 16 23 15 23 13.5C23 12 22 11 20.5 11Z'
+			/>
+		</svg>
+	);
+}
+
+export const SvgList: { [key: string]: ({ className }: ISvg) => JSX.Element } = {
+	PhadoniaLogo: PhadoniaLogo,
+	CodePen: CodePen,
+	Discord: Discord,
+	Dribbble: Dribbble,
+	Figma: Figma,
+	GitHub: GitHub,
+	LinkedIn: LinkedIn,
+	Cancel: Cancel,
+	Download: Download,
+	Hamburger: Hamburger,
+	Moon: Moon,
+	Sun: Sun,
+	Person: Person,
+	CSS: CSS,
+	Devices: Devices,
+	Framer: Framer,
+	HTML: HTML,
+	React: React,
+	TailwindCSS: TailwindCSS,
+	TypeScript: TypeScript,
+	UX: UX,
+	Extension: Extension,
+};
