@@ -93,8 +93,8 @@ export const WishlistJson: IProductJson[] = [
 				<li>
 					<h3 className={cn(`text-xl`)}>Rabat kod:</h3>
 					<p>
-						"Vi sover ungefär 1/3 av våra liv, så det har alltid varit vettigt för mig
-						att spendera mycket pengar för att göra det perfect" -{' '}
+						{'"'}Vi sover ungefär 1/3 av våra liv, så det har alltid varit vettigt för
+						mig att spendera mycket pengar för att göra det perfect{'"'} -{' '}
 						<a
 							href='https://www.youtube.com/watch?v=yy4Dd9ICtFA&t=35s'
 							className={cn('text-primary-500')}

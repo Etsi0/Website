@@ -39,7 +39,7 @@ export default function TypingText({ textArray, delay, speed }: ITypeText) {
 		};
 
 		Add();
-	}, [index]);
+	}, [index, delay, speed, textArray]);
 
 	return (
 		<>

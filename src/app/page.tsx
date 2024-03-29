@@ -200,6 +200,7 @@ export default async function App() {
 				>
 					{skillCardJson().map((item, index) => (
 						<SkillCard
+							key={index}
 							SVG={item.SVG}
 							className='aspect-square text-input group-hover:text-primary-500 group-focus-visible:text-primary-500 dark:group-hover:text-body-300 dark:group-focus-visible:text-body-300'
 							title={item.title}
