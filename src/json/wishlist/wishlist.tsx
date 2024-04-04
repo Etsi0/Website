@@ -21,6 +21,24 @@ export const WishlistJson: IProductJson[] = [
 		url: 'https://deltakeyco.com/en-se/products/gift-card?variant=44263341490408',
 	},
 	{
+		img: 'https://deltahub.io/cdn/shop/files/Carpio_2024_9_9960615b-81c4-44eb-8c18-25af87777300.png?v=1709220083&width=800',
+		title: 'Carpio G2.0',
+		points: (
+			<>
+				<li>
+					<p>Glider enkelt</p>
+				</li>
+				<li>
+					<p>Snygg</p>
+				</li>
+				<li>
+					<p>Gratis leverans<span className={cn('text-red-500')}>*</span></p>
+				</li>
+			</>
+		),
+		url: 'https://deltahub.io/en-eu/products/carpio-g2-0?variant=43255500538022',
+	},	
+	{
 		img: 'https://ae01.alicdn.com/kf/Hafa92db164124294bf6768503edd2086s/Logitech-Mouse-Charging-Dock-Station-Pitta-Studio-Plastic-Power-Bank-Base-For-G403-502-703-903.jpg_.webp',
 		title: 'Logitech Mouse Charging Dock',
 		points: (

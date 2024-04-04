@@ -91,6 +91,12 @@ async function GetMod({ project, className }: IGetMod) {
 						<p className={cn(`line-clamp-3`)}>{onlyFullReleases.join(', ')}</p>
 					</li>
 				)}
+				{project.updated && project.updated.length !== 0 && (
+					<li>
+						<h3 className={cn(`text-xl`)}>Updated:</h3>
+						<p className={cn(`flex flex-wrap gap-1`)}>{project.updated.slice(0, 10)}</p>
+					</li>
+				)}
 				{project.loaders && project.loaders.length !== 0 && (
 					<li>
 						<h3 className={cn(`text-xl`)}>Loaders:</h3>
