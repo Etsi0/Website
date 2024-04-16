@@ -12,50 +12,65 @@ type IGetMod = {
 	className: (typeof StrToColor)[keyof typeof StrToColor];
 };
 
-const Revalidate = 3600 as const;
 const StrToColor = {
 	green: 'bg-green-500 dark:bg-green-600',
 	yellow: 'bg-yellow-500 dark:bg-yellow-600',
 	red: 'bg-red-500 dark:bg-red-600',
 } as const;
 
-const hrefFrom = 'https://api.modrinth.com/v2/' as const;
-
 function DoneCategoryWrapper({ className, children }: IDoneCategoryWrapper) {
 	return (
-		<div className={cn(`flex items-start gap-2`)}>
-			<div className={cn(`size-6 shrink-0 rounded-md bg-primary-500`, className)}></div>
-			{children}
+		<div className={cn('flex items-start gap-2')}>
+			<div className={cn('size-6 shrink-0 rounded-md bg-primary-500', className)}></div>
+			<p className={cn('max-w-none')}>{children}</p>
 		</div>
 	);
 }
 async function getFromAPI(href: string) {
-	const response = await fetch(href, {
+	const response = await fetch(`https://api.modrinth.com/v2/${href}`, {
 		headers: {
 			'Content-Type': 'application/json',
-			Authorization: process.env.DB_USER,
+			'Cache-Control': 'no-cache',
 		},
 	});
 	return await response.json();
 }
 async function GetMod({ project, className }: IGetMod) {
-	let onlyFullReleases;
-	let latestVersion;
+	let onlyFullReleases: string[];
+	let latestVersion: any;
 	if (project.game_versions) {
 		onlyFullReleases = project.game_versions
 			.reverse()
-			.filter((item) => /[a-z]/.exec(item) === null);
+			.filter((item: string) => /[a-z]/.exec(item) === null);
 
 		const version = await getFromAPI(
-			`${hrefFrom}project/${encodeURIComponent(project.id)}/version?loaders=["fabric"]&game_versions=["${encodeURIComponent(onlyFullReleases[0])}"]`,
+			`project/${encodeURIComponent(project.id)}/version?loaders=["fabric"]&game_versions=["${encodeURIComponent(onlyFullReleases[0])}"]`,
 		);
 		latestVersion = version[0];
 	}
+	const liContent = [
+		{
+			title: 'Categories:',
+			text: project.categories?.join(', '),
+		},
+		{
+			title: 'Versions:',
+			text: onlyFullReleases?.join(', '),
+		},
+		{
+			title: 'Updated:',
+			text: project.updated?.slice(0, 10),
+		},
+		{
+			title: 'Loaders:',
+			text: project.loaders?.join(', '),
+		},
+	];
 
 	return (
 		<div
 			className={cn(
-				`flex w-72 flex-col gap-3 rounded-lg bg-white p-4 shadow-lg dark:bg-body-800`,
+				`flex w-72 flex-col gap-3 rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200`,
 			)}
 		>
 			{(project.icon_url && (
@@ -64,45 +79,27 @@ async function GetMod({ project, className }: IGetMod) {
 					alt={`logo for the mod called '${project.title}'`}
 					width={192}
 					height={192}
-					className={cn(`mx-auto rounded-md bg-primary-50 dark:bg-body-700`)}
+					className={cn(`mx-auto rounded-md bg-primary-50 dark:bg-body-300`)}
 				/>
 			)) || (
 				<div
 					className={cn(
-						`mx-auto aspect-square w-48 rounded-md bg-primary-50 dark:bg-body-700`,
+						'mx-auto aspect-square w-48 rounded-md bg-primary-50 dark:bg-body-300',
 					)}
 				></div>
 			)}
-			<h2 className={cn(`overflow-hidden text-ellipsis text-center text-3xl`)}>
+			<h2 className={cn('overflow-hidden text-ellipsis text-center text-3xl')}>
 				{project.title}
 			</h2>
-			<ul className={cn(`grow`)}>
-				{project.categories && project.categories.length !== 0 && (
-					<li>
-						<h3 className={cn(`text-xl`)}>Categories:</h3>
-						<p className={cn(`flex flex-wrap gap-1`)}>
-							{project.categories.join(', ')}
-						</p>
-					</li>
-				)}
-				{onlyFullReleases && onlyFullReleases.length !== 0 && (
-					<li>
-						<h3 className={cn(`text-xl`)}>Versions:</h3>
-						<p className={cn(`line-clamp-3`)}>{onlyFullReleases.join(', ')}</p>
-					</li>
-				)}
-				{project.updated && project.updated.length !== 0 && (
-					<li>
-						<h3 className={cn(`text-xl`)}>Updated:</h3>
-						<p className={cn(`flex flex-wrap gap-1`)}>{project.updated.slice(0, 10)}</p>
-					</li>
-				)}
-				{project.loaders && project.loaders.length !== 0 && (
-					<li>
-						<h3 className={cn(`text-xl`)}>Loaders:</h3>
-						<p className={cn(`flex flex-wrap gap-1`)}>{project.loaders.join(', ')}</p>
-					</li>
-				)}
+			<ul className={cn('grow')}>
+				{liContent
+					.filter((item) => item.text)
+					.map((item, index) => (
+						<li key={index}>
+							<h3 className='text-xl'>{item.title}</h3>
+							<p className='line-clamp-3'>{item.text}</p>
+						</li>
+					))}
 			</ul>
 			{(project.slug || project.link) && (
 				<a
@@ -149,7 +146,7 @@ function ProjectIndex(index: number) {
 export default async function Page() {
 	const projectId = MinecraftModsJson.filter((value) => 'Id' in value).map((value) => value.Id);
 	const projects = await getFromAPI(
-		`${hrefFrom}projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`,
+		`projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`,
 	);
 
 	return (
@@ -161,40 +158,29 @@ export default async function Page() {
 					what the different colors of icons means if you are confused
 				</p>
 			</div>
-			<div className={cn(`grid gap-3 rounded-lg bg-primary-300 p-6 text-primary-900`)}>
+			<div
+				className={cn(
+					`grid gap-3 rounded-lg bg-primary-300 p-6 text-primary-900 dark:bg-body-200 dark:text-text-700`,
+				)}
+			>
 				<DoneCategoryWrapper className={StrToColor['green']}>
-					<p className={cn(`max-w-none`)}>
-						This icon indicates that i recommend these mods
-					</p>
+					This icon indicates that i recommend these Mods
 				</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['yellow']}>
-					<p className={cn(`max-w-none`)}>
-						This icon indicates that these mods are a dependency for other mods
-					</p>
+					This icon indicates that these mods are a dependency for other Mods
 				</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['red']}>
-					<p className={cn(`max-w-none`)}>
-						This icon indicates that I only recommend these mods for quick setup.
-					</p>
+					This icon indicates that I only recommend these mods for quick setup.Mods
 				</DoneCategoryWrapper>
 			</div>
 			<div className={cn(`flex flex-wrap justify-center gap-5`)}>
-				{MinecraftModsJson.map(
-					(project, index) =>
-						(project.Id && (
-							<GetMod
-								key={index}
-								project={projects[ProjectIndex(index)]}
-								className={StrToColor[project.Color]}
-							/>
-						)) || (
-							<GetMod
-								key={index}
-								project={project}
-								className={StrToColor[project.Color]}
-							/>
-						),
-				)}
+				{MinecraftModsJson.map((project, index) => (
+					<GetMod
+						key={index}
+						project={project.Id ? projects[ProjectIndex(index)] : project}
+						className={StrToColor[project.Color]}
+					/>
+				))}
 			</div>
 		</section>
 	);

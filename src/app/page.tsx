@@ -188,7 +188,7 @@ export default async function App() {
 			<section
 				id='skills'
 				className={cn(
-					`bg-white py-8 shadow-[0_0_0_100vmax_#fff] [clip-path:inset(0_-100vmax)] dark:bg-body-800 dark:shadow-[0_0_0_100vmax_hsl(var(--body-color-800))]`,
+					'bg-body-50 py-8 shadow-[0_0_0_100vmax_hsl(var(--body-color-50))] [clip-path:inset(0_-100vmax)] dark:bg-body-200 dark:shadow-[0_0_0_100vmax_hsl(var(--body-color-200))]',
 				)}
 			>
 				<div className={cn('grid justify-items-center')}>

@@ -22,7 +22,7 @@ function Card(prop: ICard) {
 	return (
 		<div
 			className={cn(
-				`flex w-72 flex-col gap-3 rounded-lg bg-white p-4 shadow-lg dark:bg-body-800`,
+				'flex w-72 flex-col gap-3 rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200',
 				className,
 			)}
 		>
@@ -31,7 +31,7 @@ function Card(prop: ICard) {
 					src={product.img ?? ''}
 					alt={`Image of a product called '${product.title}'`}
 					className={cn(
-						`mx-auto aspect-square w-48 rounded-md bg-primary-50 object-cover dark:bg-body-700`,
+						'mx-auto aspect-square w-48 rounded-md bg-primary-50 object-cover dark:bg-body-300',
 					)}
 				/>
 			)}
@@ -66,7 +66,7 @@ function Card(prop: ICard) {
 export default function page() {
 	return (
 		<>
-			<div className='m-8 grid justify-center gap-3 text-center'>
+			<div className={cn('m-8 grid justify-center gap-3 text-center')}>
 				<h1>Wishlist</h1>
 				<p>If you are on this page and do not know me IRL, then why are you here</p>
 			</div>

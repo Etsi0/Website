@@ -21,33 +21,42 @@ export const WishlistJson: IProductJson[] = [
 		url: 'https://deltakeyco.com/en-se/products/gift-card?variant=44263341490408',
 	},
 	{
-		img: 'https://deltahub.io/cdn/shop/files/Carpio_2024_9_9960615b-81c4-44eb-8c18-25af87777300.png?v=1709220083&width=800',
-		title: 'Carpio G2.0',
+		img: 'https://pricespy-75b8.kxcdn.com/product/back/800/4829502.jpg',
+		title: 'Soundbar',
 		points: (
 			<>
 				<li>
-					<p>Glider enkelt</p>
+					<h3 className={cn(`text-xl`)}>Funktioner:</h3>
+					<ul className={cn('list-inside list-disc')}>
+						<li>ARC</li>
+						<li>5.1+</li>
+						<li>Dolby Atmos</li>
+					</ul>
 				</li>
 				<li>
-					<p>Snygg</p>
-				</li>
-				<li>
-					<p>Gratis leverans<span className={cn('text-red-500')}>*</span></p>
+					<h3 className={cn(`text-xl`)}>Färg:</h3>
+					<p>Helst vit annars svart</p>
 				</li>
 			</>
 		),
-		url: 'https://deltahub.io/en-eu/products/carpio-g2-0?variant=43255500538022',
-	},	
+		url: 'https://www.prisjakt.nu/c/hemmabiosystem?143=378%7C374%7C37643&258=23287%7C5523%7C128%7C129%7C5525%7C126%7C92&3666=31644',
+	},
 	{
 		img: 'https://ae01.alicdn.com/kf/Hafa92db164124294bf6768503edd2086s/Logitech-Mouse-Charging-Dock-Station-Pitta-Studio-Plastic-Power-Bank-Base-For-G403-502-703-903.jpg_.webp',
 		title: 'Logitech Mouse Charging Dock',
 		points: (
 			<>
 				<li>
+					<h3 className={cn(`text-xl`)}>Pros:</h3>
 					<p>
-						Höjer bekvämligheten vid laddning och eliminerar behovet av att upprepade
-						gånger koppla ifrån och ansluta sändaren för att ladda musen.
+						Behöver inte dra ut sladen från den trådlösa transmittorn för att kunna
+						ladda mussen
 					</p>
+					<p>Den sluttar ladda när den har mer en 80%</p>
+				</li>
+				<li>
+					<h3 className={cn(`text-xl`)}>Cons:</h3>
+					<p>Levererar från Kina</p>
 				</li>
 			</>
 		),
@@ -72,54 +81,34 @@ export const WishlistJson: IProductJson[] = [
 		url: 'https://x-gamer.com/collections/x-tubz',
 	},
 	{
-		img: 'https://cdn.sanity.io/images/jjv48zaf/production/71f6b7a26744adb58f873a4874aaa23ab56e5676-8688x5792.jpg?w=2048&q=75&fit=fillmax&auto=format',
-		title: ' Japanska knivar',
-		points: (
-			<>
-				<li>
-					<h3 className={cn(`text-xl`)}>Rabat kod:</h3>
-					<p>Handsmidd, högkvalitativt stål för långvarig skärpa.</p>
-				</li>
-				<li>
-					<h3 className={cn(`text-xl`)}>Rabat kod:</h3>
-					<p>Möjliggör precisionsskärning för förbättrad smak och presentation.</p>
-				</li>
-				<li>
-					<h3 className={cn(`text-xl`)}>Rabat kod:</h3>
-					<p>
-						Lämplig för ett brett spektrum av matlagningsuppgifter, förenklar
-						köksuppsättning.
-					</p>
-				</li>
-			</>
-		),
-		url: 'https://www.cervera.se/inspiration/guider/japansk-knivskola/',
-	},
-	{
 		img: 'https://cdn.shopify.com/s/files/1/0567/1505/1123/products/Embody_Gaming_Chair-Cyan-03_1280x1280.jpg?w=1028&q=75&fit=fillmax&auto=format',
 		title: 'Herman Miller Embody',
 		points: (
 			<>
 				<li>
-					<h3 className={cn(`text-xl`)}>Rabat kod:</h3>
-					<p>Anpassbar</p>
+					<h3 className={cn(`text-xl`)}>Anpassbar:</h3>
+					<ul className={cn('list-inside list-disc')}>
+						<li>Sittdjup</li>
+						<li>Armstödets bredd och höjd</li>
+						<li>Lutningsspänning</li>
+						<li>Sits- och ryggstödsvinkel</li>
+					</ul>
 				</li>
 				<li>
-					<h3 className={cn(`text-xl`)}>Rabat kod:</h3>
-					<p>Ryggraden får stöd, oavsett hur man gillar att sitta</p>
-				</li>
-				<li>
-					<h3 className={cn(`text-xl`)}>Rabat kod:</h3>
+					<h3 className={cn(`text-xl`)}>Komfort för långa timmar:</h3>
 					<p>
-						{'"'}Vi sover ungefär 1/3 av våra liv, så det har alltid varit vettigt för
-						mig att spendera mycket pengar för att göra det perfect{'"'} -{' '}
-						<a
-							href='https://www.youtube.com/watch?v=yy4Dd9ICtFA&t=35s'
-							className={cn('text-primary-500')}
-						>
-							Matthias
-						</a>{' '}
-						så varför inte göra samma sak med andra möbler?
+						Precis som du skulle välja den säkraste bilbarnstolen, är Embody designad
+						med din hälsa i åtanke, främjar en bra hållning och minskar risken för värk
+						och smärta i samband med att sitta under långa perioder.
+					</p>
+				</li>
+				<li>
+					<h3 className={cn(`text-xl`)}>Investering:</h3>
+					<p>
+						Embody-stolen är som att investera i premiumverktyg för din karriär. Även om
+						initialkostnaden är märkbar, uppväger de långsiktiga vinsterna i hälsa,
+						komfort och produktivitet det vida. Det är en investering i ditt
+						välbefinnande som förbättrar ditt arbetsliv.
 					</p>
 				</li>
 			</>
@@ -148,5 +137,29 @@ export const WishlistJson: IProductJson[] = [
 		),
 		video: 'https://www.youtube.com/watch?v=OMi9p3V1-Hg',
 		url: 'https://www.atlasheadrest.com/products/headrest-for-embody-gaming-chair?variant=44230820331799',
+	},
+	{
+		img: 'https://cdn.sanity.io/images/jjv48zaf/production/71f6b7a26744adb58f873a4874aaa23ab56e5676-8688x5792.jpg?w=2048&q=75&fit=fillmax&auto=format',
+		title: ' Japanska knivar',
+		points: (
+			<>
+				<li>
+					<h3 className={cn(`text-xl`)}>Rabat kod:</h3>
+					<p>Handsmidd, högkvalitativt stål för långvarig skärpa.</p>
+				</li>
+				<li>
+					<h3 className={cn(`text-xl`)}>Rabat kod:</h3>
+					<p>Möjliggör precisionsskärning för förbättrad smak och presentation.</p>
+				</li>
+				<li>
+					<h3 className={cn(`text-xl`)}>Rabat kod:</h3>
+					<p>
+						Lämplig för ett brett spektrum av matlagningsuppgifter, förenklar
+						köksuppsättning.
+					</p>
+				</li>
+			</>
+		),
+		url: 'https://www.cervera.se/inspiration/guider/japansk-knivskola/',
 	},
 ];

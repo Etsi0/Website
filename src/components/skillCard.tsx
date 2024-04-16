@@ -27,7 +27,7 @@ export default function App(props: AppProps) {
 		<>
 			<button
 				className={cn(
-					'group flex aspect-[1/1.125] w-full flex-col items-center justify-center gap-3 rounded-lg bg-primary-500 p-3 shadow-lg duration-300 hover:bg-body-50 hover:shadow-inner focus-visible:bg-body-50 focus-visible:shadow-inner focus-visible:outline-none dark:hover:bg-body-900 dark:focus-visible:bg-body-900',
+					'group flex aspect-[1/1.125] w-full flex-col items-center justify-center gap-3 rounded-lg bg-primary-500 p-3 shadow-lg duration-300 hover:bg-body-100 hover:shadow-inner focus-visible:bg-body-100 focus-visible:shadow-inner focus-visible:outline-none',
 				)}
 				onClick={OpenDialog}
 			>
@@ -46,7 +46,7 @@ export default function App(props: AppProps) {
 				<dialog
 					ref={dialogRef}
 					className={cn(
-						'rounded-lg bg-body p-8 shadow-lg dark:shadow-[0px_5px_25px_-5px] dark:shadow-primary-500',
+						'bg-body rounded-lg p-8 shadow-lg dark:shadow-[0px_5px_25px_-5px] dark:shadow-primary-500',
 					)}
 				>
 					<div className={cn('grid justify-items-center gap-3 sm:flex')}>

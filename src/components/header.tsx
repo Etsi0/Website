@@ -30,7 +30,7 @@ export default function App() {
 		return (
 			<nav
 				className={cn(
-					'pointer-events-auto float-right h-screen min-w-72 translate-x-full overflow-hidden border-l-[1px] bg-body duration-300',
+					'pointer-events-auto float-right h-screen min-w-72 translate-x-full overflow-hidden border-l-[1px] bg-body-100 duration-300',
 					navOpened === true
 						? 'translate-x-0 transition-transform'
 						: navOpened === false
@@ -75,59 +75,31 @@ export default function App() {
 	}
 
 	return (
-		<div
-			className='
-				pointer-events-none
-				fixed
-				z-50
-				w-full
-			'
-		>
-			<header
-				className='
-					pointer-events-auto
-					bg-body/90
-					backdrop-blur-xl
-				'
-			>
-				<div
-					className='
-						mx-auto
-						flex
-						h-16
-						max-w-7xl
-						items-center
-						justify-between
-						p-3
-					'
-				>
+		<div className={cn('pointer-events-none fixed z-50 w-full')}>
+			<header className={cn('pointer-events-auto bg-body-100/90 backdrop-blur-xl')}>
+				<div className={cn('mx-auto flex h-16 max-w-7xl items-center justify-between p-3')}>
 					{/*==================================================
 						Page icon
 					==================================================*/}
 					<Link href='/'>
-						<PhadoniaLogo className='aspect-[calc(1000/315.97)/1] h-8 text-body hue-rotate-180 invert' />
+						<PhadoniaLogo
+							className={cn(
+								'aspect-[calc(1000/315.97)/1] h-8 text-body-100 hue-rotate-180 invert',
+							)}
+						/>
 					</Link>
 					{/*==================================================
 						Hamburger icon
 					==================================================*/}
-					<div
-						className='
-							flex
-							h-full
-						'
-					>
+					<div className={cn('flex h-full')}>
 						<DarkMode />
 						{/* !!! I did not make this hamburgerBtn, https://codepen.io/ainalem/pen/wvKOEMV !!! */}
 						<button
-							className='
-								group
-								aspect-square
-								h-full
-							'
+							className={cn('group aspect-square h-full')}
 							aria-expanded={navOpened}
 							onClick={() => setNavOpened(!navOpened)}
 						>
-							<Hamburger className={'text-text-700 group-hover:text-text-300'} />
+							<Hamburger className={cn('text-text-700 group-hover:text-text-300')} />
 						</button>
 					</div>
 				</div>

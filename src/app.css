@@ -11,17 +11,13 @@
 		--warning-color: hsl(var(--warning-hue, 4deg), 69%, 61%);
 		--warning-color-lighter: hsl(var(--warning-hue, 4deg), 92%, 85%);
 
-		--body-color-50: var(--hue-color, 240deg) 12% 95%;
-		--body-color-100: var(--hue-color, 240deg) 12% 90%;
-		--body-color-200: var(--hue-color, 240deg) 12% 80%;
-		--body-color-300: var(--hue-color, 240deg) 12% 70%;
-		--body-color-400: var(--hue-color, 240deg) 12% 60%;
-		--body-color-500: var(--hue-color, 240deg) 12% 50%;
-		--body-color-600: var(--hue-color, 240deg) 12% 40%;
-		--body-color-700: var(--hue-color, 240deg) 12% 30%;
-		--body-color-800: var(--hue-color, 240deg) 12% 20%;
-		--body-color-900: var(--hue-color, 240deg) 12% 10%;
-		--body-color-950: var(--hue-color, 240deg) 12% 5%;
+		--body-dark-mode2: calc(1 - var(--dark-mode));
+		--body-color-50: var(--hue-color, 240deg) 12% max(5%, 100% * var(--body-dark-mode2, 1));
+		--body-color-100: var(--hue-color, 240deg) 12% max(10%, 95% * var(--body-dark-mode2, 1));
+		--body-color-200: var(--hue-color, 240deg) 12% max(20%, 85% * var(--body-dark-mode2, 1));
+		--body-color-300: var(--hue-color, 240deg) 12% max(30%, 75% * var(--body-dark-mode2, 1));
+		--body-color-400: var(--hue-color, 240deg) 12% max(40%, 65% * var(--body-dark-mode2, 1));
+		--body-color-500: var(--hue-color, 240deg) 12% max(50%, 55% * var(--body-dark-mode2, 1));
 
 		/* Legacy body color */
 		--body-dark-mode: calc(85% * var(--dark-mode, 0));

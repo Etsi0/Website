@@ -16,13 +16,9 @@ export default function RootLayout({ children }) {
 				<meta property='og:image' content='URL_to_image.jpg' />
 			</Head>
 			<html lang='en'>
-				<body
-					className={cn(
-						`bg-body-50 dark:bg-body-900 flex min-h-screen flex-col overflow-x-hidden`,
-					)}
-				>
+				<body className={cn('flex min-h-screen flex-col overflow-x-hidden bg-body-100')}>
 					<Header />
-					<main className={cn(`mx-auto flex w-full max-w-7xl grow flex-col px-8 pt-16`)}>
+					<main className={cn('mx-auto flex w-full max-w-7xl grow flex-col px-8 pt-16')}>
 						{children}
 					</main>
 					<Footer />
