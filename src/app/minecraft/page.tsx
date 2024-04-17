@@ -43,12 +43,16 @@ async function GetMod({ project, className }: IGetMod) {
 	if (project.game_versions) {
 		onlyFullReleases = project.game_versions
 			.reverse()
-			.filter((item: string) => /[a-z]/.exec(item) === null);
+			.filter((item: string) => !/[a-z]/.test(item));
 
-		const version = await getFromAPI(
-			`project/${encodeURIComponent(project.id)}/version?loaders=["fabric"]&game_versions=["${encodeURIComponent(onlyFullReleases[0])}"]`,
-		);
-		latestVersion = version[0];
+		try {
+			const version = await getFromAPI(
+				`project/${encodeURIComponent(project.id)}/version?loaders=["fabric"]&featured=true`,
+			);
+			latestVersion = version[0];
+		} catch (error) {
+			console.error('Error fetching version data:', error);
+		}
 	}
 	const liContent = [
 		{
@@ -61,7 +65,7 @@ async function GetMod({ project, className }: IGetMod) {
 		},
 		{
 			title: 'Updated:',
-			text: project.updated?.slice(0, 10),
+			text: latestVersion?.date_published.slice(0, 10),
 		},
 		{
 			title: 'Loaders:',
@@ -153,6 +157,12 @@ export default async function Page() {
 		`projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`,
 	);
 
+	const projectMap = projects.reduce((accumulator, project) => {
+		accumulator[project.id] = project;
+		return accumulator;
+	}, {});
+	const sortedProjects = projectId.map((id: string) => projectMap[id]);
+
 	return (
 		<section className={cn(`grid gap-8 py-8 pt-16`)}>
 			<div className={cn(`grid justify-items-center text-center`)}>
@@ -168,20 +178,25 @@ export default async function Page() {
 				)}
 			>
 				<DoneCategoryWrapper className={StrToColor['green']}>
-					This icon indicates that i recommend these Mods
+					This icon indicates that i recommend these mods
 				</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['yellow']}>
-					This icon indicates that these mods are a dependency for other Mods
+					This icon indicates that these mods are a dependency for another mod on this
+					list
 				</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['red']}>
-					This icon indicates that I only recommend these mods for quick setup.Mods
+					This icon indicates that I only recommend these mods for quick setup. (
+					<a className='text-primary-500' href='https://optifine.net/downloads'>
+						Optifine
+					</a>
+					)
 				</DoneCategoryWrapper>
 			</div>
 			<div className={cn(`flex flex-wrap justify-center gap-5`)}>
 				{MinecraftModsJson.map((project, index) => (
 					<GetMod
 						key={index}
-						project={project.Id ? projects[ProjectIndex(index)] : project}
+						project={project.Id ? sortedProjects[ProjectIndex(index)] : project}
 						className={StrToColor[project.Color]}
 					/>
 				))}

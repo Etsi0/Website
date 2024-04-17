@@ -1757,9 +1757,9 @@ button[aria-expanded='true'] .path2 {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.focus-visible\:bg-body-50:focus-visible {
+.focus-visible\:bg-body-100:focus-visible {
   --tw-bg-opacity: 1;
-  background-color: hsl(var(--body-color-50) / var(--tw-bg-opacity));
+  background-color: hsl(var(--body-color-100) / var(--tw-bg-opacity));
 }
 
 .focus-visible\:bg-primary-50:focus-visible {
@@ -1769,11 +1769,6 @@ button[aria-expanded='true'] .path2 {
 
 .focus-visible\:bg-warning-lighter:focus-visible {
   background-color: var(--warning-color-lighter);
-}
-
-.focus-visible\:bg-body-100:focus-visible {
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--body-color-100) / var(--tw-bg-opacity));
 }
 
 .focus-visible\:text-primary-500:focus-visible {
@@ -1892,25 +1887,6 @@ button[aria-expanded='true'] .path2 {
 :is(.dark .dark\:bg-yellow-600) {
   --tw-bg-opacity: 1;
   background-color: rgb(202 138 4 / var(--tw-bg-opacity));
-}
-
-:is(.dark .dark\:text-body-50) {
-  --tw-text-opacity: 1;
-  color: hsl(var(--body-color-50) / var(--tw-text-opacity));
-}
-
-:is(.dark .dark\:text-body-500) {
-  --tw-text-opacity: 1;
-  color: hsl(var(--body-color-500) / var(--tw-text-opacity));
-}
-
-:is(.dark .dark\:text-input) {
-  color: var(--input-color);
-}
-
-:is(.dark .dark\:text-text-300) {
-  --tw-text-opacity: 1;
-  color: hsl(var(--text-color-300) / var(--tw-text-opacity));
 }
 
 :is(.dark .dark\:text-text-700) {
