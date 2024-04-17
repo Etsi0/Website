@@ -1,4 +1,3 @@
-'use server';
 import { ReactNode } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/util';
@@ -31,6 +30,9 @@ async function getFromAPI(href: string) {
 	const response = await fetch(`https://api.modrinth.com/v2/${href}`, {
 		headers: {
 			'Content-Type': 'application/json',
+		},
+		next: {
+			revalidate: 3600,
 		},
 	});
 	return await response.json();
@@ -146,7 +148,10 @@ function ProjectIndex(index: number) {
 	return index - MinecraftModsJson.slice(0, index).filter((value) => 'link' in value).length;
 }
 export default async function Page() {
-	const projects = await getProjects();
+	const projectId = MinecraftModsJson.filter((value) => 'Id' in value).map((value) => value.Id);
+	const projects = await getFromAPI(
+		`projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`,
+	);
 
 	return (
 		<section className={cn(`grid gap-8 py-8 pt-16`)}>
@@ -183,9 +188,4 @@ export default async function Page() {
 			</div>
 		</section>
 	);
-}
-
-async function getProjects() {
-	const projectId = MinecraftModsJson.filter((value) => 'Id' in value).map((value) => value.Id);
-	return await getFromAPI(`projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`);
 }
