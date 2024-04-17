@@ -936,6 +936,10 @@ video {
   animation: cursorBlink 1.5s steps(1) infinite alternate;
 }
 
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
 .list-inside {
   list-style-position: inside;
 }

@@ -30,7 +30,6 @@ async function getFromAPI(href: string) {
 	const response = await fetch(`https://api.modrinth.com/v2/${href}`, {
 		headers: {
 			'Content-Type': 'application/json',
-			'Cache-Control': 'no-cache',
 		},
 	});
 	return await response.json();
@@ -132,7 +131,9 @@ async function GetMod({ project, className }: IGetMod) {
 			)) || (
 				<button
 					disabled
-					className={cn(`w-full rounded-md bg-slate-500 p-3 text-slate-400`)}
+					className={cn(
+						`w-full cursor-not-allowed rounded-md bg-slate-500 p-3 text-slate-400`,
+					)}
 				>
 					NaN
 				</button>
@@ -144,10 +145,7 @@ function ProjectIndex(index: number) {
 	return index - MinecraftModsJson.slice(0, index).filter((value) => 'link' in value).length;
 }
 export default async function Page() {
-	const projectId = MinecraftModsJson.filter((value) => 'Id' in value).map((value) => value.Id);
-	const projects = await getFromAPI(
-		`projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`,
-	);
+	const projects = await getProjects();
 
 	return (
 		<section className={cn(`grid gap-8 py-8 pt-16`)}>
@@ -184,4 +182,9 @@ export default async function Page() {
 			</div>
 		</section>
 	);
+}
+
+async function getProjects() {
+	const projectId = MinecraftModsJson.filter((value) => 'Id' in value).map((value) => value.Id);
+	return await getFromAPI(`projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`);
 }
