@@ -19,7 +19,7 @@ export default function SubmitForm(props: any) {
 			>
 				<label htmlFor='countryCode'>Market</label>
 				<label className='col-span-2' htmlFor='Album'>
-					Album
+					Playlist
 				</label>
 				<label className='col-span-2' htmlFor='limit'>
 					Limit
