@@ -1,7 +1,5 @@
 'use server';
-
-import { useSongJsonContext } from '@/context/songsContext';
-import { GetRecommendations, GetSongs, GetSongsFromPlaylist } from './page';
+import { GetRecommendations, GetSongs, GetSongsFromPlaylist } from '@/api/spotify/main';
 
 export async function CreateRecommendations(formData: FormData) {
 	const playlistData = await GetSongsFromPlaylist(
