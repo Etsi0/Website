@@ -53,6 +53,10 @@ async function GetFromAPI(href: string) {
 export async function GetSongsFromPlaylist(countryCode, playlist) {
 	const regex = RegExp('open.spotify.com/playlist/([^?]+)');
 	const playlist_id = regex.exec(playlist);
+	if (!playlist || !playlist_id[1]) {
+		return false;
+	}
+
 	const response = await GetFromAPI(
 		`https://api.spotify.com/v1/playlists/${playlist_id[1]}?market=${countryCode}`,
 	);
