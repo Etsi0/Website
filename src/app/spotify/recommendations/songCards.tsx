@@ -1,22 +1,28 @@
 'use client';
 import Image from 'next/image';
 import { useSongJsonContext } from '@/context/songsContext';
+import { useState } from 'react';
+import { cn } from '@/lib/util';
 
 export default function SongCards() {
+	const [isPlaying, setIsPlaying] = useState<null | number>(null);
 	const { SongJson, setSongJson } = useSongJsonContext();
 
 	function handlePlayAudio(index) {
 		const allAudio = document.querySelectorAll('audio');
-		allAudio.forEach((audio) => {
-			audio.pause();
-			audio.currentTime = 0;
-		});
 		const audioElement = document.getElementById(`preview${index}`) as HTMLAudioElement;
+
 		if (audioElement.paused) {
+			allAudio.forEach((audio) => {
+				audio.pause();
+				audio.currentTime = 0;
+			});
 			audioElement.play();
+			setIsPlaying(index);
 		} else {
 			audioElement.pause();
 			audioElement.currentTime = 0;
+			setIsPlaying(null);
 		}
 	}
 
@@ -31,7 +37,11 @@ export default function SongCards() {
 						>
 							<label
 								htmlFor={`preview${index}`}
-								className='relative after:absolute after:top-0 after:h-full after:w-full after:bg-center after:bg-no-repeat after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)]'
+								className={cn(
+									'relative after:absolute after:top-0 after:h-full after:w-full after:bg-center after:bg-no-repeat after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)]',
+									isPlaying === index &&
+										'after:bg-black/50 after:bg-[url(/img/pause.svg)] after:hover:bg-[url(/img/pause.svg)]',
+								)}
 								onClick={() => handlePlayAudio(index)}
 							>
 								<Image

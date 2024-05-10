@@ -94,18 +94,13 @@ export default async function App() {
 						</h2>
 						<p className={cn(`group max-w-prose`)}>
 							I{"'"}m a {CalculateAge(new Date('2003-08-25'))}-year-old full-stack
-							maestro from Skövde, Sweden. My world revolves around turning complex
-							digital challenges into playful solutions. With a heart for programming,
-							tech, and gaming, I blend passion with skill to craft remarkable digital
-							experiences. Driven by curiosity and the joy of learning, I{"'"}m the
-							teammate you{"'"}ve been searching for. Welcome to my portfolio—let{"'"}
-							s create something unforgettable together.
+							developer from Skövde, Sweden. I love programming, technology, and
+							gaming, and use my skills to create great digital experiences. I enjoy
+							learning and working with others. Welcome to my portfolio, let{"'"}s
+							build something amazing together.
 						</p>
 						<audio className={cn(`inline-block rounded-lg`)} controls>
-							<source
-								src='/tts/ElevenLabs_2024-03-06T20 42 10_Matilda_pre_s60_sb65_se0_b_m2.mp3'
-								type='audio/mp3'
-							/>
+							<source src='/tts/Hero.mp3' type='audio/mp3' />
 							Your browser does not support the audio element.
 						</audio>{' '}
 						by{' '}
@@ -157,11 +152,12 @@ export default async function App() {
 					</div>
 					<div className={cn('flex flex-col items-start justify-center gap-3')}>
 						<p>
-							Hi there! I am a web and software developer currently in my fourth year
-							at TE. Upon completion, I will be a High School Engineer. Throughout my
-							studies, I have proven my skills by winning Game On in both 2021 and
-							2022 at NTI. In my free time, I enjoy playing games and programming,
-							which only adds to my passion for technology and development
+							Hi there! I recently completed my high school engineering degree and am
+							currently enhancing my skills through Harvard University{"'"}s CS50x, an
+							introduction to computer science and programming. A two-time winner of
+							the NTI{"'"}s Game On competition, my commitment to technology extends
+							into my free time where I enjoy gaming and programming. I am passionate
+							about using my knowledge to create innovative digital solutions.
 						</p>
 						<a
 							className={cn(
