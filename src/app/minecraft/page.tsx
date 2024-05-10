@@ -169,14 +169,10 @@ export default async function Page() {
 				<h1>Minecraft Mods</h1>
 				<p>
 					Mods listed bellow is what i recommend or use, look at the section that explains
-					what the different colors of icons means if you are confused
+					what the different colors means if you are confused
 				</p>
 			</div>
-			<div
-				className={cn(
-					`grid gap-3 rounded-lg bg-primary-300 p-6 text-primary-900 dark:bg-body-200 dark:text-text-700`,
-				)}
-			>
+			<div className={cn(`grid gap-3 rounded-lg bg-body-50 p-6 dark:bg-body-200`)}>
 				<DoneCategoryWrapper className={StrToColor['green']}>
 					This icon indicates that i recommend these mods
 				</DoneCategoryWrapper>

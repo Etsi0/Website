@@ -8,6 +8,10 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'cdn.modrinth.com',
 			},
+			{
+				protocol: 'https',
+				hostname: 'i.scdn.co',
+			},
 		],
 	},
 };

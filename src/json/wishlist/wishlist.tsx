@@ -97,9 +97,9 @@ export const WishlistJson: IProductJson[] = [
 				<li>
 					<h3 className={cn(`text-xl`)}>Komfort för långa timmar:</h3>
 					<p>
-						Precis som du skulle välja den säkraste bilbarnstolen, är Embody designad
-						med din hälsa i åtanke, främjar en bra hållning och minskar risken för värk
-						och smärta i samband med att sitta under långa perioder.
+						Precis som när du skulle välja den bilen, är Embody designad med din hälsa i
+						åtanke, främjar en bra hållning och minskar risken för värk och smärta i
+						samband med att sitta under långa perioder.
 					</p>
 				</li>
 				<li>
