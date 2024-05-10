@@ -18,5 +18,9 @@
 	{
 		"path": "/minecraft",
 		"name": "Minecraft Mods"
+	},
+	{
+		"path": "/spotify/recommendations",
+		"name": "Spotify Song Recommender"
 	}
 ]
