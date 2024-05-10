@@ -1773,6 +1773,21 @@ button[aria-expanded='true'] .path2 {
   background-image: url(/img/pause.svg);
 }
 
+.after\:bg-\[length\:100px_100px\]::after {
+  content: var(--tw-content);
+  background-size: 100px 100px;
+}
+
+.after\:bg-\[length\:calc\(200px_\/_3\)_calc\(200px_\/_3\)\]::after {
+  content: var(--tw-content);
+  background-size: calc(200px / 3) calc(200px / 3);
+}
+
+.after\:bg-\[length\:calc\(100\%_\/_3\)_calc\(100\%_\/_3\)\]::after {
+  content: var(--tw-content);
+  background-size: calc(100% / 3) calc(100% / 3);
+}
+
 .after\:bg-center::after {
   content: var(--tw-content);
   background-position: center;
