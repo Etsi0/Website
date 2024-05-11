@@ -10,7 +10,9 @@ export default async function Page() {
 		<>
 			<section className='grid gap-3 p-3'>
 				<div className='grid place-items-center gap-3 text-center'>
-					<h1>Spotify Recommendations</h1>
+					<h1 className='text-[clamp(1.5rem,_calc(35vw_-_128px),_3rem)]'>
+						Spotify Recommendations
+					</h1>
 					<p>Your playlist must be public to be able to input it</p>
 				</div>
 				<SongsContext>

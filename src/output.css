@@ -1351,6 +1351,38 @@ video {
   line-height: 1rem;
 }
 
+.text-\[clamp\(496px\2c _3rem\2c _100\%\)\] {
+  font-size: clamp(496px, 3rem, 100%);
+}
+
+.text-\[clamp\(0px\2c _3rem\2c _496px\)\] {
+  font-size: clamp(0px, 3rem, 496px);
+}
+
+.text-\[clamp\(300px\2c _3rem\2c _496px\)\] {
+  font-size: clamp(300px, 3rem, 496px);
+}
+
+.text-\[clamp\(10px\2c _3rem\2c _496px\)\] {
+  font-size: clamp(10px, 3rem, 496px);
+}
+
+.text-\[clamp\(100px\2c _3rem\2c _496px\)\] {
+  font-size: clamp(100px, 3rem, 496px);
+}
+
+.text-\[clamp\(1rem\2c _3rem\2c _496px\)\] {
+  font-size: clamp(1rem, 3rem, 496px);
+}
+
+.text-\[clamp\(1rem\2c _496px\2c _3rem\)\] {
+  font-size: clamp(1rem, 496px, 3rem);
+}
+
+.text-\[clamp\(1\.5rem\2c _calc\(35vw_-_128px\)\2c _3rem\)\] {
+  font-size: clamp(1.5rem, calc(35vw - 128px), 3rem);
+}
+
 .font-medium {
   font-weight: 500;
 }
