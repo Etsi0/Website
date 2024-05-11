@@ -9,7 +9,7 @@ export default async function Page() {
 	return (
 		<>
 			<section className='grid gap-3 p-3'>
-				<div className='grid place-items-center gap-3'>
+				<div className='grid place-items-center gap-3 text-center'>
 					<h1>Spotify Recommendations</h1>
 					<p>Your playlist must be public to be able to input it</p>
 				</div>

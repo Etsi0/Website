@@ -35,17 +35,17 @@ export default function SongCards() {
 
 	return (
 		<>
-			<div className='grid gap-6'>
+			<div className='flex flex-wrap justify-center gap-6 lg:grid'>
 				{SongJson &&
 					SongJson.map((item, index) => (
 						<div
 							key={index}
-							className='flex overflow-hidden rounded-xl bg-body-50 shadow-lg dark:bg-body-200'
+							className='flex w-72 flex-col overflow-hidden rounded-xl bg-body-50 p-4 shadow-lg dark:bg-body-200 lg:w-auto lg:flex-row'
 						>
 							<label
 								htmlFor={`preview${index}`}
 								className={cn(
-									'relative after:absolute after:top-0 after:h-full after:w-full after:bg-[length:calc(100%_/_3)_calc(100%_/_3)] after:bg-center after:bg-no-repeat after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)]',
+									'relative mx-auto overflow-hidden rounded-md after:absolute after:top-0 after:h-full after:w-full after:bg-[length:calc(100%_/_3)_calc(100%_/_3)] after:bg-center after:bg-no-repeat after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)] lg:mx-0',
 									isPlaying === index &&
 										'after:bg-black/50 after:bg-[url(/img/pause.svg)] after:hover:bg-[url(/img/pause.svg)]',
 								)}
@@ -58,12 +58,19 @@ export default function SongCards() {
 									height={200}
 								/>
 							</label>
+							<audio id={`preview${index}`}>
+								<source src={item.previewUrl} type='audio/mpeg' />
+								Your browser does not support the audio element.
+							</audio>
 							<div className='flex flex-col p-3'>
 								<div className='grow'>
-									<a className='text-2xl text-text-700' href={item.track.link}>
+									<a
+										className='line-clamp-1 text-2xl text-text-700'
+										href={item.track.link}
+									>
 										{item.track.name}
 									</a>
-									<div>
+									<div className='line-clamp-1'>
 										{item.artists.map((artist, i) => (
 											<a key={i} className='text-text-500' href={artist.link}>
 												{artist.name}
@@ -71,14 +78,13 @@ export default function SongCards() {
 										))}
 									</div>
 								</div>
-								<a className='text-xl text-text-300' href={item.album.link}>
+								<a
+									className='mt-16 line-clamp-1 text-xl text-text-300 lg:mt-0'
+									href={item.album.link}
+								>
 									{item.album.name}
 								</a>
 							</div>
-							<audio id={`preview${index}`}>
-								<source src={item.previewUrl} type='audio/mpeg' />
-								Your browser does not support the audio element.
-							</audio>
 						</div>
 					))}
 			</div>
