@@ -8,8 +8,8 @@ export default async function Page() {
 
 	return (
 		<>
-			<section className='grid gap-3 p-3'>
-				<div className='grid place-items-center gap-3 text-center'>
+			<section className='grid gap-16'>
+				<div className='mt-16 grid place-items-center gap-3 text-center'>
 					<h1 className='text-[clamp(1.5rem,_calc(35vw_-_128px),_3rem)]'>
 						Spotify Recommendations
 					</h1>
