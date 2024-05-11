@@ -742,6 +742,10 @@ video {
   margin-top: 4rem;
 }
 
+.mb-0 {
+  margin-bottom: 0px;
+}
+
 .line-clamp-3 {
   overflow: hidden;
   display: -webkit-box;
@@ -873,6 +877,11 @@ video {
   width: 200px;
 }
 
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
@@ -997,6 +1006,10 @@ video {
   cursor: not-allowed;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .list-inside {
   list-style-position: inside;
 }
@@ -1091,6 +1104,14 @@ video {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-16 {
+  gap: 4rem;
 }
 
 .gap-x-3 {
@@ -1256,6 +1277,10 @@ video {
 
 .p-8 {
   padding: 2rem;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .px-1 {

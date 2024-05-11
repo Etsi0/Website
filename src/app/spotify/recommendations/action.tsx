@@ -6,7 +6,7 @@ export async function CreateRecommendations(formData: FormData) {
 		formData.get('countryCode'),
 		formData.get('playlist'),
 	);
-	if (!playlistData) {
+	if (!playlistData || !playlistData.tracks || !playlistData.tracks.items) {
 		return false;
 	}
 
