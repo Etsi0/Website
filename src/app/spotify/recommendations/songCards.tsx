@@ -35,21 +35,21 @@ export default function SongCards() {
 
 	return (
 		<>
-			<div className='flex flex-wrap justify-center gap-6 lg:grid'>
+			<div className='mb-16 flex flex-wrap items-start justify-center gap-5'>
 				{SongJson &&
 					SongJson.map((item, index) => (
 						<div
 							key={index}
-							className='flex w-72 flex-col overflow-hidden rounded-xl bg-body-50 p-4 shadow-lg dark:bg-body-200 lg:w-auto lg:flex-row'
+							className='flex w-72 flex-col gap-3 self-stretch rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'
 						>
 							<label
 								htmlFor={`preview${index}`}
 								className={cn(
-									'relative mx-auto overflow-hidden rounded-md after:absolute after:top-0 after:h-full after:w-full after:bg-[length:calc(100%_/_3)_calc(100%_/_3)] after:bg-center after:bg-no-repeat lg:mx-0',
+									'relative mx-auto overflow-hidden rounded-md after:absolute after:top-0 after:h-full after:w-full after:bg-[length:calc(100%_/_3)_calc(100%_/_3)] after:bg-center after:bg-no-repeat',
 									(isPlaying === index &&
-										'after:bg-black/50 after:bg-[url(/img/pause.svg)]') ||
+										'cursor-pointer after:bg-black/50 after:bg-[url(/img/pause.svg)]') ||
 										(item.previewUrl &&
-											'after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)]'),
+											'cursor-pointer after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)]'),
 								)}
 								onClick={() => {
 									if (item.previewUrl) handlePlayAudio(index);
@@ -83,7 +83,7 @@ export default function SongCards() {
 									</div>
 								</div>
 								<a
-									className='mt-16 line-clamp-1 text-xl text-text-300 lg:mt-0'
+									className='mt-16 line-clamp-1 text-xl text-text-300'
 									href={item.album.link}
 								>
 									{item.album.name}
