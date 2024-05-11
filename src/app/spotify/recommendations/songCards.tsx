@@ -45,11 +45,15 @@ export default function SongCards() {
 							<label
 								htmlFor={`preview${index}`}
 								className={cn(
-									'relative mx-auto overflow-hidden rounded-md after:absolute after:top-0 after:h-full after:w-full after:bg-[length:calc(100%_/_3)_calc(100%_/_3)] after:bg-center after:bg-no-repeat after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)] lg:mx-0',
-									isPlaying === index &&
-										'after:bg-black/50 after:bg-[url(/img/pause.svg)] after:hover:bg-[url(/img/pause.svg)]',
+									'relative mx-auto overflow-hidden rounded-md after:absolute after:top-0 after:h-full after:w-full after:bg-[length:calc(100%_/_3)_calc(100%_/_3)] after:bg-center after:bg-no-repeat lg:mx-0',
+									(isPlaying === index &&
+										'after:bg-black/50 after:bg-[url(/img/pause.svg)]') ||
+										(item.previewUrl &&
+											'after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)]'),
 								)}
-								onClick={() => handlePlayAudio(index)}
+								onClick={() => {
+									if (item.previewUrl) handlePlayAudio(index);
+								}}
 							>
 								<Image
 									src={item.image.url}
