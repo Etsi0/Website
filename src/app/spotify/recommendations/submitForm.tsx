@@ -10,6 +10,7 @@ export default function SubmitForm(props: any) {
 		<>
 			<form
 				action={async (formData: FormData) => {
+					setSongJson(null);
 					const data = await CreateRecommendations(formData);
 					if (data) {
 						setSongJson(data);
