@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useSongJsonContext } from '@/context/songsContext';
 import { useState } from 'react';
 import { cn } from '@/lib/util';
+import { Fragment } from 'react';
 
 export default function SongCards() {
 	const [isPlaying, setIsPlaying] = useState<null | number>(null);
@@ -76,9 +77,16 @@ export default function SongCards() {
 									</a>
 									<div className='line-clamp-1'>
 										{item.artists.map((artist, i) => (
-											<a key={i} className='text-text-500' href={artist.link}>
-												{artist.name}
-											</a>
+											<Fragment key={i}>
+												<a
+													key={i}
+													className='text-text-500'
+													href={artist.link}
+												>
+													{artist.name}
+												</a>
+												{i < item.artists.length - 1 && ', '}
+											</Fragment>
 										))}
 									</div>
 								</div>
