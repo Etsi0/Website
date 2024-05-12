@@ -37,6 +37,22 @@ async function getFromAPI(href: string) {
 	});
 	return await response.json();
 }
+
+// Helper function to find the highest version in an array
+function getHighestVersion(versions) {
+	return versions.sort((a, b) => {
+		const aParts = a.split('.').map((x) => parseInt(x, 10));
+		const bParts = b.split('.').map((x) => parseInt(x, 10));
+		for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+			const aValue = aParts[i] || 0;
+			const bValue = bParts[i] || 0;
+			if (aValue > bValue) return -1;
+			if (aValue < bValue) return 1;
+		}
+		return 0;
+	})[0];
+}
+
 async function GetMod({ project, className }: IGetMod) {
 	let onlyFullReleases: string[];
 	let latestVersion: any;
@@ -49,6 +65,14 @@ async function GetMod({ project, className }: IGetMod) {
 			const version = await getFromAPI(
 				`project/${encodeURIComponent(project.id)}/version?loaders=["fabric"]&featured=true`,
 			);
+
+			// Sort the data array
+			version.sort((a, b) => {
+				const aMax = getHighestVersion(a.game_versions);
+				const bMax = getHighestVersion(b.game_versions);
+				return aMax === bMax ? 0 : aMax > bMax ? -1 : 1;
+			});
+
 			latestVersion = version[0];
 		} catch (error) {
 			console.error('Error fetching version data:', error);
