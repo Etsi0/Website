@@ -59,14 +59,17 @@ export default function SongCards() {
 								<Image
 									src={item.image.url}
 									alt={`album art of ${item.track.name}`}
-									width={200}
-									height={200}
+									width={item.image.width}
+									height={item.image.height}
+									className='h-48 w-48 object-cover'
 								/>
 							</label>
-							<audio id={`preview${index}`}>
-								<source src={item.previewUrl} type='audio/mpeg' />
-								Your browser does not support the audio element.
-							</audio>
+							{item.previewUrl && (
+								<audio id={`preview${index}`}>
+									<source src={item.previewUrl} type='audio/mpeg' />
+									Your browser does not support the audio element.
+								</audio>
+							)}
 							<div className='flex flex-col p-3'>
 								<div className='grow'>
 									<a
@@ -78,11 +81,7 @@ export default function SongCards() {
 									<div className='line-clamp-1'>
 										{item.artists.map((artist, i) => (
 											<Fragment key={i}>
-												<a
-													key={i}
-													className='text-text-500'
-													href={artist.link}
-												>
+												<a className='text-text-500' href={artist.link}>
 													{artist.name}
 												</a>
 												{i < item.artists.length - 1 && ', '}
