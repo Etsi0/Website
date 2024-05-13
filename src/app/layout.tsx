@@ -1,5 +1,5 @@
-import Head from 'next/head';
-
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { cn } from '@/lib/util';
 
 import Header from '@/components/header';
@@ -10,11 +10,6 @@ import '../output.css';
 export default function RootLayout({ children }) {
 	return (
 		<>
-			<Head>
-				<meta property='og:type' content='website' />
-				<meta property='og:type' content='website' />
-				<meta property='og:image' content='URL_to_image.jpg' />
-			</Head>
 			<html lang='en'>
 				<body className={cn('flex min-h-screen flex-col overflow-x-hidden bg-body-100')}>
 					<Header />
@@ -22,6 +17,8 @@ export default function RootLayout({ children }) {
 						{children}
 					</main>
 					<Footer />
+					<Analytics />
+					<SpeedInsights />
 				</body>
 			</html>
 		</>
