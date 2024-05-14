@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import navLinks from './navLinks.json';
+import { navLinkJson } from '@/json/header/navLinks';
 import DarkMode from './darkMode';
 
 import { Hamburger, PhadoniaLogo } from '@/components/SVGs';
@@ -31,16 +31,13 @@ export default function App() {
 			<nav
 				className={cn(
 					'pointer-events-auto float-right h-screen min-w-72 translate-x-full overflow-hidden border-l-[1px] bg-body-100 duration-300',
-					navOpened === true
-						? 'translate-x-0 transition-transform'
-						: navOpened === false
-							? 'transition-transform'
-							: '',
+					(navOpened && 'translate-x-0 transition-transform') ||
+						(navOpened === false && 'transition-transform'),
 				)}
 				aria-label='Main Navigation'
 			>
 				<ul>
-					{navLinks.map((link, i) => (
+					{navLinkJson.map((link, i) => (
 						<li key={link.path}>
 							<Link
 								tabIndex={
