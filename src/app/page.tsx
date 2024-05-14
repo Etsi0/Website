@@ -1,11 +1,11 @@
-import Head from 'next/head';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { cn } from '@/lib/util';
 
-import socialLinkJson from '@/json/socialLink';
-import skillCardJson from '@/components/skillCardJson';
+import { SocialLinkJson } from '@/json/socialLink';
+import { SkillCardJson } from '@/json/home/skillCard';
 
 import Carousel from '@/components/ui/carousel';
 import { EmblaOptionsType } from 'embla-carousel';
@@ -13,41 +13,30 @@ import { EmblaOptionsType } from 'embla-carousel';
 import SkillCard from '@/components/skillCard';
 
 import { Download } from '@/components/SVGs';
-import StudentCapSelfie from '@/../public/img/production/student cap selfie/selfie.png';
+import { YearsElapsed } from '@/components/yearsElapsed';
+import { TypingText } from '@/components/typingText';
+
 import CasualSelfie from '@/../public/img/production/casual selfie/selfie.png';
-import TypingText from '@/components/typingText';
+import StudentCapSelfie from '@/../public/img/production/student cap selfie/selfie.png';
+
+export const metadata: Metadata = {
+	title: 'Phadonia',
+	description:
+		'Harnessing JavaScript to create game-changing digital experiences. Discover the innovation of a young Swedish developer.',
+};
 
 export default async function App() {
-	const latestProjects = skillCardJson()[0];
-
-	const title = 'Home - Phadonia';
-	const description = 'Home - Phadonia';
-
-	function CalculateAge(startDate: Date): number {
-		const endDate = new Date();
-		let diff = endDate.getFullYear() - startDate.getFullYear();
-
-		const monthCheck = endDate.getMonth() < startDate.getMonth();
-		const dayCheck =
-			endDate.getMonth() === startDate.getMonth() && endDate.getDate() < startDate.getDate();
-		if (monthCheck || dayCheck) {
-			return --diff;
-		}
-
-		return diff;
-	}
-
 	const OPTIONS: EmblaOptionsType = { loop: true };
 	const SLIDE_COUNT = 3;
 	const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
 	function SocialLinks({ className }: { className: string }) {
 		return (
-			<ul className={cn(`gap-3`, className)} aria-label='Social Media Links'>
-				{socialLinkJson().map((item, index) => (
+			<ul className={cn('gap-3', className)} aria-label='Social Media Links'>
+				{SocialLinkJson.map((item, index) => (
 					<li key={index}>
 						<a
-							className={cn(`group block rounded-sm`)}
+							className={cn('group block rounded-sm')}
 							href={item.path}
 							target='blank_'
 							rel='noopener'
@@ -63,26 +52,19 @@ export default async function App() {
 
 	return (
 		<>
-			<Head>
-				<title>{title}</title>
-				<meta name='description' content='Description of my page' />
-				<meta property='og:title' content={title} />
-				<meta property='og:description' content='Description of my page' />
-				<meta property='og:url' content='website' />
-			</Head>
 			{/*==================================================
 				Home
 			==================================================*/}
 			<section
 				id='home'
 				className={cn(
-					`heroSection grid content-center justify-items-center gap-3 lg:grid-cols-2`,
+					'heroSection grid content-center justify-items-center gap-3 lg:grid-cols-2',
 				)}
 			>
-				<div className={cn(`grid gap-3 self-center`)}>
+				<div className={cn('grid gap-3 self-center')}>
 					<h1>Hi, I{"'"}m Albin</h1>
 					<div>
-						<h2 className={cn(`min-h-10`)}>
+						<h2 className={cn('min-h-10')}>
 							<TypingText
 								textArray={[
 									'// Full-stack Dev',
@@ -92,20 +74,20 @@ export default async function App() {
 								delay={4000}
 							/>
 						</h2>
-						<p className={cn(`group max-w-prose`)}>
-							I{"'"}m a {CalculateAge(new Date('2003-08-25'))}-year-old full-stack
+						<p className={cn('group max-w-prose')}>
+							I{"'"}m a {YearsElapsed(new Date('2003-08-25'))}-year-old full-stack
 							developer from Skövde, Sweden. I love programming, technology, and
 							gaming, and use my skills to create great digital experiences. I enjoy
 							learning and working with others. Welcome to my portfolio, let{"'"}s
 							build something amazing together.
 						</p>
-						<audio className={cn(`inline-block rounded-lg`)} controls>
+						<audio className={cn('inline-block rounded-lg')} controls>
 							<source src='/tts/Hero.mp3' type='audio/mp3' />
 							Your browser does not support the audio element.
 						</audio>{' '}
 						by{' '}
 						<a
-							className={cn(`text-primary-500`)}
+							className={cn('text-primary-500')}
 							href='https://elevenlabs.io/text-to-speech'
 						>
 							ElevenLabs
@@ -115,14 +97,14 @@ export default async function App() {
 				</div>
 				<Image
 					className={cn(
-						`blob aspect-square w-full max-w-prose rounded-2xl object-cover object-[50%,25%]`,
+						'aspect-square w-full max-w-prose rounded-2xl object-cover object-[50%,25%] [mask-position:_center] [mask-repeat:_no-repeat] [mask-size:_contain] lg:[mask-image:_url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMTg3Ij48cGF0aCBkPSJNMTkwIDM2YzE3IDI2IDExIDY3LTggOTgtMTkgMzItNTEgNTQtODIgNTItMzAtMS01OS0yNS03OC01N0MyIDk4LTcgNTkgNyAzNSAyMSAxMCA2MCAwIDk4IDBzNzYgMTEgOTIgMzZaIi8+PC9zdmc+")]',
 					)}
 					src={CasualSelfie}
 					alt='Portrait of a young man wearing a student cap and a black suit with a red tie.'
 					width={562}
 					height={562}
 					sizes='(max-width: 375px) 311px, (max-width: 390px) 322px, (max-width: 577px) 514px, 562px'
-					blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAASBQTFRFP1BTRFVZSVpeSVdZSllbQVRYO05RNklNMkRIMEBEQVJVRFZaSlxgX25ymJ+poam0g4+XSltgNEdLMEFFRVZZS1xfUmJlhI6TZmdqYGNmaW1weoSJOUtOLz9DRFRXT11gWmhrU1dXbFVMclpRRzs1PUZHOktPMkNHR1VYUV9hW2lrbmhksn1trHdnimNVVFJQQlRYTFpcUmFjWWhqbWxrxIp6sXZnlm9hXWNkR1ldNkhMTFpdUWBjVGVoWGdqnHxvrIFycF9XRFVYM0ZKSVlcUGFkV2hsVWNnnIR5qoyAlJCPMjs9Pk5QM0RISVZYS1lbPkhLOj4/oXx4zry/aGpsICIjIycoJi4vSldZO0RGHyEiTkxOlURCsJ6iLjEyHh8guNYg1AAAAHZJREFUeJxjYGBkYmZhZWPn4GTg4ubh5eMXEBQSZhARFROXkJSSlpFlkJNXUFRSVlFVU2fQ0NTS1tHV0zcQYjA0MjYxNTO3sLRisLaxtbN3cLRxcmZwcXVz9/D08vbxZfDzDwgMCg4JDQtniIiMio6JjQuNigcAsvASzuB80OQAAAAASUVORK5CYII='
+					blurDataURL={CasualSelfie.blurDataURL}
 					placeholder='blur'
 				/>
 				<SocialLinks className='flex lg:hidden' />
@@ -146,7 +128,7 @@ export default async function App() {
 							width={449}
 							height={449}
 							sizes='(max-width: 1024px) 100%, 449px'
-							blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAASBQTFRFP1BTRFVZSVpeSVdZSllbQVRYO05RNklNMkRIMEBEQVJVRFZaSlxgX25ymJ+poam0g4+XSltgNEdLMEFFRVZZS1xfUmJlhI6TZmdqYGNmaW1weoSJOUtOLz9DRFRXT11gWmhrU1dXbFVMclpRRzs1PUZHOktPMkNHR1VYUV9hW2lrbmhksn1trHdnimNVVFJQQlRYTFpcUmFjWWhqbWxrxIp6sXZnlm9hXWNkR1ldNkhMTFpdUWBjVGVoWGdqnHxvrIFycF9XRFVYM0ZKSVlcUGFkV2hsVWNnnIR5qoyAlJCPMjs9Pk5QM0RISVZYS1lbPkhLOj4/oXx4zry/aGpsICIjIycoJi4vSldZO0RGHyEiTkxOlURCsJ6iLjEyHh8guNYg1AAAAHZJREFUeJxjYGBkYmZhZWPn4GTg4ubh5eMXEBQSZhARFROXkJSSlpFlkJNXUFRSVlFVU2fQ0NTS1tHV0zcQYjA0MjYxNTO3sLRisLaxtbN3cLRxcmZwcXVz9/D08vbxZfDzDwgMCg4JDQtniIiMio6JjQuNigcAsvASzuB80OQAAAAASUVORK5CYII='
+							blurDataURL={StudentCapSelfie.blurDataURL}
 							placeholder='blur'
 						/>
 					</div>
@@ -194,7 +176,7 @@ export default async function App() {
 				<div
 					className={cn('grid grid-cols-[repeat(auto-fit,minmax(9rem,1fr))] gap-12 pt-3')}
 				>
-					{skillCardJson().map((item, index) => (
+					{SkillCardJson.map((item, index) => (
 						<SkillCard
 							key={index}
 							SVG={item.SVG}

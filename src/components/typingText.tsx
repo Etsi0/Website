@@ -7,7 +7,7 @@ type ITypeText = {
 	delay?: number;
 	speed?: number;
 };
-export default function TypingText({ textArray, delay, speed }: ITypeText) {
+export function TypingText({ textArray, delay, speed }: ITypeText) {
 	const [text, setText] = useState<string>('');
 	const [index, setIndex] = useState<number>(0);
 	const [className, setClassName] = useState<string>('');

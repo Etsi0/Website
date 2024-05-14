@@ -220,7 +220,7 @@ button[aria-expanded='true'] .path2 {
 ==================================================*/
 @screen lg {
 	img.blob {
-		mask-image: url('../public/img/raw SVGs/small blob.svg');
+		mask-image: url('../public/img/rawSVGs/smallBlob.svg');
 		mask-size: contain;
 		mask-repeat: no-repeat;
 		mask-position: center;
