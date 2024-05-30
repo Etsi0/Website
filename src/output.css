@@ -1413,6 +1413,10 @@ video {
   padding-bottom: 4rem;
 }
 
+.pl-16 {
+  padding-left: 4rem;
+}
+
 .pl-4 {
   padding-left: 1rem;
 }
@@ -1439,10 +1443,6 @@ video {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pl-16 {
-  padding-left: 4rem;
 }
 
 .text-left {
@@ -2314,12 +2314,12 @@ button[aria-expanded='true'] .path2 {
     display: flex;
   }
 
-  .md\:border-r-\[1px\] {
-    border-right-width: 1px;
-  }
-
   .md\:border-l-\[1px\] {
     border-left-width: 1px;
+  }
+
+  .md\:border-r-\[1px\] {
+    border-right-width: 1px;
   }
 }
 

@@ -43,20 +43,23 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 					{slides.map((item, index) => (
 						<div
 							key={index}
-							className={cn(
-								'flex aspect-[8/3] shrink-0 grow-0 items-center justify-center rounded-md bg-cover bg-center',
-								className,
-							)}
+							className={cn('aspect-[8/3] shrink-0 grow-0 rounded-lg', className)}
 						>
-							<>
-								<Image
-									src={`/img/apple%20wallpaper/mac%20tree/Tree/RanchoNight_16_Dyn_Tree-2.webp`}
-									alt='trä'
-									width={1208}
-									height={453}
-									className='mx-auto max-h-full max-w-full rounded-md object-cover'
-								/>
-							</>
+							<Image
+								className='absolute z-[-1] aspect-[8/3] rounded-lg object-cover'
+								src={'/img/temp.png'}
+								alt=''
+								width={1208}
+								height={453}
+							/>
+							<div className='grid h-full items-end'>
+								<div className='bg-gradient-to-t from-neutral-300 to-transparent p-4 pt-8 dark:from-neutral-700'>
+									<h3 className='text-text-700'>Class Collapse</h3>
+									<p className='text-text-700'>
+										A VSCode extension that removes distractions
+									</p>
+								</div>
+							</div>
 						</div>
 					))}
 				</div>
@@ -75,7 +78,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 								key={index}
 								onClick={() => onDotButtonClick(index)}
 								className={cn(
-									'aspect-square h-full rounded-full bg-body-200 ring-primary-500 ring-offset-2 ring-offset-body-50 focus-visible:outline-none focus-visible:ring-2 dark:bg-body-700 dark:ring-offset-body-900',
+									'dark:bg-body-700 dark:ring-offset-body-900 aspect-square h-full rounded-full bg-body-200 ring-primary-500 ring-offset-2 ring-offset-body-50 focus-visible:outline-none focus-visible:ring-2',
 									index !== selectedIndex || 'bg-body-500 dark:bg-body-500',
 								)}
 							/>
@@ -85,7 +88,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 								key={index}
 								onClick={() => onDotButtonClick(index)}
 								className={cn(
-									'relative flex h-full items-end rounded-md outline-none ring-4 ring-body-50 transition-[flex-basis] duration-500 before:absolute before:left-[-7px] before:top-[-7px] before:z-[-1] before:h-[calc(100%_+_14px)] before:w-[calc(100%_+_14px)] before:rounded-xl before:bg-gradient-to-br before:from-primary-500 before:from-50% before:to-transparent before:to-50% before:bg-[length:200%_200%] before:bg-right-bottom before:content-[""] dark:ring-body-900',
+									'dark:ring-body-900 relative flex h-full items-end rounded-md outline-none ring-4 ring-body-50 transition-[flex-basis] duration-500 before:absolute before:left-[-7px] before:top-[-7px] before:z-[-1] before:h-[calc(100%_+_14px)] before:w-[calc(100%_+_14px)] before:rounded-xl before:bg-gradient-to-br before:from-primary-500 before:from-50% before:to-transparent before:to-50% before:bg-[length:200%_200%] before:bg-right-bottom before:content-[""]',
 									index === selectedIndex
 										? emblaApi?.plugins()?.autoplay.isPlaying()
 											? 'basis-1/2 before:animate-[backgroundMove_10s_linear_forwards]'

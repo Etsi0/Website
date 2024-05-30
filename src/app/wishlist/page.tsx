@@ -21,7 +21,7 @@ function Card(prop: { product: IProductJson }) {
 	return (
 		<div
 			className={cn(
-				'flex w-72 flex-col gap-3 self-stretch rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200',
+				'flex w-72 flex-col gap-3 self-stretch rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'
 			)}
 		>
 			{((product.img && product.title) || product.title) && (
@@ -29,7 +29,7 @@ function Card(prop: { product: IProductJson }) {
 					src={product.img ?? ''}
 					alt={`Image of a product called '${product.title}'`}
 					className={cn(
-						'mx-auto aspect-square w-48 rounded-md bg-primary-50 object-cover dark:bg-body-300',
+						'mx-auto aspect-square w-48 rounded-md bg-primary-50 object-cover dark:bg-body-300'
 					)}
 				/>
 			)}
