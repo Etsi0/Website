@@ -1,41 +1,31 @@
 import { ReactNode } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/util';
+import { GetFromAPI } from '@/api/modrinth/main';
 import { MinecraftModsJson } from '@/json/minecraft/minecraftModsJson';
 
-type IDoneCategoryWrapper = {
+type TDoneCategoryWrapper = {
 	className: string;
 	children: ReactNode;
 };
-type IGetMod = {
+type TGetMod = {
 	project: any;
 	className: (typeof StrToColor)[keyof typeof StrToColor];
 };
 
-const StrToColor = {
+const StrToColor = Object.freeze({
 	green: 'bg-green-500 dark:bg-green-600',
 	yellow: 'bg-yellow-500 dark:bg-yellow-600',
 	red: 'bg-red-500 dark:bg-red-600',
-} as const;
+});
 
-function DoneCategoryWrapper({ className, children }: IDoneCategoryWrapper) {
+function DoneCategoryWrapper({ className, children }: TDoneCategoryWrapper) {
 	return (
-		<div className={cn('flex items-start gap-2')}>
+		<div className={cn('flex gap-2')}>
 			<div className={cn('size-6 shrink-0 rounded-md bg-primary-500', className)}></div>
 			<p className={cn('max-w-none')}>{children}</p>
 		</div>
 	);
-}
-async function getFromAPI(href: string) {
-	const response = await fetch(`https://api.modrinth.com/v2/${href}`, {
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		next: {
-			revalidate: 3600,
-		},
-	});
-	return await response.json();
 }
 
 // Helper function to find the highest version in an array
@@ -53,7 +43,7 @@ function getHighestVersion(versions) {
 	})[0];
 }
 
-async function GetMod({ project, className }: IGetMod) {
+async function GetMod({ project, className }: TGetMod) {
 	let onlyFullReleases: string[];
 	let latestVersion: any;
 	if (project.game_versions) {
@@ -62,7 +52,7 @@ async function GetMod({ project, className }: IGetMod) {
 			.filter((item: string) => !/[a-z]/.test(item));
 
 		try {
-			const version = await getFromAPI(
+			const version = await GetFromAPI(
 				`project/${encodeURIComponent(project.id)}/version?loaders=["fabric"]&featured=true`,
 			);
 
@@ -70,7 +60,9 @@ async function GetMod({ project, className }: IGetMod) {
 			version.sort((a, b) => {
 				const aMax = getHighestVersion(a.game_versions);
 				const bMax = getHighestVersion(b.game_versions);
-				return aMax === bMax ? 0 : aMax > bMax ? -1 : 1;
+				if (aMax > bMax) return -1;
+				if (aMax < bMax) return 1;
+				return 0;
 			});
 
 			latestVersion = version[0];
@@ -177,7 +169,7 @@ function ProjectIndex(index: number) {
 }
 export default async function Page() {
 	const projectId = MinecraftModsJson.filter((value) => 'Id' in value).map((value) => value.Id);
-	const projects = await getFromAPI(
+	const projects = await GetFromAPI(
 		`projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`,
 	);
 

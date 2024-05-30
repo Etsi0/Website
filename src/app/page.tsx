@@ -143,17 +143,17 @@ export default async function App() {
 						</p>
 						<a
 							className={cn(
-								'group flex items-center gap-1 rounded-md bg-primary-500 p-3 text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500',
+								'group space-x-1 rounded-md bg-primary-500 px-6 py-3 text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500',
 							)}
 							href='/Albin_Karlsson_CV.pdf'
 							download="Albin Karlsson's CV"
 							target='_blank'
 							rel='noopener'
 						>
-							Download CV
+							<span className='align-middle'>Download CV</span>
 							<Download
 								className={cn(
-									'inline h-5 text-input group-hover:text-primary-500 group-focus-visible:text-primary-500',
+									'inline-block h-5 text-input group-hover:text-primary-500 group-focus-visible:text-primary-500',
 								)}
 							/>
 						</a>

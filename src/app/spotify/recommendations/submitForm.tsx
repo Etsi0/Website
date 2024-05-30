@@ -1,22 +1,35 @@
 'use client';
 import { useSongJsonContext } from '@/context/songsContext';
 import { CreateRecommendations } from './action';
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/util';
 
 export default function SubmitForm(props: any) {
 	const { countryCodes } = props;
-	const { SongJson, setSongJson } = useSongJsonContext();
+	const { songJson, setSongJson } = useSongJsonContext();
+
+	// indicates if you are waiting for a response from the server
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	useEffect(() => {}, [isLoading]);
 
 	return (
 		<>
 			<form
 				action={async (formData: FormData) => {
-					setSongJson(null);
-					const data = await CreateRecommendations(formData);
-					if (data) {
-						setSongJson(data);
+					try {
+						const data = await CreateRecommendations(formData);
+						if (data) {
+							setSongJson(data);
+						}
+					} finally {
+						setIsLoading(false);
 					}
 				}}
 				className='grid items-end gap-3 lg:flex'
+				onSubmit={() => {
+					setIsLoading((current) => !current);
+					setSongJson(null);
+				}}
 			>
 				<div className='basis-1/6'>
 					<label htmlFor='countryCode'>Market</label>
@@ -61,8 +74,12 @@ export default function SubmitForm(props: any) {
 					/>
 				</div>
 				<button
-					className='my-2 basis-1/6 rounded-md bg-green-500 p-1 text-slate-50 lg:my-0'
+					className={cn(
+						'my-2 basis-1/6 rounded-md bg-green-500 p-1 text-slate-50 lg:my-0',
+						isLoading && 'animate-pulse bg-slate-500 text-slate-300 ',
+					)}
 					type='submit'
+					disabled={isLoading}
 				>
 					Explore
 				</button>

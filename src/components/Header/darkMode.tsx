@@ -2,7 +2,7 @@
 import { cn } from '@/lib/util';
 import { useState, useEffect } from 'react';
 
-function FunDarkMode() {
+export function DarkMode() {
 	const [isMounted, setMounted] = useState(false);
 	const [darkMode, setDarkMode] = useState(false);
 
@@ -56,5 +56,3 @@ function FunDarkMode() {
 		</button>
 	);
 }
-
-export default FunDarkMode;

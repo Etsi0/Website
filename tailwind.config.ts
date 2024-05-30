@@ -8,10 +8,13 @@ const config = {
 		'./src/components/**/*.{js,ts,jsx,tsx,mdx,json}',
 		'./src/SVGs/**/*.{js,ts,jsx,tsx,mdx,json}',
 		'./src/json/**/*.{js,ts,jsx,tsx,mdx,json}',
+		'./src/lib/**/*.{js,ts,jsx,tsx,mdx,json}',
+		'./src/mdx-components.tsx',
 	],
 	theme: {
 		extend: {
 			colors: {
+				border: 'hsl(var(--border-color) / <alpha-value>)',
 				body: {
 					50: 'hsl(var(--body-color-50) / <alpha-value>)',
 					100: 'hsl(var(--body-color-100) / <alpha-value>)',

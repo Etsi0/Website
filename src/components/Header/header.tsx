@@ -2,12 +2,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/util';
 
+import { DarkMode } from '@/components/Header/darkMode';
 import { navLinkJson } from '@/json/header/navLinks';
-import DarkMode from './darkMode';
 
 import { Hamburger, PhadoniaLogo } from '@/components/SVGs';
-import { cn } from '@/lib/util';
 
 export default function App() {
 	const [isMounted, setMounted] = useState(false);
@@ -26,50 +26,47 @@ export default function App() {
 		setCurrentPath(str);
 	}
 
-	function navigation() {
-		return (
-			<nav
-				className={cn(
-					'pointer-events-auto float-right h-screen min-w-72 translate-x-full overflow-hidden border-l-[1px] bg-body-100 duration-300',
-					(navOpened && 'translate-x-0 transition-transform') ||
-						(navOpened === false && 'transition-transform'),
-				)}
-				aria-label='Main Navigation'
-			>
-				<ul>
-					{navLinkJson.map((link, i) => (
-						<li key={link.path}>
-							<Link
-								tabIndex={
-									navOpened
-										? currentPath === link.path ||
-											(currentPath === '/' && i === 0)
-											? -1
-											: 0
-										: -1
-								}
-								className={cn(
-									`
+	const Navigation = (
+		<nav
+			className={cn(
+				'pointer-events-auto float-right h-screen min-w-72 translate-x-full overflow-hidden border-l-[1px] bg-body-100 duration-300',
+				(navOpened && 'translate-x-0 transition-transform') ||
+					(navOpened === false && 'transition-transform'),
+			)}
+			aria-label='Main Navigation'
+		>
+			<ul>
+				{navLinkJson.map((link, i) => (
+					<li key={link.path}>
+						<Link
+							tabIndex={
+								navOpened
+									? currentPath === link.path || (currentPath === '/' && i === 0)
+										? -1
+										: 0
+									: -1
+							}
+							className={cn(
+								`
 										block p-3 text-text-700 
 										aria-selected:bg-primary-500 aria-selected:text-input 
 										[&:not([aria-selected='true'])]:hover:bg-primary-50 [&:not([aria-selected='true'])]:hover:text-primary-600 [&:not([aria-selected='true'])]:focus-visible:bg-primary-50 [&:not([aria-selected='true'])]:focus-visible:text-primary-600 
 										dark:[&:not([aria-selected='true'])]:hover:bg-primary-900 dark:[&:not([aria-selected='true'])]:hover:text-primary-400 dark:[&:not([aria-selected='true'])]:focus-visible:bg-primary-900 dark:[&:not([aria-selected='true'])]:focus-visible:text-primary-400
 									`,
-								)}
-								href={link.path}
-								onClick={() => navClick(link.path)}
-								aria-selected={
-									currentPath === link.path || (currentPath === '/' && i === 0)
-								}
-							>
-								{link.name}
-							</Link>
-						</li>
-					))}
-				</ul>
-			</nav>
-		);
-	}
+							)}
+							href={link.path}
+							onClick={() => navClick(link.path)}
+							aria-selected={
+								currentPath === link.path || (currentPath === '/' && i === 0)
+							}
+						>
+							{link.name}
+						</Link>
+					</li>
+				))}
+			</ul>
+		</nav>
+	);
 
 	return (
 		<div className={cn('pointer-events-none fixed z-50 w-full')}>
@@ -100,12 +97,12 @@ export default function App() {
 						</button>
 					</div>
 				</div>
-				<hr />
 			</header>
+			<hr />
 			{/*==================================================
 				nav with all the links in it
 			==================================================*/}
-			{navigation()}
+			{Navigation}
 		</div>
 	);
 }

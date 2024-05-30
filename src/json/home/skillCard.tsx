@@ -1,57 +1,67 @@
-export const SkillCardJson = [
+type TSkillCardJson = {
+	SVG: string;
+	title: string;
+	description: string;
+};
+export const SkillCardJson: TSkillCardJson[] = [
 	{
 		SVG: 'HTML',
 		title: 'HTML',
-		description: <p></p>,
+		description:
+			'Expertise in creating and structuring web pages using semantic HTML, ensuring accessibility and SEO optimization.',
 	},
 	{
 		SVG: 'CSS',
 		title: 'CSS',
-		description: <p></p>,
+		description:
+			'Advanced knowledge of CSS for styling and layout, including Flexbox, Grid, and responsive design principles to create visually appealing web pages.',
 	},
 	{
 		SVG: 'TypeScript',
 		title: 'TypeScript',
-		description: <p></p>,
+		description:
+			'Proficiency in TypeScript for building robust and maintainable codebases, with a strong understanding of type safety and advanced JavaScript features.',
 	},
 	{
 		SVG: 'Devices',
 		title: 'Mobile First',
-		description: <p></p>,
+		description:
+			'Mobile-first design workflow, ensuring that web applications are optimized for performance and usability on all devices.',
 	},
 	{
 		SVG: 'Figma',
 		title: 'Design',
-		description: <p>Figma and AdobeXD</p>,
+		description:
+			'Proficient in design tools like Figma and AdobeXD for creating interactive prototypes and high-fidelity UI designs.',
 	},
 	{
 		SVG: 'TailwindCSS',
 		title: 'CSS Frameworks',
-		description: <p></p>,
+		description:
+			'Skilled in utilizing CSS frameworks such as Tailwind CSS and Bootstrap to streamline development and maintain consistent design patterns.',
 	},
 	{
 		SVG: 'React',
 		title: 'Frontend Frameworks',
-		description: <p></p>,
+		description:
+			'Extensive experience with frontend frameworks, particularly React, for building dynamic, component-based web applications.',
 	},
 	{
 		SVG: 'GitHub',
 		title: 'Version Control',
-		description: <p>Git/SVN</p>,
+		description:
+			'Familiar with version control systems like Git and SVN for effective collaboration and code management.',
 	},
 	{
 		SVG: 'Framer',
 		title: 'Animations',
-		description: <p></p>,
+		description:
+			'Expertise in creating smooth, visually appealing animations and transitions using Framer Motion and CSS animations to enhance user experience.',
 	},
 	{
 		SVG: 'UX',
 		title: 'UI/UX Design',
-		description: (
-			<p>
-				Knowing how to design websites in a way that makes them easy and pleasant to use, by
-				focusing on both the appearance of the website and the experience of the user.
-			</p>
-		),
+		description:
+			'Knowledgeable in UI/UX design principles, focusing on creating intuitive and user-friendly interfaces that provide a seamless user experience.',
 	},
 ];

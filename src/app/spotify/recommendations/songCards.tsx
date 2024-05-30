@@ -7,7 +7,7 @@ import { Fragment } from 'react';
 
 export default function SongCards() {
 	const [isPlaying, setIsPlaying] = useState<null | number>(null);
-	const { SongJson, setSongJson } = useSongJsonContext();
+	const { songJson, setSongJson } = useSongJsonContext();
 
 	function handlePlayAudio(index) {
 		const allAudio = document.querySelectorAll('audio');
@@ -37,8 +37,8 @@ export default function SongCards() {
 	return (
 		<>
 			<div className='mb-16 flex flex-wrap items-start justify-center gap-5'>
-				{SongJson &&
-					SongJson.map((item, index) => (
+				{songJson &&
+					songJson.map((item, index) => (
 						<div
 							key={index}
 							className='flex w-72 flex-col gap-3 self-stretch rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'
@@ -59,9 +59,8 @@ export default function SongCards() {
 								<Image
 									src={item.image.url}
 									alt={`album art of ${item.track.name}`}
-									width={item.image.width}
-									height={item.image.height}
-									className='h-48 w-48 object-cover'
+									width={192}
+									height={192}
 								/>
 							</label>
 							{item.previewUrl && (
@@ -70,24 +69,19 @@ export default function SongCards() {
 									Your browser does not support the audio element.
 								</audio>
 							)}
-							<div className='flex flex-col p-3'>
-								<div className='grow'>
-									<a
-										className='line-clamp-1 text-2xl text-text-700'
-										href={item.track.link}
-									>
-										{item.track.name}
-									</a>
-									<div className='line-clamp-1'>
-										{item.artists.map((artist, i) => (
-											<Fragment key={i}>
-												<a className='text-text-500' href={artist.link}>
-													{artist.name}
-												</a>
-												{i < item.artists.length - 1 && ', '}
-											</Fragment>
-										))}
-									</div>
+							<div className='flex grow flex-col'>
+								<h2 className='line-clamp-1 text-center text-3xl text-text-700'>
+									<a href={item.track.link}>{item.track.name}</a>
+								</h2>
+								<div className='line-clamp-1 grow'>
+									{item.artists.map((artist, i) => (
+										<Fragment key={i}>
+											<a className='text-text-500' href={artist.link}>
+												{artist.name}
+											</a>
+											{i < item.artists.length - 1 && ', '}
+										</Fragment>
+									))}
 								</div>
 								<a
 									className='mt-16 line-clamp-1 text-xl text-text-300'

@@ -17,19 +17,19 @@ type TSongs = {
 	album: TNameLink;
 }[];
 type TSongState = {
-	SongJson: TSongs | null;
+	songJson: TSongs | null;
 	setSongJson: React.Dispatch<React.SetStateAction<TSongs | null>>;
 };
 
 export const SongJsonContext = createContext<TSongState | null>(null);
 
 export default function SongContext({ children }: { children: React.ReactNode }) {
-	const [SongJson, setSongJson] = useState<TSongs | null>(null);
+	const [songJson, setSongJson] = useState<TSongs | null>(null);
 
 	return (
 		<SongJsonContext.Provider
 			value={{
-				SongJson,
+				songJson,
 				setSongJson,
 			}}
 		>

@@ -1,29 +1,27 @@
-import { ReactNode } from 'react';
-import Image from 'next/image';
+import type { Metadata } from 'next';
 import { cn } from '@/lib/util';
 
 import { WishlistJson } from '@/json/wishlist/wishlist';
 
+export const metadata: Metadata = {
+	title: 'Wishlist - Phadonia',
+	description: 'A list of product i wish to get sometime in the future',
+};
+
 type IProductJson = {
 	img: string;
 	title: string;
-	points?: JSX.Element;
+	points?: JSX.Element | JSX.Element[];
 	video?: string;
 	url?: string;
 };
-type ICard = {
-	product: IProductJson;
-	className?: any;
-	children?: ReactNode;
-};
 
-function Card(prop: ICard) {
-	const { product, className, children } = prop;
+function Card(prop: { product: IProductJson }) {
+	const { product } = prop;
 	return (
 		<div
 			className={cn(
-				'flex w-72 flex-col gap-3 rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200',
-				className,
+				'flex w-72 flex-col gap-3 self-stretch rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200',
 			)}
 		>
 			{((product.img && product.title) || product.title) && (
@@ -36,11 +34,15 @@ function Card(prop: ICard) {
 				/>
 			)}
 			{product.title && (
-				<h2 className={cn(`overflow-hidden text-ellipsis text-center text-3xl`)}>
+				<p className={cn(`text-center text-xl font-semibold leading-6 text-text-600`)}>
 					{product.title}
-				</h2>
+				</p>
 			)}
-			{children}
+			<ul className={cn('grow text-base leading-5')}>
+				{(Array.isArray(product.points) &&
+					product.points.map((item, index) => <li key={index}>{item}</li>)) ||
+					product.points}
+			</ul>
 			{product.video && (
 				<a
 					href={product.video}
@@ -72,14 +74,17 @@ export default function page() {
 			</div>
 			<div className={cn('mb-16 flex flex-wrap items-start justify-center gap-5')}>
 				{WishlistJson.map((item, index: number) => (
-					<Card key={index} product={item} className={cn('self-stretch')}>
-						<ul className={cn(`grow`)}>{item.points}</ul>
-					</Card>
+					<Card key={index} product={item} />
 				))}
 				<Card
 					product={{
 						img: 'https://cdn.breakit.se/assets/article/e2eba1adead60a413151daae0aed2fd0.jpg?w=980&q=75&fit=fillmax&auto=format',
 						title: 'Pengar',
+						points: (
+							<>
+								<li className='list-inside list-disc'>Pengar är alltid nice</li>
+							</>
+						),
 					}}
 				></Card>
 			</div>
