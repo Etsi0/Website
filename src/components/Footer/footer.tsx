@@ -16,17 +16,15 @@ export default function Footer() {
 						<Link href='/minecraft'>Minecraft mods</Link>
 						<Link href='/spotify/recommendations'>Spotify Recommendations</Link>
 						<a
-							href='https://Etsi0.github.io/infinity-tic-tac-toe'
+							href='https://etsi0.github.io/Infinity-tic-tac-toe'
 							target='_blank'
 							rel='noopener'
 						>
 							Infinity tic tac toe
 						</a>
-					</div>
-					<div className='grid h-fit'>
-						<Link href='/settings'>Settings</Link>
-						<Link href='/settings/r6'>R6</Link>
-						<Link href='/settings/vscode'>VS Code</Link>
+						<a href='https://etsi0.github.io/DiceGame' target='_blank' rel='noopener'>
+							Dice Game
+						</a>
 					</div>
 				</div>
 				<div className='grid justify-items-center'>

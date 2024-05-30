@@ -32,7 +32,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
 	const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
 		emblaApi,
-		onNavButtonClick,
+		onNavButtonClick
 	);
 
 	const className = 'mx-2 basis-[calc(100%_-_0.5rem)]'; // 2 / 4 = 0.5rem
@@ -43,7 +43,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 					{slides.map((item, index) => (
 						<div
 							key={index}
-							className={cn('aspect-[8/3] shrink-0 grow-0 rounded-lg', className)}
+							className={cn(
+								'aspect-[8/3] shrink-0 grow-0 overflow-hidden rounded-lg',
+								className
+							)}
 						>
 							<Image
 								className='absolute z-[-1] aspect-[8/3] rounded-lg object-cover'
@@ -53,7 +56,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 								height={453}
 							/>
 							<div className='grid h-full items-end'>
-								<div className='bg-gradient-to-t from-neutral-300 to-transparent p-4 pt-8 dark:from-neutral-700'>
+								<div className='bg-gradient-to-t from-[hsl(0deg_0_75)] to-transparent p-4 pt-8 dark:from-[hsl(0deg_0_25)]'>
 									<h3 className='text-text-700'>Class Collapse</h3>
 									<p className='text-text-700'>
 										A VSCode extension that removes distractions
@@ -68,7 +71,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 			<div
 				className={cn(
 					'flex justify-center gap-3',
-					type === 'Dot' ? 'h-4' : type === 'Preview' ? 'aspect-[19/3] w-1/2' : '',
+					type === 'Dot' ? 'h-4' : type === 'Preview' ? 'aspect-[19/3] w-1/2' : ''
 				)}
 			>
 				{slides.map(
@@ -79,7 +82,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 								onClick={() => onDotButtonClick(index)}
 								className={cn(
 									'dark:bg-body-700 dark:ring-offset-body-900 aspect-square h-full rounded-full bg-body-200 ring-primary-500 ring-offset-2 ring-offset-body-50 focus-visible:outline-none focus-visible:ring-2',
-									index !== selectedIndex || 'bg-body-500 dark:bg-body-500',
+									index !== selectedIndex || 'bg-body-500 dark:bg-body-500'
 								)}
 							/>
 						)) ||
@@ -93,7 +96,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 										? emblaApi?.plugins()?.autoplay.isPlaying()
 											? 'basis-1/2 before:animate-[backgroundMove_10s_linear_forwards]'
 											: 'basis-1/2'
-										: 'basis-1/4',
+										: 'basis-1/4'
 								)}
 							>
 								{type === 'Preview' && (
@@ -106,7 +109,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 									/>
 								)}
 							</DotButton>
-						)),
+						))
 				)}
 			</div>
 		</>
