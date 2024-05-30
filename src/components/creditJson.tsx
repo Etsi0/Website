@@ -5,7 +5,7 @@ export default function App() {
 		return (
 			<a
 				className={cn(
-					'justify-self-start rounded-md bg-primary-500 px-9 py-3 text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500',
+					'justify-self-start rounded-md bg-primary-500 px-9 py-3 text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500'
 				)}
 				href={href}
 				rel='noopener'
@@ -26,210 +26,110 @@ export default function App() {
 		{
 			SVG: 'React',
 			title: 'React Icon',
-			description: (
-				<>
-					{Author('Albin Karlsson')}
-					<p>2024-01-19</p>
-				</>
-			),
+			description: 'Albin Karlsson | 2024-01-19',
 		},
 		{
 			SVG: 'CSS',
 			title: 'CSS Icon',
-			description: (
-				<>
-					{Author('Albin Karlsson')}
-					<p>2024-01-19</p> {/* https://iconscout.com/free-icon/css-131 */}
-				</>
-			),
+			description:
+				'Albin Karlsson | 2024-01-19' /* https://iconscout.com/free-icon/css-131 */,
 		},
 		{
 			SVG: 'Framer',
 			title: 'Free Framer Logo Icon in Line Style',
-			description: (
-				<>
-					{Author('Phosphor Icons')}
-					<p>2024-01-19</p>
-					{ATag('https://iconscout.com/free-icon/framer-logo-3601898')}
-				</>
-			),
+			description:
+				'Phosphor Icons | 2024-01-19 | https://iconscout.com/free-icon/framer-logo-3601898',
 		},
 		{
 			SVG: 'UX',
 			title: 'UX Icon',
-			description: (
-				<>
-					{Author('Albin Karlsson')}
-					<p>2024-01-19</p> {/* https://iconscout.com/free-icon/ux-10541844 */}
-				</>
-			),
+			description:
+				'Albin Karlsson | 2024-01-19' /* https://iconscout.com/free-icon/ux-10541844 */,
 		},
 		{
 			SVG: 'TailwindCSS',
 			title: 'Free Tailwind Css Logo Icon in Glyph Style',
-			description: (
-				<>
-					{Author('Termicons')}
-					<p>2024-01-19</p>
-					{ATag('https://iconscout.com/free-icon/tailwind-css-5285308')}
-				</>
-			),
+			description:
+				'Termicons | 2024-01-19 | https://iconscout.com/free-icon/tailwind-css-5285308',
 		},
 		{
 			SVG: 'Devices',
 			title: 'Free Devices Icon in Line Style',
-			description: (
-				<>
-					{Author('Omar Safaa')}
-					<p>2024-01-19</p>
-					{ATag('https://iconscout.com/free-icon/devices-65')}
-				</>
-			),
+			description: 'Omar Safaa | 2024-01-19 | https://iconscout.com/free-icon/devices-65',
 		},
 		{
 			SVG: 'HTML',
 			title: 'Free Html Icon in Glyph Style',
-			description: (
-				<>
-					{Author('Font Awesome')}
-					<p>2024-01-19</p>
-					{ATag(
-						'https://iconscout.com/free-icon/html-programming-language-css-editing-style',
-					)}
-				</>
-			),
+			description:
+				'Font Awesome | 2024-01-19 | https://iconscout.com/free-icon/html-programming-language-css-editing-style',
 		},
 		{
 			SVG: 'Figma',
 			title: 'Free Figma Logo Icon in Line Style',
-			description: (
-				<>
-					{Author('Nicky Lim yean fen')}
-					<p>2024-01-02</p>
-					{ATag('https://iconscout.com/free-icon/figma-3766578')}
-				</>
-			),
+			description:
+				'Nicky Lim yean fen | 2024-01-02 | https://iconscout.com/free-icon/figma-3766578',
 		},
 		{
 			SVG: 'Download',
 			title: 'Free Download Icon in Line Style',
-			description: (
-				<>
-					{Author('Unicons Font')}
-					<p>2023-12-19</p>
-					{ATag('https://iconscout.com/free-icon/download-1438181')}
-				</>
-			),
+			description:
+				'Unicons Font | 2023-12-19 | https://iconscout.com/free-icon/download-1438181',
 		},
 		{
 			SVG: 'Cancel',
 			title: 'Free Cancel Icon in Flat Style',
-			description: (
-				<>
-					{Author('Twitter Emoji')}
-					<p>2023-12-19</p>
-					{ATag('https://iconscout.com/free-icon/cancel-multiplication-multiply-x')}
-				</>
-			),
+			description:
+				'Twitter Emoji | 2023-12-19 | https://iconscout.com/free-icon/cancel-multiplication-multiply-x',
 		},
 		{
 			SVG: 'Moon',
 			title: 'Free Moon Icon in Flat Style',
-			description: (
-				<>
-					{Author('maninderkaur')}
-					<p>2023-10-24</p>
-					{ATag('https://iconscout.com/free-icon/moon-9282393')}
-				</>
-			),
+			description: 'maninderkaur | 2023-10-24 | https://iconscout.com/free-icon/moon-9282393',
 		},
 		{
 			SVG: 'Sun',
 			title: 'Free Sun Icon in Flat Style',
-			description: (
-				<>
-					{Author('Twitter Emoji')}
-					<p>2023-10-24</p>
-					{ATag('https://iconscout.com/free-icon/sun-bright-rays-sunny-weather')}
-				</>
-			),
+			description:
+				'Twitter Emoji | 2023-10-24 | https://iconscout.com/free-icon/sun-bright-rays-sunny-weather',
 		},
 		{
 			SVG: 'CodePen',
 			title: 'Free Codepen Logo Icon in Flat Style',
-			description: (
-				<>
-					{Author('Alexis Doreau')}
-					<p>2023-09-13</p>
-					{ATag('https://iconscout.com/free-icon/codepen-2')}
-				</>
-			),
+			description: 'Alexis Doreau | 2023-09-13 | https://iconscout.com/free-icon/codepen-2',
 		},
 		{
 			SVG: 'Discord',
 			title: 'Free Discord Logo Icon in Flat Style',
-			description: (
-				<>
-					{Author('Enamo Studios')}
-					<p>2023-09-13</p>
-					{ATag('https://iconscout.com/free-icon/discord-4062811')}
-				</>
-			),
+			description:
+				'Enamo Studios | 2023-09-13 | https://iconscout.com/free-icon/discord-4062811',
 		},
 		{
 			SVG: 'Dribbble',
 			title: 'Free Dribbble Logo Icon in Line Style',
-			description: (
-				<>
-					{Author('Unicons Font')}
-					<p>2023-09-13</p>
-					{ATag('https://iconscout.com/free-icon/dribbble-1439854')}
-				</>
-			),
+			description:
+				'Unicons Font | 2023-09-13 | https://iconscout.com/free-icon/dribbble-1439854',
 		},
 		{
 			SVG: 'GitHub',
 			title: 'Free Github Logo Icon in Line Style',
-			description: (
-				<>
-					{Author('Unicons Font')}
-					<p>2023-09-13</p>
-					{ATag('https://iconscout.com/free-icon/github-1521488')}
-				</>
-			),
+			description:
+				'Unicons Font | 2023-09-13 | https://iconscout.com/free-icon/github-1521488',
 		},
 		{
 			SVG: 'LinkedIn',
 			title: 'Free Linkedin Logo Icon in Line Style',
-			description: (
-				<>
-					{Author('Unicons Font')}
-					<p>2023-09-13</p>
-					{ATag('https://iconscout.com/free-icon/linkedin-1521491')}
-				</>
-			),
+			description:
+				'Unicons Font | 2023-09-13 | https://iconscout.com/free-icon/linkedin-1521491',
 		},
 		{
 			SVG: 'Person',
 			title: 'Walking outside',
-			description: (
-				<>
-					{Author('undraw.co')}
-					<p>2023-09-02</p>
-					{ATag('https://undraw.co/search')}
-				</>
-			),
+			description: 'undraw.co | 2023-09-02 | https://undraw.co/search',
 		},
 		{
 			SVG: 'Hamburger',
 			title: 'Hamburger',
-			description: (
-				<>
-					{Author('Mikael Ainalem')}
-					<p>2023-08-28</p>
-					{ATag('https://codepen.io/ainalem/pen/wvKOEMV')}
-				</>
-			),
+			description: 'Mikael Ainalem | 2023-08-28 | https://codepen.io/ainalem/pen/wvKOEMV',
 		},
 	];
 }
