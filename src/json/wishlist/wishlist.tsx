@@ -39,10 +39,12 @@ export const WishlistJson: IProductJson[] = [
 			<>
 				<b>Fördelar</b>:
 			</>,
-			<ul className={cn('list-inside list-disc')}>
-				<li>Alltid laddad när man behöver den</li>
-				<li>Laddar upp till 80%</li>
-			</ul>,
+			<>
+				<ul className={cn('list-inside list-disc')}>
+					<li>Alltid laddad när man behöver den</li>
+					<li>Laddar upp till 80%</li>
+				</ul>
+			</>,
 		],
 		url: 'https://www.aliexpress.com/item/1005002978549349.html',
 	},
