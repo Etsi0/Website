@@ -98,10 +98,12 @@ export async function GetRecommendations(limit: number, countryCode: string, dat
 			continue;
 		}
 
+		const value = data[key] as number;
+
 		if (key === 'duration_ms' || key === 'key' || key === 'mode' || key === 'time_signature') {
-			data[key] = Math.round(data[key] / total);
+			data[key] = Math.round(value / total);
 		} else {
-			data[key] = parseFloat((data[key] / total).toFixed(5));
+			data[key] = parseFloat((value / total).toFixed(5));
 		}
 	}
 
