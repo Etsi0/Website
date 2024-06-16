@@ -1,6 +1,6 @@
 'use client';
 import { useSongJsonContext } from '@/context/songsContext';
-import { CreateRecommendations } from './action';
+import { CreateRecommendations } from '@/components/spotify/recommendations/action';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/util';
 
@@ -27,7 +27,7 @@ export default function SubmitForm(props: any) {
 				}}
 				className='grid items-end gap-3 lg:flex'
 				onSubmit={() => {
-					setIsLoading((current) => !current);
+					setIsLoading(true);
 					setSongJson(null);
 				}}
 			>
@@ -76,7 +76,7 @@ export default function SubmitForm(props: any) {
 				<button
 					className={cn(
 						'my-2 basis-1/6 rounded-md bg-green-500 p-1 text-slate-50 lg:my-0',
-						isLoading && 'animate-pulse bg-slate-500 text-slate-300 ',
+						isLoading && 'animate-pulse bg-slate-500 text-slate-300 '
 					)}
 					type='submit'
 					disabled={isLoading}

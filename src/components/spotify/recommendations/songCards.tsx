@@ -1,29 +1,37 @@
 'use client';
+import { Fragment, useState } from 'react';
 import Image from 'next/image';
+
 import { useSongJsonContext } from '@/context/songsContext';
-import { useState } from 'react';
 import { cn } from '@/lib/util';
-import { Fragment } from 'react';
 
 export default function SongCards() {
 	const [isPlaying, setIsPlaying] = useState<null | number>(null);
 	const { songJson, setSongJson } = useSongJsonContext();
 
-	function handlePlayAudio(index) {
+	function handlePlayAudio(index: number) {
 		const allAudio = document.querySelectorAll('audio');
-		const audioElement = document.getElementById(`preview${index}`) as HTMLAudioElement;
+		const audioElement = allAudio[index];
 
+		/*==================================================
+			If song ends
+		==================================================*/
 		const onAudioEnd = () => {
 			setIsPlaying(null);
 			audioElement.removeEventListener('ended', onAudioEnd);
 		};
 
+		/*==================================================
+			Play & Pause
+		==================================================*/
 		if (audioElement.paused) {
-			allAudio.forEach((audio) => {
-				audio.pause();
-				audio.currentTime = 0;
-				audio.removeEventListener('ended', onAudioEnd);
-			});
+			if (isPlaying !== null) {
+				allAudio.forEach((audio) => {
+					audio.pause();
+					audio.currentTime = 0;
+					audio.removeEventListener('ended', onAudioEnd);
+				});
+			}
 			audioElement.play();
 			setIsPlaying(index);
 			audioElement.addEventListener('ended', onAudioEnd);
@@ -50,7 +58,7 @@ export default function SongCards() {
 									(isPlaying === index &&
 										'cursor-pointer after:bg-black/50 after:bg-[url(/img/pause.svg)]') ||
 										(item.previewUrl &&
-											'cursor-pointer after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)]'),
+											'cursor-pointer after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)]')
 								)}
 								onClick={() => {
 									if (item.previewUrl) handlePlayAudio(index);

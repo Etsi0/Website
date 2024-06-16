@@ -46,15 +46,15 @@ async function GetFromAPI(href: string) {
 	}
 }
 
-export async function GetSongsFromPlaylist(countryCode, playlist) {
+export async function GetSongsFromPlaylist(countryCode: string, playlist: string) {
 	const regex = RegExp('open.spotify.com/playlist/([^?]+)');
 	const playlist_id = regex.exec(playlist);
-	if (!playlist || !playlist_id[1]) {
+	if (!playlist_id || !playlist_id[1]) {
 		return false;
 	}
 
 	const response = await GetFromAPI(
-		`https://api.spotify.com/v1/playlists/${playlist_id[1]}?market=${countryCode}`,
+		`https://api.spotify.com/v1/playlists/${playlist_id[1]}?market=${countryCode}`
 	);
 
 	if (!response) {
@@ -64,7 +64,7 @@ export async function GetSongsFromPlaylist(countryCode, playlist) {
 	return await response;
 }
 
-export async function GetSongs(song) {
+export async function GetSongs(song: string) {
 	const response = await GetFromAPI(`https://api.spotify.com/v1/audio-features?ids=${song}`);
 
 	if (!response) {
@@ -74,7 +74,13 @@ export async function GetSongs(song) {
 	return await response;
 }
 
-export async function GetRecommendations(limit: number, countryCode: string, data: any) {
+type TInitialStats = {
+	[x: string]: number | { [x: string]: number };
+} & {
+	artists: { [x: string]: number };
+};
+
+export async function GetRecommendations(limit: number, countryCode: string, data: TInitialStats) {
 	// takes the 5 artists that comes up most often in the playlist
 	const topFiveArtists = Object.entries(data.artists)
 		.sort((a: [string, number], b: [string, number]) => b[1] - a[1])
@@ -82,11 +88,16 @@ export async function GetRecommendations(limit: number, countryCode: string, dat
 		.map((entry) => entry[0]);
 
 	// divides all keys by the number of songs and rounds the number if it should be a int
-	const total = data.total;
+	const total = data.total as number;
 	for (const key in data) {
 		if (key === 'total' || key === 'artists') {
 			continue;
 		}
+
+		if (typeof data[key] !== 'number') {
+			continue;
+		}
+
 		if (key === 'duration_ms' || key === 'key' || key === 'mode' || key === 'time_signature') {
 			data[key] = Math.round(data[key] / total);
 		} else {
@@ -95,7 +106,7 @@ export async function GetRecommendations(limit: number, countryCode: string, dat
 	}
 
 	const response = await GetFromAPI(
-		`https://api.spotify.com/v1/recommendations?limit=${limit}&market=${countryCode}&seed_artists=${topFiveArtists.join(',')}&target_acousticness=${data.acousticness}&target_danceability=${data.danceability}&target_duration_ms=${data.duration_ms}&target_energy=${data.energy}&target_instrumentalness=${data.instrumentalness}&target_key=${data.key}&target_liveness=${data.liveness}&target_loudness=${data.loudness}&target_mode=${data.mode}&target_speechiness=${data.speechiness}&target_tempo=${data.tempo}&target_time_signature=${data.time_signature}&target_valence=${data.valence}`,
+		`https://api.spotify.com/v1/recommendations?limit=${limit}&market=${countryCode}&seed_artists=${topFiveArtists.join(',')}&target_acousticness=${data.acousticness}&target_danceability=${data.danceability}&target_duration_ms=${data.duration_ms}&target_energy=${data.energy}&target_instrumentalness=${data.instrumentalness}&target_key=${data.key}&target_liveness=${data.liveness}&target_loudness=${data.loudness}&target_mode=${data.mode}&target_speechiness=${data.speechiness}&target_tempo=${data.tempo}&target_time_signature=${data.time_signature}&target_valence=${data.valence}`
 	);
 
 	if (!response) {
