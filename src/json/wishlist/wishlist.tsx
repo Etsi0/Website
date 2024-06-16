@@ -1,9 +1,10 @@
+import { ReactNode } from 'react';
 import { cn } from '@/lib/util';
 
 type IProductJson = {
 	img: string;
 	title: string;
-	points?: JSX.Element | JSX.Element[];
+	points?: ReactNode | ReactNode[];
 	video?: string;
 	url?: string;
 };
@@ -64,6 +65,7 @@ export const WishlistJson: IProductJson[] = [
 				<ul className={cn('list-inside list-disc')}>
 					<li>Hyperbeast</li>
 					<li>Dr. Beast</li>
+					<li>Sakurafuri</li>
 				</ul>
 			</>,
 		],
