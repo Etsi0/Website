@@ -1,3 +1,12 @@
+import { z } from 'zod';
+
+const countriesDataSchema = z.array(
+	z.object({
+		iso2Code: z.string(),
+		name: z.string(),
+	})
+);
+
 export async function GetCountryCodes() {
 	const response = await fetch('http://api.worldbank.org/v2/country?format=json&per_page=999', {
 		next: {
@@ -6,16 +15,18 @@ export async function GetCountryCodes() {
 	});
 
 	try {
-		const result = await response.json();
-		if (result.status) {
+		const countriesData: unknown = await response.json();
+		const parsedCountriesData = countriesDataSchema.safeParse(countriesData);
+		if (!parsedCountriesData.success) {
 			return false;
 		}
-		result.sort((a, b) => {
+		const { data } = parsedCountriesData;
+		const sortedData = data.toSorted((a, b) => {
 			if (a.name < b.name) return -1;
 			if (a.name > b.name) return 1;
 			return 0;
 		});
-		return result;
+		return sortedData;
 	} catch {
 		return false;
 	}
