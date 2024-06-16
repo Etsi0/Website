@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { cn } from '@/lib/util';
@@ -7,7 +8,7 @@ import Footer from '@/components/Footer/footer';
 
 import '../output.css';
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<>
 			<html lang='en'>
