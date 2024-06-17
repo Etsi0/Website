@@ -1,6 +1,8 @@
 const HsbColors = generateColorsOnCurve(9, { x: 15, y: 39 });
-const HslColors = HsbColors.map((HsbColor) => HSBtoHSL(HsbColor[0], HsbColor[1]));
-console.log('Here is your saturation and brightness, happy coloring 😘:', HslColors.reverse());
+if (HsbColors) {
+	const HslColors = HsbColors.map((HsbColor) => HSBtoHSL(HsbColor[0], HsbColor[1]));
+	console.log('Here is your saturation and brightness, happy coloring 😘:', HslColors.reverse());
+}
 
 interface midCords {
 	x: number;
@@ -9,7 +11,7 @@ interface midCords {
 function generateColorsOnCurve(numberOfColors: number, middle: midCords): number[][] | undefined {
 	if (numberOfColors % 2 !== 1) {
 		console.error('numberOfColors must be odd.');
-		return undefined;
+		return;
 	}
 
 	const MAX_VALUE = 100;
@@ -33,7 +35,7 @@ function generateColorsOnCurve(numberOfColors: number, middle: midCords): number
 	return xValues.reverse().map((x, i) => [x, yValues[i]]);
 }
 
-function HSBtoHSL(s: number, b: number) {
+function HSBtoHSL(s: number, b: number): { s: number; l: number } {
 	// Convert from 0-100 range to 0-1
 	s /= 100;
 	b /= 100;
