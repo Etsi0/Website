@@ -1,44 +1,29 @@
+import { ReactNode } from 'react';
 import type { Metadata } from 'next';
-import { cn } from '@/lib/util';
 
-import { WishlistJson } from '@/json/wishlist/wishlist';
+import { type TProduct, WishlistJson } from '@/json/wishlist/wishlist';
 
 export const metadata: Metadata = {
 	title: 'Wishlist - Phadonia',
 	description: 'A list of product i wish to get sometime in the future',
 };
 
-type IProductJson = {
-	img: string;
-	title: string;
-	points?: JSX.Element | JSX.Element[];
-	video?: string;
-	url?: string;
-};
-
-function Card(prop: { product: IProductJson }) {
-	const { product } = prop;
+function Card({ product }: { product: TProduct }) {
 	return (
-		<div
-			className={cn(
-				'flex w-72 flex-col gap-3 self-stretch rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'
-			)}
-		>
+		<div className='flex w-72 flex-col gap-3 self-stretch rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'>
 			{((product.img && product.title) || product.title) && (
 				<img
 					src={product.img ?? ''}
 					alt={`Image of a product called '${product.title}'`}
-					className={cn(
-						'mx-auto aspect-square w-48 rounded-md bg-primary-50 object-cover dark:bg-body-300'
-					)}
+					className='mx-auto aspect-square w-48 rounded-md bg-primary-50 object-cover dark:bg-body-300'
 				/>
 			)}
 			{product.title && (
-				<p className={cn(`text-center text-xl font-semibold leading-6 text-text-600`)}>
+				<p className='text-center text-xl font-semibold leading-6 text-text-600'>
 					{product.title}
 				</p>
 			)}
-			<ul className={cn('grow text-base leading-5')}>
+			<ul className='grow text-base leading-5'>
 				{(Array.isArray(product.points) &&
 					product.points.map((item, index) => <li key={index}>{item}</li>)) ||
 					product.points}
@@ -47,7 +32,7 @@ function Card(prop: { product: IProductJson }) {
 				<a
 					href={product.video}
 					target='_blank'
-					className={cn(`w-full rounded-md bg-red-500 p-3 text-center text-input`)}
+					className='w-full rounded-md bg-red-500 p-3 text-center text-input'
 				>
 					▷
 				</a>
@@ -56,7 +41,7 @@ function Card(prop: { product: IProductJson }) {
 				<a
 					href={product.url}
 					target='_blank'
-					className={cn('w-full rounded-md bg-primary-500 p-3 text-center text-input')}
+					className='w-full rounded-md bg-primary-500 p-3 text-center text-input'
 				>
 					Link
 				</a>
@@ -68,11 +53,11 @@ function Card(prop: { product: IProductJson }) {
 export default function page() {
 	return (
 		<>
-			<div className={cn('m-8 grid justify-center gap-3 text-center')}>
+			<div className='m-8 grid justify-center gap-3 text-center'>
 				<h1>Wishlist</h1>
 				<p>If you are on this page and do not know me IRL, then why are you here</p>
 			</div>
-			<div className={cn('mb-16 flex flex-wrap items-start justify-center gap-5')}>
+			<div className='mb-16 flex flex-wrap items-start justify-center gap-5'>
 				{WishlistJson.map((item, index: number) => (
 					<Card key={index} product={item} />
 				))}

@@ -1,14 +1,14 @@
 import { ReactNode } from 'react';
 import { cn } from '@/lib/util';
 
-type IProductJson = {
+export type TProduct = {
 	img: string;
 	title: string;
 	points?: ReactNode | ReactNode[];
 	video?: string;
 	url?: string;
 };
-export const WishlistJson: IProductJson[] = [
+export const WishlistJson: TProduct[] = [
 	{
 		img: 'https://deltakeyco.com/cdn/shop/products/Gift-Card-Render-3-3_1.jpg?v=1675622518&width=1080',
 		title: 'Delta Key Co. Gift Card',
