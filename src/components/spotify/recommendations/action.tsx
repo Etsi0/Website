@@ -131,7 +131,8 @@ export async function CreateRecommendations(formData: FormData) {
 				typeof accumulator[keyWithTypes] === 'number' &&
 				typeof currentSong[keyWithTypes] === 'number'
 			) {
-				accumulator[keyWithTypes] += currentSong[keyWithTypes];
+				accumulator[keyWithTypes] =
+					(accumulator[keyWithTypes] as number) + (currentSong[keyWithTypes] as number);
 			}
 		}
 		return accumulator;
