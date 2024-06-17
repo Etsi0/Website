@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { cn } from '@/lib/util';
 import { GetFromAPI } from '@/api/modrinth/main';
 import { MinecraftModsJson } from '@/json/minecraft/minecraftModsJson';
+import { z } from 'zod';
 
 type TDoneCategoryWrapper = {
 	className: string;
@@ -19,17 +20,42 @@ const StrToColor = Object.freeze({
 	red: 'bg-red-500 dark:bg-red-600',
 });
 
+const projectSchema = z.array(
+	z.object({
+		categories: z.array(z.string()),
+		game_versions: z.array(z.string()),
+		icon_url: z.string(),
+		id: z.string(),
+		loaders: z.array(z.string()),
+		slug: z.string(),
+		title: z.string(),
+	})
+);
+type TProject = z.infer<typeof projectSchema>[number];
+
+const versionSchema = z.array(
+	z.object({
+		date_published: z.string(),
+		files: z.array(
+			z.object({
+				url: z.string(),
+			})
+		),
+		game_versions: z.array(z.string()),
+	})
+);
+
 function DoneCategoryWrapper({ className, children }: TDoneCategoryWrapper) {
 	return (
-		<div className={cn('flex gap-2')}>
+		<div className='flex gap-2'>
 			<div className={cn('size-6 shrink-0 rounded-md bg-primary-500', className)}></div>
-			<p className={cn('max-w-none')}>{children}</p>
+			<p className='max-w-none'>{children}</p>
 		</div>
 	);
 }
 
 // Helper function to find the highest version in an array
-function getHighestVersion(versions) {
+function getHighestVersion(versions: string[]) {
 	return versions.sort((a, b) => {
 		const aParts = a.split('.').map((x) => parseInt(x, 10));
 		const bParts = b.split('.').map((x) => parseInt(x, 10));
@@ -44,20 +70,33 @@ function getHighestVersion(versions) {
 }
 
 async function GetMod({ project, className }: TGetMod) {
-	let onlyFullReleases: string[];
-	let latestVersion: any;
+	let onlyFullReleases: string[] = [];
+	let latestVersion: z.infer<typeof versionSchema>[number] = {
+		date_published: '',
+		files: [
+			{
+				url: '',
+			},
+		],
+		game_versions: [''],
+	};
 	if (project.game_versions) {
 		onlyFullReleases = project.game_versions
 			.reverse()
 			.filter((item: string) => !/[a-z]/.test(item));
 
 		try {
-			const version = await GetFromAPI(
-				`project/${encodeURIComponent(project.id)}/version?loaders=["fabric"]&featured=true`,
+			const version: unknown = await GetFromAPI(
+				`project/${encodeURIComponent(project.id)}/version?loaders=["fabric"]&featured=true`
 			);
+			const parsedVersion = versionSchema.safeParse(version);
+			if (!parsedVersion.success) {
+				return false;
+			}
+			const { data } = parsedVersion;
 
 			// Sort the data array
-			version.sort((a, b) => {
+			const sortedVersion = data.sort((a, b) => {
 				const aMax = getHighestVersion(a.game_versions);
 				const bMax = getHighestVersion(b.game_versions);
 				if (aMax > bMax) return -1;
@@ -65,7 +104,7 @@ async function GetMod({ project, className }: TGetMod) {
 				return 0;
 			});
 
-			latestVersion = version[0];
+			latestVersion = sortedVersion[0];
 		} catch (error) {
 			console.error('Error fetching version data:', error);
 		}
@@ -77,11 +116,11 @@ async function GetMod({ project, className }: TGetMod) {
 		},
 		{
 			title: 'Versions:',
-			text: onlyFullReleases?.join(', '),
+			text: onlyFullReleases.join(', '),
 		},
 		{
 			title: 'Updated:',
-			text: latestVersion?.date_published.slice(0, 10),
+			text: latestVersion.date_published.slice(0, 10),
 		},
 		{
 			title: 'Loaders:',
@@ -90,30 +129,20 @@ async function GetMod({ project, className }: TGetMod) {
 	];
 
 	return (
-		<div
-			className={cn(
-				`flex w-72 flex-col gap-3 rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200`,
-			)}
-		>
+		<div className='flex w-72 flex-col gap-3 rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'>
 			{(project.icon_url && (
 				<Image
 					src={project.icon_url}
 					alt={`logo for the mod called '${project.title}'`}
 					width={192}
 					height={192}
-					className={cn(`mx-auto rounded-md bg-primary-50 dark:bg-body-300`)}
+					className='mx-auto rounded-md bg-primary-50 dark:bg-body-300'
 				/>
 			)) || (
-				<div
-					className={cn(
-						'mx-auto aspect-square w-48 rounded-md bg-primary-50 dark:bg-body-300',
-					)}
-				></div>
+				<div className='mx-auto aspect-square w-48 rounded-md bg-primary-50 dark:bg-body-300'></div>
 			)}
-			<h2 className={cn('overflow-hidden text-ellipsis text-center text-3xl')}>
-				{project.title}
-			</h2>
-			<ul className={cn('grow')}>
+			<h2 className='overflow-hidden text-ellipsis text-center text-3xl'>{project.title}</h2>
+			<ul className='grow'>
 				{liContent
 					.filter((item) => item.text)
 					.map((item, index) => (
@@ -133,7 +162,7 @@ async function GetMod({ project, className }: TGetMod) {
 								: ''
 					}
 					target='_blank'
-					className={cn(`w-full rounded-md bg-primary-500 p-3 text-center text-input`)}
+					className='w-full rounded-md bg-primary-500 p-3 text-center text-input'
 				>
 					{project.title}
 				</a>
@@ -144,7 +173,7 @@ async function GetMod({ project, className }: TGetMod) {
 					target='_blank'
 					className={cn(
 						'w-full rounded-md bg-primary-500 p-3 text-center text-input',
-						className,
+						className
 					)}
 				>
 					Fabric {latestVersion.game_versions[0]}
@@ -154,9 +183,7 @@ async function GetMod({ project, className }: TGetMod) {
 			)) || (
 				<button
 					disabled
-					className={cn(
-						`w-full cursor-not-allowed rounded-md bg-slate-500 p-3 text-slate-400`,
-					)}
+					className='w-full cursor-not-allowed rounded-md bg-slate-500 p-3 text-slate-400'
 				>
 					NaN
 				</button>
@@ -169,26 +196,33 @@ function ProjectIndex(index: number) {
 }
 export default async function Page() {
 	const projectId = MinecraftModsJson.filter((value) => 'Id' in value).map((value) => value.Id);
-	const projects = await GetFromAPI(
-		`projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`,
+	const projects: unknown = await GetFromAPI(
+		`projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`
 	);
+	const parsedProjects = projectSchema.safeParse(projects);
+	if (!parsedProjects.success) {
+		return false;
+	}
+	const { data } = parsedProjects;
 
-	const projectMap = projects.reduce((accumulator, project) => {
+	const projectMap = data.reduce((accumulator: Record<string, TProject>, project: TProject) => {
 		accumulator[project.id] = project;
 		return accumulator;
 	}, {});
-	const sortedProjects = projectId.map((id: string) => projectMap[id]);
+	const sortedProjects = projectId
+		.filter((id): id is string => id !== undefined)
+		.map((id: string) => projectMap[id]);
 
 	return (
-		<section className={cn(`grid gap-8 py-8 pt-16`)}>
-			<div className={cn(`grid justify-items-center text-center`)}>
+		<section className='grid gap-8 py-8 pt-16'>
+			<div className='grid justify-items-center text-center'>
 				<h1>Minecraft Mods</h1>
 				<p>
 					Mods listed bellow is what i recommend or use, look at the section that explains
 					what the different colors means if you are confused
 				</p>
 			</div>
-			<div className={cn(`grid gap-3 rounded-lg bg-body-50 p-6 dark:bg-body-200`)}>
+			<div className='grid gap-3 rounded-lg bg-body-50 p-6 dark:bg-body-200'>
 				<DoneCategoryWrapper className={StrToColor['green']}>
 					This icon indicates that i recommend these mods
 				</DoneCategoryWrapper>
@@ -204,7 +238,7 @@ export default async function Page() {
 					)
 				</DoneCategoryWrapper>
 			</div>
-			<div className={cn(`flex flex-wrap justify-center gap-5`)}>
+			<div className='flex flex-wrap justify-center gap-5'>
 				{MinecraftModsJson.map((project, index) => (
 					<GetMod
 						key={index}
