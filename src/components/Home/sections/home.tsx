@@ -6,7 +6,7 @@ import { YearsElapsed } from '@/components/yearsElapsed';
 import { TypingText } from '@/components/typingText';
 
 import { SocialLinkJson } from '@/json/socialLink';
-import CasualSelfie from '@/../public/img/production/casual selfie/selfie.png';
+import selfie from '@/../public/img/production/casual_selfie/selfie.png';
 
 function SocialLinks({ className }: { className: string }) {
 	return (
@@ -70,12 +70,12 @@ export function Home() {
 				</div>
 				<Image
 					className='aspect-square w-full max-w-prose rounded-2xl object-cover object-[50%,25%] [mask-position:_center] [mask-repeat:_no-repeat] [mask-size:_contain] lg:[mask-image:_url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMTg3Ij48cGF0aCBkPSJNMTkwIDM2YzE3IDI2IDExIDY3LTggOTgtMTkgMzItNTEgNTQtODIgNTItMzAtMS01OS0yNS03OC01N0MyIDk4LTcgNTkgNyAzNSAyMSAxMCA2MCAwIDk4IDBzNzYgMTEgOTIgMzZaIi8+PC9zdmc+")]'
-					src={CasualSelfie}
+					src={selfie.src}
 					alt='Portrait of a young man wearing a student cap and a black suit with a red tie.'
 					width={562}
 					height={562}
 					sizes='(max-width: 375px) 311px, (max-width: 390px) 322px, (max-width: 577px) 514px, 562px'
-					blurDataURL={CasualSelfie.blurDataURL}
+					blurDataURL={selfie.blurDataURL}
 					placeholder='blur'
 				/>
 				<SocialLinks className='flex lg:hidden' />

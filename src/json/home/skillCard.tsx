@@ -1,5 +1,7 @@
+import { SvgList } from '@/components/SVGs';
+
 type TSkillCardJson = {
-	SVG: string;
+	SVG: keyof typeof SvgList;
 	title: string;
 	description: string;
 };

@@ -1,6 +1,5 @@
 'use client';
-import React, { PropsWithChildren, useCallback, useEffect, useState } from 'react';
-
+import React, { ButtonHTMLAttributes, useCallback, useEffect, useState } from 'react';
 import { EmblaCarouselType } from 'embla-carousel';
 
 type UseDotButtonType = {
@@ -9,25 +8,8 @@ type UseDotButtonType = {
 	onDotButtonClick: (index: number) => void;
 };
 
-export const useDotButton = (
-	emblaApi: EmblaCarouselType | undefined,
-	onButtonClick?: (emblaApi: EmblaCarouselType) => void,
-): UseDotButtonType => {
-	const [selectedIndex, setSelectedIndex] = useState(0);
-	const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-
-	const onDotButtonClick = useCallback(
-		(index: number) => {
-			if (!emblaApi) return;
-			emblaApi.scrollTo(index);
-			if (onButtonClick) onButtonClick(emblaApi);
-		},
-		[emblaApi, onButtonClick],
-	);
-
-	const onInit = useCallback((emblaApi: EmblaCarouselType) => {
-		setScrollSnaps(emblaApi.scrollSnapList());
-	}, []);
+export function useDotButton(emblaApi?: EmblaCarouselType): { selectedIndex: number } {
+	const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
 	const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
 		setSelectedIndex(emblaApi.selectedScrollSnap());
@@ -36,30 +18,18 @@ export const useDotButton = (
 	useEffect(() => {
 		if (!emblaApi) return;
 
-		onInit(emblaApi);
 		onSelect(emblaApi);
-		emblaApi.on('reInit', onInit);
 		emblaApi.on('reInit', onSelect);
 		emblaApi.on('select', onSelect);
-	}, [emblaApi, onInit, onSelect]);
+	}, [emblaApi, onSelect]);
 
-	return {
-		selectedIndex,
-		scrollSnaps,
-		onDotButtonClick,
-	};
-};
+	return { selectedIndex };
+}
 
-type PropType = PropsWithChildren<
-	React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
->;
-
-export const DotButton: React.FC<PropType> = (props) => {
-	const { children, ...restProps } = props;
-
+export function DotButton({ children, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
 	return (
-		<button type='button' {...restProps}>
+		<button type='button' {...props}>
 			{children}
 		</button>
 	);
-};
+}

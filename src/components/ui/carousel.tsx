@@ -1,59 +1,76 @@
 'use client';
-import React, { useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import type { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel';
-import Autoplay from 'embla-carousel-autoplay';
+import type { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
-
-import { DotButton, useDotButton } from './carouselDot';
+import Autoplay, { AutoplayOptionsType } from 'embla-carousel-autoplay';
 
 import { cn } from '@/lib/util';
 
-type PropType = {
-	slides: number[];
+import { DotButton, useDotButton } from './carouselDot';
+
+export type TCarousel = {
+	AutoplayOptions?: {
+		stopOnInteraction: boolean;
+	} & AutoplayOptionsType;
 	options?: EmblaOptionsType;
+	slides: number[];
 	type: 'Dot' | 'Preview';
 };
 
-const EmblaCarousel: React.FC<PropType> = (props) => {
-	const { slides, options, type } = props;
-	const [emblaRef, emblaApi] = useEmblaCarousel(options); // options, [Autoplay({ delay: 10000 })]
+Autoplay.globalOptions = { delay: 10000 };
 
-	const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
-		const autoplay = emblaApi?.plugins()?.autoplay;
-		if (!autoplay) return;
+export default function EmblaCarousel({ AutoplayOptions, options, slides, type }: TCarousel) {
+	const [isMounted, setIsMounted] = useState<boolean>(false);
+	const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay(AutoplayOptions)]);
 
-		const resetOrStop =
-			autoplay.options.stopOnInteraction === false ? autoplay.reset : autoplay.stop;
+	function handleClick(index: number) {
+		if (!emblaApi) {
+			return;
+		}
 
-		resetOrStop();
-	}, []);
+		emblaApi.scrollTo(index);
 
-	const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
-		emblaApi,
-		onNavButtonClick
-	);
+		const autoplay = emblaApi.plugins().autoplay;
+		emblaApi.plugins().autoplay.options.stopOnInteraction === false
+			? autoplay.reset()
+			: autoplay.stop();
+	}
+
+	const { selectedIndex } = useDotButton(emblaApi);
 
 	const className = 'mx-2 basis-[calc(100%_-_0.5rem)]'; // 2 / 4 = 0.5rem
+
+	useEffect(() => {
+		if (!isMounted) {
+			setIsMounted(true);
+		}
+	}, [isMounted]);
+
+	if (!isMounted) return;
+
 	return (
 		<>
+			{/*==================================================
+				Carousel
+			==================================================*/}
 			<div className='w-full overflow-hidden' ref={emblaRef}>
 				<div className='flex'>
-					{slides.map((item, index) => (
+					{slides.map((_, index) => (
 						<div
-							key={index}
 							className={cn(
 								'aspect-[8/3] shrink-0 grow-0 overflow-hidden rounded-lg',
 								className
 							)}
+							key={index}
 						>
 							<Image
-								className='absolute z-[-1] aspect-[8/3] rounded-lg object-cover'
-								src={'/img/temp.png'}
 								alt=''
-								width={1208}
+								className='absolute z-[-1] aspect-[8/3] rounded-lg object-cover'
 								height={453}
+								src={'/img/temp.png'}
+								width={1208}
 							/>
 							<div className='grid h-full items-end'>
 								<div className='bg-gradient-to-t from-[hsl(0deg_0_75)] to-transparent p-4 pt-8 dark:from-[hsl(0deg_0_25)]'>
@@ -68,10 +85,14 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 				</div>
 			</div>
 
+			{/*==================================================
+				Dots
+			==================================================*/}
 			<div
 				className={cn(
 					'flex justify-center gap-3',
-					type === 'Dot' ? 'h-4' : type === 'Preview' ? 'aspect-[19/3] w-1/2' : ''
+					type === 'Dot' && 'h-4',
+					type === 'Preview' && 'aspect-[19/3] w-1/2'
 				)}
 			>
 				{slides.map(
@@ -79,7 +100,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 						(type === 'Dot' && (
 							<DotButton
 								key={index}
-								onClick={() => onDotButtonClick(index)}
+								onClick={() => handleClick(index)}
 								className={cn(
 									'dark:bg-body-700 dark:ring-offset-body-900 aspect-square h-full rounded-full bg-body-200 ring-primary-500 ring-offset-2 ring-offset-body-50 focus-visible:outline-none focus-visible:ring-2',
 									index !== selectedIndex || 'bg-body-500 dark:bg-body-500'
@@ -89,14 +110,13 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 						(type === 'Preview' && (
 							<DotButton
 								key={index}
-								onClick={() => onDotButtonClick(index)}
+								onClick={() => handleClick(index)}
 								className={cn(
-									'dark:ring-body-900 relative flex h-full items-end rounded-md outline-none ring-4 ring-body-50 transition-[flex-basis] duration-500 before:absolute before:left-[-7px] before:top-[-7px] before:z-[-1] before:h-[calc(100%_+_14px)] before:w-[calc(100%_+_14px)] before:rounded-xl before:bg-gradient-to-br before:from-primary-500 before:from-50% before:to-transparent before:to-50% before:bg-[length:200%_200%] before:bg-right-bottom before:content-[""]',
-									index === selectedIndex
-										? emblaApi?.plugins()?.autoplay.isPlaying()
-											? 'basis-1/2 before:animate-[backgroundMove_10s_linear_forwards]'
-											: 'basis-1/2'
-										: 'basis-1/4'
+									'dark:ring-body-900 relative flex h-full basis-1/4 items-end rounded-md outline-none ring-4 ring-body-50 transition-[flex-basis] duration-500 before:absolute before:left-[-7px] before:top-[-7px] before:z-[-1] before:h-[calc(100%_+_14px)] before:w-[calc(100%_+_14px)] before:rounded-xl before:bg-gradient-to-br before:from-primary-500 before:from-50% before:to-transparent before:to-50% before:bg-[length:200%_200%] before:bg-right-bottom before:content-[""]',
+									index === selectedIndex &&
+										emblaApi?.plugins().autoplay.isPlaying()
+										? 'basis-1/2 before:animate-[backgroundMove_10s_linear_forwards]'
+										: 'basis-1/2'
 								)}
 							>
 								{type === 'Preview' && (
@@ -114,6 +134,4 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 			</div>
 		</>
 	);
-};
-
-export default EmblaCarousel;
+}

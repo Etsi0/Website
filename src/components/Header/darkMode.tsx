@@ -2,9 +2,12 @@
 import { cn } from '@/lib/util';
 import { useState, useEffect } from 'react';
 
-const isSystemThemeDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 const pathClassNames =
 	'fill-primary-500 group-hover:fill-primary-300 dark:group-hover:fill-primary-700';
+
+function isSystemThemeDark() {
+	return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
 
 export function DarkMode() {
 	const [isMounted, setMounted] = useState<boolean>(false);
@@ -12,7 +15,7 @@ export function DarkMode() {
 
 	function toggleDarkMode() {
 		if (darkMode === 'auto') {
-			setDarkMode(isSystemThemeDark ? 'light' : 'dark');
+			setDarkMode(isSystemThemeDark() ? 'light' : 'dark');
 		} else if (darkMode === 'dark') {
 			setDarkMode('light');
 		} else {
@@ -36,11 +39,11 @@ export function DarkMode() {
 			const root = document.documentElement;
 			root.classList.toggle(
 				'dark',
-				darkMode === 'dark' || (darkMode === 'auto' && isSystemThemeDark)
+				darkMode === 'dark' || (darkMode === 'auto' && isSystemThemeDark())
 			);
 			root.classList.toggle(
 				'light',
-				darkMode === 'light' || (darkMode === 'auto' && !isSystemThemeDark)
+				darkMode === 'light' || (darkMode === 'auto' && !isSystemThemeDark())
 			);
 
 			localStorage.setItem('ThemeSwitch', darkMode.toString());

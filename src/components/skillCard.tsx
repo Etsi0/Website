@@ -5,11 +5,11 @@ import { SvgList } from './SVGs';
 import { Button } from './ui/button';
 
 type AppProps = {
-	SVG: string;
-	className: any;
+	SVG: keyof typeof SvgList;
+	className: string;
 	title: string;
 	description: string;
-	modalClassName?: any;
+	modalClassName?: string;
 };
 
 export default function App({ SVG, className, title, description, modalClassName }: AppProps) {
@@ -21,8 +21,8 @@ export default function App({ SVG, className, title, description, modalClassName
 			return;
 		}
 
-		isOpen ? dialogRef.current.close() : dialogRef.current.showModal();
-	}, [modalClassName, isOpen, dialogRef]);
+		isOpen ? dialogRef.current.showModal() : dialogRef.current.close();
+	}, [dialogRef, isOpen, modalClassName]);
 
 	const Component = SvgList[SVG];
 
