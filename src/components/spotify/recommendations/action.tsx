@@ -127,7 +127,10 @@ export async function CreateRecommendations(formData: FormData) {
 	const songsList = audio_features.reduce((accumulator, currentSong) => {
 		for (const key in currentSong) {
 			const keyWithTypes = key as keyof typeof currentSong;
-			if (typeof accumulator[keyWithTypes] === 'number') {
+			if (
+				typeof accumulator[keyWithTypes] === 'number' &&
+				typeof currentSong[keyWithTypes] === 'number'
+			) {
 				accumulator[keyWithTypes] += currentSong[keyWithTypes];
 			}
 		}
