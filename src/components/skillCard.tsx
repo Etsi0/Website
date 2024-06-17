@@ -1,29 +1,28 @@
 'use client';
 import { cn } from '@/lib/util';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SvgList } from './SVGs';
 import { Button } from './ui/button';
 
-interface AppProps {
+type AppProps = {
 	SVG: string;
 	className: any;
 	title: string;
 	description: string;
 	modalClassName?: any;
-}
+};
 
-export default function App(props: AppProps) {
-	const { SVG, className, title, description, modalClassName } = props;
+export default function App({ SVG, className, title, description, modalClassName }: AppProps) {
+	const dialogRef = useRef<HTMLDialogElement>(null);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 
-	const dialogRef = useRef(null);
-	const [isOpen, setIsOpen] = useState(false);
-
-	function OpenDialog() {
-		if (modalClassName) {
-			isOpen ? dialogRef.current.close() : dialogRef.current.showModal();
-			setIsOpen((current) => !current);
+	useEffect(() => {
+		if (!dialogRef.current || !modalClassName) {
+			return;
 		}
-	}
+
+		isOpen ? dialogRef.current.close() : dialogRef.current.showModal();
+	}, [modalClassName, isOpen, dialogRef]);
 
 	const Component = SvgList[SVG];
 
@@ -31,14 +30,10 @@ export default function App(props: AppProps) {
 		<>
 			<button
 				className='group grid aspect-[1/1.125] place-content-center place-items-center gap-3 rounded-lg bg-primary-500 p-3 shadow-lg duration-300 hover:bg-body-100 hover:shadow-inner focus-visible:bg-body-100 focus-visible:shadow-inner focus-visible:outline-none'
-				onClick={OpenDialog}
+				onClick={() => setIsOpen(true)}
 			>
 				<Component className={cn('w-1/2', className)} />
-				<h3
-					className={cn(
-						'text-lg leading-5 text-input group-hover:text-primary-500 group-focus-visible:text-primary-500 dark:group-hover:text-body-300 dark:group-focus-visible:text-body-300',
-					)}
-				>
+				<h3 className='text-lg leading-5 text-input group-hover:text-primary-500 group-focus-visible:text-primary-500 dark:group-hover:text-body-300 dark:group-focus-visible:text-body-300'>
 					{title}
 				</h3>
 			</button>
@@ -54,7 +49,10 @@ export default function App(props: AppProps) {
 							<p>{description}</p>
 						</div>
 					</div>
-					<Button className='relative float-end px-9 py-3' onClick={OpenDialog}>
+					<Button
+						className='relative float-end px-9 py-3'
+						onClick={() => setIsOpen(false)}
+					>
 						Close
 					</Button>
 				</dialog>
