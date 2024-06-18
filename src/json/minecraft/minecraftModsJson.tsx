@@ -1,11 +1,11 @@
-type IMinecraftModsJson = {
+type TMinecraftModsJson = {
 	Id?: string;
 	title: string;
 	link?: string;
 	Color: 'green' | 'yellow' | 'red';
 };
 
-export const MinecraftModsJson: IMinecraftModsJson[] = [
+export const MinecraftModsJson: TMinecraftModsJson[] = [
 	{
 		Id: 'zV5r3pPn',
 		title: '3D Skin Layers',

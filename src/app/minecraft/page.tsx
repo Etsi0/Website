@@ -1,18 +1,16 @@
 import { ReactNode } from 'react';
 import Image from 'next/image';
-import { cn } from '@/lib/util';
-import { GetFromAPI } from '@/api/modrinth/main';
-import { MinecraftModsJson } from '@/json/minecraft/minecraftModsJson';
 import { z } from 'zod';
+import { cn } from '@/lib/util';
+import { GetProjects, GetVersions, projectSchema, versionSchema } from '@/api/modrinth/main';
+import { MinecraftModsJson } from '@/json/minecraft/minecraftModsJson';
 
-type TDoneCategoryWrapper = {
-	className: string;
-	children: ReactNode;
-};
 type TGetMod = {
-	project: any;
+	project: (typeof MinecraftModsJson)[number] | z.infer<typeof projectSchema>[number];
 	className: (typeof StrToColor)[keyof typeof StrToColor];
 };
+
+type TProject = z.infer<typeof projectSchema>[number];
 
 const StrToColor = Object.freeze({
 	green: 'bg-green-500 dark:bg-green-600',
@@ -20,45 +18,50 @@ const StrToColor = Object.freeze({
 	red: 'bg-red-500 dark:bg-red-600',
 });
 
-const projectSchema = z.array(
-	z.object({
-		categories: z.array(z.string()),
-		game_versions: z.array(z.string()),
-		icon_url: z.string(),
-		id: z.string(),
-		loaders: z.array(z.string()),
-		slug: z.string(),
-		title: z.string(),
-	})
-);
-type TProject = z.infer<typeof projectSchema>[number];
-
-const versionSchema = z.array(
-	z.object({
-		date_published: z.string(),
-		files: z.array(
-			z.object({
-				url: z.string(),
-			})
-		),
-		game_versions: z.array(z.string()),
-	})
-);
-
-function DoneCategoryWrapper({ className, children }: TDoneCategoryWrapper) {
-	return (
-		<div className='flex gap-2'>
-			<div className={cn('size-6 shrink-0 rounded-md bg-primary-500', className)}></div>
-			<p className='max-w-none'>{children}</p>
-		</div>
+async function Projects() {
+	const projectIds = MinecraftModsJson.map((value) => value.Id).filter(
+		(id) => typeof id === 'string'
 	);
+	if (projectIds.length === 0) {
+		return false;
+	}
+
+	const data = await GetProjects(projectIds);
+	if (!data) {
+		return false;
+	}
+
+	const projectMap = data.reduce(
+		(accumulator, currentValue) => {
+			accumulator[currentValue.id] = currentValue;
+			return accumulator;
+		},
+		{} as Record<string, TProject>
+	);
+	return projectIds.map((id) => projectMap[id]);
 }
 
-// Helper function to find the highest version in an array
+async function Versions(id: string) {
+	const data = await GetVersions(id);
+	if (!data) {
+		return false;
+	}
+
+	const sortedVersion = data.sort((a, b) => {
+		const aMax = getHighestVersion(a.game_versions);
+		const bMax = getHighestVersion(b.game_versions);
+		if (aMax > bMax) return -1;
+		if (aMax < bMax) return 1;
+		return 0;
+	});
+
+	return sortedVersion[0];
+}
+
 function getHighestVersion(versions: string[]) {
 	return versions.sort((a, b) => {
-		const aParts = a.split('.').map((x) => parseInt(x, 10));
-		const bParts = b.split('.').map((x) => parseInt(x, 10));
+		const aParts = parseVersion(a);
+		const bParts = parseVersion(b);
 		for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
 			const aValue = aParts[i] || 0;
 			const bValue = bParts[i] || 0;
@@ -69,50 +72,30 @@ function getHighestVersion(versions: string[]) {
 	})[0];
 }
 
+function parseVersion(version: string): number[] {
+	return version.split('.').map((x) => parseInt(x, 10));
+}
+
 async function GetMod({ project, className }: TGetMod) {
 	let onlyFullReleases: string[] = [];
-	let latestVersion: z.infer<typeof versionSchema>[number] = {
-		date_published: '',
-		files: [
-			{
-				url: '',
-			},
-		],
-		game_versions: [''],
-	};
-	if (project.game_versions) {
+	let latestVersion: z.infer<typeof versionSchema>[number] | undefined;
+	if ('game_versions' in project) {
 		onlyFullReleases = project.game_versions
 			.reverse()
-			.filter((item: string) => !/[a-z]/.test(item));
+			.filter((item: string) => !RegExp('[a-z]').test(item));
 
-		try {
-			const version: unknown = await GetFromAPI(
-				`project/${encodeURIComponent(project.id)}/version?loaders=["fabric"]&featured=true`
-			);
-			const parsedVersion = versionSchema.safeParse(version);
-			if (!parsedVersion.success) {
-				return false;
-			}
-			const { data } = parsedVersion;
-
-			// Sort the data array
-			const sortedVersion = data.sort((a, b) => {
-				const aMax = getHighestVersion(a.game_versions);
-				const bMax = getHighestVersion(b.game_versions);
-				if (aMax > bMax) return -1;
-				if (aMax < bMax) return 1;
-				return 0;
-			});
-
-			latestVersion = sortedVersion[0];
-		} catch (error) {
-			console.error('Error fetching version data:', error);
+		const data = await Versions(project.id);
+		if (!data) {
+			return false;
 		}
+
+		latestVersion = data;
 	}
+
 	const liContent = [
 		{
 			title: 'Categories:',
-			text: project.categories?.join(', '),
+			text: 'categories' in project ? project.categories?.join(', ') : '',
 		},
 		{
 			title: 'Versions:',
@@ -120,17 +103,17 @@ async function GetMod({ project, className }: TGetMod) {
 		},
 		{
 			title: 'Updated:',
-			text: latestVersion.date_published.slice(0, 10),
+			text: latestVersion?.date_published.slice(0, 10),
 		},
 		{
 			title: 'Loaders:',
-			text: project.loaders?.join(', '),
+			text: 'loaders' in project ? project.loaders?.join(', ') : '',
 		},
 	];
 
 	return (
 		<div className='flex w-72 flex-col gap-3 rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'>
-			{(project.icon_url && (
+			{('icon_url' in project && (
 				<Image
 					src={project.icon_url}
 					alt={`logo for the mod called '${project.title}'`}
@@ -152,21 +135,19 @@ async function GetMod({ project, className }: TGetMod) {
 						</li>
 					))}
 			</ul>
-			{(project.slug || project.link) && (
-				<a
-					href={
-						project.slug
-							? `https://modrinth.com/mod/${project.slug}/versions`
-							: project.link
-								? `https://www.curseforge.com/minecraft/mc-mods/${project.link}`
-								: ''
-					}
-					target='_blank'
-					className='w-full rounded-md bg-primary-500 p-3 text-center text-input'
-				>
-					{project.title}
-				</a>
-			)}
+			<a
+				href={
+					'slug' in project
+						? `https://modrinth.com/mod/${project.slug}/versions`
+						: 'link' in project
+							? `https://www.curseforge.com/minecraft/mc-mods/${project.link}`
+							: ''
+				}
+				target='_blank'
+				className='w-full rounded-md bg-primary-500 p-3 text-center text-input'
+			>
+				{project.title}
+			</a>
 			{(latestVersion && (
 				<a
 					href={latestVersion.files[0].url}
@@ -191,27 +172,31 @@ async function GetMod({ project, className }: TGetMod) {
 		</div>
 	);
 }
-function ProjectIndex(index: number) {
-	return index - MinecraftModsJson.slice(0, index).filter((value) => 'link' in value).length;
-}
-export default async function Page() {
-	const projectId = MinecraftModsJson.filter((value) => 'Id' in value).map((value) => value.Id);
-	const projects: unknown = await GetFromAPI(
-		`projects?ids=${encodeURIComponent(JSON.stringify(projectId))}`
-	);
-	const parsedProjects = projectSchema.safeParse(projects);
-	if (!parsedProjects.success) {
-		return false;
-	}
-	const { data } = parsedProjects;
 
-	const projectMap = data.reduce((accumulator: Record<string, TProject>, project: TProject) => {
-		accumulator[project.id] = project;
-		return accumulator;
-	}, {});
-	const sortedProjects = projectId
-		.filter((id): id is string => id !== undefined)
-		.map((id: string) => projectMap[id]);
+function DoneCategoryWrapper({ className, children }: { className: string; children: ReactNode }) {
+	return (
+		<div className='flex gap-2'>
+			<div className={cn('size-6 shrink-0 rounded-md bg-primary-500', className)}></div>
+			<p className='max-w-none'>{children}</p>
+		</div>
+	);
+}
+
+function ProjectIndex(index: number) {
+	return (
+		index -
+		MinecraftModsJson.slice(0, index).reduce(
+			(accumulator, currentValue) => accumulator + ('link' in currentValue ? 1 : 0),
+			0
+		)
+	);
+}
+
+export default async function Page() {
+	const sortedProjects = await Projects();
+	if (!sortedProjects) {
+		return;
+	}
 
 	return (
 		<section className='grid gap-8 py-8 pt-16'>
