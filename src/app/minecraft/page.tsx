@@ -20,7 +20,7 @@ const StrToColor = Object.freeze({
 
 async function Projects() {
 	const projectIds = MinecraftModsJson.map((value) => value.Id).filter(
-		(id) => typeof id === 'string'
+		(id): id is string => typeof id === 'string'
 	);
 	if (projectIds.length === 0) {
 		return false;
