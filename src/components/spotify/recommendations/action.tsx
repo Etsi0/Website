@@ -3,12 +3,6 @@ import { z } from 'zod';
 
 import { GetRecommendations, GetSongs, GetSongsFromPlaylist } from '@/api/spotify/main';
 
-type TInitialStats = {
-	[x: string]: number | { [x: string]: number };
-} & {
-	artists: { [x: string]: number };
-};
-
 const playlistDataSchema = z.object({
 	tracks: z.object({
 		items: z.array(
@@ -49,7 +43,6 @@ const songDataSchema = z.object({
 		})
 	),
 });
-
 const recommendationsDataSchema = z.object({
 	tracks: z.array(
 		z.object({
@@ -77,7 +70,7 @@ const recommendationsDataSchema = z.object({
 			external_urls: z.object({
 				spotify: z.string(),
 			}),
-			preview_url: z.string() || z.null(),
+			preview_url: z.string().nullable(),
 			name: z.string(),
 		})
 	),
@@ -86,7 +79,12 @@ const recommendationsDataSchema = z.object({
 export async function CreateRecommendations(formData: FormData) {
 	const countryCode = formData.get('countryCode');
 	const playlist = formData.get('playlist');
-	if (typeof countryCode !== 'string' || typeof playlist !== 'string') {
+	const limit = formData.get('limit');
+	if (
+		typeof countryCode !== 'string' ||
+		typeof playlist !== 'string' ||
+		typeof limit !== 'string'
+	) {
 		return false;
 	}
 
@@ -95,8 +93,8 @@ export async function CreateRecommendations(formData: FormData) {
 	if (!parsedPlaylistData.success) {
 		return false;
 	}
-	const { tracks } = parsedPlaylistData.data;
-	const songIds = tracks.items.map((item) => item.track.id);
+	const { items } = parsedPlaylistData.data.tracks;
+	const songIds = items.map((item) => item.track.id);
 
 	const songsData: unknown = await GetSongs(songIds.join(','));
 	const parsedSongsData = songDataSchema.safeParse(songsData);
@@ -106,8 +104,7 @@ export async function CreateRecommendations(formData: FormData) {
 	}
 	const { audio_features } = parsedSongsData.data;
 
-	const initialStats: TInitialStats = {
-		artists: {},
+	const initialStats: z.infer<typeof songDataSchema>['audio_features'][number] = {
 		acousticness: 0,
 		danceability: 0,
 		duration_ms: 0,
@@ -121,42 +118,43 @@ export async function CreateRecommendations(formData: FormData) {
 		tempo: 0,
 		time_signature: 0,
 		valence: 0,
-		total: 0,
 	};
 
-	const songsList = audio_features.reduce((accumulator, currentSong) => {
-		for (const key in currentSong) {
-			const keyWithTypes = key as keyof typeof currentSong;
-			if (
-				typeof accumulator[keyWithTypes] === 'number' &&
-				typeof currentSong[keyWithTypes] === 'number'
-			) {
-				accumulator[keyWithTypes] =
-					(accumulator[keyWithTypes] as number) + (currentSong[keyWithTypes] as number);
-			}
+	const songsList = audio_features.reduce((accumulator, currentValue) => {
+		for (const key in currentValue) {
+			const keyWithTypes = key as keyof typeof currentValue;
+			accumulator[keyWithTypes] += currentValue[keyWithTypes];
 		}
 		return accumulator;
 	}, initialStats);
-	tracks.items.forEach((item) => {
-		item.track.artists.forEach((artist) => {
-			songsList.artists[artist.id] = (songsList.artists[artist.id] || 0) + 1;
-		});
-	});
-	songsList.total = audio_features.length;
+
+	const artists = items.reduce(
+		(accumulator, currentValue) => {
+			currentValue.track.artists.forEach((artist) => {
+				accumulator[artist.id] = (accumulator[artist.id] || 0) + 1;
+			});
+			return accumulator;
+		},
+		{} as { [x: string]: number }
+	);
 
 	const recommendationsData: unknown = await GetRecommendations(
-		parseInt(formData.get('limit') as string),
-		formData.get('countryCode') as string,
-		songsList
+		artists,
+		countryCode,
+		songsList,
+		parseInt(limit),
+		audio_features.length
 	);
 	const parsedRecommendationsData = recommendationsDataSchema.safeParse(recommendationsData);
 	if (!parsedRecommendationsData.success) {
 		return false;
 	}
-	return parsedRecommendationsData.data.tracks.map((song) => {
+	const { tracks } = parsedRecommendationsData.data;
+
+	return tracks.map((song) => {
 		return {
 			image: song.album.images[1],
-			previewUrl: song.preview_url,
+			previewUrl: song.preview_url || '',
 			track: {
 				name: song.name,
 				link: song.external_urls.spotify,

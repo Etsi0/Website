@@ -1,11 +1,16 @@
 'use client';
-import { useSongJsonContext } from '@/context/songsContext';
-import { CreateRecommendations } from '@/components/spotify/recommendations/action';
 import { useEffect, useState } from 'react';
+import { z } from 'zod';
 import { cn } from '@/lib/util';
+import { useSongJsonContext } from '@/context/songsContext';
+import { countriesDataSchema } from '@/api/countries';
+import { CreateRecommendations } from '@/components/spotify/recommendations/action';
 
-export default function SubmitForm(props: any) {
-	const { countryCodes } = props;
+export default function SubmitForm({
+	countryCodes,
+}: {
+	countryCodes: z.infer<typeof countriesDataSchema>[1];
+}) {
 	const { songJson, setSongJson } = useSongJsonContext();
 
 	// indicates if you are waiting for a response from the server
@@ -41,7 +46,7 @@ export default function SubmitForm(props: any) {
 						required
 					>
 						{countryCodes &&
-							countryCodes[1].map((country: any, index: number) => (
+							countryCodes.map((country: any, index: number) => (
 								<option key={index} value={country.iso2Code}>
 									{country.name}
 								</option>

@@ -5,6 +5,9 @@ import SubmitForm from '@/components/spotify/recommendations/submitForm';
 
 export default async function Page() {
 	const countryCodes = await GetCountryCodes();
+	if (!countryCodes) {
+		return <>Something went wrong, please contact admin</>;
+	}
 
 	return (
 		<>

@@ -1,3 +1,25 @@
+import { z } from 'zod';
+
+const songDataSchema = z.object({
+	audio_features: z.array(
+		z.object({
+			acousticness: z.number(),
+			danceability: z.number(),
+			duration_ms: z.number(),
+			energy: z.number(),
+			instrumentalness: z.number(),
+			key: z.number(),
+			liveness: z.number(),
+			loudness: z.number(),
+			mode: z.number(),
+			speechiness: z.number(),
+			tempo: z.number(),
+			time_signature: z.number(),
+			valence: z.number(),
+		})
+	),
+});
+
 async function GetToken() {
 	const authString = `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`;
 	const authBase64 = Buffer.from(authString).toString('base64');
@@ -66,7 +88,6 @@ export async function GetSongsFromPlaylist(countryCode: string, playlist: string
 
 export async function GetSongs(song: string) {
 	const response = await GetFromAPI(`https://api.spotify.com/v1/audio-features?ids=${song}`);
-
 	if (!response) {
 		return false;
 	}
@@ -74,43 +95,38 @@ export async function GetSongs(song: string) {
 	return await response;
 }
 
-type TInitialStats = {
-	[x: string]: number | { [x: string]: number };
-} & {
-	artists: { [x: string]: number };
-};
-
-export async function GetRecommendations(limit: number, countryCode: string, data: TInitialStats) {
+export async function GetRecommendations(
+	artists: { [x: string]: number },
+	countryCode: string,
+	data: z.infer<typeof songDataSchema>['audio_features'][number],
+	limit: number,
+	total: number
+) {
 	// takes the 5 artists that comes up most often in the playlist
-	const topFiveArtists = Object.entries(data.artists)
+	const topFiveArtists = Object.entries(artists)
 		.sort((a: [string, number], b: [string, number]) => b[1] - a[1])
 		.slice(0, 5)
 		.map((entry) => entry[0]);
 
 	// divides all keys by the number of songs and rounds the number if it should be a int
-	const total = data.total as number;
 	for (const key in data) {
-		if (key === 'total' || key === 'artists') {
+		const keyWithTypes = key as keyof z.infer<typeof songDataSchema>['audio_features'][number];
+		if (typeof data[keyWithTypes] !== 'number') {
 			continue;
 		}
 
-		if (typeof data[key] !== 'number') {
-			continue;
-		}
-
-		const value = data[key] as number;
+		const value = data[keyWithTypes];
 
 		if (key === 'duration_ms' || key === 'key' || key === 'mode' || key === 'time_signature') {
-			data[key] = Math.round(value / total);
+			data[keyWithTypes] = Math.round(value / total);
 		} else {
-			data[key] = parseFloat((value / total).toFixed(5));
+			data[keyWithTypes] = parseFloat((value / total).toFixed(5));
 		}
 	}
 
 	const response = await GetFromAPI(
 		`https://api.spotify.com/v1/recommendations?limit=${limit}&market=${countryCode}&seed_artists=${topFiveArtists.join(',')}&target_acousticness=${data.acousticness}&target_danceability=${data.danceability}&target_duration_ms=${data.duration_ms}&target_energy=${data.energy}&target_instrumentalness=${data.instrumentalness}&target_key=${data.key}&target_liveness=${data.liveness}&target_loudness=${data.loudness}&target_mode=${data.mode}&target_speechiness=${data.speechiness}&target_tempo=${data.tempo}&target_time_signature=${data.time_signature}&target_valence=${data.valence}`
 	);
-
 	if (!response) {
 		return false;
 	}
