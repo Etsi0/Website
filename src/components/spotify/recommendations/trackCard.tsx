@@ -79,7 +79,7 @@ export function TrackCard({
 									setTransform(diff);
 									setTimeout(() => {
 										setTransform(0);
-									}, calculatedDuration * 3.333);
+									}, calculatedDuration + 3333);
 								}, 0);
 							}}
 							style={{
