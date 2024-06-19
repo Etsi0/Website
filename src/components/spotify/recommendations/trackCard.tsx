@@ -71,11 +71,16 @@ export function TrackCard({
 							onMouseOver={(event) => {
 								const target = event.target as HTMLAnchorElement;
 								const diff = target.scrollWidth - target.clientWidth;
-								setDuration(diff * 10 * 1.666);
-								setTransform(diff);
+								const calculatedDuration = diff * 10 * 1.666;
+
+								setDuration(calculatedDuration);
+
 								setTimeout(() => {
-									setTransform(0);
-								}, duration * 3.333);
+									setTransform(diff);
+									setTimeout(() => {
+										setTransform(0);
+									}, calculatedDuration * 3.333);
+								}, 0);
 							}}
 							style={{
 								transform: `translateX(-${transform}px)`,
