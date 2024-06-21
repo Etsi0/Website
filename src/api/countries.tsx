@@ -1,17 +1,17 @@
 import { z } from 'zod';
 
-export const countriesDataSchema = z.tuple([
-	z.object({}),
-	z.array(
-		z.object({
-			iso2Code: z.string(),
-			name: z.string(),
-		})
-	),
-]);
+export const countriesDataSchema = z.array(
+	z.object({
+		name: z.object({
+			common: z.string(),
+		}),
+		cca2: z.string(),
+		flag: z.string(),
+	})
+);
 
 export async function GetCountryCodes() {
-	const response = await fetch('http://api.worldbank.org/v2/country?format=json&per_page=999', {
+	const response = await fetch('https://restcountries.com/v3.1/all', {
 		next: {
 			revalidate: 3600,
 		},
@@ -24,9 +24,9 @@ export async function GetCountryCodes() {
 			return false;
 		}
 		const { data } = parsedCountriesData;
-		const sortedData = data[1].sort((a, b) => {
-			if (a.name < b.name) return -1;
-			if (a.name > b.name) return 1;
+		const sortedData = data.sort((a, b) => {
+			if (a.name.common < b.name.common) return -1;
+			if (a.name.common > b.name.common) return 1;
 			return 0;
 		});
 		return sortedData;

@@ -633,6 +633,10 @@ video {
   pointer-events: auto;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .fixed {
   position: fixed;
 }
@@ -1383,6 +1387,10 @@ video {
 .text-text-700 {
   --tw-text-opacity: 1;
   color: hsl(var(--text-color-700) / var(--tw-text-opacity));
+}
+
+.opacity-0 {
+  opacity: 0;
 }
 
 .shadow-\[0_0_0_100vmax_hsl\(var\(--body-color-50\)\)\] {

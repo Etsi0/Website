@@ -2,6 +2,7 @@ import { GetCountryCodes } from '@/api/countries';
 import SongsContext from '@/context/songsContext';
 import SongCards from '@/components/spotify/recommendations/songCards';
 import SubmitForm from '@/components/spotify/recommendations/submitForm';
+import { GetIPInfo } from '@/api/ip';
 
 export default async function Page() {
 	const countryCodes = await GetCountryCodes();

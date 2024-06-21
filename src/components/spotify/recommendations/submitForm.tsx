@@ -5,17 +5,40 @@ import { cn } from '@/lib/util';
 import { useSongJsonContext } from '@/context/songsContext';
 import { countriesDataSchema } from '@/api/countries';
 import { CreateRecommendations } from '@/components/spotify/recommendations/action';
+import { GetIPInfo, ipInfoSchema } from '@/api/ip';
 
 export default function SubmitForm({
 	countryCodes,
 }: {
-	countryCodes: z.infer<typeof countriesDataSchema>[1];
+	countryCodes: z.infer<typeof countriesDataSchema>;
 }) {
 	const { songJson, setSongJson } = useSongJsonContext();
 
-	// indicates if you are waiting for a response from the server
+	const [isMounted, setIsMounted] = useState<boolean>(false);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [defaultCountry, setDefaultCountry] = useState<z.infer<typeof ipInfoSchema> | null>(null);
+
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const data = await GetIPInfo();
+				if (data) {
+					setDefaultCountry(data);
+				}
+			} catch (error) {
+				console.error('Error fetching IP info:', error);
+			}
+			setIsMounted(true);
+		}
+
+		fetchData();
+	}, []);
+
 	useEffect(() => {}, [isLoading]);
+
+	if (!isMounted) {
+		return;
+	}
 
 	return (
 		<>
@@ -39,43 +62,44 @@ export default function SubmitForm({
 				<div className='basis-1/6'>
 					<label htmlFor='countryCode'>Market</label>
 					<select
-						id='countryCode'
 						className='w-full !min-w-0 rounded-md p-1'
+						defaultValue={
+							defaultCountry?.countryCode ? defaultCountry?.countryCode : 'SE'
+						}
+						id='countryCode'
 						name='countryCode'
-						defaultValue={'SE'}
 						required
 					>
-						{countryCodes &&
-							countryCodes.map((country: any, index: number) => (
-								<option key={index} value={country.iso2Code}>
-									{country.name}
-								</option>
-							))}
+						{countryCodes.map((country, index) => (
+							<option key={index} value={country.cca2}>
+								{country.name.common} {country.flag}
+							</option>
+						))}
 					</select>
 				</div>
 				<div className='grid basis-2/6'>
 					<label htmlFor='playlist'>Playlist</label>
 					<input
-						id='playlist'
 						className='!min-w-0 rounded-md p-1'
-						type='text'
+						id='playlist'
 						name='playlist'
 						placeholder='https://open.spotify.com/playlist/4acywhPUSvtCIOd1FnwOA7?si=9248199106f446de'
 						required
+						type='text'
 					/>
 				</div>
 				<div className='grid basis-2/6'>
 					<label htmlFor='limit'>Limit</label>
 					<input
-						id='limit'
 						className='!min-w-0 rounded-md p-1'
-						type='number'
+						defaultValue={20}
+						id='limit'
+						max={100}
+						min={0}
 						name='limit'
 						placeholder='limit'
-						min={0}
-						defaultValue={20}
-						max={100}
 						required
+						type='number'
 					/>
 				</div>
 				<button
@@ -83,8 +107,8 @@ export default function SubmitForm({
 						'my-2 basis-1/6 rounded-md bg-green-500 p-1 text-slate-50 lg:my-0',
 						isLoading && 'animate-pulse bg-slate-500 text-slate-300 '
 					)}
-					type='submit'
 					disabled={isLoading}
+					type='submit'
 				>
 					Explore
 				</button>
