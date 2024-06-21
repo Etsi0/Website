@@ -20,13 +20,17 @@ export default function SubmitForm({
 
 	useEffect(() => {
 		async function fetchData() {
+			const response = await fetch('http://ip-api.com/json/');
 			try {
-				const data = await GetIPInfo();
-				if (data) {
-					setDefaultCountry(data);
+				const data = await response.json();
+				const parsedData = ipInfoSchema.safeParse(data);
+				if (!parsedData.success) {
+					return false;
 				}
-			} catch (error) {
-				console.error('Error fetching IP info:', error);
+
+				setDefaultCountry(parsedData.data);
+			} catch {
+				return false;
 			}
 			setIsMounted(true);
 		}
