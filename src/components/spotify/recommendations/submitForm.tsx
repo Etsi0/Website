@@ -5,7 +5,6 @@ import { cn } from '@/lib/util';
 import { useSongJsonContext } from '@/context/songsContext';
 import { countriesDataSchema } from '@/api/countries';
 import { CreateRecommendations } from '@/components/spotify/recommendations/action';
-import { GetIPInfo, ipInfoSchema } from '@/api/ip';
 
 export default function SubmitForm({
 	countryCodes,
@@ -13,36 +12,9 @@ export default function SubmitForm({
 	countryCodes: z.infer<typeof countriesDataSchema>;
 }) {
 	const { songJson, setSongJson } = useSongJsonContext();
-
-	const [isMounted, setIsMounted] = useState<boolean>(false);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [defaultCountry, setDefaultCountry] = useState<z.infer<typeof ipInfoSchema> | null>(null);
-
-	useEffect(() => {
-		async function fetchData() {
-			const response = await fetch('http://ip-api.com/json/');
-			try {
-				const data = await response.json();
-				const parsedData = ipInfoSchema.safeParse(data);
-				if (!parsedData.success) {
-					return false;
-				}
-
-				setDefaultCountry(parsedData.data);
-			} catch {
-				return false;
-			}
-			setIsMounted(true);
-		}
-
-		fetchData();
-	}, []);
 
 	useEffect(() => {}, [isLoading]);
-
-	if (!isMounted) {
-		return;
-	}
 
 	return (
 		<>
@@ -67,9 +39,7 @@ export default function SubmitForm({
 					<label htmlFor='countryCode'>Market</label>
 					<select
 						className='w-full !min-w-0 rounded-md p-1'
-						defaultValue={
-							defaultCountry?.countryCode ? defaultCountry?.countryCode : 'SE'
-						}
+						defaultValue='SE'
 						id='countryCode'
 						name='countryCode'
 						required
