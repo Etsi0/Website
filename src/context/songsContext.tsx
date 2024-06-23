@@ -1,22 +1,6 @@
 'use client';
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react';
-
-type TNameLink = {
-	name: string;
-	link: string;
-};
-
-type TSongs = {
-	image: {
-		height: number;
-		url: string;
-		width: number;
-	};
-	previewUrl: string;
-	track: TNameLink;
-	artists: TNameLink[];
-	album: TNameLink;
-}[];
+import { TSongs } from '@/types/spotify/recommendations/main';
 
 type TSongState = {
 	songJson: TSongs | null;

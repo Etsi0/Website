@@ -1,24 +1,5 @@
 import { z } from 'zod';
-
-const songDataSchema = z.object({
-	audio_features: z.array(
-		z.object({
-			acousticness: z.number(),
-			danceability: z.number(),
-			duration_ms: z.number(),
-			energy: z.number(),
-			instrumentalness: z.number(),
-			key: z.number(),
-			liveness: z.number(),
-			loudness: z.number(),
-			mode: z.number(),
-			speechiness: z.number(),
-			tempo: z.number(),
-			time_signature: z.number(),
-			valence: z.number(),
-		})
-	),
-});
+import { schemaAudioFeatures } from '@/schema/spotify/recommendations/main';
 
 async function GetToken() {
 	const authString = `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`;
@@ -68,7 +49,7 @@ async function GetFromAPI(href: string) {
 	}
 }
 
-export async function GetSongsFromPlaylist(countryCode: string, playlist: string) {
+export async function GetPlaylist(countryCode: string, playlist: string) {
 	const regex = RegExp('open.spotify.com/playlist/([^?]+)');
 	const playlist_id = regex.exec(playlist);
 	if (!playlist_id || !playlist_id[1]) {
@@ -86,8 +67,10 @@ export async function GetSongsFromPlaylist(countryCode: string, playlist: string
 	return await response;
 }
 
-export async function GetSongs(song: string) {
-	const response = await GetFromAPI(`https://api.spotify.com/v1/audio-features?ids=${song}`);
+export async function GetAudioFeatures(ids: string[]) {
+	const response = await GetFromAPI(
+		`https://api.spotify.com/v1/audio-features?ids=${ids.join(',')}`
+	);
 	if (!response) {
 		return false;
 	}
@@ -98,23 +81,19 @@ export async function GetSongs(song: string) {
 export async function GetRecommendations(
 	artists: { [x: string]: number },
 	countryCode: string,
-	data: z.infer<typeof songDataSchema>['audio_features'][number],
+	data: z.infer<typeof schemaAudioFeatures>['audio_features'][number],
 	limit: number,
 	total: number
 ) {
-	// takes the 5 artists that comes up most often in the playlist
 	const topFiveArtists = Object.entries(artists)
-		.sort((a: [string, number], b: [string, number]) => b[1] - a[1])
+		.sort((a, b) => b[1] - a[1])
 		.slice(0, 5)
-		.map((entry) => entry[0]);
+		.map((entry) => entry[0]); // removes the number of times the artist appears
 
-	// divides all keys by the number of songs and rounds the number if it should be a int
 	for (const key in data) {
-		const keyWithTypes = key as keyof z.infer<typeof songDataSchema>['audio_features'][number];
-		if (typeof data[keyWithTypes] !== 'number') {
-			continue;
-		}
-
+		const keyWithTypes = key as keyof z.infer<
+			typeof schemaAudioFeatures
+		>['audio_features'][number];
 		const value = data[keyWithTypes];
 
 		if (key === 'duration_ms' || key === 'key' || key === 'mode' || key === 'time_signature') {

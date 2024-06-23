@@ -1,9 +1,6 @@
 'use client';
-import { Fragment, useState } from 'react';
-import Image from 'next/image';
-
+import { useState } from 'react';
 import { useSongJsonContext } from '@/context/songsContext';
-import { cn } from '@/lib/util';
 import { TrackCard } from './trackCard';
 
 export default function SongCards() {

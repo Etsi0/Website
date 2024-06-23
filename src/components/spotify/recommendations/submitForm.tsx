@@ -76,16 +76,20 @@ export default function SubmitForm({
 						type='number'
 					/>
 				</div>
-				<button
-					className={cn(
-						'my-2 basis-1/6 rounded-md bg-green-500 p-1 text-slate-50 lg:my-0',
-						isLoading && 'animate-pulse bg-slate-500 text-slate-300 '
-					)}
-					disabled={isLoading}
-					type='submit'
-				>
-					Explore
-				</button>
+				<div className='grid basis-1/6'>
+					<label htmlFor='submit'>Submit</label>
+					<button
+						className={cn(
+							'rounded-md bg-green-500 p-1 text-slate-50',
+							isLoading && 'animate-pulse bg-slate-500 text-slate-300'
+						)}
+						disabled={isLoading}
+						id='submit'
+						type='submit'
+					>
+						Explore
+					</button>
+				</div>
 			</form>
 		</>
 	);

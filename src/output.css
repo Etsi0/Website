@@ -692,12 +692,36 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .mb-16 {
   margin-bottom: 4rem;
 }
 
 .mt-16 {
   margin-top: 4rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
 .line-clamp-1 {
@@ -1802,6 +1826,11 @@ button[aria-expanded='true'] .path2 {
 .after\:top-0::after {
   content: var(--tw-content);
   top: 0px;
+}
+
+.after\:left-0::after {
+  content: var(--tw-content);
+  left: 0px;
 }
 
 .after\:h-full::after {

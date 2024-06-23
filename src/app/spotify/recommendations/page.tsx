@@ -1,6 +1,6 @@
 import { GetCountryCodes } from '@/api/countries';
 import SongsContext from '@/context/songsContext';
-import SongCards from '@/components/spotify/recommendations/songCards';
+import TrackCards from '@/components/spotify/recommendations/trackCards';
 import SubmitForm from '@/components/spotify/recommendations/submitForm';
 
 export default async function Page() {
@@ -16,11 +16,14 @@ export default async function Page() {
 					<h1 className='text-[clamp(1.5rem,_calc(35vw_-_128px),_3rem)]'>
 						Spotify Recommendations
 					</h1>
-					<p>Your playlist must be public to be able to input it</p>
+					<p>
+						To allow the application to scan your playlist, set it to public. If you are
+						unable to play the track, it is because there is no preview track.
+					</p>
 				</div>
 				<SongsContext>
 					<SubmitForm countryCodes={countryCodes} />
-					<SongCards />
+					<TrackCards />
 				</SongsContext>
 			</section>
 		</>
