@@ -48,7 +48,13 @@ export default function EmblaCarousel({ AutoplayOptions, options, slides, type }
 		}
 	}, [isMounted]);
 
-	if (!isMounted) return;
+	if (!isMounted) {
+		return (
+			<>
+				<div className='aspect-[8/3] w-full animate-pulse rounded-lg bg-slate-500'></div>
+			</>
+		);
+	}
 
 	return (
 		<>
@@ -91,7 +97,6 @@ export default function EmblaCarousel({ AutoplayOptions, options, slides, type }
 			<div
 				className={cn(
 					'flex justify-center gap-3',
-					type === 'Dot' && 'h-4',
 					type === 'Preview' && 'aspect-[19/3] w-1/2'
 				)}
 			>
@@ -102,7 +107,7 @@ export default function EmblaCarousel({ AutoplayOptions, options, slides, type }
 								key={index}
 								onClick={() => handleClick(index)}
 								className={cn(
-									'dark:bg-body-700 dark:ring-offset-body-900 aspect-square h-full rounded-full bg-body-200 ring-primary-500 ring-offset-2 ring-offset-body-50 focus-visible:outline-none focus-visible:ring-2',
+									'aspect-square h-4 rounded-full bg-body-200 ring-primary-500 ring-offset-2 ring-offset-body-50 focus-visible:outline-none focus-visible:ring-2',
 									index !== selectedIndex || 'bg-body-500 dark:bg-body-500'
 								)}
 							/>
