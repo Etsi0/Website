@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import { Download } from '@/components/SVGs';
-import StudentCapSelfie from '@/../public/img/production/student cap selfie/selfie.png';
+import StudentCapSelfie from '@/../public/img/production/student cap selfie/selfie.webp';
 
 export function About() {
 	return (

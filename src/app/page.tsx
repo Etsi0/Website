@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { Home } from '@/components/Home/sections/home';
+import { Hero } from '@/components/Home/sections/hero';
 import { About } from '@/components/Home/sections/about';
 import { Skills } from '@/components/Home/sections/skills';
 import { Portfolio } from '@/components/Home/sections/portfolio';
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default async function App() {
 	return (
 		<>
-			<Home />
+			<Hero />
 			<About />
 			<Skills />
 			<Portfolio />
