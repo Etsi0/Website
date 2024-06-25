@@ -4,13 +4,18 @@ import { useEffect, useState } from 'react';
 
 type ITypeText = {
 	textArray: string[];
-	delay?: number;
-	speed?: number;
+	delay: number;
+	speed: number;
 };
 export function TypingText({ textArray, delay, speed }: ITypeText) {
+	const [isMounted, setIsMounted] = useState<boolean>(false);
 	const [text, setText] = useState<string>('');
 	const [index, setIndex] = useState<number>(0);
 	const [className, setClassName] = useState<string>('');
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 
 	useEffect(() => {
 		const currentWord = textArray[index % textArray.length];
@@ -20,10 +25,10 @@ export function TypingText({ textArray, delay, speed }: ITypeText) {
 			if (charIndex < currentWord.length) {
 				setClassName('[animation-play-state:paused] [animation-iteration-count:0]');
 				setText(currentWord.slice(0, ++charIndex));
-				setTimeout(Add, speed || 100);
+				setTimeout(Add, speed);
 			} else {
 				setClassName('');
-				setTimeout(Del, delay || 1000);
+				setTimeout(Del, charIndex * delay);
 			}
 		};
 		const Del = () => {
@@ -31,7 +36,7 @@ export function TypingText({ textArray, delay, speed }: ITypeText) {
 				setClassName('[animation-play-state:paused] [animation-iteration-count:0]');
 				setText((currentText) => currentText.slice(0, -1));
 				charIndex--;
-				setTimeout(Del, speed || 100);
+				setTimeout(Del, speed);
 			} else {
 				setClassName('');
 				setIndex(index + 1);
@@ -40,6 +45,10 @@ export function TypingText({ textArray, delay, speed }: ITypeText) {
 
 		Add();
 	}, [index, delay, speed, textArray]);
+
+	if (!isMounted) {
+		return textArray[0];
+	}
 
 	return (
 		<>
