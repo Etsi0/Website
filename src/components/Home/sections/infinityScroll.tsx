@@ -6,6 +6,14 @@ import Image from 'next/image';
 import Icon from '@/../public/img/production/icon.png';
 
 /*==================================================
+	Image
+==================================================*/
+const imageHeight = 100;
+function GetWidth(height: number, width: number): number {
+	return (height / width) * imageHeight;
+}
+
+/*==================================================
 	Array
 ==================================================*/
 const array = [Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon];
@@ -24,13 +32,8 @@ const ifJsIsDisabled = (index: number) =>
 	`calc((max(${arrayWidth}px, 100%) / ${array.length}) * ${index})`;
 
 /*==================================================
-	Image
+	Main
 ==================================================*/
-const imageHeight = 100;
-function GetWidth(height: number, width: number): number {
-	return (height / width) * imageHeight;
-}
-
 export function InfinityScroll() {
 	const [isMounted, setIsMounted] = useState<boolean>(false);
 	const refContainer = useRef<HTMLElement>(null);
