@@ -3,12 +3,15 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
 		"build": "next build",
+		"dev": "next dev",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"tm": "npx tailwindcss -i ./src/app.css -o ./src/output.css --minify",
+		"tw": "npx tailwindcss -i ./src/app.css -o ./src/output.css --watch"
 	},
 	"dependencies": {
+		"@gsap/react": "^2.1.1",
 		"@types/react-dom": "^18.2.18",
 		"@vercel/analytics": "^1.2.2",
 		"@vercel/postgres": "^0.8.0",
@@ -17,6 +20,7 @@
 		"embla-carousel": "^8.0.0",
 		"embla-carousel-autoplay": "^8.0.0",
 		"embla-carousel-react": "^8.0.0",
+		"gsap": "^3.12.5",
 		"next": "^14.1.1",
 		"next-mdx-remote": "^5.0.0",
 		"react": "^18",

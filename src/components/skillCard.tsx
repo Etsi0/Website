@@ -22,6 +22,9 @@ export default function App({ SVG, className, title, description, modalClassName
 		}
 
 		isOpen ? dialogRef.current.showModal() : dialogRef.current.close();
+
+		const root = document.documentElement;
+		root.classList.toggle('overflow-hidden', isOpen);
 	}, [dialogRef, isOpen, modalClassName]);
 
 	const Component = SvgList[SVG];

@@ -24,17 +24,18 @@ export function About() {
 							placeholder='blur'
 						/>
 					</div>
-					<div className='flex flex-col items-start justify-center gap-3'>
+					<div className='my-auto space-y-3'>
+						<h3>Working With Passion</h3>
 						<p>
-							Hi there! I recently completed my high school engineering degree and am
-							currently enhancing my skills through Harvard University{"'"}s CS50x, an
-							introduction to computer science and programming. A two-time winner of
-							the NTI{"'"}s Game On competition, my commitment to technology extends
-							into my free time where I enjoy gaming and programming. I am passionate
-							about using my knowledge to create innovative digital solutions.
+							Hi there! I recently completed my high school engineering degree and
+							Harvard University{"'"}s CS50x, an introduction to computer science and
+							programming. A two-time winner of the NTI{"'"}s Game On competition, my
+							commitment to technology extends into my free time where I enjoy gaming
+							and programming. I am passionate about using my knowledge to create
+							innovative digital solutions.
 						</p>
 						<a
-							className='group space-x-1 rounded-md bg-primary-500 px-6 py-3 text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500'
+							className='group inline-block space-x-1 rounded-md bg-primary-500 px-6 py-3 text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500'
 							href='/Albin_Karlsson_CV.pdf'
 							download="Albin Karlsson's CV"
 							target='_blank'
