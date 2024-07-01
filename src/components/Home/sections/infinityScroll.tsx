@@ -25,7 +25,7 @@ const arrayWidth = array.reduce((accumulator, currentValue) => {
 /*==================================================
 	Animation
 ==================================================*/
-const duration = 60;
+const duration = array.length * 10;
 const AnimationDelay = (index: number) =>
 	(duration / array.length) * (array.length - (index + 1)) * -1;
 const ifJsIsDisabled = (index: number) =>
@@ -48,7 +48,7 @@ export function InfinityScroll() {
 			gsap.fromTo(
 				`.horizontalScroll-${index}`,
 				{
-					x: refContainer.current?.clientWidth,
+					x: Math.max(arrayWidth, refContainer.current?.clientWidth || 0),
 				},
 				{
 					ease: 'none',
@@ -79,6 +79,7 @@ export function InfinityScroll() {
 		<>
 			<section
 				className='my-12 bg-body-50 py-4 shadow-[0_0_0_100vmax_hsl(var(--body-color-50))] [clip-path:inset(0_-100vmax)] dark:bg-body-200 dark:shadow-[0_0_0_100vmax_hsl(var(--body-color-200))]'
+				id='experience'
 				ref={refContainer}
 			>
 				<div className='relative h-[100px] overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_25px,_black_calc(100%-25px),transparent_100%)]'>

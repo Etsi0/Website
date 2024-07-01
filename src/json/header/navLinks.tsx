@@ -4,6 +4,10 @@ export const navLinkJson = [
 		name: 'Home',
 	},
 	{
+		path: '/#experience',
+		name: 'Experience',
+	},
+	{
 		path: '/#about',
 		name: 'About',
 	},
