@@ -1,20 +1,39 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import Icon from '@/../public/img/production/icon.png';
 
+/*==================================================
+	Array
+==================================================*/
 const array = [Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon];
-const duration = 60;
+const arrayWidth = array.reduce((accumulator, currentValue) => {
+	accumulator += GetWidth(currentValue.height, currentValue.width);
+	return accumulator;
+}, 0);
 
-let arrayLen = 0;
-for (const item of array) {
-	arrayLen += (item.height / item.width) * 100;
+/*==================================================
+	Animation
+==================================================*/
+const duration = 60;
+const AnimationDelay = (index: number) =>
+	(duration / array.length) * (array.length - (index + 1)) * -1;
+const ifJsIsDisabled = (index: number) =>
+	`calc((max(${arrayWidth}px, 100%) / ${array.length}) * ${index})`;
+
+/*==================================================
+	Image
+==================================================*/
+const imageHeight = 100;
+function GetWidth(height: number, width: number): number {
+	return (height / width) * imageHeight;
 }
 
 export function InfinityScroll() {
-	const refContainer = useRef(null);
+	const [isMounted, setIsMounted] = useState<boolean>(false);
+	const refContainer = useRef<HTMLElement>(null);
 	const { contextSafe } = useGSAP({ scope: refContainer });
 
 	const onResize = contextSafe(() => {
@@ -26,14 +45,14 @@ export function InfinityScroll() {
 			gsap.fromTo(
 				`.horizontalScroll-${index}`,
 				{
-					x: Math.max(arrayLen, document.documentElement.clientWidth),
+					x: refContainer.current?.clientWidth,
 				},
 				{
 					ease: 'none',
-					delay: (duration / 8) * (8 - index) * -1,
+					delay: AnimationDelay(index),
 					duration: duration,
 					repeat: -1,
-					x: -item.width,
+					x: -GetWidth(item.height, item.width),
 				}
 			);
 		});
@@ -49,24 +68,33 @@ export function InfinityScroll() {
 		};
 	}, [onResize]);
 
+	useEffect(() => {
+		setIsMounted(true);
+	}, [setIsMounted]);
+
 	return (
 		<>
 			<section
-				className='my-12 h-[132px] bg-body-50 py-4 shadow-[0_0_0_100vmax_hsl(var(--body-color-50))] [clip-path:inset(0_-100vmax)] dark:bg-body-200 dark:shadow-[0_0_0_100vmax_hsl(var(--body-color-200))]'
+				className='my-12 bg-body-50 py-4 shadow-[0_0_0_100vmax_hsl(var(--body-color-50))] [clip-path:inset(0_-100vmax)] dark:bg-body-200 dark:shadow-[0_0_0_100vmax_hsl(var(--body-color-200))]'
 				ref={refContainer}
 			>
-				{array.map((item, index) => (
-					<Image
-						alt={`Gray scale version of a companies logo`}
-						blurDataURL={item.blurDataURL}
-						className={`horizontalScroll-${index} absolute left-0 opacity-75 grayscale`}
-						height={100}
-						key={index}
-						placeholder='blur'
-						src={item}
-						width={(item.height / item.width) * 100}
-					/>
-				))}
+				<div className='relative h-[100px] overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_25px,_black_calc(100%-25px),transparent_100%)]'>
+					{array.map((item, index) => (
+						<Image
+							alt={`Gray scale version of a companies logo`}
+							blurDataURL={item.blurDataURL}
+							className={`horizontalScroll-${index} absolute left-0 opacity-75 grayscale`}
+							height={imageHeight}
+							key={index}
+							placeholder='blur'
+							src={item}
+							style={{
+								left: !isMounted ? ifJsIsDisabled(index) : '',
+							}}
+							width={GetWidth(item.height, item.width)}
+						/>
+					))}
+				</div>
 			</section>
 		</>
 	);
