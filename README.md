@@ -5,8 +5,7 @@
 -   [Stack](#stack)
     -   [Cloudflare](#cloudflare)
     -   [Vercel](#vercel)
-    -   [Packages](#packages)
-    -   [Prettifiers](#packages)
+-   [Packages](#packages)
 
 ## Stack
 
@@ -17,18 +16,20 @@
 
 ### Vercel
 
--   web hosting
--   postgres DB
--   analytics
--   speed insights
+-   Analytics
+-   Postgres DB
+-   Speed Insights
+-   Web Hosting
 
-### Packages
+## Packages
 
--   Next.js
--   Framer Motion
--   Tailwind CSS
+-   clsx
+-   eslint
+-   gsap
+-   mdx
+-   next
+-   prettier
+-   shiki
+-   tailwind-merge
+-   tailwindcss
 
-### Prettifiers
-
--   ESLint
--   Prettier
