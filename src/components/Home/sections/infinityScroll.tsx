@@ -16,8 +16,8 @@ function GetWidth(height: number, width: number): number {
 /*==================================================
 	Array
 ==================================================*/
-const array = [Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon];
-const arrayWidth = array.reduce((accumulator, currentValue) => {
+const images = [Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon];
+const arrayWidth = images.reduce((accumulator, currentValue) => {
 	accumulator += GetWidth(currentValue.height, currentValue.width);
 	return accumulator;
 }, 0);
@@ -26,10 +26,15 @@ const arrayWidth = array.reduce((accumulator, currentValue) => {
 	Animation
 ==================================================*/
 const duration = 90;
-const AnimationDelay = (index: number) =>
-	(duration / array.length) * (array.length - (index + 1)) * -1;
-const ifJsIsDisabled = (index: number) =>
-	`calc((max(${arrayWidth}px, 100%) / ${array.length}) * ${index})`;
+function AnimationDelay(index: number): number {
+	return (duration / images.length) * (images.length - (index + 1)) * -1;
+}
+function Segment(index: number): string {
+	return `((max(${arrayWidth}px, 100%) / ${images.length}) * ${index})`;
+}
+function FallbackPosition(index: number): string {
+	return `calc(${Segment(index)} + ${Segment(1)} / ${images.length})`;
+}
 
 /*==================================================
 	Main
@@ -40,11 +45,11 @@ export function InfinityScroll() {
 	const { contextSafe } = useGSAP({ scope: refContainer });
 
 	const onResize = contextSafe(() => {
-		array.forEach((_, index) => {
+		images.forEach((_, index) => {
 			gsap.killTweensOf(`.horizontalScroll-${index}`);
 		});
 
-		array.forEach((item, index) => {
+		images.forEach((item, index) => {
 			gsap.fromTo(
 				`.horizontalScroll-${index}`,
 				{
@@ -83,7 +88,7 @@ export function InfinityScroll() {
 				ref={refContainer}
 			>
 				<div className='relative h-[100px] overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_25px,_black_calc(100%-25px),transparent_100%)]'>
-					{array.map((item, index) => (
+					{images.map((item, index) => (
 						<Image
 							alt={`Gray scale version of a companies logo`}
 							blurDataURL={item.blurDataURL}
@@ -93,7 +98,7 @@ export function InfinityScroll() {
 							placeholder='blur'
 							src={item}
 							style={{
-								left: !isMounted ? ifJsIsDisabled(index) : '',
+								left: !isMounted ? FallbackPosition(index) : '',
 							}}
 							width={GetWidth(item.height, item.width)}
 						/>
