@@ -25,7 +25,7 @@ const arrayWidth = array.reduce((accumulator, currentValue) => {
 /*==================================================
 	Animation
 ==================================================*/
-const duration = array.length * 10;
+const duration = 90;
 const AnimationDelay = (index: number) =>
 	(duration / array.length) * (array.length - (index + 1)) * -1;
 const ifJsIsDisabled = (index: number) =>
