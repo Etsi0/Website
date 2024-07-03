@@ -4,33 +4,36 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import Icon from '@/../public/img/production/icon.png';
+import Farsight from '@/../public/img/production/companies/Farsight.webp';
+import HCLTech from '@/../public/img/production/companies/HCLTech.svg';
 
 /*==================================================
 	Image
 ==================================================*/
-const imageHeight = 100;
-function GetWidth(height: number, width: number): number {
-	return (height / width) * imageHeight;
+const imageWidth = 100;
+function GetHeight(height: number, width: number): number {
+	return (height / width) * imageWidth;
 }
 
 /*==================================================
-	Array
+Array
 ==================================================*/
-const images = [Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon, Icon];
-const arrayWidth = images.reduce((accumulator, currentValue) => {
-	accumulator += GetWidth(currentValue.height, currentValue.width);
-	return accumulator;
-}, 0);
+const images = [Icon, Farsight, HCLTech, Icon, Farsight, HCLTech, Icon, Farsight, HCLTech];
+const gap = 50;
+function Position(index: number): number {
+	return (imageWidth + gap) * index;
+}
+const totalWidth = Position(images.length);
 
 /*==================================================
 	Animation
 ==================================================*/
 const duration = 90;
 function AnimationDelay(index: number): number {
-	return (duration / images.length) * (images.length - (index + 1)) * -1;
+	return ((duration * Position(images.length - 1 - index)) / totalWidth) * -1;
 }
 function Segment(index: number): string {
-	return `((max(${arrayWidth}px, 100%) / ${images.length}) * ${index})`;
+	return `((max(${totalWidth}px, 100%) * ${Position(index)}) / ${totalWidth})`;
 }
 function FallbackPosition(index: number): string {
 	return `calc(${Segment(index)} + ${Segment(1)} / ${images.length})`;
@@ -53,14 +56,14 @@ export function InfinityScroll() {
 			gsap.fromTo(
 				`.horizontalScroll-${index}`,
 				{
-					x: Math.max(arrayWidth, refContainer.current?.clientWidth || 0),
+					x: Math.max(totalWidth, refContainer.current?.clientWidth || 0),
 				},
 				{
 					ease: 'none',
 					delay: AnimationDelay(index),
 					duration: duration,
 					repeat: -1,
-					x: -GetWidth(item.height, item.width),
+					x: -imageWidth,
 				}
 			);
 		});
@@ -91,16 +94,15 @@ export function InfinityScroll() {
 					{images.map((item, index) => (
 						<Image
 							alt={`Gray scale version of a companies logo`}
-							blurDataURL={item.blurDataURL}
-							className={`horizontalScroll-${index} absolute left-0 opacity-75 grayscale`}
-							height={imageHeight}
+							className={`horizontalScroll-${index} absolute left-0 opacity-75 grayscale [&:not(:nth-child(3n_+_1))]:brightness-[1000]`}
+							height={GetHeight(item.height, item.width)}
 							key={index}
-							placeholder='blur'
 							src={item}
 							style={{
 								left: !isMounted ? FallbackPosition(index) : '',
+								top: `${(100 - GetHeight(item.height, item.width)) / 2}px`,
 							}}
-							width={GetWidth(item.height, item.width)}
+							width={imageWidth}
 						/>
 					))}
 				</div>
