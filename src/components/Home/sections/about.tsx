@@ -27,12 +27,13 @@ export function About() {
 					<div className='my-auto space-y-3'>
 						<h3>Working With Passion</h3>
 						<p>
-							Hi there! I recently completed my high school engineering degree and
-							Harvard University{"'"}s CS50x, an introduction to computer science and
-							programming. A two-time winner of the NTI{"'"}s Game On competition, my
-							commitment to technology extends into my free time where I enjoy gaming
-							and programming. I am passionate about using my knowledge to create
-							innovative digital solutions.
+							Hi there! I recently completed my upper secondary school engineering
+							degree at NTI Gymnasiet and the CS50x course from Harvard University, an
+							introduction to computer science and programming. During my time at NTI,
+							I won NTI{"'"}s Game On competition twice in a row. My passion for
+							technology extends beyond programming; in my free time, I enjoy building
+							things, gaming, and creating new programs. I am enthusiastic about using
+							my knowledge to develop innovative digital solutions.
 						</p>
 						<a
 							className='group inline-block space-x-1 rounded-md bg-primary-500 px-6 py-3 text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500'
