@@ -8,30 +8,32 @@ import Farsight from '@/../public/img/production/companies/Farsight.webp';
 import HCLTech from '@/../public/img/production/companies/HCLTech.svg';
 
 /*==================================================
-	Image
+	Settings
 ==================================================*/
+const images = [Icon, Farsight, HCLTech, Icon, Farsight, HCLTech, Icon, Farsight, HCLTech];
 const imageWidth = 100;
+const gap = 50;
+const duration = 90;
+
+/*==================================================
+	Helpers
+==================================================*/
 function GetHeight(height: number, width: number): number {
 	return (height / width) * imageWidth;
 }
-
-/*==================================================
-Array
-==================================================*/
-const images = [Icon, Farsight, HCLTech, Icon, Farsight, HCLTech, Icon, Farsight, HCLTech];
-const gap = 50;
 function Position(index: number): number {
 	return (imageWidth + gap) * index;
 }
+
 const totalWidth = Position(images.length);
 
 /*==================================================
 	Animation
 ==================================================*/
-const duration = 90;
 function AnimationDelay(index: number): number {
 	return ((duration * Position(images.length - 1 - index)) / totalWidth) * -1;
 }
+
 function Segment(index: number): string {
 	return `((max(${totalWidth}px, 100%) * ${Position(index)}) / ${totalWidth})`;
 }
