@@ -55,10 +55,10 @@ export const SkillCardJson: TSkillCardJson[] = [
 			'Familiar with version control systems like Git and SVN for effective collaboration and code management.',
 	},
 	{
-		SVG: 'Framer',
+		SVG: 'GSAP',
 		title: 'Animations',
 		description:
-			'Expertise in creating smooth, visually appealing animations and transitions using Framer Motion and CSS animations to enhance user experience.',
+			'Expertise in creating smooth, visually appealing animations and transitions using Framer Motion, GSAP and CSS animations to enhance user experience.',
 	},
 	{
 		SVG: 'UX',
