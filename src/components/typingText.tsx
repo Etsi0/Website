@@ -1,22 +1,23 @@
 'use client';
 import { cn } from '@/lib/util';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-type ITypeText = {
+type TTypeText = {
 	textArray: string[];
 	delay: number;
 	speed: number;
 };
-export function TypingText({ textArray, delay, speed }: ITypeText) {
+
+export function TypingText({ textArray, delay, speed }: TTypeText) {
+	const [className, setClassName] = useState<string>('');
+	const [index, setIndex] = useState<number>(0);
 	const [isMounted, setIsMounted] = useState<boolean>(false);
 	const [text, setText] = useState<string>('');
-	const [index, setIndex] = useState<number>(0);
-	const [className, setClassName] = useState<string>('');
+	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
-
+	/*==================================================
+		Animation
+	==================================================*/
 	useEffect(() => {
 		const currentWord = textArray[index % textArray.length];
 		let charIndex = 0;
@@ -25,10 +26,10 @@ export function TypingText({ textArray, delay, speed }: ITypeText) {
 			if (charIndex < currentWord.length) {
 				setClassName('[animation-play-state:paused] [animation-iteration-count:0]');
 				setText(currentWord.slice(0, ++charIndex));
-				setTimeout(Add, speed);
+				timeoutRef.current = setTimeout(Add, speed);
 			} else {
 				setClassName('');
-				setTimeout(Del, charIndex * delay);
+				timeoutRef.current = setTimeout(Del, charIndex * delay);
 			}
 		};
 		const Del = () => {
@@ -36,20 +37,36 @@ export function TypingText({ textArray, delay, speed }: ITypeText) {
 				setClassName('[animation-play-state:paused] [animation-iteration-count:0]');
 				setText((currentText) => currentText.slice(0, -1));
 				charIndex--;
-				setTimeout(Del, speed);
+				timeoutRef.current = setTimeout(Del, speed);
 			} else {
 				setClassName('');
-				setIndex(index + 1);
+				setIndex((current) => current + 1);
 			}
 		};
 
 		Add();
+
+		return () => {
+			if (timeoutRef.current) {
+				clearTimeout(timeoutRef.current);
+			}
+		};
 	}, [index, delay, speed, textArray]);
+
+	/*==================================================
+		IsMounted
+	==================================================*/
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 
 	if (!isMounted) {
 		return textArray[0];
 	}
 
+	/*==================================================
+		XML
+	==================================================*/
 	return (
 		<>
 			{text}
