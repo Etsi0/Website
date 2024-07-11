@@ -25,7 +25,7 @@ export const SkillCardJson: TSkillCardJson[] = [
 			'Proficiency in TypeScript for building robust and maintainable codebases, with a strong understanding of type safety and advanced JavaScript features.',
 	},
 	{
-		SVG: 'Devices',
+		SVG: 'Responsive',
 		title: 'Mobile First',
 		description:
 			'Mobile-first design workflow, ensuring that web applications are optimized for performance and usability on all devices.',

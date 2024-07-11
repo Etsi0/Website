@@ -1,10 +1,10 @@
 import { cn } from '@/lib/util';
 
-interface ISvg {
+type TSvg = {
 	className?: string;
-}
+};
 
-export function PhadoniaLogo({ className }: ISvg) {
+export function PhadoniaLogo({ className }: TSvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -19,7 +19,7 @@ export function PhadoniaLogo({ className }: ISvg) {
 		</svg>
 	);
 }
-export function CodePen({ className }: ISvg) {
+export function CodePen({ className }: TSvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -34,7 +34,7 @@ export function CodePen({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Discord({ className }: ISvg) {
+export function Discord({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
 			<path
@@ -45,7 +45,7 @@ export function Discord({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Dribbble({ className }: ISvg) {
+export function Dribbble({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -56,7 +56,7 @@ export function Dribbble({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Figma({ className }: ISvg) {
+export function Figma({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -68,7 +68,7 @@ export function Figma({ className }: ISvg) {
 		</svg>
 	);
 }
-export function GitHub({ className }: ISvg) {
+export function GitHub({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -79,7 +79,7 @@ export function GitHub({ className }: ISvg) {
 		</svg>
 	);
 }
-export function LinkedIn({ className }: ISvg) {
+export function LinkedIn({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -90,7 +90,7 @@ export function LinkedIn({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Cancel({ className }: ISvg) {
+export function Cancel({ className }: TSvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -106,7 +106,7 @@ export function Cancel({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Download({ className }: ISvg) {
+export function Download({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -117,7 +117,7 @@ export function Download({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Hamburger({ className }: ISvg) {
+export function Hamburger({ className }: TSvg) {
 	const hamburgerPathStyle = `
 		transition-[stroke-dashoffset,_stroke-dasharray]
 		duration-500
@@ -162,7 +162,7 @@ export function Hamburger({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Moon({ className }: ISvg) {
+export function Moon({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -173,7 +173,7 @@ export function Moon({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Sun({ className }: ISvg) {
+export function Sun({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -184,7 +184,7 @@ export function Sun({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Person({ className }: ISvg) {
+export function Person({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 118 270'>
 			<path
@@ -248,7 +248,7 @@ export function Person({ className }: ISvg) {
 		</svg>
 	);
 }
-export function CSS({ className }: ISvg) {
+export function CSS({ className }: TSvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -266,7 +266,7 @@ export function CSS({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Devices({ className }: ISvg) {
+export function Devices({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
 			<path
@@ -292,7 +292,7 @@ export function Devices({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Framer({ className }: ISvg) {
+export function Framer({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'>
 			<polygon
@@ -307,7 +307,7 @@ export function Framer({ className }: ISvg) {
 		</svg>
 	);
 }
-export function HTML({ className }: ISvg) {
+export function HTML({ className }: TSvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -322,7 +322,7 @@ export function HTML({ className }: ISvg) {
 		</svg>
 	);
 }
-export function React({ className }: ISvg) {
+export function React({ className }: TSvg) {
 	function ellipsePreset(transform?: string) {
 		return (
 			<ellipse
@@ -347,7 +347,7 @@ export function React({ className }: ISvg) {
 		</svg>
 	);
 }
-export function TailwindCSS({ className }: ISvg) {
+export function TailwindCSS({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 			<path
@@ -358,7 +358,7 @@ export function TailwindCSS({ className }: ISvg) {
 		</svg>
 	);
 }
-export function TypeScript({ className }: ISvg) {
+export function TypeScript({ className }: TSvg) {
 	return (
 		<svg className={cn(``, className)} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'>
 			<path
@@ -369,7 +369,7 @@ export function TypeScript({ className }: ISvg) {
 		</svg>
 	);
 }
-export function UX({ className }: ISvg) {
+export function UX({ className }: TSvg) {
 	return (
 		<svg
 			className={cn(``, className)}
@@ -387,7 +387,7 @@ export function UX({ className }: ISvg) {
 		</svg>
 	);
 }
-export function Extension({ className }: ISvg) {
+export function Extension({ className }: TSvg) {
 	return (
 		<svg className={cn('', className)} viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
 			<path
@@ -398,7 +398,7 @@ export function Extension({ className }: ISvg) {
 		</svg>
 	);
 }
-export function LeetCode({ className }: ISvg) {
+export function LeetCode({ className }: TSvg) {
 	return (
 		<svg
 			className={cn('', className)}
@@ -428,7 +428,7 @@ export function LeetCode({ className }: ISvg) {
 		</svg>
 	);
 }
-export function CSSBattle({ className }: ISvg) {
+export function CSSBattle({ className }: TSvg) {
 	return (
 		<svg
 			className={cn('', className)}
@@ -446,7 +446,7 @@ export function CSSBattle({ className }: ISvg) {
 		</svg>
 	);
 }
-export function GSAP({ className }: ISvg) {
+export function GSAP({ className }: TSvg) {
 	return (
 		<svg
 			className={cn('', className)}
@@ -464,6 +464,32 @@ export function GSAP({ className }: ISvg) {
 				d='M41.6 8.65a.55.55 0 0 1-.55.53H35.4a.68.68 0 0 1-.68-.66c0-1.65-.57-2.45-1.73-2.45-1.17 0-1.92.71-1.94 1.96-.03 1.4.76 2.67 3 4.84 2.96 2.78 4.15 5.24 4.1 8.48-.1 5.25-3.67 8.65-9.1 8.65-2.78 0-4.9-.74-6.31-2.2-1.43-1.5-2.09-3.68-1.95-6.5a.55.55 0 0 1 .55-.52h5.84a.55.55 0 0 1 .51.39c.02.06.03.13.01.2-.06 1.02.12 1.78.52 2.2.25.27.61.4 1.05.4 1.08 0 1.72-.76 1.74-2.08.02-1.15-.34-2.16-2.32-4.2-2.56-2.49-4.85-5.07-4.78-9.12.05-2.36.98-4.5 2.63-6.06A9.88 9.88 0 0 1 33.47 0c2.78.02 4.89.81 6.26 2.36 1.3 1.47 1.94 3.58 1.87 6.29ZM59.1 29.01l.03-27.93a.53.53 0 0 0-.53-.53h-8.73c-.3 0-.43.25-.51.42L36.7 28.84v.01c-.15.35.12.71.49.71h6.1c.34 0 .55-.1.66-.3l1.21-2.92c.15-.39.18-.43.6-.43h5.84c.4 0 .42.01.41.41l-.13 2.71a.52.52 0 0 0 .53.53h6.17a.52.52 0 0 0 .4-.18.46.46 0 0 0 .1-.37ZM48.27 19.7h-.13a.15.15 0 0 1-.13-.2l.05-.16 4.38-10.82a3 3 0 0 1 .13-.32c.07-.14.16-.15.19-.04.02.09-.5 11.11-.5 11.11-.05.42-.07.43-.47.47l-3.51-.04ZM71.54.55H66.9c-.24 0-.52.13-.58.42L59.86 29a.42.42 0 0 0 .1.36.57.57 0 0 0 .43.2h5.8c.3 0 .52-.15.58-.41l.7-3.18c.05-.25-.03-.44-.25-.56l-.32-.16-1-.52-1-.53-.39-.2a.19.19 0 0 1-.1-.17.2.2 0 0 1 .2-.19l3.18.01c.95 0 1.9-.06 2.83-.23C77.2 22.2 81.57 16.93 81.7 9.76 81.8 3.64 78.39.54 71.55.54Zm-1.58 16.68h-.12c-.28 0-.33-.03-.34-.04l1.84-8.09c.04-.23.04-.37-.1-.44l-2.87-1.52a.19.19 0 0 1-.1-.17.2.2 0 0 1 .2-.2h4.24c1.32.05 2.06 1.23 2.02 3.24-.06 3.5-1.72 7.1-4.77 7.22Z'
 				fill='#FFFCE1'
 			/>
+		</svg>
+	);
+}
+export function Responsive({ className }: TSvg) {
+	return (
+		<svg
+			className={cn('', className)}
+			fill='none'
+			viewBox='0 0 64 64'
+			xmlns='http://www.w3.org/2000/svg'
+		>
+			<g className='fill-current' clipPath='url(#a)' fill='#5757E0'>
+				<path d='M15.92 64H7.08a7.04 7.04 0 0 1-5-2.1A7.2 7.2 0 0 1 0 56.84V37.16c0-1.9.75-3.72 2.07-5.06a7.04 7.04 0 0 1 5-2.1h8.85c1.88 0 3.68.75 5 2.1A7.2 7.2 0 0 1 23 37.16v19.68a7.2 7.2 0 0 1-2.07 5.06 7.04 7.04 0 0 1-5 2.1ZM7.08 33.58c-.94 0-1.84.38-2.5 1.05a3.6 3.6 0 0 0-1.04 2.53v19.68c0 .95.37 1.86 1.03 2.53a3.52 3.52 0 0 0 2.5 1.05h8.85c.94 0 1.84-.38 2.5-1.05a3.6 3.6 0 0 0 1.04-2.53V37.16a3.6 3.6 0 0 0-1.03-2.53 3.52 3.52 0 0 0-2.5-1.05H7.07Z' />
+				<path d='M10.4 57.64a2 2 0 0 0 2.51-3.08 2.06 2.06 0 0 0-2.83 0 2 2 0 0 0 .31 3.08Z' />
+				<path
+					clipRule='evenodd'
+					d='M40 64a8 8 0 0 1-8-8V30a8 8 0 0 1 8-8h16a8 8 0 0 1 8 8v26a8 8 0 0 1-8 8H40Zm18.83-36.83A4 4 0 0 1 60 30v26a4 4 0 0 1-4 4H40a4 4 0 0 1-4-4V30a4 4 0 0 1 4-4h16a4 4 0 0 1 2.83 1.17Z'
+					fillRule='evenodd'
+				/>
+				<path d='M56 24V8a4 4 0 0 0-4-4H12a4 4 0 0 0-4 4v24H4V8a8 8 0 0 1 8-8h40a8 8 0 0 1 8 8v16h-4ZM22 39h11v12h-9c-1 0-2-.5-2-2s1-2 2-2h6v-4h-8v-4Z' />
+			</g>
+			<defs>
+				<clipPath id='a'>
+					<path d='M0 0h64v64H0z' fill='#fff' />
+				</clipPath>
+			</defs>
 		</svg>
 	);
 }
@@ -494,4 +520,5 @@ export const SvgList = {
 	LeetCode,
 	CSSBattle,
 	GSAP,
+	Responsive,
 };
