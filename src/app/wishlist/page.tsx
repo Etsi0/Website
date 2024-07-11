@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { db } from '@vercel/postgres';
 import type { Metadata } from 'next';
 import { z } from 'zod';
@@ -32,9 +33,15 @@ function Card({ product }: { product: z.infer<typeof schemaWishlist>[number] }) 
 				<a
 					href={product.video}
 					target='_blank'
-					className='w-full rounded-md bg-red-500 p-3 text-center text-input'
+					className='flex w-full justify-center rounded-md bg-red-500 p-3 text-input'
 				>
-					⯈
+					<Image
+						className='size-4'
+						alt='Play icon'
+						height={16}
+						src='/img/play.svg'
+						width={16}
+					/>
 				</a>
 			)}
 			{product.url && (
