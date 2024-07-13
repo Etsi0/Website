@@ -1,60 +1,80 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { cn } from '@/lib/util';
 import Image from 'next/image';
-import Icon from '@/../public/img/production/icon.png';
-import Farsight from '@/../public/img/production/companies/Farsight.webp';
-import HCLTech from '@/../public/img/production/companies/HCLTech.svg';
+import gsap from 'gsap';
 
-/*==================================================
-	Settings
-==================================================*/
-const images = [Icon, Farsight, HCLTech, Icon, Farsight, HCLTech, Icon, Farsight, HCLTech];
-const imageWidth = 100;
-const gap = 50;
-const duration = 90;
-
-/*==================================================
-	Helpers
-==================================================*/
-function GetHeight(height: number, width: number): number {
-	return (height / width) * imageWidth;
-}
-function Position(index: number): number {
-	return (imageWidth + gap) * index;
-}
-
-const totalWidth = Position(images.length);
-
-/*==================================================
-	Animation
-==================================================*/
-function AnimationDelay(index: number): number {
-	return ((duration * Position(images.length - 1 - index)) / totalWidth) * -1;
-}
-
-function Segment(index: number): string {
-	return `((max(${totalWidth}px, 100%) * ${Position(index)}) / ${totalWidth})`;
-}
-function FallbackPosition(index: number): string {
-	return `calc(${Segment(index)} + ${Segment(1)} / ${images.length})`;
-}
-
-/*==================================================
-	Main
-==================================================*/
-export function InfinityScroll() {
+/**
+ *
+ * @param className - An array with classes. index 0 is for the parent and index 1 is for all the images
+ * @param duration - How much time it should take for an item to get from one end of the container to the other one in seconds. for example, 75
+ * @param gap - How much space it should be in between images. for example, 50px
+ * @param images - All the images you want to display in the horisontal scroller
+ * @param size - The size you want the images to be. for example, 100px x 100px
+ * @returns
+ */
+export function InfinityScroll({
+	className,
+	duration,
+	gap,
+	images,
+	size,
+}: {
+	className: string[];
+	duration: number;
+	gap: number;
+	images: any[];
+	size: number;
+}) {
 	const [isMounted, setIsMounted] = useState<boolean>(false);
 	const refContainer = useRef<HTMLElement>(null);
 	const { contextSafe } = useGSAP({ scope: refContainer });
 
+	/*==================================================
+		Helpers
+	==================================================*/
+	function GetSize(height: number, width: number): { height: number; width: number } {
+		const finalHeight = (height / width) * size;
+		if (finalHeight <= size) {
+			return { height: finalHeight, width: size };
+		} else {
+			return { height: size, width: (width / height) * size };
+		}
+	}
+
+	function Position(index: number): number {
+		return (size + gap) * index;
+	}
+
+	const totalWidth = Position(images.length);
+	const durationPerPx = (refContainer.current?.clientWidth || duration) / duration;
+	const finalDuration = Math.max(duration, totalWidth / durationPerPx);
+
+	/*==================================================
+		Animation
+	==================================================*/
+	function AnimationDelay(index: number): number {
+		return ((finalDuration * Position(images.length - 1 - index)) / totalWidth) * -1;
+	}
+
+	function Segment(index: number): string {
+		return `((max(${totalWidth}px, 100%) * ${Position(index)}) / ${totalWidth})`;
+	}
+
+	function FallbackPosition(index: number): string {
+		return `calc(${Segment(index)} + ${Segment(1)} / ${images.length})`;
+	}
+
+	/*==================================================
+		GSAP
+	==================================================*/
 	const onResize = contextSafe(() => {
 		images.forEach((_, index) => {
 			gsap.killTweensOf(`.horizontalScroll-${index}`);
 		});
 
-		images.forEach((item, index) => {
+		images.forEach((_, index) => {
 			gsap.fromTo(
 				`.horizontalScroll-${index}`,
 				{
@@ -63,9 +83,9 @@ export function InfinityScroll() {
 				{
 					ease: 'none',
 					delay: AnimationDelay(index),
-					duration: duration,
+					duration: finalDuration,
 					repeat: -1,
-					x: -imageWidth,
+					x: -size,
 				}
 			);
 		});
@@ -81,10 +101,16 @@ export function InfinityScroll() {
 		};
 	}, [onResize]);
 
+	/*==================================================
+		Mount
+	==================================================*/
 	useEffect(() => {
 		setIsMounted(true);
-	}, [setIsMounted]);
+	}, []);
 
+	/*==================================================
+		XML
+	==================================================*/
 	return (
 		<>
 			<section
@@ -92,21 +118,34 @@ export function InfinityScroll() {
 				id='experience'
 				ref={refContainer}
 			>
-				<div className='relative h-[100px] overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_25px,_black_calc(100%-25px),transparent_100%)]'>
-					{images.map((item, index) => (
-						<Image
-							alt={`Gray scale version of a companies logo`}
-							className={`horizontalScroll-${index} absolute left-0 opacity-75 grayscale [&:not(:nth-child(3n_+_1))]:brightness-[1000]`}
-							height={GetHeight(item.height, item.width)}
-							key={index}
-							src={item}
-							style={{
-								left: !isMounted ? FallbackPosition(index) : '',
-								top: `${(100 - GetHeight(item.height, item.width)) / 2}px`,
-							}}
-							width={imageWidth}
-						/>
-					))}
+				<div
+					className={cn(
+						'relative overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_25px,_black_calc(100%-25px),transparent_100%)]',
+						className[0]
+					)}
+				>
+					{images.map((item, index) => {
+						const { height, width } = GetSize(item.height, item.width);
+						return (
+							<div
+								className={cn(
+									`horizontalScroll-${index} absolute left-0 grid place-items-center opacity-75 grayscale`,
+									className[1]
+								)}
+								key={index}
+								style={{
+									left: !isMounted ? FallbackPosition(index) : '',
+								}}
+							>
+								<Image
+									alt={`Gray scale version of a company logo`}
+									height={height}
+									src={item}
+									width={width}
+								/>
+							</div>
+						);
+					})}
 				</div>
 			</section>
 		</>
