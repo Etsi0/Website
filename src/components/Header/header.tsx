@@ -31,7 +31,7 @@ export default function App() {
 			className={cn(
 				'pointer-events-auto float-right h-screen min-w-72 translate-x-full overflow-hidden border-l-[1px] bg-body-100 duration-300',
 				(navOpened && 'translate-x-0 transition-transform') ||
-					(navOpened === false && 'transition-transform'),
+					(navOpened === false && 'transition-transform')
 			)}
 			aria-label='Main Navigation'
 		>
@@ -52,7 +52,7 @@ export default function App() {
 										aria-selected:bg-primary-500 aria-selected:text-input 
 										[&:not([aria-selected='true'])]:hover:bg-primary-50 [&:not([aria-selected='true'])]:hover:text-primary-600 [&:not([aria-selected='true'])]:focus-visible:bg-primary-50 [&:not([aria-selected='true'])]:focus-visible:text-primary-600 
 										dark:[&:not([aria-selected='true'])]:hover:bg-primary-900 dark:[&:not([aria-selected='true'])]:hover:text-primary-400 dark:[&:not([aria-selected='true'])]:focus-visible:bg-primary-900 dark:[&:not([aria-selected='true'])]:focus-visible:text-primary-400
-									`,
+									`
 							)}
 							href={link.path}
 							onClick={() => navClick(link.path)}
@@ -78,7 +78,7 @@ export default function App() {
 					<Link href='/'>
 						<PhadoniaLogo
 							className={cn(
-								'aspect-[calc(1000/315.97)/1] h-8 text-body-100 hue-rotate-180 invert',
+								'h-8 text-[hsl(from_hsl(var(--body-color-100))_h_s_calc(100_-_l))]'
 							)}
 						/>
 					</Link>
