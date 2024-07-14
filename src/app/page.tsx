@@ -23,7 +23,7 @@ export default function App() {
 			<InfinityScroll
 				className={[
 					'h-[100px]',
-					'size-[100px] [&:not(:nth-child(3n_+_1))]:brightness-[1000]',
+					'size-[100px] [&:not(:nth-child(3n_+_1))]:brightness-[1000] [&:not(:nth-child(3n_+_1))]:invert dark:[&:not(:nth-child(3n_+_1))]:invert-0',
 				]}
 				duration={75}
 				gap={50}
