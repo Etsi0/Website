@@ -59,7 +59,9 @@ async function Versions(id: string) {
 }
 
 function getHighestVersion(versions: string[]) {
-	return versions.sort((a, b) => {
+	const validVersions = versions.filter((version) => /^[0-9.]+$/.test(version));
+
+	return validVersions.sort((a, b) => {
 		const aParts = parseVersion(a);
 		const bParts = parseVersion(b);
 		for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
