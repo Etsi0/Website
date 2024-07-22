@@ -9,6 +9,7 @@ import { Skills } from '@/components/Home/sections/skills';
 import Farsight from '@/../public/img/production/companies/Farsight.webp';
 import HCLTech from '@/../public/img/production/companies/HCLTech.svg';
 import Icon from '@/../public/img/production/icon.png';
+import MaxPA from '@/../public/img/production/companies/MaxPA.svg';
 
 export const metadata: Metadata = {
 	title: 'Phadonia',
@@ -23,11 +24,24 @@ export default function App() {
 			<InfinityScroll
 				className={[
 					'h-[100px]',
-					'size-[100px] [&:not(:nth-child(3n_+_1))]:brightness-[1000] [&:not(:nth-child(3n_+_1))]:invert dark:[&:not(:nth-child(3n_+_1))]:invert-0',
+					'size-[100px] [&:not(:nth-child(4n_+_2))]:brightness-[1000] [&:not(:nth-child(4n_+_2))]:invert dark:[&:not(:nth-child(4n_+_2))]:invert-0',
 				]}
 				duration={75}
 				gap={50}
-				images={[Icon, Farsight, HCLTech, Icon, Farsight, HCLTech, Icon, Farsight, HCLTech]}
+				images={[
+					MaxPA,
+					Icon,
+					Farsight,
+					HCLTech,
+					MaxPA,
+					Icon,
+					Farsight,
+					HCLTech,
+					MaxPA,
+					Icon,
+					Farsight,
+					HCLTech,
+				]}
 				size={100}
 			/>
 			<About />
