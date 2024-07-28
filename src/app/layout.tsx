@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { cn } from '@/lib/util';
 
 import Header from '@/components/Header/header';
 import Footer from '@/components/Footer/footer';
