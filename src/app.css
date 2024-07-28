@@ -4,31 +4,34 @@
 
 @layer base {
 	:root {
+		color-scheme: light;
+
+		--dark-mode: 0;
 		--hue-color: 240deg;
-		--warning-hue: 4;
 
-		--warning-color-darker: hsl(var(--warning-hue, 4deg), 57%, 53%);
-		--warning-color: hsl(var(--warning-hue, 4deg), 69%, 61%);
-		--warning-color-lighter: hsl(var(--warning-hue, 4deg), 92%, 85%);
+		/*==================================================
+			Body colors
+		==================================================*/
+		--body-dark-mode: calc(1 - var(--dark-mode));
 
-		--body-dark-mode2: calc(1 - var(--dark-mode));
-		--body-color-50: var(--hue-color, 240deg) 12% max(5%, 100% * var(--body-dark-mode2, 1));
-		--body-color-100: var(--hue-color, 240deg) 12% max(10%, 95% * var(--body-dark-mode2, 1));
-		--body-color-200: var(--hue-color, 240deg) 12% max(20%, 85% * var(--body-dark-mode2, 1));
-		--body-color-300: var(--hue-color, 240deg) 12% max(30%, 75% * var(--body-dark-mode2, 1));
-		--body-color-400: var(--hue-color, 240deg) 12% max(40%, 65% * var(--body-dark-mode2, 1));
-		--body-color-500: var(--hue-color, 240deg) 12% max(50%, 55% * var(--body-dark-mode2, 1));
+		--body-color-50: var(--hue-color, 240deg) 12% max(5%, 100% * var(--body-dark-mode, 1));
+		--body-color-100: var(--hue-color, 240deg) 12% max(10%, 95% * var(--body-dark-mode, 1));
+		--body-color-200: var(--hue-color, 240deg) 12% max(20%, 85% * var(--body-dark-mode, 1));
+		--body-color-300: var(--hue-color, 240deg) 12% max(30%, 75% * var(--body-dark-mode, 1));
+		--body-color-400: var(--hue-color, 240deg) 12% max(40%, 65% * var(--body-dark-mode, 1));
+		--body-color-500: var(--hue-color, 240deg) 12% max(50%, 55% * var(--body-dark-mode, 1));
 
-		/* Legacy body color */
-		--body-dark-mode: calc(85% * var(--dark-mode, 0));
-		--body-color: var(--hue-color, 240deg) 12%
-			max(95% - var(--body-dark-mode), var(--body-dark-mode) - 95%);
-
+		/*==================================================
+			Border colors
+		==================================================*/
 		--border-dark-mode: calc(100% * var(--dark-mode, 0));
 		--border-color: var(--hue-color, 240deg) 12%
 			max(76.5% - var(--border-dark-mode, 0%), var(--border-dark-mode, 0%) - 76.5%);
 
-		--input-color: hsl(var(--hue-color, 240deg), 70%, 96%);
+		/*==================================================
+			Input colors
+		==================================================*/
+		--input-color: var(--hue-color, 240deg) 70% 96%;
 
 		/*==================================================
 			Primary colors
@@ -49,30 +52,40 @@
 			Text colors
 		==================================================*/
 		--text-dark-mode: calc(100% * var(--dark-mode));
+
+		/**========== 300 ==========*/
 		--text-lightness-300: 36.075%;
 		--text-color-300: var(--hue-color, 240deg) 12%
 			max(
 				var(--text-lightness-300) - var(--text-dark-mode, 0%),
 				var(--text-dark-mode, 0%) - var(--text-lightness-300)
 			);
+
+		/**========== 400 ==========*/
 		--text-lightness-400: 27.888%;
 		--text-color-400: var(--hue-color, 240deg) 12%
 			max(
 				var(--text-lightness-400) - var(--text-dark-mode, 0%),
 				var(--text-dark-mode, 0%) - var(--text-lightness-400)
 			);
+
+		/**========== 500 ==========*/
 		--text-lightness-500: 20.686999999999998%;
 		--text-color-500: var(--hue-color, 240deg) 12%
 			max(
 				var(--text-lightness-500) - var(--text-dark-mode, 0%),
 				var(--text-dark-mode, 0%) - var(--text-lightness-500)
 			);
+
+		/**========== 600 ==========*/
 		--text-lightness-600: 14.472000000000001%;
 		--text-color-600: var(--hue-color, 240deg) 12%
 			max(
 				var(--text-lightness-600) - var(--text-dark-mode, 0%),
 				var(--text-dark-mode, 0%) - var(--text-lightness-600)
 			);
+
+		/**========== 700 ==========*/
 		--text-lightness-700: 9.243%;
 		--text-color-700: var(--hue-color, 240deg) 12%
 			max(
@@ -81,21 +94,15 @@
 			);
 	}
 }
-@media (prefers-color-scheme: light) {
-	:root {
-		--dark-mode: 0;
-		color-scheme: light;
-	}
-}
+
+/*==================================================
+	Dark mode switch
+==================================================*/
 @media (prefers-color-scheme: dark) {
-	:root {
+	:root:not(.light) {
 		--dark-mode: 1;
 		color-scheme: dark;
 	}
-}
-:root.light {
-	--dark-mode: 0;
-	color-scheme: light;
 }
 :root.dark {
 	--dark-mode: 1;
