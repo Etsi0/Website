@@ -5,7 +5,7 @@ import { TrackCard } from './trackCard';
 
 export default function SongCards() {
 	const [isPlaying, setIsPlaying] = useState<null | number>(null);
-	const { songJson, setSongJson } = useSongJsonContext();
+	const { songJson } = useSongJsonContext();
 
 	function handlePlayAudio(index: number) {
 		const allAudio = document.querySelectorAll('audio');

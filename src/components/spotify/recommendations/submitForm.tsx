@@ -11,7 +11,7 @@ export default function SubmitForm({
 }: {
 	countryCodes: z.infer<typeof countriesDataSchema>;
 }) {
-	const { songJson, setSongJson } = useSongJsonContext();
+	const { setSongJson } = useSongJsonContext();
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	useEffect(() => {}, [isLoading]);

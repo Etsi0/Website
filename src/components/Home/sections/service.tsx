@@ -1,23 +1,3 @@
-import { HTMLAttributes } from 'react';
-import { cn } from '@/lib/util';
-
-function Cell({
-	className,
-	...props
-}: {
-	className: string;
-	props?: HTMLAttributes<HTMLDivElement>;
-}) {
-	return (
-		<>
-			<div
-				className={cn('rounded-lg bg-body-50 dark:bg-body-200', className)}
-				{...props}
-			></div>
-		</>
-	);
-}
-
 export async function Service() {
 	return (
 		<>

@@ -33,9 +33,11 @@ export default function EmblaCarousel({ AutoplayOptions, options, slides, type }
 		emblaApi.scrollTo(index);
 
 		const autoplay = emblaApi.plugins().autoplay;
-		emblaApi.plugins().autoplay.options.stopOnInteraction === false
-			? autoplay.reset()
-			: autoplay.stop();
+		if (emblaApi.plugins().autoplay.options.stopOnInteraction === false) {
+			autoplay.reset();
+		} else {
+			autoplay.stop();
+		}
 	}
 
 	const { selectedIndex } = useDotButton(emblaApi);

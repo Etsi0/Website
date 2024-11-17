@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import { cn } from '@/lib/util';
-import Image from 'next/image';
+import Image, { type StaticImageData } from 'next/image';
 import gsap from 'gsap';
 
 /**
@@ -24,7 +24,7 @@ export function InfinityScroll({
 	className: string[];
 	duration: number;
 	gap: number;
-	images: any[];
+	images: (any | StaticImageData)[];
 	size: number;
 }) {
 	const [isMounted, setIsMounted] = useState<boolean>(false);

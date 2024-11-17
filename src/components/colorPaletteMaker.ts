@@ -17,7 +17,7 @@ function generateColorsOnCurve(numberOfColors: number, middle: midCords): number
 	const MAX_VALUE = 100;
 	const oneHalf = (numberOfColors - 1) / 2;
 	function NumbersBetweenTwoPoints(num: number, add: number): number[] {
-		let values = [];
+		const values = [];
 		for (let i = 0; i != oneHalf; i++) {
 			values.push((num / (oneHalf + 1)) * (i + 1) + add);
 		}
