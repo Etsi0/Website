@@ -24,7 +24,7 @@ export function InfinityScroll({
 	className: string[];
 	duration: number;
 	gap: number;
-	images: (any | StaticImageData)[];
+	images: (string | StaticImageData)[];
 	size: number;
 }) {
 	const [isMounted, setIsMounted] = useState<boolean>(false);
