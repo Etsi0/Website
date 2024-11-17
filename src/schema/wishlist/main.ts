@@ -8,5 +8,6 @@ export const schemaWishlist = z.array(
 		description: z.string().nullable(),
 		video: z.string().nullable(),
 		url: z.string().nullable(),
+		priority: z.number().nullable(),
 	})
 );
