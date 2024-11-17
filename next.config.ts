@@ -8,12 +8,12 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				// Modrinth (Minecraft)
-				protocol: 'https',
+				protocol: 'https' as const,
 				hostname: 'cdn.modrinth.com',
 			},
 			{
 				// Spotify
-				protocol: 'https',
+				protocol: 'https' as const,
 				hostname: 'i.scdn.co',
 			},
 		],
