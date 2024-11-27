@@ -1,12 +1,4 @@
-import {
-	CodePen,
-	CSSBattle,
-	Discord,
-	Extension,
-	GitHub,
-	LeetCode,
-	LinkedIn,
-} from '@/components/SVGs';
+import { CodePen, Discord, Extension, GitHub, LinkedIn } from '@/components/SVGs';
 
 export const SocialLinkJson = [
 	{
@@ -23,16 +15,6 @@ export const SocialLinkJson = [
 		img: Extension,
 		name: 'Extension',
 		path: 'https://marketplace.visualstudio.com/items?itemName=Etsi0.class-collapse',
-	},
-	{
-		img: LeetCode,
-		name: 'LeetCode',
-		path: 'https://leetcode.com/u/etsi0/',
-	},
-	{
-		img: CSSBattle,
-		name: 'CSSBattle',
-		path: 'https://cssbattle.dev/player/0825',
 	},
 	{
 		img: CodePen,

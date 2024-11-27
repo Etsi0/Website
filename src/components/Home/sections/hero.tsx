@@ -7,19 +7,14 @@ import { TypingText } from '@/components/typingText';
 
 import { SocialLinkJson } from '@/json/socialLink';
 import selfie from '@/../public/img/production/casual_selfie/selfie.webp';
+import Location from '@/svg/materialDesignIcons/location_on.svg';
 
 function SocialLinks({ className }: { className: string }) {
 	return (
 		<ul className={cn('gap-3', className)} aria-label='Social Media Links'>
 			{SocialLinkJson.map((item, index) => (
 				<li key={index}>
-					<a
-						className='group block rounded-sm'
-						href={item.path}
-						target='blank_'
-						rel='noopener'
-						aria-label={item.name}
-					>
+					<a className='group block rounded-sm' href={item.path} target='blank_' rel='noopener' aria-label={item.name}>
 						<item.img className='h-8 text-primary-500 group-hover:text-primary-50 group-focus-visible:text-primary-50' />
 					</a>
 				</li>
@@ -31,40 +26,23 @@ function SocialLinks({ className }: { className: string }) {
 export function Hero() {
 	return (
 		<>
-			<section
-				id='home'
-				className='heroSection grid content-center justify-items-center gap-3 lg:grid-cols-2'
-			>
+			<section id='home' className='heroSection grid content-center justify-items-center gap-3 lg:grid-cols-2'>
 				<div className='grid gap-3 self-center'>
-					<h1>Hi, I{"'"}m Albin</h1>
 					<div>
+						<h1>Hi, I{"'"}m Albin</h1>
 						<h2 className='min-h-10'>
-							<TypingText
-								textArray={[
-									'Software Engineer',
-									'// Full-stack Dev',
-									'<!-- Front-end Dev -->',
-									'-- Back-end Dev',
-								]}
-								delay={500}
-								speed={100}
-							/>
+							<TypingText textArray={['Software Engineer', '// Full-stack Dev', '<!-- Front-end Dev -->', '-- Back-end Dev']} delay={500} speed={100} />
 						</h2>
-						<p className='group max-w-prose'>
-							I{"'"}m a {YearsElapsed(new Date('2003-08-25'))}-year-old full-stack
-							developer from Skövde, Sweden. I love programming, technology, and
-							gaming, and use my skills to create great digital experiences. I enjoy
-							learning and working with others. Welcome to my portfolio, let{"'"}s
-							build something amazing together.
+					</div>
+					<div>
+						<p>
+							<Location className='inline size-4 fill-primary-300 align-sub' />
+							Sweden, Skövde
 						</p>
-						<audio className='inline-block rounded-lg' controls>
-							<source src='/tts/Hero.mp3' type='audio/mp3' />
-							Your browser does not support the audio element.
-						</audio>{' '}
-						by{' '}
-						<a className='text-primary-500' href='https://elevenlabs.io/text-to-speech'>
-							ElevenLabs
-						</a>
+						<p className='group max-w-prose'>
+							As a <YearsElapsed startDate={new Date('2003-08-25')} />
+							-year-old Software Engineer, I lead development of the MaxPA payroll system at PA-Utveckling AB and develop extensions used by thousands of VS Code developers.
+						</p>
 					</div>
 					<SocialLinks className='hidden lg:flex' />
 				</div>

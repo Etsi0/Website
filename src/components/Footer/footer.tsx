@@ -15,11 +15,10 @@ export default function Footer() {
 					<div className='flex justify-center gap-4 divide-x divide-input/25 [&>:not(:first-child)]:pl-4'>
 						<Link href='/minecraft'>Minecraft mods</Link>
 						<Link href='/spotify/recommendations'>Spotify Recommendations</Link>
-						<a
-							href='https://etsi0.github.io/Infinity-tic-tac-toe'
-							target='_blank'
-							rel='noopener'
-						>
+						<a href='https://cv-maker.phadonia.com' target='_blank' rel='noopener'>
+							CV Maker
+						</a>
+						<a href='https://etsi0.github.io/Infinity-tic-tac-toe' target='_blank' rel='noopener'>
 							Infinity tic tac toe
 						</a>
 						<a href='https://etsi0.github.io/DiceGame' target='_blank' rel='noopener'>

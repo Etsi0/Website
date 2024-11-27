@@ -19,32 +19,30 @@ export function TrackCard({
 	return (
 		<>
 			<div className='flex w-72 flex-col gap-3 self-stretch rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'>
-				<button
-					className={cn(
-						'relative mx-auto overflow-hidden rounded-md after:absolute after:left-0 after:top-0 after:h-full after:w-full after:bg-[length:calc(100%_/_3)_calc(100%_/_3)] after:bg-center after:bg-no-repeat',
-						(isPlaying || data.previewUrl) && 'cursor-pointer',
-						(isPlaying && 'after:bg-black/50 after:bg-[url(/img/pause.svg)]') ||
-							(data.previewUrl &&
-								'after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)]')
-					)}
-					onClick={() => {
-						if (data.previewUrl) {
-							onClick();
-						}
-					}}
-				>
-					<Image
-						alt={`album art of ${data.track.name}`}
-						className='aspect-square'
-						height={192}
-						src={data.image.url}
-						width={192}
-					/>
-				</button>
-				<audio>
-					<source src={data.previewUrl ? data.previewUrl : ''} type='audio/mpeg' />
-					Your browser does not support the audio element.
-				</audio>
+				{(data.previewUrl && (
+					<>
+						<button
+							className={cn(
+								'relative mx-auto overflow-hidden rounded-md after:absolute after:left-0 after:top-0 after:h-full after:w-full after:bg-[length:calc(100%_/_3)_calc(100%_/_3)] after:bg-center after:bg-no-repeat',
+								(isPlaying || data.previewUrl) && 'cursor-pointer',
+								isPlaying && 'after:bg-black/50 after:bg-[url(/img/pause.svg)]',
+								!isPlaying && data.previewUrl && 'after:hover:bg-black/50 after:hover:bg-[url(/img/play.svg)]'
+							)}
+							onClick={() => {
+								if (data.previewUrl) {
+									onClick();
+								}
+							}}
+						>
+							<Image alt={`album art of ${data.track.name}`} className='mx-auto aspect-square rounded-md' height={192} src={data.image.url} width={192} />
+						</button>
+						<audio>
+							<source src={data.previewUrl} type='audio/mpeg' />
+							Your browser does not support the audio element.
+						</audio>
+					</>
+				)) || <Image alt={`album art of ${data.track.name}`} className='aspect-square' height={192} src={data.image.url} width={192} />}
+
 				<div className='flex grow flex-col'>
 					<h2 className='overflow-hidden text-center text-3xl text-text-700'>
 						<a

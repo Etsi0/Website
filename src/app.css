@@ -4,94 +4,65 @@
 
 @layer base {
 	:root {
-		color-scheme: light;
-
 		--dark-mode: 0;
 		--hue-color: 240deg;
+		color-scheme: light;
+
+		/*==================================================
+			Booleans
+		==================================================*/
+		--isLightMode: calc(1 - var(--dark-mode));
+		--isDarkMode: var(--dark-mode);
 
 		/*==================================================
 			Body colors
 		==================================================*/
-		--body-dark-mode: calc(1 - var(--dark-mode));
-
-		--body-color-50: var(--hue-color, 240deg) 12% max(5%, 100% * var(--body-dark-mode, 1));
-		--body-color-100: var(--hue-color, 240deg) 12% max(10%, 95% * var(--body-dark-mode, 1));
-		--body-color-200: var(--hue-color, 240deg) 12% max(20%, 85% * var(--body-dark-mode, 1));
-		--body-color-300: var(--hue-color, 240deg) 12% max(30%, 75% * var(--body-dark-mode, 1));
-		--body-color-400: var(--hue-color, 240deg) 12% max(40%, 65% * var(--body-dark-mode, 1));
-		--body-color-500: var(--hue-color, 240deg) 12% max(50%, 55% * var(--body-dark-mode, 1));
+		--body-color-50 : var(--hue-color) 12% max(5%, 100% * var(--isLightMode));
+		--body-color-100: var(--hue-color) 12% max(10%, 95% * var(--isLightMode));
+		--body-color-200: var(--hue-color) 12% max(20%, 85% * var(--isLightMode));
+		--body-color-300: var(--hue-color) 12% max(30%, 75% * var(--isLightMode));
+		--body-color-400: var(--hue-color) 12% max(40%, 65% * var(--isLightMode));
+		--body-color-500: var(--hue-color) 12% max(50%, 55% * var(--isLightMode));
 
 		/*==================================================
 			Border colors
 		==================================================*/
-		--border-dark-mode: calc(100% * var(--dark-mode, 0));
-		--border-color: var(--hue-color, 240deg) 12%
-			max(76.5% - var(--border-dark-mode, 0%), var(--border-dark-mode, 0%) - 76.5%);
+		--border-lightness: 76.5%;
+		--border-color: var(--hue-color) 12% max(100% - var(--border-lightness), var(--border-lightness) * var(--isLightMode));
 
 		/*==================================================
 			Input colors
 		==================================================*/
-		--input-color: var(--hue-color, 240deg) 70% 96%;
+		--input-color: var(--hue-color) 70% 96%;
 
 		/*==================================================
 			Primary colors
 		==================================================*/
-		--primary-color-50: var(--hue-color, 240deg) 81.92498870311792% 88.935%;
-		--primary-color-100: var(--hue-color, 240deg) 76.4150943396226% 83.03999999999999%;
-		--primary-color-200: var(--hue-color, 240deg) 73.55080449636321% 77.315%;
-		--primary-color-300: var(--hue-color, 240deg) 71.671388101983% 71.76%;
-		--primary-color-400: var(--hue-color, 240deg) 70.26022304832715% 66.375%;
-		--primary-color-500: var(--hue-color, 240deg) 69.10401647785788% 61.160000000000004%;
-		--primary-color-600: var(--hue-color, 240deg) 50.9433962264151% 49.68749999999999%;
-		--primary-color-700: var(--hue-color, 240deg) 58.730158730158735% 39.06%;
-		--primary-color-800: var(--hue-color, 240deg) 67.3640167364017% 29.277499999999996%;
-		--primary-color-900: var(--hue-color, 240deg) 76.99115044247789% 20.339999999999996%;
-		--primary-color-950: var(--hue-color, 240deg) 87.79342723004696% 12.2475%;
+		--primary-color-50: var(--hue-color) 81.92498870311792% 88.935%;
+		--primary-color-100: var(--hue-color) 76.4150943396226% 83.03999999999999%;
+		--primary-color-200: var(--hue-color) 73.55080449636321% 77.315%;
+		--primary-color-300: var(--hue-color) 71.671388101983% 71.76%;
+		--primary-color-400: var(--hue-color) 70.26022304832715% 66.375%;
+		--primary-color-500: var(--hue-color) 69.10401647785788% 61.160000000000004%;
+		--primary-color-600: var(--hue-color) 50.9433962264151% 49.68749999999999%;
+		--primary-color-700: var(--hue-color) 58.730158730158735% 39.06%;
+		--primary-color-800: var(--hue-color) 67.3640167364017% 29.277499999999996%;
+		--primary-color-900: var(--hue-color) 76.99115044247789% 20.339999999999996%;
+		--primary-color-950: var(--hue-color) 87.79342723004696% 12.2475%;
 
 		/*==================================================
 			Text colors
 		==================================================*/
-		--text-dark-mode: calc(100% * var(--dark-mode));
-
-		/**========== 300 ==========*/
 		--text-lightness-300: 36.075%;
-		--text-color-300: var(--hue-color, 240deg) 12%
-			max(
-				var(--text-lightness-300) - var(--text-dark-mode, 0%),
-				var(--text-dark-mode, 0%) - var(--text-lightness-300)
-			);
-
-		/**========== 400 ==========*/
+		--text-color-300: var(--hue-color) 12% max((100% - var(--text-lightness-300)) * var(--isDarkMode), var(--text-lightness-300));
 		--text-lightness-400: 27.888%;
-		--text-color-400: var(--hue-color, 240deg) 12%
-			max(
-				var(--text-lightness-400) - var(--text-dark-mode, 0%),
-				var(--text-dark-mode, 0%) - var(--text-lightness-400)
-			);
-
-		/**========== 500 ==========*/
+		--text-color-400: var(--hue-color) 12% max((100% - var(--text-lightness-400)) * var(--isDarkMode), var(--text-lightness-400));
 		--text-lightness-500: 20.686999999999998%;
-		--text-color-500: var(--hue-color, 240deg) 12%
-			max(
-				var(--text-lightness-500) - var(--text-dark-mode, 0%),
-				var(--text-dark-mode, 0%) - var(--text-lightness-500)
-			);
-
-		/**========== 600 ==========*/
+		--text-color-500: var(--hue-color) 12% max((100% - var(--text-lightness-500)) * var(--isDarkMode), var(--text-lightness-500));
 		--text-lightness-600: 14.472000000000001%;
-		--text-color-600: var(--hue-color, 240deg) 12%
-			max(
-				var(--text-lightness-600) - var(--text-dark-mode, 0%),
-				var(--text-dark-mode, 0%) - var(--text-lightness-600)
-			);
-
-		/**========== 700 ==========*/
+		--text-color-600: var(--hue-color) 12% max((100% - var(--text-lightness-600)) * var(--isDarkMode), var(--text-lightness-600));
 		--text-lightness-700: 9.243%;
-		--text-color-700: var(--hue-color, 240deg) 12%
-			max(
-				var(--text-lightness-700) - var(--text-dark-mode, 0%),
-				var(--text-dark-mode, 0%) - var(--text-lightness-700)
-			);
+		--text-color-700: var(--hue-color) 12% max((100% - var(--text-lightness-700)) * var(--isDarkMode), var(--text-lightness-700));
 	}
 }
 
