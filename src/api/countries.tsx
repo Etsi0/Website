@@ -12,6 +12,9 @@ export const countriesDataSchema = z.array(
 
 export async function GetCountryCodes() {
 	const response = await fetch('https://restcountries.com/v3.1/all?fields=name,flags,cca2', {
+		headers: {
+			'Content-Type': 'application/json',
+		},
 		next: {
 			revalidate: 3600,
 		},
