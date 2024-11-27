@@ -1,20 +1,8 @@
-import { z } from 'zod';
-
-export const countriesDataSchema = z.array(
-	z.object({
-		name: z.object({
-			common: z.string(),
-		}),
-		cca2: z.string(),
-		flag: z.string(),
-	})
-);
+'use server';
+import { countriesDataSchema } from '@/types/spotify/recommendations/main';
 
 export async function GetCountryCodes() {
-	const response = await fetch('https://restcountries.com/v3.1/all?fields=name,flags,cca2', {
-		headers: {
-			'Content-Type': 'application/json',
-		},
+	const response = await fetch('https://restcountries.com/v3.1/all?fields=name,flag,cca2', {
 		next: {
 			revalidate: 3600,
 		},
