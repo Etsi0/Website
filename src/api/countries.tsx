@@ -1,5 +1,5 @@
 'use server';
-import { countriesDataSchema } from '@/types/spotify/recommendations/main';
+import { countriesDataSchema } from '@/schema/countries';
 
 export async function GetCountryCodes() {
 	const response = await fetch('https://restcountries.com/v3.1/all?fields=name,flag,cca2', {

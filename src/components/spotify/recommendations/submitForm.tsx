@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { z } from 'zod';
 import { cn } from '@/lib/util';
 import { useSongJsonContext } from '@/context/songsContext';
-import { countriesDataSchema } from '@/types/spotify/recommendations/main';
+import { countriesDataSchema } from '@/schema/countries';
 import { CreateRecommendations } from '@/components/spotify/recommendations/action';
 
 export default function SubmitForm({
