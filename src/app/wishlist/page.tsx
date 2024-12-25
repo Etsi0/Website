@@ -6,7 +6,7 @@ import { z } from 'zod';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { schemaWishlist } from '@/schema/wishlist/main';
 
-export async function Metadata(): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: 'Wishlist - Phadonia',
 		description: 'A list of product i would like to have sometime in the future',
