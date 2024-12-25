@@ -1,169 +1,423 @@
-type TMinecraftModsJson = {
-	Id?: string;
+type TBase = {
 	title: string;
-	link?: string;
-	Color: 'green' | 'yellow' | 'red';
+	color: 'green' | 'yellow' | 'red';
 };
 
-export const MinecraftModsJson: TMinecraftModsJson[] = [
+type TModrinth = {
+	id: string;
+} & TBase;
+
+type TCurseForge = {
+	link: string;
+} & TBase;
+
+const json: (TModrinth | TCurseForge)[] = [
 	{
-		Id: 'zV5r3pPn',
+		id: 'zV5r3pPn',
 		title: '3D Skin Layers',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'M08ruV16',
+		id: 'M08ruV16',
 		title: 'Bobby',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: '89Wsn8GD',
+		id: '89Wsn8GD',
 		title: 'Capes',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: '1IjD5062',
+		id: '1IjD5062',
 		title: 'Continuity',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'k2ZPuTBm',
+		id: 'k2ZPuTBm',
 		title: 'ESSENTIAL Mod',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'P7dR8mSH',
+		id: 'P7dR8mSH',
 		title: 'Fabric API',
-		Color: 'yellow',
+		color: 'yellow',
 	},
 	{
-		Id: 'Ha28R6CL',
+		id: 'Ha28R6CL',
 		title: 'Fabric Language Kotlin',
-		Color: 'yellow',
+		color: 'yellow',
 	},
 	{
-		Id: 'WNcgffMw',
+		id: 'WNcgffMw',
 		title: 'FastChest',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'uXXizFIs',
+		id: 'uXXizFIs',
 		title: 'FerriteCore',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'iZ10HXDj',
+		id: 'iZ10HXDj',
 		title: 'FPS Reducer',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'XeEZ3fK2',
+		id: 'XeEZ3fK2',
 		title: 'Freecam',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'Orvt0mRa',
+		id: 'Orvt0mRa',
 		title: 'Indium',
-		Color: 'yellow',
+		color: 'yellow',
 	},
 	{
 		title: 'Inventory HUD+',
 		link: 'inventory-hud-forge',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'O7RBXm3n',
+		id: 'O7RBXm3n',
 		title: 'Inventory Profiles Next',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'YL57xq9U',
+		id: 'YL57xq9U',
 		title: 'Iris Shaders',
-		Color: 'green',
+		color: 'green',
 	},
 	{
 		title: 'Item Scroller',
 		link: 'item-scroller',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'hvFnDODi',
+		id: 'hvFnDODi',
 		title: 'LazyDFU',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'onSQdWhM',
+		id: 'onSQdWhM',
 		title: 'libIPN',
-		Color: 'yellow',
+		color: 'yellow',
 	},
 	{
 		title: 'Litematica',
 		link: 'litematica',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'gvQqBUqZ',
+		id: 'gvQqBUqZ',
 		title: 'Lithium',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'GcWjdA9I',
+		id: 'GcWjdA9I',
 		title: 'MaLiLib',
-		Color: 'yellow',
+		color: 'yellow',
 	},
 	{
-		Id: 'NRjRiSSD',
+		id: 'NRjRiSSD',
 		title: 'Memory Leak Fix',
-		Color: 'green',
+		color: 'green',
 	},
 	{
 		title: 'MiniHUD',
 		link: 'minihud',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'mOgUt4GM',
+		id: 'mOgUt4GM',
 		title: 'Mod Menu',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'SfMw2IZN',
+		id: 'SfMw2IZN',
 		title: 'Nvidium',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'AANobbMI',
+		id: 'AANobbMI',
 		title: 'Sodium',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'kYuIpRLv',
+		id: 'kYuIpRLv',
 		title: 'Wavey Capes',
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: '1u6JkXh5',
-		title: 'WorldEdit',
-		Color: 'green',
+		id: 'N6n5dqoA',
+		title: 'Axiom',
+		color: 'green',
 	},
 	{
-		Id: '1bokaNcj',
+		id: '1bokaNcj',
 		title: "Xaero's Minimap",
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: 'NcUtCpym',
+		id: 'NcUtCpym',
 		title: "Xaero's World Map",
-		Color: 'green',
+		color: 'green',
 	},
 	{
-		Id: '1eAoo2KR',
+		id: '1eAoo2KR',
 		title: 'YetAnotherConfigLib',
-		Color: 'yellow',
+		color: 'yellow',
 	},
 	{
-		Id: 'w7ThoJFB',
+		id: 'w7ThoJFB',
 		title: 'Zoomify',
-		Color: 'green',
+		color: 'green',
+	},
+	{
+		id: 'NNAgCjsB',
+		title: 'Entity Culling',
+		color: 'green',
+	},
+	{
+		id: 'EsAfCjCV',
+		title: 'AppleSkin',
+		color: 'green',
+	},
+	{
+		id: 'Wnxd13zP',
+		title: 'Clumps',
+		color: 'green',
+	},
+	{
+		id: 'o1C1Dkj5',
+		title: "YUNG's Better Dungeons",
+		color: 'green',
+	},
+	{
+		id: 'HjmxVlSr',
+		title: "YUNG's Better Mineshafts",
+		color: 'green',
+	},
+	{
+		id: 'Z2mXHnxP',
+		title: "YUNG's Better Nether Fortresses",
+		color: 'green',
+	},
+	{
+		id: '3dT9sgt4',
+		title: "YUNG's Better Ocean Monuments",
+		color: 'green',
+	},
+	{
+		id: 'kidLKymU',
+		title: "YUNG's Better Strongholds",
+		color: 'green',
+	},
+	{
+		id: '8oi3bsk5',
+		title: 'Terralith',
+		color: 'green',
+	},
+	{
+		id: 't5FRdP87',
+		title: "YUNG's Better Witch Huts",
+		color: 'green',
+	},
+	{
+		id: 'Fb4jn8m6',
+		title: 'FallingTree',
+		color: 'green',
+	},
+	{
+		id: 'z9Ve58Ih',
+		title: "YUNG's Better Jungle Temples",
+		color: 'green',
+	},
+	{
+		id: 'kfqD1JRw',
+		title: 'Visual Workbench',
+		color: 'green',
+	},
+	{
+		id: 'XNlO7sBv',
+		title: "YUNG's Better Desert Temples",
+		color: 'green',
+	},
+	{
+		id: 'Ht4BfYp6',
+		title: "YUNG's Bridges",
+		color: 'green',
+	},
+	{
+		id: 'lWDHr9jE',
+		title: 'Tectonic',
+		color: 'green',
+	},
+	{
+		id: 'ZYgyPyfq',
+		title: "YUNG's Extras",
+		color: 'green',
+	},
+	{
+		id: 'OZBR5JT5',
+		title: 'Easy Anvils',
+		color: 'green',
+	},
+	{
+		id: '9hx3AbJM',
+		title: 'Easy Magic',
+		color: 'green',
+	},
+	{
+		id: 'EltpO5cN',
+		title: 'Lootr',
+		color: 'green',
+	},
+	{
+		id: 'AVq17PqV',
+		title: 'Leaves Be Gone',
+		color: 'green',
+	},
+	{
+		id: 'ZVzW5oNS',
+		title: 'Incendium',
+		color: 'green',
+	},
+	{
+		id: 'IKARgflD',
+		title: 'Diagonal Fences',
+		color: 'green',
+	},
+	{
+		id: 'LPjGiSO4',
+		title: 'Nullscape',
+		color: 'green',
+	},
+	{
+		id: 'Cnejf5xM',
+		title: 'RightClickHarvest',
+		color: 'green',
+	},
+	{
+		id: 'EFtixeiF',
+		title: 'LevelZ',
+		color: 'green',
+	},
+	{
+		id: 'z6sMEexp',
+		title: 'TieredZ',
+		color: 'green',
+	},
+	{
+		id: 'whv2X0ei',
+		title: 'JobsAddon',
+		color: 'green',
+	},
+	{
+		id: 'wXiGiyGX',
+		title: 'Amplified Nether',
+		color: 'green',
+	},
+	{
+		id: 'd6MhxwRo',
+		title: "Soul Fire'd",
+		color: 'green',
+	},
+	{
+		id: 'FQgc8dib',
+		title: 'Diagonal Walls',
+		color: 'green',
+	},
+	{
+		id: 'WhbRG4iK',
+		title: 'Falling Leaves',
+		color: 'green',
+	},
+	{
+		id: 'jawg7zT1',
+		title: 'Cave Dust',
+		color: 'green',
+	},
+	{
+		id: 'gPCdW0Wr',
+		title: 'Make Bubbles Pop',
+		color: 'green',
+	},
+	{
+		id: 'rUgZvGzi',
+		title: 'Eating Animation',
+		color: 'green',
+	},
+	{
+		id: 'G1s2WpNo',
+		title: 'Better Third Person',
+		color: 'green',
+	},
+	{
+		id: 'H5XMjpHi',
+		title: 'First-person Model',
+		color: 'green',
+	},
+	{
+		id: 'BVzZfTc1',
+		title: '[ETF] Entity Texture Features',
+		color: 'green',
+	},
+	{
+		id: '4I1XuqiY',
+		title: '[EMF] Entity Model Features',
+		color: 'green',
+	},
+	{
+		id: 'MPCX6s5C',
+		title: 'Not Enough Animations',
+		color: 'green',
+	},
+	{
+		id: 'Ua7DFN59',
+		title: "YUNG's API",
+		color: 'yellow',
+	},
+	{
+		id: 'QAGBst4M',
+		title: 'Puzzles Lib',
+		color: 'yellow',
+	},
+	{
+		id: 'yUBXc3AH',
+		title: 'LibZ',
+		color: 'yellow',
+	},
+	{
+		id: 'lhGA9TYQ',
+		title: 'Architectury API',
+		color: 'yellow',
+	},
+	{
+		id: 'IYY9Siz8',
+		title: 'JamLib',
+		color: 'yellow',
+	},
+	{
+		id: 'dQcfqGbl',
+		title: 'Cobweb',
+		color: 'yellow',
+	},
+	{
+		id: '8FdYDHF5',
+		title: 'AutoTag',
+		color: 'yellow',
+	},
+	{
+		id: 'ohNO6lps',
+		title: 'Forge Config API Port',
+		color: 'yellow',
+	},
+	{
+		//! add support for texture packs. mb resources packs
+		id: '50dA9Sha',
+		title: 'Fresh Animations',
+		color: 'green',
 	},
 ];
+
+export const MinecraftModsJson = json.sort((a, b) => a.title.localeCompare(b.title));

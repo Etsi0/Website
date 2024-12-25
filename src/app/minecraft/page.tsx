@@ -1,16 +1,13 @@
 import { ReactNode } from 'react';
 import Image from 'next/image';
 import { z } from 'zod';
-import { cn } from '@/lib/util';
-import { GetProjects, GetVersions, projectSchema, versionSchema } from '@/api/modrinth/main';
+import { GetDependencies, GetProjects, GetVersions } from '@/api/modrinth/main';
+// import FilterContext from '@/context/minecraft/filterContext';
+import { versionSchema } from '@/schema/minecraft/main';
+import { TProject } from '@/types/minecraft/main';
+import { cn, createCounter } from '@/lib/util';
 import { MinecraftModsJson } from '@/json/minecraft/minecraftModsJson';
-
-type TGetMod = {
-	project: (typeof MinecraftModsJson)[number] | z.infer<typeof projectSchema>[number];
-	className: (typeof StrToColor)[keyof typeof StrToColor];
-};
-
-type TProject = z.infer<typeof projectSchema>[number];
+// import { Filter } from '@/components/minecraft/filter';
 
 const StrToColor = Object.freeze({
 	green: 'bg-green-500 dark:bg-green-600',
@@ -18,10 +15,13 @@ const StrToColor = Object.freeze({
 	red: 'bg-red-500 dark:bg-red-600',
 });
 
+type TGetMod = {
+	project: (typeof MinecraftModsJson)[number] | TProject;
+	className: (typeof StrToColor)[keyof typeof StrToColor];
+};
+
 async function Projects() {
-	const projectIds = MinecraftModsJson.map((value) => value.Id).filter(
-		(id): id is string => typeof id === 'string'
-	);
+	const projectIds = MinecraftModsJson.flatMap((value) => ('id' in value ? [value.id] : []));
 	if (projectIds.length === 0) {
 		return false;
 	}
@@ -82,9 +82,7 @@ async function GetMod({ project, className }: TGetMod) {
 	let onlyFullReleases: string[] = [];
 	let latestVersion: z.infer<typeof versionSchema>[number] | undefined;
 	if ('game_versions' in project) {
-		onlyFullReleases = project.game_versions
-			.reverse()
-			.filter((item: string) => !RegExp('[a-z]').test(item));
+		onlyFullReleases = project.game_versions.reverse().filter((version: string) => /^[0-9.]+$/.test(version));
 
 		const data = await Versions(project.id);
 		if (!data) {
@@ -93,6 +91,8 @@ async function GetMod({ project, className }: TGetMod) {
 
 		latestVersion = data;
 	}
+
+	const dependencies = 'id' in project ? await GetDependencies(project.id) : false;
 
 	const liContent = [
 		{
@@ -111,63 +111,51 @@ async function GetMod({ project, className }: TGetMod) {
 			title: 'Loaders:',
 			text: 'loaders' in project ? project.loaders?.join(', ') : '',
 		},
+		{
+			title: 'Dependencies:',
+			list: dependencies
+				? dependencies.projects.flatMap((item) => (
+						<li>
+							<a className='text-primary-500' href={`#${item.id}`}>
+								{item.title}
+							</a>
+						</li>
+					))
+				: false,
+		},
 	];
 
 	return (
-		<div className='flex w-72 flex-col gap-3 rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'>
+		<div id={'id' in project ? project.id : project.title} className='flex w-72 flex-col gap-3 rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'>
 			{('icon_url' in project && (
-				<Image
-					src={project.icon_url}
-					alt={`logo for the mod called '${project.title}'`}
-					width={192}
-					height={192}
-					className='mx-auto rounded-md bg-primary-50 dark:bg-body-300'
-				/>
-			)) || (
-				<div className='mx-auto aspect-square w-48 rounded-md bg-primary-50 dark:bg-body-300'></div>
-			)}
+				<Image src={project.icon_url} alt={`logo for the mod called '${project.title}'`} width={192} height={192} className='mx-auto rounded-md bg-primary-50 dark:bg-body-300' />
+			)) || <div className='mx-auto aspect-square w-48 rounded-md bg-primary-50 dark:bg-body-300'></div>}
 			<h2 className='overflow-hidden text-ellipsis text-center text-3xl'>{project.title}</h2>
 			<ul className='grow'>
 				{liContent
-					.filter((item) => item.text)
+					.filter((item) => item.text || item.list)
 					.map((item, index) => (
 						<li key={index}>
 							<h3 className='text-xl'>{item.title}</h3>
 							<p className='line-clamp-3'>{item.text}</p>
+							<ul>{item.list}</ul>
 						</li>
 					))}
 			</ul>
 			<a
-				href={
-					'slug' in project
-						? `https://modrinth.com/mod/${project.slug}/versions`
-						: 'link' in project
-							? `https://www.curseforge.com/minecraft/mc-mods/${project.link}`
-							: ''
-				}
+				href={'slug' in project ? `https://modrinth.com/mod/${project.slug}/versions` : 'link' in project ? `https://www.curseforge.com/minecraft/mc-mods/${project.link}` : ''}
 				target='_blank'
 				className='w-full rounded-md bg-primary-500 p-3 text-center text-input'
 			>
 				{project.title}
 			</a>
 			{(latestVersion && (
-				<a
-					href={latestVersion.files[0].url}
-					target='_blank'
-					className={cn(
-						'w-full rounded-md bg-primary-500 p-3 text-center text-input',
-						className
-					)}
-				>
+				<a href={latestVersion.files[0].url} target='_blank' className={cn('w-full rounded-md bg-primary-500 p-3 text-center text-input', className)}>
 					Fabric {latestVersion.game_versions[0]}
-					{latestVersion.game_versions.length > 1 &&
-						` - ${latestVersion.game_versions[latestVersion.game_versions.length - 1]}`}
+					{latestVersion.game_versions.length > 1 && ` - ${latestVersion.game_versions[latestVersion.game_versions.length - 1]}`}
 				</a>
 			)) || (
-				<button
-					disabled
-					className='w-full cursor-not-allowed rounded-md bg-slate-500 p-3 text-slate-400'
-				>
+				<button disabled className='w-full cursor-not-allowed rounded-md bg-slate-500 p-3 text-slate-400'>
 					NaN
 				</button>
 			)}
@@ -184,39 +172,23 @@ function DoneCategoryWrapper({ className, children }: { className: string; child
 	);
 }
 
-function ProjectIndex(index: number) {
-	return (
-		index -
-		MinecraftModsJson.slice(0, index).reduce(
-			(accumulator, currentValue) => accumulator + ('link' in currentValue ? 1 : 0),
-			0
-		)
-	);
-}
-
 export default async function Page() {
 	const sortedProjects = await Projects();
 	if (!sortedProjects) {
 		return;
 	}
 
+	const counter = createCounter();
+
 	return (
 		<section className='grid gap-8 py-8 pt-16'>
 			<div className='grid justify-items-center text-center'>
 				<h1>Minecraft Mods</h1>
-				<p>
-					Mods listed bellow is what i recommend or use, look at the section that explains
-					what the different colors means if you are confused
-				</p>
+				<p>Mods listed bellow is what i recommend or use, look at the section that explains what the different colors means if you are confused</p>
 			</div>
 			<div className='grid gap-3 rounded-lg bg-body-50 p-6 dark:bg-body-200'>
-				<DoneCategoryWrapper className={StrToColor['green']}>
-					This icon indicates that i recommend these mods
-				</DoneCategoryWrapper>
-				<DoneCategoryWrapper className={StrToColor['yellow']}>
-					This icon indicates that these mods are a dependency for another mod on this
-					list
-				</DoneCategoryWrapper>
+				<DoneCategoryWrapper className={StrToColor['green']}>This icon indicates that i recommend these mods</DoneCategoryWrapper>
+				<DoneCategoryWrapper className={StrToColor['yellow']}>This icon indicates that these mods are a dependency for another mod on this list</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['red']}>
 					This icon indicates that I only recommend these mods for quick setup. (
 					<a className='text-primary-500' href='https://optifine.net/downloads'>
@@ -225,14 +197,13 @@ export default async function Page() {
 					)
 				</DoneCategoryWrapper>
 			</div>
-			<div className='flex flex-wrap justify-center gap-5'>
+			<div className='relative flex flex-wrap justify-center gap-5'>
+				{/* <FilterContext projects={sortedProjects}>
+					<Filter /> */}
 				{MinecraftModsJson.map((project, index) => (
-					<GetMod
-						key={index}
-						project={project.Id ? sortedProjects[ProjectIndex(index)] : project}
-						className={StrToColor[project.Color]}
-					/>
+					<GetMod key={index} project={'id' in project ? sortedProjects[counter()] : project} className={StrToColor[project.color]} />
 				))}
+				{/* </FilterContext> */}
 			</div>
 		</section>
 	);
