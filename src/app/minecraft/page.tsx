@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 import Image from 'next/image';
 import { z } from 'zod';
-import { GetDependencies, GetProjects, GetVersions } from '@/api/modrinth/main';
+import { GetCollection, GetProjects, GetVersions } from '@/api/modrinth/main';
 // import FilterContext from '@/context/minecraft/filterContext';
 import { versionSchema } from '@/schema/minecraft/main';
 import { TProject } from '@/types/minecraft/main';
-import { cn, createCounter } from '@/lib/util';
+import { cn } from '@/lib/util';
 import { MinecraftModsJson } from '@/json/minecraft/minecraftModsJson';
 // import { Filter } from '@/components/minecraft/filter';
 
@@ -21,24 +21,21 @@ type TGetMod = {
 };
 
 async function Projects() {
-	const projectIds = MinecraftModsJson.flatMap((value) => ('id' in value ? [value.id] : []));
-	if (projectIds.length === 0) {
+	const collection = await GetCollection('FjMdwvNv');
+	if (!collection) {
 		return false;
 	}
 
-	const data = await GetProjects(projectIds);
+	const data = await GetProjects(collection.projects);
 	if (!data) {
 		return false;
 	}
 
-	const projectMap = data.reduce(
-		(accumulator, currentValue) => {
-			accumulator[currentValue.id] = currentValue;
-			return accumulator;
-		},
-		{} as Record<string, TProject>
-	);
-	return projectIds.map((id) => projectMap[id]);
+	return data.concat(MinecraftModsJson).sort((a, b) => {
+		if (a.title < b.title) return -1;
+		if (a.title > b.title) return 1;
+		return 0;
+	});
 }
 
 async function Versions(id: string) {
@@ -79,9 +76,12 @@ function parseVersion(version: string): number[] {
 }
 
 async function GetMod({ project, className }: TGetMod) {
+	if (!project) {
+		return false;
+	}
 	let onlyFullReleases: string[] = [];
 	let latestVersion: z.infer<typeof versionSchema>[number] | undefined;
-	if ('game_versions' in project) {
+	if (project.game_versions.length !== 0) {
 		onlyFullReleases = project.game_versions.reverse().filter((version: string) => /^[0-9.]+$/.test(version));
 
 		const data = await Versions(project.id);
@@ -91,8 +91,6 @@ async function GetMod({ project, className }: TGetMod) {
 
 		latestVersion = data;
 	}
-
-	const dependencies = 'id' in project ? await GetDependencies(project.id) : false;
 
 	const liContent = [
 		{
@@ -113,21 +111,27 @@ async function GetMod({ project, className }: TGetMod) {
 		},
 		{
 			title: 'Dependencies:',
-			list: dependencies
-				? dependencies.projects.flatMap((item) => (
-						<li>
-							<a className='text-primary-500' href={`#${item.id}`}>
-								{item.title}
-							</a>
-						</li>
-					))
+			list: latestVersion?.dependencies
+				? latestVersion.dependencies.flatMap((item, i) => {
+						if (item.dependency_type !== 'required') {
+							return;
+						}
+
+						return (
+							<li key={i}>
+								<a className='text-primary-500' href={`#${item.project_id}`}>
+									{item.project_id}
+								</a>
+							</li>
+						);
+					})
 				: false,
 		},
 	];
 
 	return (
-		<div id={'id' in project ? project.id : project.title} className='flex w-72 flex-col gap-3 rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'>
-			{('icon_url' in project && (
+		<div id={project.id === '' ? project.title : project.id} className='flex w-72 flex-col gap-3 rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'>
+			{(project.icon_url !== '' && (
 				<Image src={project.icon_url} alt={`logo for the mod called '${project.title}'`} width={192} height={192} className='mx-auto rounded-md bg-primary-50 dark:bg-body-300' />
 			)) || <div className='mx-auto aspect-square w-48 rounded-md bg-primary-50 dark:bg-body-300'></div>}
 			<h2 className='overflow-hidden text-ellipsis text-center text-3xl'>{project.title}</h2>
@@ -143,7 +147,7 @@ async function GetMod({ project, className }: TGetMod) {
 					))}
 			</ul>
 			<a
-				href={'slug' in project ? `https://modrinth.com/mod/${project.slug}/versions` : 'link' in project ? `https://www.curseforge.com/minecraft/mc-mods/${project.link}` : ''}
+				href={project.id === '' ? `https://www.curseforge.com/minecraft/mc-mods/${project.slug}` : `https://modrinth.com/mod/${project.slug}/versions`}
 				target='_blank'
 				className='w-full rounded-md bg-primary-500 p-3 text-center text-input'
 			>
@@ -178,8 +182,6 @@ export default async function Page() {
 		return;
 	}
 
-	const counter = createCounter();
-
 	return (
 		<section className='grid gap-8 py-8 pt-16'>
 			<div className='grid justify-items-center text-center'>
@@ -200,8 +202,8 @@ export default async function Page() {
 			<div className='relative flex flex-wrap justify-center gap-5'>
 				{/* <FilterContext projects={sortedProjects}>
 					<Filter /> */}
-				{MinecraftModsJson.map((project, index) => (
-					<GetMod key={index} project={'id' in project ? sortedProjects[counter()] : project} className={StrToColor[project.color]} />
+				{sortedProjects.map((project, index) => (
+					<GetMod key={index} project={project} className={StrToColor['green']} />
 				))}
 				{/* </FilterContext> */}
 			</div>

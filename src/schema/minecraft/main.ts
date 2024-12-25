@@ -15,21 +15,9 @@ export const projectSchema = z.array(
 	})
 );
 
-export const dependenciesSchema = z.object({
-	projects: z.array(
-		z.object({
-			id: z.string(),
-			slug: z.string(),
-			title: z.string(),
-		})
-	),
+export const collectionSchema = z.object({
+	projects: z.array(z.string()),
 });
-
-export const collectionSchema = z.array(
-	z.object({
-		projects: z.array(z.string()),
-	})
-);
 
 export const versionSchema = z.array(
 	z.object({
@@ -37,6 +25,12 @@ export const versionSchema = z.array(
 		files: z.array(
 			z.object({
 				url: z.string(),
+			})
+		),
+		dependencies: z.array(
+			z.object({
+				project_id: z.string(),
+				dependency_type: z.enum(['required', 'optional', 'incompatible', 'embedded']),
 			})
 		),
 		game_versions: z.array(z.string()),

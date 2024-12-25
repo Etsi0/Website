@@ -1,5 +1,5 @@
 import { apiFetch } from '@/lib/util';
-import { collectionSchema, dependenciesSchema, projectSchema, versionSchema } from '@/schema/minecraft/main';
+import { collectionSchema, projectSchema, versionSchema } from '@/schema/minecraft/main';
 
 const baseUrl = 'https://api.modrinth.com/';
 
@@ -10,10 +10,6 @@ export async function GetCollection(id: string) {
 
 export async function GetProjects(ids: string[]) {
 	return await apiFetch(`${baseUrl}v2/projects?ids=${encodeURIComponent(JSON.stringify(ids))}`, { method: 'GET' }, projectSchema);
-}
-
-export async function GetDependencies(id: string) {
-	return await apiFetch(`${baseUrl}v2/project/${id}/dependencies`, { method: 'GET' }, dependenciesSchema);
 }
 
 export async function GetVersions(id: string) {
