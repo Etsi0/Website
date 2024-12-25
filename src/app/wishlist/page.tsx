@@ -1,14 +1,17 @@
+'use server';
 import Image from 'next/image';
-import { db } from '@vercel/postgres';
 import type { Metadata } from 'next';
+import { db } from '@vercel/postgres';
 import { z } from 'zod';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { schemaWishlist } from '@/schema/wishlist/main';
 
-export const metadata: Metadata = {
-	title: 'Wishlist - Phadonia',
-	description: 'A list of product i would like to sometime in the future',
-};
+export async function Metadata(): Promise<Metadata> {
+	return {
+		title: 'Wishlist - Phadonia',
+		description: 'A list of product i would like to have sometime in the future',
+	};
+}
 
 function Card({ product }: { product: z.infer<typeof schemaWishlist>[number] }) {
 	return (
@@ -21,35 +24,15 @@ function Card({ product }: { product: z.infer<typeof schemaWishlist>[number] }) 
 				loading='lazy'
 				src={product.img}
 			/>
-			<p className='text-center text-xl font-semibold leading-6 text-text-600'>
-				{product.title}
-			</p>
-			{product.description && (
-				<div className='grow text-base leading-5 [&_ul]:list-inside [&_ul]:list-disc'>
-					<MDXRemote source={product.description.replace(/\\n/g, '\n')} />
-				</div>
-			)}
+			<p className='text-center text-xl font-semibold leading-6 text-text-600'>{product.title}</p>
+			<div className='grow text-base leading-5 [&_ul]:list-inside [&_ul]:list-disc'>{product.description && <MDXRemote source={product.description.replace(/\\n/g, '\n')} />}</div>
 			{product.video && (
-				<a
-					href={product.video}
-					target='_blank'
-					className='flex w-full justify-center rounded-md bg-red-500 p-3 text-input'
-				>
-					<Image
-						className='size-4'
-						alt='Play icon'
-						height={16}
-						src='/img/play.svg'
-						width={16}
-					/>
+				<a href={product.video} target='_blank' className='flex w-full justify-center rounded-md bg-red-500 p-3 text-input'>
+					<Image className='size-4' alt='Play icon' height={16} src='/img/play.svg' width={16} />
 				</a>
 			)}
 			{product.url && (
-				<a
-					href={product.url}
-					target='_blank'
-					className='w-full rounded-md bg-primary-500 p-3 text-center text-input'
-				>
+				<a href={product.url} target='_blank' className='w-full rounded-md bg-primary-500 p-3 text-center text-input'>
 					Link
 				</a>
 			)}
@@ -68,9 +51,9 @@ export default async function page() {
 	parsedRows.data.sort((a, b) => {
 		// Handle null priorities
 		if (a.priority === null && b.priority === null) return 0;
-		if (a.priority === null) return 1;  // null values go to the end
+		if (a.priority === null) return 1; // null values go to the end
 		if (b.priority === null) return -1;
-		
+
 		// Normal number comparison
 		return a.priority - b.priority;
 	});
