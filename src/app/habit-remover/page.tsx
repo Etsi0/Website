@@ -14,7 +14,7 @@ export default function Page() {
 				<p className='mx-auto mb-6'>
 					Are there something you want to stop doing?
 					<br />
-					You can use this page to see when you should or shouldn't do that thing
+					You can use this page to see when you should or shouldn{"'"}t do that thing
 				</p>
 			</div>
 			<Client />

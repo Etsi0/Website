@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import { Person } from '@/components/SVGs';
 import { A } from '@/components/ui/link';
 

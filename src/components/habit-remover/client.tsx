@@ -40,7 +40,7 @@ export function Client() {
 			}
 			setIsMounted(true);
 		}
-	}, []);
+	}, [isMounted]);
 
 	useEffect(() => {
 		window.localStorage.setItem('year', JSON.stringify(year));
