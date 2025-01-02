@@ -26,7 +26,7 @@ export function A({ href, className, target, disabled, children, ...props }: TA)
 	}
 
 	const isLocalLink = href ? href.startsWith('/') : false;
-	const security = isLocalLink || target === '_blank' ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+	const security = !isLocalLink || target === '_blank' ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
 	const standard = 'inline-block';
 	const hover = 'hover:opacity-85 hover:active:opacity-50';

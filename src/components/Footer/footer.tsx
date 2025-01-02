@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { A } from '@/components/ui/link';
 
 export default function Footer() {
 	return (
@@ -7,24 +7,24 @@ export default function Footer() {
 			<footer className='space-y-8 bg-primary-500 p-16 text-input'>
 				<div className='space-y-4'>
 					<div className='flex justify-center gap-4 divide-x divide-input/25 [&>:not(:first-child)]:pl-4'>
-						<Link href='/'>Home</Link>
-						<Link href='/#about'>About</Link>
-						<Link href='/#skills'>Skills</Link>
-						<Link href='/#portfolio'>Portfolio</Link>
+						<A href='/'>Home</A>
+						<A href='/#about'>About</A>
+						<A href='/#skills'>Skills</A>
+						<A href='/#portfolio'>Portfolio</A>
 					</div>
 					<div className='flex justify-center gap-4 divide-x divide-input/25 [&>:not(:first-child)]:pl-4'>
-						<Link href='/minecraft'>Minecraft mods</Link>
-						<Link href='/habit-remover'>Habit Remover</Link>
-						<Link href='/spotify/recommendations'>Spotify Recommendations</Link>
-						<a href='https://cv-maker.phadonia.com' target='_blank' rel='noopener'>
+						<A href='/minecraft'>Minecraft mods</A>
+						<A href='/habit-remover'>Habit Remover</A>
+						<A href='/spotify/recommendations'>Spotify Recommendations</A>
+						<A href='https://cv-maker.phadonia.com' target='_blank'>
 							CV Maker
-						</a>
-						<a href='https://etsi0.github.io/Infinity-tic-tac-toe' target='_blank' rel='noopener'>
+						</A>
+						<A href='https://etsi0.github.io/Infinity-tic-tac-toe' target='_blank'>
 							Infinity tic tac toe
-						</a>
-						<a href='https://etsi0.github.io/DiceGame' target='_blank' rel='noopener'>
+						</A>
+						<A href='https://etsi0.github.io/DiceGame' target='_blank'>
 							Dice Game
-						</a>
+						</A>
 					</div>
 				</div>
 				<div className='grid justify-items-center'>
