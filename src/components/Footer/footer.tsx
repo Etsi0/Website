@@ -14,6 +14,7 @@ export default function Footer() {
 					</div>
 					<div className='flex justify-center gap-4 divide-x divide-input/25 [&>:not(:first-child)]:pl-4'>
 						<Link href='/minecraft'>Minecraft mods</Link>
+						<Link href='/habit-remover'>Habit Remover</Link>
 						<Link href='/spotify/recommendations'>Spotify Recommendations</Link>
 						<a href='https://cv-maker.phadonia.com' target='_blank' rel='noopener'>
 							CV Maker

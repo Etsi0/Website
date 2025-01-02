@@ -24,6 +24,10 @@ export const navLinkJson = [
 		name: 'Minecraft Mods',
 	},
 	{
+		path: '/habit-remover',
+		name: 'Habit Remover',
+	},
+	{
 		path: '/spotify/recommendations',
 		name: 'Spotify Recommendations',
 	},
