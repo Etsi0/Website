@@ -21,7 +21,12 @@ const nextConfig = {
 	},
 	pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 
-	webpack(config: TODO) {
+	webpack: (config: TODO, { dev }: { dev: TODO }) => {
+		if (dev) {
+			// Disable cache in development
+			config.cache = false;
+		}
+
 		// Grab the existing rule that handles SVG imports
 		const fileLoaderRule = config.module.rules.find((rule: TODO) => rule.test?.test?.('.svg'));
 

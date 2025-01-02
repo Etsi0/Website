@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import { Download } from '@/components/SVGs';
 import StudentCapSelfie from '@/../public/img/production/student cap selfie/selfie.webp';
+import { A } from '@/components/ui/link';
 
 export function About() {
 	return (
@@ -30,16 +31,14 @@ export function About() {
 							As a full-stack developer specializing in modern web technologies, I develop enterprise payroll systems and create developer tools that have collected over 3,000 downloads.
 							When I{"'"}m not coding, I enjoy mentoring aspiring programmers on Discord, building custom mechanical keyboards or computers, and exploring the latest in tech.
 						</p>
-						<a
-							className='group inline-block space-x-1 rounded-md bg-primary-500 px-6 py-3 text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500'
+						<A
+							className='inline-flex items-center gap-1 rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-input'
 							href='/Albin_Karlsson_CV.pdf'
 							download="Albin Karlsson's CV"
 							target='_blank'
-							rel='noopener'
 						>
-							<span className='align-middle'>Download CV</span>
-							<Download className='inline-block h-5 text-input group-hover:text-primary-500 group-focus-visible:text-primary-500' />
-						</a>
+							Download CV <Download className='size-5' />
+						</A>
 					</div>
 				</div>
 			</section>

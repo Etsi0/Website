@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import { Person } from '@/components/SVGs';
+import { A } from '@/components/ui/link';
 
 export default function App() {
 	return (
@@ -10,16 +11,10 @@ export default function App() {
 					<Person className='absolute left-1/2 h-full translate-x-[-50%] text-primary-700' />
 					<h1 className='text-[clamp(1rem,50vw,16rem)] text-primary-500'>404</h1>
 				</div>
-				<p className='max-w-prose p-4'>
-					Lost your way? No worries, we&apos;ve all been there. Just like our
-					coffee-loving friend here. Let&apos;s guide you home.
-				</p>
-				<Link
-					className='inline-block rounded-md bg-primary-500 px-6 py-3 text-input transition-colors hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-500'
-					href='/'
-				>
+				<p className='max-w-prose p-4'>Lost your way? No worries, we&apos;ve all been there. Just like our coffee-loving friend here. Let&apos;s guide you home.</p>
+				<A href='/' className='rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-input'>
 					Home Page
-				</Link>
+				</A>
 			</section>
 		</>
 	);
