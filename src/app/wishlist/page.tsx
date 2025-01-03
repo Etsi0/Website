@@ -5,6 +5,8 @@ import { db } from '@vercel/postgres';
 import { z } from 'zod';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { schemaWishlist } from '@/schema/wishlist/main';
+import Play from '@/svg/play.svg';
+import { A } from '@/components/ui/link';
 
 export async function generateMetadata(): Promise<Metadata> {
 	return {
@@ -27,14 +29,14 @@ function Card({ product }: { product: z.infer<typeof schemaWishlist>[number] }) 
 			<p className='text-center text-xl font-semibold leading-6 text-text-600'>{product.title}</p>
 			<div className='grow text-base leading-5 [&_ul]:list-inside [&_ul]:list-disc'>{product.description && <MDXRemote source={product.description.replace(/\\n/g, '\n')} />}</div>
 			{product.video && (
-				<a href={product.video} target='_blank' className='flex w-full justify-center rounded-md bg-red-500 p-3 text-input'>
-					<Image className='size-4' alt='Play icon' height={16} src='/img/play.svg' width={16} />
-				</a>
+				<A href={product.video} className='rounded-md bg-red-500 p-3'>
+					<Play className='mx-auto size-4 fill-input' />
+				</A>
 			)}
 			{product.url && (
-				<a href={product.url} target='_blank' className='w-full rounded-md bg-primary-500 p-3 text-center text-input'>
+				<A href={product.url} className='rounded-md bg-primary-500 p-3 text-center text-input'>
 					Link
-				</a>
+				</A>
 			)}
 		</div>
 	);

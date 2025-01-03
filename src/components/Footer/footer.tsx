@@ -16,15 +16,9 @@ export default function Footer() {
 						<A href='/minecraft'>Minecraft mods</A>
 						<A href='/habit-remover'>Habit Remover</A>
 						<A href='/spotify/recommendations'>Spotify Recommendations</A>
-						<A href='https://cv-maker.phadonia.com' target='_blank'>
-							CV Maker
-						</A>
-						<A href='https://etsi0.github.io/Infinity-tic-tac-toe' target='_blank'>
-							Infinity tic tac toe
-						</A>
-						<A href='https://etsi0.github.io/DiceGame' target='_blank'>
-							Dice Game
-						</A>
+						<A href='https://cv-maker.phadonia.com'>CV Maker</A>
+						<A href='https://etsi0.github.io/Infinity-tic-tac-toe'>Infinity tic tac toe</A>
+						<A href='https://etsi0.github.io/DiceGame'>Dice Game</A>
 					</div>
 				</div>
 				<div className='grid justify-items-center'>

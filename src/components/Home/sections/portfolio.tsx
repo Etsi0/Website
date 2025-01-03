@@ -74,7 +74,7 @@ export function Portfolio() {
 							{ svg: SQL, text: 'Postgresql' },
 						]}
 						text='The site you are on right now'
-						live='https://www.phadonia.com'
+						live='/'
 						source='https://github.com/Etsi0/Website'
 					/>
 					<Cards
@@ -123,9 +123,9 @@ export function Portfolio() {
 						source='https://github.com/Etsi0/DiceGame'
 					/>
 				</div>
-				<Link className='rounded-md bg-primary-500 px-5 py-3 text-lg text-input hover:bg-primary-50 hover:text-primary-500 focus-visible:bg-primary-50 focus-visible:text-primary-500' href='#'>
+				<A className='rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-lg text-input' href='#'>
 					See all (Coming soon)
-				</Link>
+				</A>
 			</section>
 		</>
 	);

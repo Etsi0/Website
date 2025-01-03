@@ -1,10 +1,8 @@
 import Image from 'next/image';
-
 import { cn } from '@/lib/util';
-
+import { A } from '@/components/ui/link';
 import { YearsElapsed } from '@/components/yearsElapsed';
 import { TypingText } from '@/components/typingText';
-
 import { SocialLinkJson } from '@/json/socialLink';
 import selfie from '@/../public/img/production/casual_selfie/selfie.webp';
 import Location from '@/svg/materialDesignIcons/location_on.svg';
@@ -14,9 +12,9 @@ function SocialLinks({ className }: { className: string }) {
 		<ul className={cn('gap-3', className)} aria-label='Social Media Links'>
 			{SocialLinkJson.map((item, index) => (
 				<li key={index}>
-					<a className='group block rounded-sm' href={item.path} target='blank_' rel='noopener' aria-label={item.name}>
-						<item.img className='h-8 text-primary-500 group-hover:text-primary-50 group-focus-visible:text-primary-50' />
-					</a>
+					<A className='rounded-sm' href={item.path} aria-label={item.name}>
+						<item.img className='size-8 text-primary-500' />
+					</A>
 				</li>
 			))}
 		</ul>

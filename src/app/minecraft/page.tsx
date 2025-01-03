@@ -7,6 +7,7 @@ import { versionSchema } from '@/schema/minecraft/main';
 import { TProject } from '@/types/minecraft/main';
 import { cn } from '@/lib/util';
 import { MinecraftModsJson } from '@/json/minecraft/minecraftModsJson';
+import { A } from '@/components/ui/link';
 // import { Filter } from '@/components/minecraft/filter';
 
 const StrToColor = Object.freeze({
@@ -119,9 +120,9 @@ async function GetMod({ project, className }: TGetMod) {
 
 						return (
 							<li key={i}>
-								<a className='text-primary-500' href={`#${item.project_id}`}>
+								<A className='text-primary-500' href={`#${item.project_id}`}>
 									{item.project_id}
-								</a>
+								</A>
 							</li>
 						);
 					})
@@ -146,18 +147,17 @@ async function GetMod({ project, className }: TGetMod) {
 						</li>
 					))}
 			</ul>
-			<a
+			<A
 				href={project.id === '' ? `https://www.curseforge.com/minecraft/mc-mods/${project.slug}` : `https://modrinth.com/mod/${project.slug}/versions`}
-				target='_blank'
 				className='w-full rounded-md bg-primary-500 p-3 text-center text-input'
 			>
 				{project.title}
-			</a>
+			</A>
 			{(latestVersion && (
-				<a href={latestVersion.files[0].url} target='_blank' className={cn('w-full rounded-md bg-primary-500 p-3 text-center text-input', className)}>
+				<A href={latestVersion.files[0].url} className={cn('w-full rounded-md bg-primary-500 p-3 text-center text-input', className)}>
 					Fabric {latestVersion.game_versions[0]}
 					{latestVersion.game_versions.length > 1 && ` - ${latestVersion.game_versions[latestVersion.game_versions.length - 1]}`}
-				</a>
+				</A>
 			)) || (
 				<button disabled className='w-full cursor-not-allowed rounded-md bg-slate-500 p-3 text-slate-400'>
 					NaN
@@ -193,9 +193,9 @@ export default async function Page() {
 				<DoneCategoryWrapper className={StrToColor['yellow']}>This icon indicates that these mods are a dependency for another mod on this list</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['red']}>
 					This icon indicates that I only recommend these mods for quick setup. (
-					<a className='text-primary-500' href='https://optifine.net/downloads'>
+					<A className='text-primary-500' href='https://optifine.net/downloads'>
 						Optifine
-					</a>
+					</A>
 					)
 				</DoneCategoryWrapper>
 			</div>

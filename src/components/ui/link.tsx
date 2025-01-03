@@ -2,20 +2,22 @@ import { AnchorHTMLAttributes, ReactNode } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/util';
 
-/* prettier-ignore */
 type TA = AnchorHTMLAttributes<HTMLAnchorElement> & {
 	className?: string;
-	target?: string;
+	notHoverable?: boolean;
 	children: ReactNode;
-} & ({
-	href: string;
-	disabled?: false;
-} | {
-	href?: string;
-	disabled: true;
-});
+} & (
+		| {
+				href: string;
+				disabled?: false;
+		  }
+		| {
+				href?: string;
+				disabled: true;
+		  }
+	);
 
-export function A({ href, className, target, disabled, children, ...props }: TA) {
+export function A({ className, notHoverable, children, href, disabled, target, ...props }: TA) {
 	if (disabled) {
 		const { style, id } = props;
 		return (
@@ -25,11 +27,11 @@ export function A({ href, className, target, disabled, children, ...props }: TA)
 		);
 	}
 
-	const isLocalLink = href ? href.startsWith('/') : false;
+	const isLocalLink = href ? href.startsWith('/') || href.startsWith('#') : false;
 	const security = !isLocalLink || target === '_blank' ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
 	const standard = 'inline-block';
-	const hover = 'hover:opacity-85 hover:active:opacity-50';
+	const hover = notHoverable ? '' : 'hover:opacity-85 hover:active:opacity-50';
 	const focus = 'ring-primary-500 ring-offset-2 ring-offset-body-100 focus-visible:outline-none focus-visible:ring-2';
 
 	if (isLocalLink) {
