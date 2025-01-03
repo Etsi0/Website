@@ -1,5 +1,4 @@
 import { FC, SVGProps } from 'react';
-import Link from 'next/link';
 import Image, { StaticImageData } from 'next/image';
 import { cn } from '@/lib/util';
 import TestImage from '@/../public/img/temp.png';

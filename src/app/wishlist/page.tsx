@@ -1,5 +1,4 @@
 'use server';
-import Image from 'next/image';
 import type { Metadata } from 'next';
 import { db } from '@vercel/postgres';
 import { z } from 'zod';
