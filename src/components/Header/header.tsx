@@ -5,18 +5,21 @@ import { useGSAP } from '@gsap/react';
 import { CustomEase } from 'gsap/CustomEase';
 import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
+import Link from 'next/link';
 
 import { PhadoniaLogo } from '@/components/SVGs';
 import { DarkMode } from '@/components/Header/darkMode';
 import { navLinkJson } from '@/json/header/navLinks';
-import { A } from '@/components/ui/link';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { A } from '@/components/ui/link';
+
+gsap.registerPlugin(CustomEase);
+CustomEase.create('custom', '0.4, 0, 0.2, 1');
 
 export default function App() {
-	const [isMounted, setMounted] = useState<boolean>(false);
+	const [isMounted, setMounted] = useState(false);
 	const [isNavOpen, setIsNavOpen] = useState<boolean | undefined>(undefined);
-	const [currentPath, setCurrentPath] = useState<string>('');
+	const [currentPath, setCurrentPath] = useState('');
 	const pathname = usePathname();
 
 	const gsapContainer = useRef<HTMLDivElement>(null);
@@ -24,15 +27,11 @@ export default function App() {
 	const { contextSafe } = useGSAP({ scope: gsapContainer });
 
 	useEffect(() => {
-		gsap.registerPlugin(CustomEase);
-		CustomEase.create('custom', '0.4, 0, 0.2, 1');
-	}, []);
-
-	useEffect(() => {
-		if (!isMounted) {
+		if (isMounted) {
+			setCurrentPath(pathname + window.location.hash);
+		} else {
 			setMounted(true);
 		}
-		setCurrentPath(pathname + window.location.hash);
 	}, [isMounted, pathname]);
 
 	const navAnimation = contextSafe(() => {
@@ -57,9 +56,7 @@ export default function App() {
 		if (isNavOpen !== undefined) {
 			navAnimation();
 		}
-	}, [isNavOpen, navAnimation]);
 
-	useEffect(() => {
 		if (!isNavOpen) return;
 
 		const handleClickOutside = (event: MouseEvent) => {
@@ -87,7 +84,7 @@ export default function App() {
 			document.removeEventListener('mousedown', handleClickOutside);
 			document.removeEventListener('keydown', handleEscape);
 		};
-	}, [isNavOpen]);
+	}, [isNavOpen, navAnimation]);
 
 	function Navigation() {
 		function navClick(str: string) {
