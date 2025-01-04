@@ -13,9 +13,6 @@ import { navLinkJson } from '@/json/header/navLinks';
 import { Button } from '@/components/ui/button';
 import { A } from '@/components/ui/link';
 
-CustomEase.create('custom', '0.4, 0, 0.2, 1');
-gsap.registerPlugin(CustomEase);
-
 export default function App() {
 	const [isMounted, setMounted] = useState(false);
 	const [isNavOpen, setIsNavOpen] = useState<boolean | undefined>(undefined);
@@ -45,7 +42,6 @@ export default function App() {
 				x: start,
 			},
 			{
-				ease: 'custom',
 				duration: 0.3,
 				x: end,
 			}
