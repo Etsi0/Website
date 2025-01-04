@@ -13,7 +13,7 @@ function SocialLinks({ className }: { className: string }) {
 			{SocialLinkJson.map((item, index) => (
 				<li key={index}>
 					<A className='rounded-sm' href={item.path} aria-label={item.name}>
-						<item.img className='size-8 text-primary-500' />
+						<item.img className='size-8 *:fill-primary-500' />
 					</A>
 				</li>
 			))}

@@ -1,4 +1,4 @@
-import { Person } from '@/components/SVGs';
+import Person from '@/svg/person.svg';
 import { A } from '@/components/ui/link';
 
 export default function App() {

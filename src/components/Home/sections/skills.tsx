@@ -1,5 +1,4 @@
 import SkillCard from '@/components/skillCard';
-
 import { SkillCardJson } from '@/json/home/skillCard';
 
 export function Skills() {
@@ -17,11 +16,12 @@ export function Skills() {
 					{SkillCardJson.map((item, index) => (
 						<SkillCard
 							key={index}
-							SVG={item.SVG}
-							className='aspect-square text-input group-hover:text-primary-500 group-focus-visible:text-primary-500 dark:group-hover:text-body-300 dark:group-focus-visible:text-body-300'
+							CardSVG={
+								<item.SVG className='aspect-square w-1/2 *:!fill-input group-hover:*:!fill-primary-500 group-focus-visible:*:!fill-primary-500 dark:group-hover:*:!fill-body-300 dark:group-focus-visible:*:!fill-body-300' />
+							}
+							DialogSVG={<item.SVG className='aspect-square w-72 *:!fill-primary-500' />}
 							title={item.title}
 							description={item.description}
-							modalClassName='aspect-square w-72 text-primary-500'
 						/>
 					))}
 				</div>
