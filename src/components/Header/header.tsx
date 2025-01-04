@@ -17,9 +17,9 @@ gsap.registerPlugin(CustomEase);
 CustomEase.create('custom', '0.4, 0, 0.2, 1');
 
 export default function App() {
-	const [isMounted, setMounted] = useState(false);
+	const [isMounted, setMounted] = useState<boolean>(false);
 	const [isNavOpen, setIsNavOpen] = useState<boolean | undefined>(undefined);
-	const [currentPath, setCurrentPath] = useState('');
+	const [currentPath, setCurrentPath] = useState<string>('');
 	const pathname = usePathname();
 
 	const gsapContainer = useRef<HTMLDivElement>(null);
