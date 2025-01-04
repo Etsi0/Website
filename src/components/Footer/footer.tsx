@@ -15,7 +15,6 @@ export default function Footer() {
 					<div className='flex justify-center gap-4 divide-x divide-input/25 [&>:not(:first-child)]:pl-4'>
 						<A href='/minecraft'>Minecraft mods</A>
 						<A href='/habit-remover'>Habit Remover</A>
-						<A href='/spotify/recommendations'>Spotify Recommendations</A>
 						<A href='https://cv-maker.phadonia.com'>CV Maker</A>
 						<A href='https://etsi0.github.io/Infinity-tic-tac-toe'>Infinity tic tac toe</A>
 						<A href='https://etsi0.github.io/DiceGame'>Dice Game</A>
