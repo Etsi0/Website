@@ -17,14 +17,16 @@ export default function App({ SVG, className, title, description, modalClassName
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	useEffect(() => {
-		if (!dialogRef.current || !modalClassName) {
+		const dialog = dialogRef.current;
+
+		if (!dialog || !modalClassName) {
 			return;
 		}
 
 		if (isOpen) {
-			dialogRef.current.showModal();
+			dialog.showModal();
 		} else {
-			dialogRef.current.close();
+			dialog.close();
 		}
 
 		const root = document.documentElement;
@@ -34,9 +36,9 @@ export default function App({ SVG, className, title, description, modalClassName
 			setIsOpen(false);
 		};
 
-		dialogRef.current.addEventListener('close', handleEscape);
+		dialog.addEventListener('close', handleEscape);
 
-		return () => dialogRef.current?.removeEventListener('close', handleEscape);
+		return () => dialog.removeEventListener('close', handleEscape);
 	}, [dialogRef, isOpen, modalClassName]);
 
 	const Component = SvgList[SVG];
