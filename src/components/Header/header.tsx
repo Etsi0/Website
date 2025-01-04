@@ -13,9 +13,6 @@ import { A } from '@/components/ui/link';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
-gsap.registerPlugin(CustomEase);
-CustomEase.create('custom', '0.4, 0, 0.2, 1');
-
 export default function App() {
 	const [isMounted, setMounted] = useState<boolean>(false);
 	const [isNavOpen, setIsNavOpen] = useState<boolean | undefined>(undefined);
@@ -27,11 +24,15 @@ export default function App() {
 	const { contextSafe } = useGSAP({ scope: gsapContainer });
 
 	useEffect(() => {
-		if (isMounted) {
-			setCurrentPath(pathname + window.location.hash);
-		} else {
+		gsap.registerPlugin(CustomEase);
+		CustomEase.create('custom', '0.4, 0, 0.2, 1');
+	}, []);
+
+	useEffect(() => {
+		if (!isMounted) {
 			setMounted(true);
 		}
+		setCurrentPath(pathname + window.location.hash);
 	}, [isMounted, pathname]);
 
 	const navAnimation = contextSafe(() => {
