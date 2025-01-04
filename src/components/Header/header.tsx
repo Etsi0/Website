@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { cn } from '@/lib/util';
 import { useGSAP } from '@gsap/react';
-import { CustomEase } from 'gsap/CustomEase';
 import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import Link from 'next/link';
