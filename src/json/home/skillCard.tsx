@@ -3,7 +3,7 @@ import HTML from '@/svg/vscode-icons/html--custom.svg';
 import CSS from '@/svg/vscode-icons/css--custom.svg';
 import TypeScript from '@/svg/vscode-icons/typescript.svg';
 import Responsive from '@/svg/responsive.svg';
-import Figma from '@/svg/figma.svg';
+import Figma from '@/svg/figma--solid.svg';
 import TailwindCSS from '@/svg/vscode-icons/tailwind.svg';
 import React from '@/svg/vscode-icons/reactjs.svg';
 import GitHub from '@/svg/gitHub.svg';
