@@ -45,7 +45,7 @@ export function DarkMode() {
 		<Button
 			className='aspect-square h-full rounded-md'
 			focusable={false}
-			aria-label={darkMode === 'dark' || (darkMode === 'auto' && isSystemThemeDark()) ? 'Change theme to light mode' : 'Change theme to dark mode'}
+			aria-label={darkMode === 'dark' ? 'Change theme to light mode' : darkMode === 'light' ? 'Change theme to dark mode' : 'Set theme'}
 			onClick={toggleDarkMode}
 		>
 			<svg className={cn('text-primary-500')} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>

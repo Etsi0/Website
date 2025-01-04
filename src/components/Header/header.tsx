@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { cn } from '@/lib/util';
 import { useGSAP } from '@gsap/react';
+import { CustomEase } from 'gsap/CustomEase';
 import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import Link from 'next/link';
@@ -11,6 +12,9 @@ import { DarkMode } from '@/components/Header/darkMode';
 import { navLinkJson } from '@/json/header/navLinks';
 import { Button } from '@/components/ui/button';
 import { A } from '@/components/ui/link';
+
+gsap.registerPlugin(CustomEase);
+CustomEase.create('custom', '0.4, 0, 0.2, 1');
 
 export default function App() {
 	const [isMounted, setMounted] = useState(false);
@@ -41,6 +45,7 @@ export default function App() {
 				x: start,
 			},
 			{
+				ease: 'custom',
 				duration: 0.3,
 				x: end,
 			}
