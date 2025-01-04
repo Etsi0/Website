@@ -55,7 +55,7 @@ function Cards({ img, title, badges, text, live = '', source = '' }: TCards) {
 export function Portfolio() {
 	return (
 		<>
-			<section id='portfolio' className='grid justify-items-center gap-3 py-8'>
+			<section id='portfolio' className='grid justify-items-center gap-8 py-8'>
 				<div className='text-center'>
 					<h2>Portfolio</h2>
 					<p>Most recent work</p>

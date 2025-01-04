@@ -29,6 +29,14 @@ export default function App({ SVG, className, title, description, modalClassName
 
 		const root = document.documentElement;
 		root.classList.toggle('overflow-hidden', isOpen);
+
+		const handleEscape = () => {
+			setIsOpen(false);
+		};
+
+		dialogRef.current.addEventListener('close', handleEscape);
+
+		return () => dialogRef.current?.removeEventListener('close', handleEscape);
 	}, [dialogRef, isOpen, modalClassName]);
 
 	const Component = SvgList[SVG];
@@ -45,10 +53,7 @@ export default function App({ SVG, className, title, description, modalClassName
 				</h3>
 			</button>
 			{modalClassName && (
-				<dialog
-					ref={dialogRef}
-					className='bg-body space-y-3 rounded-lg p-8 shadow-lg dark:shadow-[0px_5px_25px_-5px] dark:shadow-primary-500'
-				>
+				<dialog ref={dialogRef} className='bg-body space-y-3 rounded-lg p-8 shadow-lg dark:shadow-[0px_5px_25px_-5px] dark:shadow-primary-500'>
 					<div className='grid justify-items-center gap-x-8 gap-y-4 sm:flex'>
 						<Component className={cn('', modalClassName)} />
 						<div className='w-72 self-center'>
@@ -56,10 +61,7 @@ export default function App({ SVG, className, title, description, modalClassName
 							<p>{description}</p>
 						</div>
 					</div>
-					<Button
-						className='relative float-end px-9 py-3'
-						onClick={() => setIsOpen(false)}
-					>
+					<Button className='relative float-end rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-input' onClick={() => setIsOpen(false)}>
 						Close
 					</Button>
 				</dialog>
