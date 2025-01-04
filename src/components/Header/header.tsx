@@ -56,34 +56,6 @@ export default function App() {
 		if (isNavOpen !== undefined) {
 			navAnimation();
 		}
-
-		if (!isNavOpen) return;
-
-		const handleClickOutside = (event: MouseEvent) => {
-			if (event.button !== 0) return;
-
-			const target = event.target as Node;
-			const nav = navContainer.current;
-			const hamburger = document.querySelector('.hamburger-button');
-
-			if (nav && !nav.contains(target) && !hamburger?.contains(target)) {
-				setIsNavOpen(false);
-			}
-		};
-
-		const handleEscape = (event: KeyboardEvent) => {
-			if (event.key === 'Escape') {
-				setIsNavOpen(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-		document.addEventListener('keydown', handleEscape);
-
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-			document.removeEventListener('keydown', handleEscape);
-		};
 	}, [isNavOpen, navAnimation]);
 
 	function Navigation() {
