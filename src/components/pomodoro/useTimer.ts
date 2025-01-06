@@ -8,6 +8,30 @@ export const useTimer = (initialState: (typeof STATES)[number], options: TOption
 	const [timeLeft, setTimeLeft] = useState<number>(options[state] * 60);
 	const [index, setIndex] = useState<number>(1);
 
+	const handleStateTransition = useCallback(
+		(overwriteState?: (typeof STATES)[number]) => {
+			if (overwriteState) {
+				if (overwriteState === 'pomodoro') {
+					setIndex((prev) => prev + 1);
+				}
+				setState(overwriteState);
+				return;
+			}
+
+			switch (state) {
+				case 'pomodoro':
+					setState(index % options.longBreakInterval === 0 ? 'longBreak' : 'shortBreak');
+					break;
+				case 'shortBreak':
+				case 'longBreak':
+					setIndex((prev) => prev + 1);
+					setState('pomodoro');
+					break;
+			}
+		},
+		[state, index, options.longBreakInterval]
+	);
+
 	useEffect(() => {
 		isMounted.current = true;
 	}, []);
@@ -50,30 +74,6 @@ export const useTimer = (initialState: (typeof STATES)[number], options: TOption
 			worker.terminate();
 		};
 	}, [isRunning, timeLeft, handleStateTransition]);
-
-	const handleStateTransition = useCallback(
-		(overwriteState?: (typeof STATES)[number]) => {
-			if (overwriteState) {
-				if (overwriteState === 'pomodoro') {
-					setIndex((prev) => prev + 1);
-				}
-				setState(overwriteState);
-				return;
-			}
-
-			switch (state) {
-				case 'pomodoro':
-					setState(index % options.longBreakInterval === 0 ? 'longBreak' : 'shortBreak');
-					break;
-				case 'shortBreak':
-				case 'longBreak':
-					setIndex((prev) => prev + 1);
-					setState('pomodoro');
-					break;
-			}
-		},
-		[state, index, options.longBreakInterval]
-	);
 
 	return {
 		state,
