@@ -1,11 +1,11 @@
 import { cn } from '@/lib/util';
 import { LabelHTMLAttributes, ReactNode } from 'react';
 
-const variants = ['vertical', 'horizontal'] as const;
+type variants = 'vertical' | 'horizontal';
 
 type TLabel = LabelHTMLAttributes<HTMLLabelElement> & {
 	className?: string;
-	type: (typeof variants)[number];
+	type: variants;
 	children: ReactNode;
 };
 

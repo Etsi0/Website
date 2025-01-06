@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TOptions, STATES } from '@/components/pomodoro/client2';
 
 export const useTimer = (initialState: (typeof STATES)[number], options: TOptions) => {
-	const [isMounted, setIsMounted] = useState<boolean>(false);
+	const isMounted = useRef(false);
 	const [state, setState] = useState<(typeof STATES)[number]>(initialState);
 	const [isRunning, setIsRunning] = useState<boolean>(false);
 	const [timeLeft, setTimeLeft] = useState<number>(options[state] * 60);
 	const [index, setIndex] = useState<number>(1);
 
 	useEffect(() => {
-		setIsMounted(true);
+		isMounted.current = true;
 	}, []);
 
 	useEffect(() => {
-		if (!isMounted) {
+		if (!isMounted.current) {
 			return;
 		}
 
@@ -21,7 +21,7 @@ export const useTimer = (initialState: (typeof STATES)[number], options: TOption
 	}, [state, options]);
 
 	useEffect(() => {
-		if (!isMounted) {
+		if (!isMounted.current) {
 			return;
 		}
 

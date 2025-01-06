@@ -33,7 +33,7 @@ export default function Client() {
 	const [options, setOptions] = useState<TOptions>(DEFAULT_OPTIONS);
 	const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
-	const { state, setState, isRunning, setIsRunning, timeLeft, index, handleStateTransition } = useTimer('pomodoro', options);
+	const { state, isRunning, setIsRunning, timeLeft, index, handleStateTransition } = useTimer('pomodoro', options);
 
 	const minutes = Math.floor(timeLeft / 60)
 		.toString()
