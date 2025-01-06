@@ -49,7 +49,7 @@ export const useTimer = (initialState: (typeof STATES)[number], options: TOption
 			worker.postMessage({ type: 'STOP' });
 			worker.terminate();
 		};
-	}, [isRunning]);
+	}, [isRunning, timeLeft, handleStateTransition]);
 
 	function handleStateTransition(overwriteState?: (typeof STATES)[number]) {
 		if (overwriteState) {
