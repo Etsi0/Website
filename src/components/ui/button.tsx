@@ -8,9 +8,13 @@ type TButton = {
 	children: ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export function Button({ className, hoverable = true, focusable = true, children, ...props }: TButton) {
+export function Button({ className, hoverable = true, focusable = true, children, disabled, ...props }: TButton) {
 	return (
-		<button className={cn(hoverable && whenHovering, focusable && whenFocusing, className)} {...props}>
+		<button
+			tabIndex={disabled ? -1 : 1}
+			className={cn(hoverable && !disabled && whenHovering, focusable && !disabled && whenFocusing, disabled && 'cursor-not-allowed opacity-50', className)}
+			{...props}
+		>
 			{children}
 		</button>
 	);

@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
 import { cn } from '@/lib/util';
+import { NoScript } from '@/components/ui/noScript';
 
 type MonthData = {
 	month: number;
@@ -104,7 +105,7 @@ export function Client() {
 
 	return (
 		<>
-			<noscript>This page requires JavaScript to run, please enable JavaScript to continue</noscript>
+			<NoScript />
 			<div className={cn('space-x-4 text-center', !isMounted && 'hidden')}>
 				<label className='inline-grid text-sm font-medium'>
 					Year

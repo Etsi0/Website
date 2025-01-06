@@ -1,21 +1,62 @@
 'use client';
-import { ReactNode, useEffect, useRef, useState } from 'react';
-import { Button } from './ui/button';
+import { FC, SVGProps, useEffect, useRef, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { SkillCardJson } from '@/json/home/skillCard';
+import { TDialogState, TSkillCard, TSkillCardDialog } from '@/types/home/skills';
+import { Dialog } from '@/components/ui/dialog';
 
-type AppProps = {
-	CardSVG: ReactNode;
-	DialogSVG: ReactNode;
-	title: string;
-	description: string;
-};
+export function SkillCards() {
+	const [dialogState, setDialogState] = useState<TDialogState>({
+		isOpen: false,
+		title: '',
+		description: '',
+		SVG: null,
+	});
 
-export default function App({ CardSVG, DialogSVG, title, description }: AppProps) {
+	const handleOpenDialog = (title: string, description: string, SVG: FC<SVGProps<SVGElement>>) => {
+		setDialogState({
+			isOpen: true,
+			title,
+			description,
+			SVG,
+		});
+	};
+
+	const handleCloseDialog = () => {
+		setDialogState((prev) => ({ ...prev, isOpen: false }));
+	};
+
+	return (
+		<>
+			{SkillCardJson.map((item, index) => (
+				<SkillCard key={index} SVG={item.SVG} title={item.title} description={item.description} onOpen={handleOpenDialog} />
+			))}
+			{dialogState.SVG && <SkillCardDialog isOpen={dialogState.isOpen} onClose={handleCloseDialog} title={dialogState.title} description={dialogState.description} SVG={dialogState.SVG} />}
+		</>
+	);
+}
+
+export function SkillCard({ SVG, title, description, onOpen }: TSkillCard) {
+	return (
+		<>
+			<button
+				className='group grid aspect-[1/1.125] place-content-center place-items-center gap-3 rounded-lg bg-primary-500 p-3 shadow-lg duration-300 hover:bg-body-100 hover:shadow-inner focus-visible:bg-body-100 focus-visible:shadow-inner focus-visible:outline-none'
+				onClick={() => onOpen(title, description, SVG)}
+			>
+				<SVG className='aspect-square w-1/2 *:!fill-input group-hover:*:!fill-primary-500 group-focus-visible:*:!fill-primary-500 dark:group-hover:*:!fill-body-300 dark:group-focus-visible:*:!fill-body-300' />
+				<h3 className='text-lg leading-5 text-input group-hover:text-primary-500 group-focus-visible:text-primary-500 dark:group-hover:text-body-300 dark:group-focus-visible:text-body-300'>
+					{title}
+				</h3>
+			</button>
+		</>
+	);
+}
+
+export function SkillCardDialog({ SVG, title, description, isOpen, onClose }: TSkillCardDialog) {
 	const dialogRef = useRef<HTMLDialogElement>(null);
-	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	useEffect(() => {
 		const dialog = dialogRef.current;
-
 		if (!dialog) {
 			return;
 		}
@@ -30,37 +71,25 @@ export default function App({ CardSVG, DialogSVG, title, description }: AppProps
 		root.classList.toggle('overflow-hidden', isOpen);
 
 		const handleEscape = () => {
-			setIsOpen(false);
+			onClose();
 		};
 
 		dialog.addEventListener('close', handleEscape);
-
 		return () => dialog.removeEventListener('close', handleEscape);
-	}, [dialogRef, isOpen]);
+	}, [isOpen, onClose]);
 
 	return (
-		<>
-			<button
-				className='group grid aspect-[1/1.125] place-content-center place-items-center gap-3 rounded-lg bg-primary-500 p-3 shadow-lg duration-300 hover:bg-body-100 hover:shadow-inner focus-visible:bg-body-100 focus-visible:shadow-inner focus-visible:outline-none'
-				onClick={() => setIsOpen(true)}
-			>
-				{CardSVG}
-				<h3 className='text-lg leading-5 text-input group-hover:text-primary-500 group-focus-visible:text-primary-500 dark:group-hover:text-body-300 dark:group-focus-visible:text-body-300'>
-					{title}
-				</h3>
-			</button>
-			<dialog ref={dialogRef} className='bg-body space-y-3 rounded-lg p-8 shadow-lg dark:shadow-[0px_5px_25px_-5px] dark:shadow-primary-500'>
-				<div className='grid justify-items-center gap-x-8 gap-y-4 sm:flex'>
-					{DialogSVG}
-					<div className='w-72 self-center'>
-						<h3>{title}</h3>
-						<p>{description}</p>
-					</div>
+		<Dialog ref={dialogRef}>
+			<div className='grid justify-items-center gap-x-8 gap-y-4 sm:flex'>
+				<SVG className='aspect-square w-72 *:!fill-primary-500' />
+				<div className='w-72 self-center'>
+					<h3>{title}</h3>
+					<p>{description}</p>
 				</div>
-				<Button className='relative float-end rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-input' onClick={() => setIsOpen(false)}>
-					Close
-				</Button>
-			</dialog>
-		</>
+			</div>
+			<Button className='relative float-end rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-input' onClick={() => onClose()}>
+				Close
+			</Button>
+		</Dialog>
 	);
 }
