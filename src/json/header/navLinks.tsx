@@ -27,4 +27,8 @@ export const navLinkJson = [
 		path: '/habit-remover',
 		name: 'Habit Remover',
 	},
+	{
+		path: '/pomodoro',
+		name: 'Pomodoro',
+	},
 ];
