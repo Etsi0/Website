@@ -69,7 +69,7 @@ export default function Client() {
 						{minutes}:{seconds}
 					</h1>
 					<div className='mt-4 flex items-center justify-center gap-8'>
-						<Button onClick={() => setIsSettingsOpen(true)}>
+						<Button aria-label='Settings' onClick={() => setIsSettingsOpen(true)}>
 							<Settings className='size-[calc(1.25em_+_1rem)] fill-text-500' />
 						</Button>
 
@@ -77,7 +77,7 @@ export default function Client() {
 							{isRunning ? 'Pause' : 'Start'}
 						</Button>
 
-						<Button onClick={() => handleStateTransition()}>
+						<Button aria-label='Skip' onClick={() => handleStateTransition()}>
 							<SkipNext className='size-[calc(1.25em_+_1rem)] fill-text-500' />
 						</Button>
 					</div>
