@@ -50,7 +50,7 @@ export default function Client() {
 
 	return (
 		<>
-			<section className='grid h-[calc(100svh_-_4rem)] place-items-center'>
+			<section className='heroSection grid place-items-center'>
 				<NoScript />
 				<div className={cn('gap-4', isMounted ? 'grid' : 'hidden')}>
 					<div className='mx-auto'>{index}</div>
@@ -73,8 +73,21 @@ export default function Client() {
 							<Settings className='size-[calc(1.25em_+_1rem)] fill-text-500' />
 						</Button>
 
-						<Button className='grow rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-input' onClick={() => setIsRunning(!isRunning)}>
-							{isRunning ? 'Pause' : 'Start'}
+						<Button
+							className={cn(
+								'grow rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-input transition-colors duration-300',
+								isRunning === 'mute' && 'bg-amber-400 text-amber-950',
+								isRunning === 'running' && 'bg-red-500 text-red-50'
+							)}
+							onClick={() => {
+								if (isRunning === 'stopped') {
+									setIsRunning('running');
+								} else {
+									setIsRunning('stopped');
+								}
+							}}
+						>
+							{isRunning === 'mute' ? 'Mute' : isRunning === 'stopped' ? 'Start' : 'Pause'}
 						</Button>
 
 						<Button aria-label='Skip' onClick={() => handleStateTransition()}>

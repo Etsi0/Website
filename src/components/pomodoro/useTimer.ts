@@ -3,8 +3,9 @@ import { TOptions, STATES } from '@/components/pomodoro/client2';
 
 export const useTimer = (initialState: (typeof STATES)[number], options: TOptions) => {
 	const isMounted = useRef(false);
+	const audio = useRef<HTMLAudioElement | null>(null);
 	const [state, setState] = useState<(typeof STATES)[number]>(initialState);
-	const [isRunning, setIsRunning] = useState<boolean>(false);
+	const [isRunning, setIsRunning] = useState<'stopped' | 'running' | 'mute'>('stopped');
 	const [timeLeft, setTimeLeft] = useState<number>(options[state] * 60);
 	const [index, setIndex] = useState<number>(1);
 
@@ -34,6 +35,15 @@ export const useTimer = (initialState: (typeof STATES)[number], options: TOption
 
 	useEffect(() => {
 		isMounted.current = true;
+		audio.current = new Audio('/alarm.mp3');
+		audio.current.loop = true;
+
+		return () => {
+			if (audio.current) {
+				audio.current.pause();
+				audio.current = null;
+			}
+		};
 	}, []);
 
 	useEffect(() => {
@@ -43,6 +53,21 @@ export const useTimer = (initialState: (typeof STATES)[number], options: TOption
 
 		setTimeLeft(options[state] * 60);
 	}, [state, options]);
+
+	useEffect(() => {
+		if (!isMounted.current || !audio) {
+			return;
+		}
+
+		if (isRunning === 'mute') {
+			audio.current?.play();
+		} else if (isRunning === 'stopped') {
+			audio.current?.pause();
+			if (audio.current) {
+				audio.current.currentTime = 0;
+			}
+		}
+	}, [isRunning]);
 
 	useEffect(() => {
 		if (!isMounted.current) {
@@ -57,12 +82,12 @@ export const useTimer = (initialState: (typeof STATES)[number], options: TOption
 			if (type === 'TICK') {
 				setTimeLeft(remainingTime);
 			} else if (type === 'COMPLETE') {
-				setIsRunning(false);
+				setIsRunning('mute');
 				handleStateTransition();
 			}
 		});
 
-		if (isRunning) {
+		if (isRunning === 'running') {
 			worker.postMessage({
 				type: 'START',
 				duration: timeLeft,
