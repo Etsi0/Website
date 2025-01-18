@@ -1,0 +1,164 @@
+[
+	{
+		"title": "Better Comments",
+		"icon": "Better Comments.png",
+		"description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
+		"link": "https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments"
+	},
+	{
+		"title": "Bookmarks",
+		"icon": "Bookmarks.png",
+		"description": "Mark lines and jump to them",
+		"link": "https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks"
+	},
+	{
+		"title": "PHP Intelephense",
+		"icon": "PHP Intelephense.png",
+		"description": "PHP code intelligence for Visual Studio Code",
+		"link": "https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client"
+	},
+	{
+		"title": "Tailwind CSS IntelliSense",
+		"icon": "Tailwind CSS IntelliSense.png",
+		"description": "Intelligent Tailwind CSS tooling for VS Code",
+		"link": "https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss"
+	},
+	{
+		"title": "ESLint",
+		"icon": "ESLint.png",
+		"description": "Integrates ESLint JavaScript into VS Code.",
+		"link": "https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint"
+	},
+	{
+		"title": "GitLens \u2014 Git supercharged",
+		"icon": "GitLens \u2014 Git supercharged.png",
+		"description": "Supercharge Git within VS Code \u2014 Visualize code authorship at a glance via Git blame annotations and CodeLens, seamlessly navigate and explore Git repositories, gain valuable insights via rich visualizations and powerful comparison commands, and so much more",
+		"link": "https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens"
+	},
+	{
+		"title": "Material Theme \u2014 Free",
+		"icon": "Material Theme \u2014 Free.png",
+		"description": "The most epic theme now for Visual Studio Code",
+		"link": "https://marketplace.visualstudio.com/items?itemName=Equinusocio.vsc-material-theme"
+	},
+	{
+		"title": "Prettier - Code formatter",
+		"icon": "Prettier - Code formatter.png",
+		"description": "Code formatter using prettier",
+		"link": "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode"
+	},
+	{
+		"title": "Class Collapse",
+		"icon": "Class Collapse.png",
+		"description": "Improves code readability by collapsing anything you want",
+		"link": "https://marketplace.visualstudio.com/items?itemName=Etsi0.class-collapse"
+	},
+	{
+		"title": "Auto Rename Tag",
+		"icon": "Auto Rename Tag.png",
+		"description": "Auto rename paired HTML/XML tag",
+		"link": "https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag"
+	},
+	{
+		"title": "Discord Presence",
+		"icon": "Discord Presence.png",
+		"description": "Update your discord status with a rich presence.",
+		"link": "https://marketplace.visualstudio.com/items?itemName=icrawl.discord-vscode"
+	},
+	{
+		"title": "Docker",
+		"icon": "Docker.png",
+		"description": "Makes it easy to create, manage, and debug containerized applications.",
+		"link": "https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker"
+	},
+	{
+		"title": "Python Debugger",
+		"icon": "Python Debugger.png",
+		"description": "Python Debugger extension using debugpy.",
+		"link": "https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy"
+	},
+	{
+		"title": "Python",
+		"icon": "Python.png",
+		"description": "Python language support with extension access points for IntelliSense (Pylance), Debugging (Python Debugger), linting, formatting, refactoring, unit tests, and more.",
+		"link": "https://marketplace.visualstudio.com/items?itemName=ms-python.python"
+	},
+	{
+		"title": "Pylance",
+		"icon": "Pylance.png",
+		"description": "A performant, feature-rich language server for Python in VS Code",
+		"link": "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance"
+	},
+	{
+		"title": "CMake Tools",
+		"icon": "CMake Tools.png",
+		"description": "Extended CMake support in Visual Studio Code",
+		"link": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools"
+	},
+	{
+		"title": "C/C++",
+		"icon": "C-C++.png",
+		"description": "C/C++ IntelliSense, debugging, and code browsing.",
+		"link": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools"
+	},
+	{
+		"title": "JavaScript and TypeScript Nightly",
+		"icon": "JavaScript and TypeScript Nightly.png",
+		"description": "Enables typescript@next to power VS Code's built-in JavaScript and TypeScript support",
+		"link": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next"
+	},
+	{
+		"title": "Material Icon Theme",
+		"icon": "Material Icon Theme.png",
+		"description": "Material Design Icons for Visual Studio Code",
+		"link": "https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme"
+	},
+	{
+		"title": "CSS Peek",
+		"icon": "CSS Peek.png",
+		"description": "Allow peeking to css ID and class strings as definitions from html files to respective CSS. Allows peek and goto definition.",
+		"link": "https://marketplace.visualstudio.com/items?itemName=pranaygp.vscode-css-peek"
+	},
+	{
+		"title": "Live Server",
+		"icon": "Live Server.png",
+		"description": "Launch a development local Server with live reload feature for static & dynamic pages",
+		"link": "https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer"
+	},
+	{
+		"title": "Strict Whitespace",
+		"icon": "Strict Whitespace.png",
+		"description": "Discover poor whitespace in documents.",
+		"link": "https://marketplace.visualstudio.com/items?itemName=sidp.strict-whitespace"
+	},
+	{
+		"title": "Code Spell Checker",
+		"icon": "Code Spell Checker.png",
+		"description": "Spelling checker for source code",
+		"link": "https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker"
+	},
+	{
+		"title": "Swedish - Code Spell Checker",
+		"icon": "Swedish - Code Spell Checker.png",
+		"description": "Swedish dictionary extension for VS Code.",
+		"link": "https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker-swedish"
+	},
+	{
+		"title": "CMake",
+		"icon": "CMake.png",
+		"description": "CMake langage support for Visual Studio Code",
+		"link": "https://marketplace.visualstudio.com/items?itemName=twxs.cmake"
+	},
+	{
+		"title": "Error Lens",
+		"icon": "Error Lens.png",
+		"description": "Improve highlighting of errors, warnings and other language diagnostics.",
+		"link": "https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens"
+	},
+	{
+		"title": "Pretty TypeScript Errors",
+		"icon": "Pretty TypeScript Errors.png",
+		"description": "Make TypeScript errors prettier and more human-readable in VSCode",
+		"link": "https://marketplace.visualstudio.com/items?itemName=YoavBls.pretty-ts-errors"
+	}
+]

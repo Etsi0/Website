@@ -1,11 +1,20 @@
 {
 	"css.format.enable": false,
+	"diffEditor.ignoreTrimWhitespace": false,
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnSaveMode": "modifications",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.detectIndentation": false,
+	"editor.indentSize": "tabSize",
 	"editor.insertSpaces": false,
 	"editor.tabSize": 4,
 	"files.autoGuessEncoding": false,
 	"files.encoding": "utf8",
+	"intelephense.format.enable": true,
 	"prettier.enable": true,
-	"typescript.preferences.importModuleSpecifier": "non-relative"
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"[php]": {
+		"editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+	}
 }
