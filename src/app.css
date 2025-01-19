@@ -4,15 +4,14 @@
 
 @layer base {
 	:root {
-		--dark-mode: 0;
+		--isDarkMode: 0;
 		--hue-color: 240deg;
 		color-scheme: light;
 
 		/*==================================================
 			Booleans
 		==================================================*/
-		--isLightMode: calc(1 - var(--dark-mode));
-		--isDarkMode: var(--dark-mode);
+		--isLightMode: calc(1 - var(--isDarkMode));
 
 		/*==================================================
 			Body colors
@@ -76,12 +75,12 @@
 ==================================================*/
 @media (prefers-color-scheme: dark) {
 	:root:not(.light) {
-		--dark-mode: 1;
+		--isDarkMode: 1;
 		color-scheme: dark;
 	}
 }
 :root.dark {
-	--dark-mode: 1;
+	--isDarkMode: 1;
 	color-scheme: dark;
 }
 
