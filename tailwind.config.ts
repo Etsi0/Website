@@ -1,10 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config = {
-	darkMode: [
-		'variant',
-		['@media (prefers-color-scheme: dark) { &:not(.light *) }', '&:is(.dark *)'],
-	],
+	darkMode: ['variant', ['@media (prefers-color-scheme: dark) { &:not(.light *) }', '&:is(.dark *)']],
 	content: [
 		'./src/pages/**/*.{js,ts,jsx,tsx,mdx,json}',
 		'./src/app/**/*.{js,ts,jsx,tsx,mdx,json}',
@@ -17,7 +14,6 @@ const config = {
 	theme: {
 		extend: {
 			colors: {
-				border: 'hsl(var(--border-color) / <alpha-value>)',
 				body: {
 					50: 'hsl(var(--body-color-50) / <alpha-value>)',
 					100: 'hsl(var(--body-color-100) / <alpha-value>)',

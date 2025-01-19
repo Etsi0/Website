@@ -17,18 +17,18 @@
 		/*==================================================
 			Body colors
 		==================================================*/
-		--body-color-50 : var(--hue-color) 12% max(5%, 100% * var(--isLightMode));
-		--body-color-100: var(--hue-color) 12% max(10%, 95% * var(--isLightMode));
-		--body-color-200: var(--hue-color) 12% max(20%, 85% * var(--isLightMode));
-		--body-color-300: var(--hue-color) 12% max(30%, 75% * var(--isLightMode));
-		--body-color-400: var(--hue-color) 12% max(40%, 65% * var(--isLightMode));
-		--body-color-500: var(--hue-color) 12% max(50%, 55% * var(--isLightMode));
-
-		/*==================================================
-			Border colors
-		==================================================*/
-		--border-lightness: 76.5%;
-		--border-color: var(--hue-color) 12% max(100% - var(--border-lightness), var(--border-lightness) * var(--isLightMode));
+		--body-color-50 : var(--hue-color) 16% max(5%, 100% * var(--isLightMode));
+		--body-color-100: var(--hue-color) 16% max(10%, 95% * var(--isLightMode));
+		--body-color-200: var(--hue-color) 16% max(20%, 85% * var(--isLightMode));
+		--body-color-300: var(--hue-color) 16% max(30%, 75% * var(--isLightMode));
+		--body-color-400: var(--hue-color) 16% max(40%, 65% * var(--isLightMode));
+		--body-color-500: var(--hue-color) 16% max(50%, 55% * var(--isLightMode));
+		/* --body-color-50 : var(--hue-color) 16% abs(100% - 105% * var(--isDarkMode));
+		--body-color-100: var(--hue-color) 16% abs(95% - 105% * var(--isDarkMode));
+		--body-color-200: var(--hue-color) 16% abs(85% - 105% * var(--isDarkMode));
+		--body-color-300: var(--hue-color) 16% abs(75% - 105% * var(--isDarkMode));
+		--body-color-400: var(--hue-color) 16% abs(65% - 105% * var(--isDarkMode));
+		--body-color-500: var(--hue-color) 16% abs(55% - 105% * var(--isDarkMode)); */
 
 		/*==================================================
 			Input colors
@@ -55,14 +55,19 @@
 		==================================================*/
 		--text-lightness-300: 36.075%;
 		--text-color-300: var(--hue-color) 12% max((100% - var(--text-lightness-300)) * var(--isDarkMode), var(--text-lightness-300));
+		/* --text-color-300: var(--hue-color) 12% abs(var(--text-lightness-300) - 100% * var(--isDarkMode)); */
 		--text-lightness-400: 27.888%;
 		--text-color-400: var(--hue-color) 12% max((100% - var(--text-lightness-400)) * var(--isDarkMode), var(--text-lightness-400));
+		/* --text-color-400: var(--hue-color) 12% abs(var(--text-lightness-400) - 100% * var(--isDarkMode)); */
 		--text-lightness-500: 20.686999999999998%;
 		--text-color-500: var(--hue-color) 12% max((100% - var(--text-lightness-500)) * var(--isDarkMode), var(--text-lightness-500));
+		/* --text-color-500: var(--hue-color) 12% abs(var(--text-lightness-500) - 100% * var(--isDarkMode)); */
 		--text-lightness-600: 14.472000000000001%;
 		--text-color-600: var(--hue-color) 12% max((100% - var(--text-lightness-600)) * var(--isDarkMode), var(--text-lightness-600));
+		/* --text-color-600: var(--hue-color) 12% abs(var(--text-lightness-600) - 100% * var(--isDarkMode)); */
 		--text-lightness-700: 9.243%;
 		--text-color-700: var(--hue-color) 12% max((100% - var(--text-lightness-700)) * var(--isDarkMode), var(--text-lightness-700));
+		/* --text-color-700: var(--hue-color) 12% abs(var(--text-lightness-700) - 100% * var(--isDarkMode)); */
 	}
 }
 
@@ -80,24 +85,20 @@
 	color-scheme: dark;
 }
 
-.dark .shiki,
-.dark .shiki span {
-	color: var(--shiki-dark) !important;
-	background-color: var(--shiki-dark-bg) !important;
-	/* Optional, if you also want font styles */
-	font-style: var(--shiki-dark-font-style) !important;
-	font-weight: var(--shiki-dark-font-weight) !important;
-	text-decoration: var(--shiki-dark-text-decoration) !important;
-}
-
-*::before,
 *,
-*::after {
-	border-color: hsl(var(--border-color));
+::before,
+::after {
+	border-color: hsl(var(--body-color-200));
 
 	transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 150ms;
+}
+
+.dark *,
+.dark ::before,
+.dark ::after {
+	border-color: hsl(var(--body-color-300));
 }
 
 *:focus-visible {
@@ -220,6 +221,16 @@ button[aria-expanded='true'] .path2 {
 	display: inline-block;
 	text-align: right;
 	color: rgba(115,138,148,.4)
+}
+
+.dark .shiki,
+.dark .shiki span {
+	color: var(--shiki-dark) !important;
+	background-color: var(--shiki-dark-bg) !important;
+	/* Optional, if you also want font styles */
+	font-style: var(--shiki-dark-font-style) !important;
+	font-weight: var(--shiki-dark-font-weight) !important;
+	text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {
