@@ -96,12 +96,12 @@ export default async function Page() {
 			</div>
 			<div className='space-y-5'>
 				<h2>Extensions</h2>
-				<div className='grid grid-cols-3 gap-x-4 gap-y-5'>
+				<div className='grid grid-cols-[repeat(auto-fit,_minmax(min(100%,_calc(80rem/3-2rem)),_1fr))] gap-x-4 gap-y-5'>
 					{json
 						.sort((a, b) => a.title.localeCompare(b.title))
 						.map((items, index) => (
-							<A key={index} href={items.link} className='space-y-4 rounded-md bg-body-50 p-4 text-center dark:bg-body-200'>
-								<div className='mx-auto inline-block aspect-square content-center'>
+							<A key={index} href={items.link} className='grid place-items-center space-y-4 rounded-md bg-body-50 p-4 text-center dark:bg-body-200'>
+								<div className='aspect-square content-center'>
 									<Image src={`/img/settings/vscode/${items.icon}`} alt='' width={128} height={128} />
 								</div>
 								<h3>{items.title}</h3>
@@ -112,7 +112,7 @@ export default async function Page() {
 			</div>
 			<div className='space-y-5'>
 				<h2>User Settings</h2>
-				<CodeBlock lang='json'>{userSettings}</CodeBlock>
+				<CodeBlock lang='jsonc'>{userSettings}</CodeBlock>
 			</div>
 			<div className='space-y-5'>
 				<h2>.vscode/settings.json</h2>

@@ -205,6 +205,9 @@ button[aria-expanded='true'] .path2 {
 	code blocks
 ==================================================*/
 .shiki {
+	overflow-x: scroll;
+	overflow-y: clip;
+
 	counter-reset: step;
 	counter-increment: step 0;
 
