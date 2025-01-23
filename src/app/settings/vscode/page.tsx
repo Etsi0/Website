@@ -74,7 +74,7 @@ const workspaceSettings = `{
 }` as const;
 
 const prettierrc = `{
-	"printWidth": 0,
+	"printWidth": 200,
 	"tabWidth": 4,
 	"useTabs": true,
 	"semi": true,
