@@ -94,8 +94,8 @@ export function Portfolio() {
 						title='Class Collapse'
 						badges={[{ svg: TS, text: 'Typescript' }]}
 						text='A VSCode extension that allows you to collapse section of code. for example, classes'
-						live='https://etsi0.github.io/Infinity-tic-tac-toe/'
-						source='https://github.com/Etsi0/Infinity-tic-tac-toe'
+						live='https://marketplace.visualstudio.com/items?itemName=Etsi0.class-collapse'
+						source='https://github.com/Etsi0/class-collapse'
 					/>
 					<Cards
 						img={TestImage}
