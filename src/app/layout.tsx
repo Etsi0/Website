@@ -10,12 +10,10 @@ import '../output.css';
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang='en'>
-			<body>
-				<div id='root' className='flex min-h-screen flex-col overflow-x-hidden bg-body-100'>
+			<body className='bg-body-100'>
+				<div id='root' className='flex min-h-screen flex-col overflow-x-hidden'>
 					<Header />
-					<main className='mx-auto flex w-full max-w-7xl grow flex-col px-8 pt-16'>
-						{children}
-					</main>
+					<main className='mx-auto flex w-full max-w-7xl grow flex-col px-8 pt-16'>{children}</main>
 					<Footer />
 					<Analytics />
 					<SpeedInsights />
