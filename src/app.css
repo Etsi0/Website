@@ -131,35 +131,37 @@ h6 {
 h1 {
 	color: hsl(var(--text-color-700));
 	font-size: 3rem;
-	line-height: 1;
+	line-height: 1.33em;
 }
 
 h2 {
-	font-size: 2.25rem;
-	line-height: 2.5rem;
+	font-size: 2.521rem;
+	line-height: 1.33em;
 }
 
 h3 {
-	font-size: 1.875rem;
-	line-height: 2.25rem;
+	font-size: 2.089rem;
+	line-height: 1.33em;
 }
 
 h4 {
-	font-size: 1.5rem;
-	line-height: 2rem;
+	font-size: 1.707rem;
+	line-height: 1.33em;
 }
 
 h5 {
-	font-size: 1.25rem;
-	line-height: 1.75rem;
+	font-size: 1.385rem;
+	line-height: 1.33em;
 }
 
 h6 {
-	font-size: 1.125rem;
-	line-height: 1.75rem;
+	font-size: 1.136rem;
+	line-height: 1.33em;
 }
 
 p {
+	font-size: 1rem;
+	line-height: 1.33em;
 	max-width: 65ch;
 	text-wrap: pretty;
 }
