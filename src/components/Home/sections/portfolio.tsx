@@ -87,7 +87,7 @@ export function Portfolio() {
 							{ svg: Vite, text: 'Vite' },
 						]}
 						text="Search engine that supports all of DuckDuckGo's bangs without impacting speed."
-						live='/'
+						live='https://search.phadonia.com'
 						source='https://github.com/Etsi0/search'
 					/>
 					<Cards
