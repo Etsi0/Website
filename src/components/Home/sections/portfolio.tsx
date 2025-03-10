@@ -9,6 +9,7 @@ import HTML from '@/svg/vscode-icons/html--custom.svg';
 import CSS from '@/svg/vscode-icons/css--custom.svg';
 import JS from '@/svg/vscode-icons/js.svg';
 import Tailwind from '@/svg/vscode-icons/tailwind.svg';
+import Vite from '@/svg/vscode-icons/vite.svg';
 import ReactIcon from '@/svg/vscode-icons/reactjs.svg';
 import Next from '@/svg/vscode-icons/next.svg';
 import TS from '@/svg/vscode-icons/typescript.svg';
@@ -75,6 +76,19 @@ export function Portfolio() {
 						text='The site you are on right now'
 						live='/'
 						source='https://github.com/Etsi0/Website'
+					/>
+					<Cards
+						img={TestImage}
+						title='Phadonia Search'
+						badges={[
+							{ svg: HTML, text: 'HTML' },
+							{ svg: Tailwind, text: 'Tailwind' },
+							{ svg: TS, text: 'Typescript' },
+							{ svg: Vite, text: 'Vite' },
+						]}
+						text="Search engine that supports all of DuckDuckGo's bangs without impacting speed."
+						live='/'
+						source='https://github.com/Etsi0/search'
 					/>
 					<Cards
 						img={TestImage}
