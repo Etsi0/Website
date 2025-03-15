@@ -115,7 +115,7 @@ export function Client() {
 						max='9999'
 						value={year}
 						onChange={(e) => setYear(Number(e.target.value))}
-						className='rounded border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
+						className='rounded-sm border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
 					/>
 				</label>
 				<label className='inline-grid text-sm font-medium'>
@@ -126,7 +126,7 @@ export function Client() {
 						max='12'
 						value={startMonth}
 						onChange={(e) => setStartMonth(Number(e.target.value))}
-						className='rounded border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
+						className='rounded-sm border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
 					/>
 				</label>
 				<label className='inline-grid text-sm font-medium'>
@@ -137,7 +137,7 @@ export function Client() {
 						max='999'
 						value={totalMonths}
 						onChange={(e) => setTotalMonths(Number(e.target.value))}
-						className='rounded border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
+						className='rounded-sm border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
 					/>
 				</label>
 				<label className='inline-grid text-sm font-medium'>
@@ -149,7 +149,7 @@ export function Client() {
 						step='0.001'
 						value={gap}
 						onChange={(e) => setGap(Number(e.target.value))}
-						className='rounded border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
+						className='rounded-sm border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
 					/>
 				</label>
 			</div>
@@ -189,7 +189,7 @@ function MonthGrid({ year, monthNum, days }: { year: number; monthNum: number; d
 						<div
 							key={i}
 							className={cn(
-								'aspect-square content-center rounded text-center text-sm',
+								'aspect-square content-center rounded-sm text-center text-sm',
 								day === null ? '' : days.includes(day) ? 'bg-primary-500 text-input' : 'bg-body-100 text-text-400 dark:bg-body-300'
 							)}
 						>

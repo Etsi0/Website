@@ -120,13 +120,13 @@ export default function App() {
 	return (
 		<>
 			<header className='pointer-events-none fixed z-50 w-full' ref={gsapContainer}>
-				<div className='pointer-events-auto bg-body-100/90 backdrop-blur-xl'>
+				<div className='bg-body-100/90 pointer-events-auto backdrop-blur-xl'>
 					<div className='mx-auto flex h-16 max-w-7xl items-center justify-between p-3'>
 						{/*==================================================
 							Page icon
 						==================================================*/}
 						<A href='/' aria-label='Phadonia'>
-							<PhadoniaLogo className='h-8 *:fill-[hsl(from_hsl(var(--body-color-100))_h_s_calc(100_-_l))]' />
+							<PhadoniaLogo className='h-8 *:fill-[hsl(from_var(--color-body-100)_h_s_calc(105_-_l))]' />
 						</A>
 						{/*==================================================
 							Hamburger icon

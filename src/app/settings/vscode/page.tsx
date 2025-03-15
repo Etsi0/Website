@@ -96,7 +96,7 @@ export default async function Page() {
 			</div>
 			<div className='space-y-5'>
 				<h2>Extensions</h2>
-				<div className='grid grid-cols-[repeat(auto-fit,_minmax(min(100%,_calc(80rem/3-2rem)),_1fr))] gap-x-4 gap-y-5'>
+				<div className='grid grid-cols-[repeat(auto-fit,minmax(min(100%,calc(80rem/3-2rem)),1fr))] gap-x-4 gap-y-5'>
 					{json
 						.sort((a, b) => a.title.localeCompare(b.title))
 						.map((items, index) => (

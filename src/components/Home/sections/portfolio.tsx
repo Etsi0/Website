@@ -29,14 +29,14 @@ type TCards = {
 function Cards({ img, title, badges, text, live = '', source = '' }: TCards) {
 	return (
 		<div className='flex flex-col overflow-hidden rounded-xl border border-body-200 bg-body-50 dark:border-body-300 dark:bg-body-200'>
-			<Image className='aspect-[16/10] object-cover' width={img.width} height={img.height} src={img} alt='asd' />
+			<Image className='aspect-16/10 object-cover' width={img.width} height={img.height} src={img} alt='asd' />
 			<div className='flex grow flex-col gap-3 p-4'>
 				<h3>{title}</h3>
 				<p>{text}</p>
 				<div className='flex grow flex-wrap items-start gap-2'>
 					{badges.map((badge, index) => (
 						<div key={index} className='flex items-center gap-1 rounded-full bg-body-300 px-3 py-1 text-sm text-text-600'>
-							{badge.svg && <badge.svg className='size-[1em] fill-text-600 *:!fill-current' />} {badge.text}
+							{badge.svg && <badge.svg className='size-[1em] fill-text-600 *:fill-current!' />} {badge.text}
 						</div>
 					))}
 				</div>

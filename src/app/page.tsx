@@ -21,7 +21,7 @@ export default function App() {
 		<>
 			<Hero />
 			<InfinityScroll
-				className={['h-[100px]', 'size-[100px] [&:not(:nth-child(4n_+_2))]:brightness-[1000] [&:not(:nth-child(4n_+_2))]:invert dark:[&:not(:nth-child(4n_+_2))]:invert-0']}
+				className={['h-[100px]', 'size-[100px] not-nth-[4n+2]:brightness-1000 not-nth-[4n+2]:invert dark:not-nth-[4n+2]:invert-0']}
 				duration={75}
 				gap={50}
 				images={[MaxPA, Icon, Farsight, HCLTech, MaxPA, Icon, Farsight, HCLTech, MaxPA, Icon, Farsight, HCLTech]}

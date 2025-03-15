@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { z } from 'zod';
 
 export const whenHovering = 'hover:opacity-85 hover:active:opacity-50';
-export const whenFocusing = 'ring-primary-500 ring-offset-2 ring-offset-body-100 focus-visible:outline-none focus-visible:ring-2';
+export const whenFocusing = 'ring-primary-500 ring-offset-2 ring-offset-body-100 focus-visible:outline-hidden focus-visible:ring-2';
 
 export function cn(...input: ClassValue[]) {
 	return twMerge(clsx(...input));

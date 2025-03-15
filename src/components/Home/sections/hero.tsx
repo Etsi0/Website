@@ -12,8 +12,8 @@ function SocialLinks({ className }: { className: string }) {
 		<ul className={cn('gap-3', className)} aria-label='Social Media Links'>
 			{SocialLinkJson.map((item, index) => (
 				<li key={index}>
-					<A className='rounded-sm' href={item.path} aria-label={item.name}>
-						<item.img className='size-8 *:fill-primary-500' />
+					<A className='rounded-xs' href={item.path} aria-label={item.name}>
+						<item.img className='*:fill-primary-500 size-8' />
 					</A>
 				</li>
 			))}
@@ -34,7 +34,7 @@ export function Hero() {
 					</div>
 					<div>
 						<p>
-							<Location className='inline size-4 fill-primary-300' />
+							<Location className='fill-primary-300 inline size-4' />
 							Sweden, Skövde
 						</p>
 						<p className='group max-w-prose'>
@@ -45,7 +45,7 @@ export function Hero() {
 					<SocialLinks className='hidden lg:flex' />
 				</div>
 				<Image
-					className='aspect-square w-full max-w-prose rounded-2xl object-cover object-[50%,25%] [mask-position:_center] [mask-repeat:_no-repeat] [mask-size:_contain] lg:[mask-image:_url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMTg3Ij48cGF0aCBkPSJNMTkwIDM2YzE3IDI2IDExIDY3LTggOTgtMTkgMzItNTEgNTQtODIgNTItMzAtMS01OS0yNS03OC01N0MyIDk4LTcgNTkgNyAzNSAyMSAxMCA2MCAwIDk4IDBzNzYgMTEgOTIgMzZaIi8+PC9zdmc+")]'
+					className="aspect-square w-full max-w-prose rounded-2xl object-cover object-[50%_25%] [mask-position:_center] [mask-repeat:_no-repeat] [mask-size:_contain] lg:[mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMTg3Ij48cGF0aCBkPSJNMTkwIDM2YzE3IDI2IDExIDY3LTggOTgtMTkgMzItNTEgNTQtODIgNTItMzAtMS01OS0yNS03OC01N0MyIDk4LTcgNTkgNyAzNSAyMSAxMCA2MCAwIDk4IDBzNzYgMTEgOTIgMzZaIi8+PC9zdmc+')]"
 					src={selfie.src}
 					alt='Portrait of a young man wearing a student cap and a black suit with a red tie.'
 					width={562}

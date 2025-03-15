@@ -1,6 +1,44 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark {
+	@media (prefers-color-scheme: dark) {
+		&:not(.light *) {
+			@slot;
+		}
+	}
+	&:is(.dark *) {
+		@slot;
+	}
+}
+
+@theme {
+	--color-body-50: hsl(var(--body-color-50));
+	--color-body-100: hsl(var(--body-color-100));
+	--color-body-200: hsl(var(--body-color-200));
+	--color-body-300: hsl(var(--body-color-300));
+	--color-body-400: hsl(var(--body-color-400));
+	--color-body-500: hsl(var(--body-color-500));
+
+	--color-primary-50: hsl(var(--primary-color-50));
+	--color-primary-100: hsl(var(--primary-color-100));
+	--color-primary-200: hsl(var(--primary-color-200));
+	--color-primary-300: hsl(var(--primary-color-300));
+	--color-primary-400: hsl(var(--primary-color-400));
+	--color-primary-500: hsl(var(--primary-color-500));
+	--color-primary-600: hsl(var(--primary-color-600));
+	--color-primary-700: hsl(var(--primary-color-700));
+	--color-primary-800: hsl(var(--primary-color-800));
+	--color-primary-900: hsl(var(--primary-color-900));
+	--color-primary-950: hsl(var(--primary-color-950));
+
+	--color-input: hsl(var(--input-color));
+
+	--color-text-300: hsl(var(--text-color-300));
+	--color-text-400: hsl(var(--text-color-400));
+	--color-text-500: hsl(var(--text-color-500));
+	--color-text-600: hsl(var(--text-color-600));
+	--color-text-700: hsl(var(--text-color-700));
+}
 
 @layer base {
 	:root {
@@ -68,183 +106,183 @@
 		--text-color-700: var(--hue-color) 12% max((100% - var(--text-lightness-700)) * var(--isDarkMode), var(--text-lightness-700));
 		/* --text-color-700: var(--hue-color) 12% abs(var(--text-lightness-700) - 100% * var(--isDarkMode)); */
 	}
-}
 
-/*==================================================
-	Dark mode switch
-==================================================*/
-@media (prefers-color-scheme: dark) {
-	:root:not(.light) {
+	/*==================================================
+		Dark mode switch
+	==================================================*/
+	@media (prefers-color-scheme: dark) {
+		&:not(.light) {
+			--isDarkMode: 1;
+			color-scheme: dark;
+		}
+	}
+	&:is(.dark) {
 		--isDarkMode: 1;
 		color-scheme: dark;
 	}
-}
-:root.dark {
-	--isDarkMode: 1;
-	color-scheme: dark;
-}
 
-*,
-::before,
-::after {
-	border-color: hsl(var(--body-color-200));
+	*,
+	::before,
+	::after {
+		border-color: hsl(var(--body-color-200));
 
-	transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-	transition-duration: 150ms;
-}
-
-.dark *,
-.dark ::before,
-.dark ::after {
-	border-color: hsl(var(--body-color-300));
-}
-
-*:focus-visible {
-	outline: solid 2px hsl(var(--primary-color-500));
-}
-
-html {
-	scroll-padding-top: 4rem; /* header is 4rem */
-	hanging-punctuation: first last;
-}
-
-body,
-dialog > * {
-	color: hsl(var(--text-color-300));
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 1.5rem;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	color: hsl(var(--text-color-500));
-	font-weight: 600;
-	text-wrap: balance;
-}
-
-h1 {
-	color: hsl(var(--text-color-700));
-	font-size: 3rem;
-	line-height: 1.33em;
-}
-
-h2 {
-	font-size: 2.521rem;
-	line-height: 1.33em;
-}
-
-h3 {
-	font-size: 2.089rem;
-	line-height: 1.33em;
-}
-
-h4 {
-	font-size: 1.707rem;
-	line-height: 1.33em;
-}
-
-h5 {
-	font-size: 1.385rem;
-	line-height: 1.33em;
-}
-
-h6 {
-	font-size: 1.136rem;
-	line-height: 1.33em;
-}
-
-p {
-	font-size: 1rem;
-	line-height: 1.33em;
-	max-width: 65ch;
-	text-wrap: pretty;
-}
-
-img,
-picture,
-svg,
-video {
-	display: block;
-	max-width: 100%;
-}
-
-/*==================================================
-	hamburger icon
-==================================================*/
-.path1,
-.path3 {
-	stroke-dasharray: 60 207;
-}
-.path2 {
-	stroke-dasharray: 60 60;
-}
-button[aria-expanded='true'] .path1,
-button[aria-expanded='true'] .path3 {
-	stroke-dasharray: 90 207;
-	stroke-dashoffset: -134;
-}
-button[aria-expanded='true'] .path2 {
-	stroke-dasharray: 1 60;
-	stroke-dashoffset: -30;
-}
-
-/*==================================================
-	make section take up the full viewport - header
-==================================================*/
-.heroSection {
-	min-height: calc(min(62.5rem, 100vh) - 4rem);
-	min-height: calc(min(62.5rem, 100svh) - 4rem);
-}
-
-
-/*==================================================
-	code blocks
-==================================================*/
-.shiki {
-	overflow-x: scroll;
-	overflow-y: clip;
-
-	counter-reset: step;
-	counter-increment: step 0;
-
-	border-radius: 0.5rem;
-	padding: 1rem;
-}
-
-.shiki .line::before {
-	content: counter(step);
-	counter-increment: step;
-	width: 1rem;
-	margin-right: 1.5rem;
-	display: inline-block;
-	text-align: right;
-	color: rgba(115,138,148,.4)
-}
-
-.dark .shiki,
-.dark .shiki span {
-	color: var(--shiki-dark) !important;
-	background-color: var(--shiki-dark-bg) !important;
-	/* Optional, if you also want font styles */
-	font-style: var(--shiki-dark-font-style) !important;
-	font-weight: var(--shiki-dark-font-weight) !important;
-	text-decoration: var(--shiki-dark-text-decoration) !important;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	:has(:target) {
-		scroll-behavior: smooth;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 150ms;
 	}
-}
 
-@keyframes cursorBlink {
-	50% {
-		opacity: 0;
+	.dark *,
+	.dark ::before,
+	.dark ::after {
+		border-color: hsl(var(--body-color-300));
+	}
+
+	*:focus-visible {
+		outline: solid 2px hsl(var(--primary-color-500));
+	}
+
+	html {
+		scroll-padding-top: 4rem; /* header is 4rem */
+		hanging-punctuation: first last;
+	}
+
+	body,
+	dialog > * {
+		color: hsl(var(--text-color-300));
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.5rem;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: hsl(var(--text-color-500));
+		font-weight: 600;
+		text-wrap: balance;
+	}
+
+	h1 {
+		color: hsl(var(--text-color-700));
+		font-size: 3rem;
+		line-height: 1.33em;
+	}
+
+	h2 {
+		font-size: 2.521rem;
+		line-height: 1.33em;
+	}
+
+	h3 {
+		font-size: 2.089rem;
+		line-height: 1.33em;
+	}
+
+	h4 {
+		font-size: 1.707rem;
+		line-height: 1.33em;
+	}
+
+	h5 {
+		font-size: 1.385rem;
+		line-height: 1.33em;
+	}
+
+	h6 {
+		font-size: 1.136rem;
+		line-height: 1.33em;
+	}
+
+	p {
+		font-size: 1rem;
+		line-height: 1.33em;
+		max-width: 65ch;
+		text-wrap: pretty;
+	}
+
+	img,
+	picture,
+	svg,
+	video {
+		display: block;
+		max-width: 100%;
+	}
+
+	/*==================================================
+		hamburger icon
+	==================================================*/
+	.path1,
+	.path3 {
+		stroke-dasharray: 60 207;
+	}
+	.path2 {
+		stroke-dasharray: 60 60;
+	}
+	button[aria-expanded='true'] .path1,
+	button[aria-expanded='true'] .path3 {
+		stroke-dasharray: 90 207;
+		stroke-dashoffset: -134;
+	}
+	button[aria-expanded='true'] .path2 {
+		stroke-dasharray: 1 60;
+		stroke-dashoffset: -30;
+	}
+
+	/*==================================================
+		make section take up the full viewport - header
+	==================================================*/
+	.heroSection {
+		min-height: calc(min(62.5rem, 100vh) - 4rem);
+		min-height: calc(min(62.5rem, 100svh) - 4rem);
+	}
+
+
+	/*==================================================
+		code blocks
+	==================================================*/
+	.shiki {
+		overflow-x: scroll;
+		overflow-y: clip;
+
+		counter-reset: step;
+		counter-increment: step 0;
+
+		border-radius: 0.5rem;
+		padding: 1rem;
+	}
+
+	.shiki .line::before {
+		content: counter(step);
+		counter-increment: step;
+		width: 1rem;
+		margin-right: 1.5rem;
+		display: inline-block;
+		text-align: right;
+		color: rgba(115,138,148,.4)
+	}
+
+	.dark .shiki,
+	.dark .shiki span {
+		color: var(--shiki-dark) !important;
+		background-color: var(--shiki-dark-bg) !important;
+		/* Optional, if you also want font styles */
+		font-style: var(--shiki-dark-font-style) !important;
+		font-weight: var(--shiki-dark-font-weight) !important;
+		text-decoration: var(--shiki-dark-text-decoration) !important;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		:has(:target) {
+			scroll-behavior: smooth;
+		}
+	}
+
+	@keyframes cursorBlink {
+		50% {
+			opacity: 0;
+		}
 	}
 }
