@@ -20,17 +20,6 @@ function TypingTextComponent({ textArray, delay, speed }: TTypeText) {
 	/*==================================================
 		Animation Callbacks
 	==================================================*/
-	const Add = useCallback(() => {
-		if (charIndexRef.current < currentWordRef.current.length) {
-			setClassName('[animation-play-state:paused] [animation-iteration-count:0]');
-			setText(currentWordRef.current.slice(0, ++charIndexRef.current));
-			timeoutRef.current = setTimeout(Add, speed);
-		} else {
-			setClassName('');
-			timeoutRef.current = setTimeout(Del, charIndexRef.current * delay);
-		}
-	}, [delay, speed]);
-
 	const Del = useCallback(() => {
 		if (charIndexRef.current > 0) {
 			setClassName('[animation-play-state:paused] [animation-iteration-count:0]');
@@ -42,6 +31,17 @@ function TypingTextComponent({ textArray, delay, speed }: TTypeText) {
 			setIndex((current) => current + 1);
 		}
 	}, [speed]);
+
+	const Add = useCallback(() => {
+		if (charIndexRef.current < currentWordRef.current.length) {
+			setClassName('[animation-play-state:paused] [animation-iteration-count:0]');
+			setText(currentWordRef.current.slice(0, ++charIndexRef.current));
+			timeoutRef.current = setTimeout(Add, speed);
+		} else {
+			setClassName('');
+			timeoutRef.current = setTimeout(Del, charIndexRef.current * delay);
+		}
+	}, [delay, speed, Del]);
 
 	/*==================================================
 		Animation
