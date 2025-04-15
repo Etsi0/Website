@@ -5,7 +5,8 @@
 -   [Stack](#stack)
     -   [Cloudflare](#cloudflare)
     -   [Vercel](#vercel)
--   [Packages](#packages)
+    -   [Neon](#neon)
+-   [Packages](./package.json)
 
 ## Stack
 
@@ -17,19 +18,9 @@
 ### Vercel
 
 -   Analytics
--   Postgres DB
 -   Speed Insights
 -   Web Hosting
 
-## Packages
+### Neon
 
--   clsx
--   eslint
--   gsap
--   mdx
--   next
--   prettier
--   shiki
--   tailwind-merge
--   tailwindcss
-
+-    Postgres DB
