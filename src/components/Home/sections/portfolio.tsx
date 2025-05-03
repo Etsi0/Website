@@ -23,8 +23,6 @@ const classes = 'flex items-center justify-center gap-1 rounded-lg p-4';
 type TCards = { img: StaticImageData; title: string; badges: { svg?: FC<SVGProps<SVGElement>>; text?: string }[]; text: string; live?: string; source?: string };
 
 function Cards({ img, title, badges, text, live = '', source = '' }: TCards) {
-	const mathFunction1 = 'abs(0%_-_(150_-_100)_/_100_/_2_*_100)';
-	const mathFunction2 = 'abs(100%_-_(150_-_100)_/_100_/_2_*_100)';
 	return (
 		<div className='border-body-200 bg-body-50 dark:border-body-300 dark:bg-body-200 flex flex-col overflow-hidden rounded-xl border'>
 			<div className='dark:border-body-300 border-body-200 grid border-b *:col-[1_/_span_1] *:row-[1_/_span_1] *:aspect-16/10'>
