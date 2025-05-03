@@ -22,27 +22,27 @@ export function A({ className, hoverable = true, focusable = true, children, hre
 	if (disabled) {
 		const { style, id, 'aria-label': ariaLabel } = props;
 		return (
-			<button className={cn('cursor-not-allowed opacity-50', className)} {...{ disabled, style, id, ariaLabel }}>
+			<button tabIndex={-1} aria-disabled='true' className={cn('cursor-not-allowed opacity-50', className)} {...{ disabled, style, id, ariaLabel }}>
 				{children}
 			</button>
 		);
 	}
 
-	const isLocalLink = href ? href.startsWith('/') || href.startsWith('#') : false;
+	const isLocalLink = href.startsWith('/') || href.startsWith('#');
 	const security = !isLocalLink || target === '_blank' ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
 	const standard = 'inline-block';
 
 	if (isLocalLink) {
 		return (
-			<Link href={href} className={cn(standard, hoverable && whenHovering, focusable && whenFocusing, className)} {...security} {...props}>
+			<Link tabIndex={focusable ? 0 : -1} href={href} className={cn(standard, hoverable && whenHovering, focusable && whenFocusing, className)} {...security} {...props}>
 				{children}
 			</Link>
 		);
 	}
 
 	return (
-		<a href={href} className={cn(standard, hoverable && whenHovering, focusable && whenFocusing, className)} {...security} {...props}>
+		<a tabIndex={focusable ? 0 : -1} href={href} className={cn(standard, hoverable && whenHovering, focusable && whenFocusing, className)} {...security} {...props}>
 			{children}
 		</a>
 	);
