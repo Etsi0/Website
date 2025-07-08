@@ -7,16 +7,13 @@ type TA = AnchorHTMLAttributes<HTMLAnchorElement> & {
 	hoverable?: boolean;
 	focusable?: boolean;
 	children: ReactNode;
-} & (
-		| {
-				href: string;
-				disabled?: false;
-		  }
-		| {
-				href?: string;
-				disabled: true;
-		  }
-	);
+} & ({
+	href: string;
+	disabled?: false;
+} | {
+	href?: string;
+	disabled: true;
+});
 
 export function A({ className, hoverable = true, focusable = true, children, href, disabled, target, ...props }: TA) {
 	if (disabled) {

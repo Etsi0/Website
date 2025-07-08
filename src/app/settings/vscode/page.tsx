@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import json from '@/components/settings/vscode/final.json';
+import json from '@/components/settings/vscode/extensions.json';
 import type { BundledLanguage } from 'shiki';
 import { codeToHtml } from 'shiki';
 import { A } from '@/components/ui/link';
 
 const userSettings = `{
 	"C_Cpp.default.compilerPath": "",
-	"class-collapse.functionality.enable": true,
 	"cSpell.language": "en,sv",
 
 	"diffEditor.ignoreTrimWhitespace": false,
@@ -18,7 +17,6 @@ const userSettings = `{
 	"editor.stickyScroll.enabled": false,
 	"editor.wordWrap": "on",
 	"errorLens.enabledDiagnosticLevels": [
-		"error",
 		"warning"
 	],
 	"explorer.autoReveal": false,
@@ -51,40 +49,21 @@ const userSettings = `{
 }` as const;
 
 const workspaceSettings = `{
-	"css.format.enable": false,
 	"diffEditor.ignoreTrimWhitespace": false,
-	"editor.formatOnPaste": true,
-	"editor.formatOnSave": true,
+	"editor.formatOnPaste": false,
+	"editor.formatOnSave": false,
 	"editor.formatOnSaveMode": "modifications",
-	"editor.defaultFormatter": "esbenp.prettier-vscode", // depends on what project i'm working on
+	"editor.defaultFormatter": null,
 	"editor.detectIndentation": false,
 	"editor.indentSize": "tabSize",
 	"editor.insertSpaces": false,
 	"editor.tabSize": 4,
 	"files.autoGuessEncoding": false,
-	"files.encoding": "utf8", // depends if i'm working on a new or old project
-	"intelephense.format.enable": true, // depends on what project i'm working on
-	"prettier.enable": true, // depends on what project i'm working on
+	"files.encoding": "utf8",
 	"typescript.preferences.importModuleSpecifier": "non-relative",
-
-	// depends on what project i'm working on
-	"[php]": {
-		"editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
-	},
-}` as const;
-
-const prettierrc = `{
-	"printWidth": 200,
-	"tabWidth": 4,
-	"useTabs": true,
-	"semi": true,
-	"singleQuote": true,
-	"jsxSingleQuote": true,
-	"bracketSpacing": true,
-	"bracketSameLine": false,
-	"arrowParens": "always",
-	"trailingComma": "es5",
-	"plugins": ["prettier-plugin-tailwindcss"]
+	"workbench.editorAssociations": {
+		"*.svg": "default"
+	}
 }` as const;
 
 export default async function Page() {
@@ -118,9 +97,9 @@ export default async function Page() {
 				<h2>.vscode/settings.json</h2>
 				<CodeBlock lang='jsonc'>{workspaceSettings}</CodeBlock>
 			</div>
-			<div className='space-y-5'>
-				<h2>.prettierrc</h2>
-				<CodeBlock lang='jsonc'>{prettierrc}</CodeBlock>
+			<div>
+				<h2>Why aren't you using any formatters?</h2>
+				<p className='max-w-full mb-32'>I used <A className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</A> for 5+ years. Then I started working for a company that didn't use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <code>.vscode/settings.json</code> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.</p>
 			</div>
 		</section>
 	);

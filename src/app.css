@@ -47,6 +47,22 @@
 		color-scheme: light;
 
 		/*==================================================
+			Font
+			startValue + (endValue - startValue) * (((index - 1) / (totalNumber - 1)) ^ 1.5)
+		==================================================*/
+		--font-min: 1rem;
+		--font-max: 3rem;
+		--font-steps: 7;
+		--font-curve: 1.5;
+		--font-size-1: calc(var(--font-min) + (var(--font-max) - var(--font-min)) * pow((1 - 1) / (var(--font-steps) - 1), var(--font-curve)));
+		--font-size-2: calc(var(--font-min) + (var(--font-max) - var(--font-min)) * pow((2 - 1) / (var(--font-steps) - 1), var(--font-curve)));
+		--font-size-3: calc(var(--font-min) + (var(--font-max) - var(--font-min)) * pow((3 - 1) / (var(--font-steps) - 1), var(--font-curve)));
+		--font-size-4: calc(var(--font-min) + (var(--font-max) - var(--font-min)) * pow((4 - 1) / (var(--font-steps) - 1), var(--font-curve)));
+		--font-size-5: calc(var(--font-min) + (var(--font-max) - var(--font-min)) * pow((5 - 1) / (var(--font-steps) - 1), var(--font-curve)));
+		--font-size-6: calc(var(--font-min) + (var(--font-max) - var(--font-min)) * pow((6 - 1) / (var(--font-steps) - 1), var(--font-curve)));
+		--font-size-7: calc(var(--font-min) + (var(--font-max) - var(--font-min)) * pow((7 - 1) / (var(--font-steps) - 1), var(--font-curve)));
+
+		/*==================================================
 			Booleans
 		==================================================*/
 		--isLightMode: calc(1 - var(--isDarkMode));
@@ -54,18 +70,12 @@
 		/*==================================================
 			Body colors
 		==================================================*/
-		--body-color-50 : var(--hue-color) 16% max(5%, 100% * var(--isLightMode));
-		--body-color-100: var(--hue-color) 16% max(10%, 95% * var(--isLightMode));
-		--body-color-200: var(--hue-color) 16% max(20%, 85% * var(--isLightMode));
-		--body-color-300: var(--hue-color) 16% max(30%, 75% * var(--isLightMode));
-		--body-color-400: var(--hue-color) 16% max(40%, 65% * var(--isLightMode));
-		--body-color-500: var(--hue-color) 16% max(50%, 55% * var(--isLightMode));
-		/* --body-color-50 : var(--hue-color) 16% abs(100% - 105% * var(--isDarkMode));
+		--body-color-50 : var(--hue-color) 16% abs(100% - 105% * var(--isDarkMode));
 		--body-color-100: var(--hue-color) 16% abs(95% - 105% * var(--isDarkMode));
 		--body-color-200: var(--hue-color) 16% abs(85% - 105% * var(--isDarkMode));
 		--body-color-300: var(--hue-color) 16% abs(75% - 105% * var(--isDarkMode));
 		--body-color-400: var(--hue-color) 16% abs(65% - 105% * var(--isDarkMode));
-		--body-color-500: var(--hue-color) 16% abs(55% - 105% * var(--isDarkMode)); */
+		--body-color-500: var(--hue-color) 16% abs(55% - 105% * var(--isDarkMode));
 
 		/*==================================================
 			Input colors
@@ -90,21 +100,11 @@
 		/*==================================================
 			Text colors
 		==================================================*/
-		--text-lightness-300: 36.075%;
-		--text-color-300: var(--hue-color) 12% max((100% - var(--text-lightness-300)) * var(--isDarkMode), var(--text-lightness-300));
-		/* --text-color-300: var(--hue-color) 12% abs(var(--text-lightness-300) - 100% * var(--isDarkMode)); */
-		--text-lightness-400: 27.888%;
-		--text-color-400: var(--hue-color) 12% max((100% - var(--text-lightness-400)) * var(--isDarkMode), var(--text-lightness-400));
-		/* --text-color-400: var(--hue-color) 12% abs(var(--text-lightness-400) - 100% * var(--isDarkMode)); */
-		--text-lightness-500: 20.686999999999998%;
-		--text-color-500: var(--hue-color) 12% max((100% - var(--text-lightness-500)) * var(--isDarkMode), var(--text-lightness-500));
-		/* --text-color-500: var(--hue-color) 12% abs(var(--text-lightness-500) - 100% * var(--isDarkMode)); */
-		--text-lightness-600: 14.472000000000001%;
-		--text-color-600: var(--hue-color) 12% max((100% - var(--text-lightness-600)) * var(--isDarkMode), var(--text-lightness-600));
-		/* --text-color-600: var(--hue-color) 12% abs(var(--text-lightness-600) - 100% * var(--isDarkMode)); */
-		--text-lightness-700: 9.243%;
-		--text-color-700: var(--hue-color) 12% max((100% - var(--text-lightness-700)) * var(--isDarkMode), var(--text-lightness-700));
-		/* --text-color-700: var(--hue-color) 12% abs(var(--text-lightness-700) - 100% * var(--isDarkMode)); */
+		--text-color-300: var(--hue-color) 12% abs(36.075% - 100% * var(--isDarkMode));
+		--text-color-400: var(--hue-color) 12% abs(27.888% - 100% * var(--isDarkMode));
+		--text-color-500: var(--hue-color) 12% abs(20.687% - 100% * var(--isDarkMode));
+		--text-color-600: var(--hue-color) 12% abs(14.472% - 100% * var(--isDarkMode));
+		--text-color-700: var(--hue-color) 12% abs(9.243% - 100% * var(--isDarkMode));
 	}
 
 	/*==================================================
@@ -159,6 +159,16 @@
 	h3,
 	h4,
 	h5,
+	h6,
+	p {
+		line-height: 1.33em;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
 	h6 {
 		color: hsl(var(--text-color-500));
 		font-weight: 600;
@@ -167,38 +177,31 @@
 
 	h1 {
 		color: hsl(var(--text-color-700));
-		font-size: 3rem;
-		line-height: 1.33em;
+		font-size: var(--font-size-7);
 	}
 
 	h2 {
-		font-size: 2.521rem;
-		line-height: 1.33em;
+		font-size: var(--font-size-6);
 	}
 
 	h3 {
-		font-size: 2.089rem;
-		line-height: 1.33em;
+		font-size: var(--font-size-5);
 	}
 
 	h4 {
-		font-size: 1.707rem;
-		line-height: 1.33em;
+		font-size: var(--font-size-4);
 	}
 
 	h5 {
-		font-size: 1.385rem;
-		line-height: 1.33em;
+		font-size: var(--font-size-3);
 	}
 
 	h6 {
-		font-size: 1.136rem;
-		line-height: 1.33em;
+		font-size: var(--font-size-2);
 	}
 
 	p {
-		font-size: 1rem;
-		line-height: 1.33em;
+		font-size: var(--font-size-1);
 		max-width: 65ch;
 		text-wrap: pretty;
 	}

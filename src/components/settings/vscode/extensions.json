@@ -1,0 +1,182 @@
+[
+	{
+		"title": "Better Comments",
+		"icon": "aaron-bond.better-comments-3.0.2.png",
+		"description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
+		"link": "https://github.com/aaron-bond/better-comments/blob/master/README.md"
+	},
+	{
+		"title": "Bookmarks",
+		"icon": "alefragnani.bookmarks-13.5.0.png",
+		"description": "Mark lines and jump to them",
+		"link": "https://github.com/alefragnani/vscode-bookmarks/blob/master/README.md"
+	},
+	{
+		"title": "PHP Intelephense",
+		"icon": "bmewburn.vscode-intelephense-client-1.14.4.png",
+		"description": "PHP code intelligence for Visual Studio Code",
+		"link": "https://intelephense.com"
+	},
+	{
+		"title": "Tailwind CSS IntelliSense",
+		"icon": "bradlc.vscode-tailwindcss-0.14.24.png",
+		"description": "Intelligent Tailwind CSS tooling for VS Code",
+		"link": "https://github.com/tailwindlabs/tailwindcss-intellisense"
+	},
+	{
+		"title": "ESLint",
+		"icon": "dbaeumer.vscode-eslint-3.0.10.png",
+		"description": "Integrates ESLint JavaScript into VS Code.",
+		"link": "https://github.com/Microsoft/vscode-eslint.git"
+	},
+	{
+		"title": "Docker DX",
+		"icon": "docker.docker-0.11.0-win32-x64.png",
+		"description": "Edit smarter, ship faster with an enhanced Docker-development experience",
+		"link": "https://github.com/docker/vscode-extension"
+	},
+	{
+		"title": "GitLens — Git supercharged",
+		"icon": "eamodio.gitlens-17.2.2.png",
+		"description": "Supercharge Git within VS Code — Visualize code authorship at a glance via Git blame annotations and CodeLens, seamlessly navigate and explore Git repositories, gain valuable insights via rich visualizations and powerful comparison commands, and so much more",
+		"link": "https://gitkraken.com/gitlens"
+	},
+	{
+		"title": "Class Collapse",
+		"icon": "etsi0.class-collapse-0.0.8.png",
+		"description": "Improves code readability by collapsing anything you want",
+		"link": "https://github.com/Etsi0/class-collapse"
+	},
+	{
+		"title": "Auto Rename Tag",
+		"icon": "formulahendry.auto-rename-tag-0.1.10.png",
+		"description": "Auto rename paired HTML/XML tag",
+		"link": "https://github.com/formulahendry/vscode-auto-rename-tag/blob/master/README.md"
+	},
+	{
+		"title": "Discord Presence",
+		"icon": "icrawl.discord-vscode-5.9.2.png",
+		"description": "Update your discord status with a rich presence.",
+		"link": "https://github.com/iCrawl/discord-vscode#readme"
+	},
+	{
+		"title": "Container Tools",
+		"icon": "ms-azuretools.vscode-containers-2.0.3.png",
+		"description": "Makes it easy to create, manage, and debug containerized applications.",
+		"link": "https://github.com/Microsoft/vscode-containers/blob/main/README.md"
+	},
+	{
+		"title": "Docker",
+		"icon": "ms-azuretools.vscode-docker-2.0.0.png",
+		"description": "Makes it easy to create, manage, and debug containerized applications.",
+		"link": "https://github.com/Microsoft/vscode-docker/blob/main/README.md"
+	},
+	{
+		"title": "Python Debugger",
+		"icon": "ms-python.debugpy-2025.8.0-win32-x64.png",
+		"description": "Python Debugger extension using debugpy.",
+		"link": "https://github.com/Microsoft/vscode-python-debugger"
+	},
+	{
+		"title": "Python",
+		"icon": "ms-python.python-2025.8.1-win32-x64.png",
+		"description": "Python language support with extension access points for IntelliSense (Pylance), Debugging (Python Debugger), linting, formatting, refactoring, unit tests, and more.",
+		"link": "https://github.com/Microsoft/vscode-python"
+	},
+	{
+		"title": "Pylance",
+		"icon": "ms-python.vscode-pylance-2025.6.2.png",
+		"description": "A performant, feature-rich language server for Python in VS Code",
+		"link": "https://github.com/microsoft/pylance-release"
+	},
+	{
+		"title": "CMake Tools",
+		"icon": "ms-vscode.cmake-tools-1.21.36.png",
+		"description": "Extended CMake support in Visual Studio Code",
+		"link": "https://github.com/microsoft/vscode-cmake-tools"
+	},
+	{
+		"title": "C/C++",
+		"icon": "ms-vscode.cpptools-1.26.3-win32-x64.png",
+		"description": "C/C++ IntelliSense, debugging, and code browsing.",
+		"link": "https://github.com/Microsoft/vscode-cpptools"
+	},
+	{
+		"title": "Hex Editor",
+		"icon": "ms-vscode.hexeditor-1.11.1.png",
+		"description": "Allows viewing and editing files in a hex editor",
+		"link": "https://github.com/microsoft/vscode-hexeditor"
+	},
+	{
+		"title": "JavaScript and TypeScript Nightly",
+		"icon": "ms-vscode.vscode-typescript-next-5.9.20250707.png",
+		"description": "Enables typescript@next to power VS Code's built-in JavaScript and TypeScript support",
+		"link": "https://github.com/microsoft/vscode-typescript-next.git"
+	},
+	{
+		"title": "indent-rainbow",
+		"icon": "oderwat.indent-rainbow-8.3.1.png",
+		"description": "Makes indentation easier to read",
+		"link": "https://github.com/oderwat/vscode-indent-rainbow.git"
+	},
+	{
+		"title": "Material Icon Theme",
+		"icon": "pkief.material-icon-theme-5.24.0.png",
+		"description": "Material Design Icons for Visual Studio Code",
+		"link": "https://github.com/material-extensions/vscode-material-icon-theme/blob/main/README.md"
+	},
+	{
+		"title": "CSS Peek",
+		"icon": "pranaygp.vscode-css-peek-4.4.3.png",
+		"description": "Allow peeking to css ID and class strings as definitions from html files to respective CSS. Allows peek and goto definition.",
+		"link": "https://github.com/pranaygp/vscode-css-peek/blob/master/README.md"
+	},
+	{
+		"title": "Live Server",
+		"icon": "ritwickdey.liveserver-5.7.9.png",
+		"description": "Launch a development local Server with live reload feature for static & dynamic pages",
+		"link": "https://ritwickdey.github.io/vscode-live-server/"
+	},
+	{
+		"title": "Strict Whitespace",
+		"icon": "sidp.strict-whitespace-0.2.0.png",
+		"description": "Discover poor whitespace in documents.",
+		"link": "https://github.com/sidp/vscode-strict-whitespace.git"
+	},
+	{
+		"title": "Code Spell Checker",
+		"icon": "streetsidesoftware.code-spell-checker-4.0.47.png",
+		"description": "Spelling checker for source code",
+		"link": "https://streetsidesoftware.github.io/vscode-spell-checker"
+	},
+	{
+		"title": "Swedish - Code Spell Checker",
+		"icon": "streetsidesoftware.code-spell-checker-swedish-1.3.2.png",
+		"description": "Swedish dictionary extension for VS Code.",
+		"link": "https://github.com/streetsidesoftware/vscode-cspell-dict-extensions"
+	},
+	{
+		"title": "Material Theme (But I Won't Sue You)",
+		"icon": "t3dotgg.vsc-material-theme-but-i-wont-sue-you-35.0.3.png",
+		"description": "A Apache-2 licensed fork of Material Theme with no threats of legal action",
+		"link": "https://github.com/t3dotgg/vsc-material-but-i-wont-sue-you.git"
+	},
+	{
+		"title": "CMake",
+		"icon": "twxs.cmake-0.0.17.png",
+		"description": "CMake langage support for Visual Studio Code",
+		"link": "https://github.com/twxs/vs.language.cmake/blob/master/README.md"
+	},
+	{
+		"title": "Error Lens",
+		"icon": "usernamehw.errorlens-3.26.0.png",
+		"description": "Improve highlighting of errors, warnings and other language diagnostics.",
+		"link": "https://github.com/usernamehw/vscode-error-lens"
+	},
+	{
+		"title": "Pretty TypeScript Errors",
+		"icon": "yoavbls.pretty-ts-errors-0.6.1.png",
+		"description": "Make TypeScript errors prettier and more human-readable in VSCode",
+		"link": "https://github.com/yoavbls/pretty-ts-errors"
+	}
+]
