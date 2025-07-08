@@ -98,8 +98,8 @@ export default async function Page() {
 				<CodeBlock lang='jsonc'>{workspaceSettings}</CodeBlock>
 			</div>
 			<div>
-				<h2>Why aren't you using any formatters?</h2>
-				<p className='max-w-full mb-32'>I used <A className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</A> for 5+ years. Then I started working for a company that didn't use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <code>.vscode/settings.json</code> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.</p>
+				<h2>Why aren{"'"}t you using any formatters?</h2>
+				<p className='max-w-full mb-32'>I used <A className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</A> for 5+ years. Then I started working for a company that didn{"'"}t use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <code>.vscode/settings.json</code> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.</p>
 			</div>
 		</section>
 	);
