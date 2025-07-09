@@ -17,6 +17,7 @@ const userSettings = `{
 	"editor.stickyScroll.enabled": false,
 	"editor.wordWrap": "on",
 	"errorLens.enabledDiagnosticLevels": [
+		"error",
 		"warning"
 	],
 	"explorer.autoReveal": false,
@@ -74,7 +75,7 @@ export default async function Page() {
 				<p>One stop shop for all your vscode extension needs</p>
 			</div>
 			<div className='space-y-5'>
-				<h2>Extensions</h2>
+				<h2 className="text-center">Extensions</h2>
 				<div className='grid grid-cols-[repeat(auto-fit,minmax(min(100%,calc(80rem/3-2rem)),1fr))] gap-x-4 gap-y-5'>
 					{json
 						.sort((a, b) => a.title.localeCompare(b.title))
@@ -90,16 +91,47 @@ export default async function Page() {
 				</div>
 			</div>
 			<div className='space-y-5'>
-				<h2>User Settings</h2>
+				<h2 className="text-center">User Settings</h2>
 				<CodeBlock lang='jsonc'>{userSettings}</CodeBlock>
 			</div>
 			<div className='space-y-5'>
-				<h2>.vscode/settings.json</h2>
+				<h2 className="text-center">.vscode/settings.json</h2>
 				<CodeBlock lang='jsonc'>{workspaceSettings}</CodeBlock>
 			</div>
-			<div>
-				<h2>Why aren{"'"}t you using any formatters?</h2>
-				<p className='max-w-full mb-32'>I used <A className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</A> for 5+ years. Then I started working for a company that didn{"'"}t use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <code>.vscode/settings.json</code> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.</p>
+			<div className='space-y-5 mb-32'>
+				<h2 className="text-center">FAQ</h2>
+				<div className='space-y-2'>
+					<details className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+						<summary>Why aren{"'"}t you using any formatters?</summary>
+						I used <A className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</A> for 5+ years. Then I started working for a company that didn{"'"}t use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <code className='px-1 bg-black/15 border rounded-md'>.vscode/settings.json</code> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.
+						<br />
+						<b className='text-sm'>I do recommend using a formatter if you are new to coding or unsure how to format code</b>
+					</details>
+					<details className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+						<summary>Is Error Lens distracting with all the inline error highlighting?</summary>
+						No. It makes development more convenient since you don{"'"}t need to hover over problematic code to see what{"'"}s wrong.
+					</details>
+					<details className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+						<summary>How does GitLens compare to the built-in Git features?</summary>
+						I primarily use GitLens to see who made changes, when they were made, and which commit introduced them.
+					</details>
+					<details className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+						<summary>Why disable the minimap?</summary>
+						It takes up screen space without providing valuable information. I prefer maximizing the code editing area.
+					</details>
+					<details className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+						<summary>Why turn off explorer auto-reveal?</summary>
+						I want my file explorer to stay clean and organized. I navigate primarily using <code className='px-1 bg-black/15 border rounded-md'>Ctrl + Shift + P</code> (Command Palette) anyway.
+					</details>
+					<details className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+						<summary>What{"'"}s the benefit of using tabs over spaces?</summary>
+						Fewer keystrokes and personal preference. It{"'"}s what I{"'"}ve always used and find more efficient.
+					</details>
+					<details className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+						<summary>Why use JetBrains Mono font?</summary>
+						I have dyslexia, and this font significantly improves readability for me.
+					</details>
+				</div>
 			</div>
 		</section>
 	);
