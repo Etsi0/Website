@@ -6,11 +6,8 @@ import { schemaWishlist } from '@/schema/wishlist/main';
 import Play from '@/svg/play.svg';
 import { A } from '@/components/ui/link';
 
-// Force dynamic rendering to prevent caching
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 // Cache for 24 hours (86400 seconds)
-//export const revalidate = 86400;
+export const revalidate = 86400;
 
 export async function generateMetadata(): Promise<Metadata> {
 	return {
