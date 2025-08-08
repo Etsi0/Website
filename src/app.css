@@ -45,6 +45,7 @@
 		--isDarkMode: 0;
 		--hue-color: 240deg;
 		color-scheme: light;
+		interpolate-size: allow-keywords;
 
 		/*==================================================
 			Font
@@ -240,6 +241,26 @@
 	.heroSection {
 		min-height: calc(min(62.5rem, 100vh) - 4rem);
 		min-height: calc(min(62.5rem, 100svh) - 4rem);
+	}
+
+	/*==================================================
+		make details animated
+	==================================================*/
+	details {
+		overflow: hidden;
+	}
+
+	/*! don't add margin or padding here !*/
+	details::details-content {
+		block-size: 0;
+		transition: block-size 0.3s, content-visibility 0.3s;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-behavior: allow-discrete;
+	}
+
+	/*! don't add margin or padding here !*/
+	details:open::details-content {
+		block-size: auto;
 	}
 
 

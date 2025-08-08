@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { cn } from '@/lib/util';
 import { A } from '@/components/ui/link';
 import { YearsElapsed } from '@/components/yearsElapsed';
-import { TypingText } from '@/components/typingText';
+import { Typewriter } from '@/components/typingText';
 import { SocialLinkJson } from '@/json/socialLink';
 import selfie from '@/../public/img/production/casual_selfie/selfie.webp';
 import Location from '@/svg/materialDesignIcons/location_on.svg';
@@ -29,7 +29,7 @@ export function Hero() {
 					<div>
 						<h1>Hi, I{"'"}m Albin</h1>
 						<h2 className='min-h-10'>
-							<TypingText textArray={['Software Engineer', '// Full-stack Dev', '<!-- Front-end Dev -->', '-- Back-end Dev']} delay={500} speed={100} />
+							<Typewriter words={['Software Engineer', '// Full-stack Dev', '<!-- Front-end Dev -->', '-- Back-end Dev']} loop={0} delaySpeed={5000} typeSpeed={100} showCursor />
 						</h2>
 					</div>
 					<div>

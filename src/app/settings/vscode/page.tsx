@@ -69,7 +69,7 @@ const workspaceSettings = `{
 
 export default async function Page() {
 	return (
-		<section className='my-8 mt-16 space-y-16'>
+		<section className='my-16 space-y-12'>
 			<div className='grid justify-items-center text-center'>
 				<h1>VS Code extensions</h1>
 				<p>One stop shop for all your vscode extension needs</p>
@@ -98,7 +98,7 @@ export default async function Page() {
 				<h2 className="text-center">.vscode/settings.json</h2>
 				<CodeBlock lang='jsonc'>{workspaceSettings}</CodeBlock>
 			</div>
-			<div className='space-y-5 mb-32'>
+			<div className='space-y-5'>
 				<h2 className="text-center">FAQ</h2>
 				<div className='space-y-2'>
 					<details className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
@@ -146,8 +146,8 @@ async function CodeBlock(props: TProps) {
 	const out = await codeToHtml(props.children, {
 		lang: props.lang,
 		themes: {
-			light: 'material-theme-lighter',
 			dark: 'material-theme-palenight',
+			light: 'material-theme-lighter',
 		},
 	});
 
