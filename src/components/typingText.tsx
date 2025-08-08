@@ -160,7 +160,7 @@ type ComponentProps = {
  * A Simple React Component for adding a nice Typewriter effect to your project.
  */
 export const Typewriter = ({words = [], loop = 1, typeSpeed = 80, deleteSpeed = typeSpeed, delaySpeed = 1500, showCursor = false, onLoopDone, onType, onDelay, onDelete }: ComponentProps): JSX.Element => {
-	const [text, {isType, isDelay, isDelete, isDone}] = useTypewriter({
+	const [text, {isDelay}] = useTypewriter({
 		words,
 		loop,
 		typeSpeed,
