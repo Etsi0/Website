@@ -4,14 +4,15 @@ import { z } from 'zod';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { schemaWishlist } from '@/schema/wishlist/main';
 import Play from '@/svg/play.svg';
-import { A } from '@/components/ui/link';
+import { LinkButton } from '@/components/ui/link';
+import { pageTitle } from '@/lib/util';
 
 // Cache for 24 hours (86400 seconds)
 export const revalidate = 86400;
 
 export async function generateMetadata(): Promise<Metadata> {
 	return {
-		title: 'Wishlist - Phadonia',
+		title: pageTitle('Wishlist'),
 		description: 'A list of product i would like to have sometime in the future',
 	};
 }
@@ -27,17 +28,17 @@ function Card({ product }: { product: z.infer<typeof schemaWishlist>[number] }) 
 				loading='lazy'
 				src={product.img}
 			/>
-			<p className='text-center text-xl font-semibold leading-6 text-text-600'>{product.title}</p>
+			<h2 className='text-center text-xl font-semibold leading-6'>{product.title}</h2>
 			<div className='grow text-base leading-5 [&_ul]:list-inside [&_ul]:list-disc'>{product.description && <MDXRemote source={product.description.replace(/\\n/g, '\n')} />}</div>
 			{product.video && (
-				<A href={product.video} className='rounded-md bg-red-500 p-3'>
-					<Play className='mx-auto size-4 fill-input' />
-				</A>
+				<LinkButton href={product.video} className='rounded-md bg-red-500 p-3'>
+					<Play className='mx-auto size-4 fill-primary-50' />
+				</LinkButton>
 			)}
 			{product.url && (
-				<A href={product.url} className='rounded-md bg-primary-500 p-3 text-center text-input'>
+				<LinkButton href={product.url} className='rounded-md bg-primary-500 p-3 text-center text-primary-50'>
 					Link
-				</A>
+				</LinkButton>
 			)}
 		</div>
 	);

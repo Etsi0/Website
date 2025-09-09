@@ -3,7 +3,7 @@ import Image, { StaticImageData } from 'next/image';
 import { cn } from '@/lib/util';
 import CodeBlock from '@/svg/materialDesignIcons/code_blocks.svg';
 import Public from '@/svg/materialDesignIcons/public.svg';
-import { A } from '@/components/ui/link';
+import { LinkButton } from '@/components/ui/link';
 import HTML from '@/svg/vscode-icons/html--custom.svg';
 import CSS from '@/svg/vscode-icons/css--custom.svg';
 import JS from '@/svg/vscode-icons/js.svg';
@@ -34,18 +34,28 @@ function Cards({ img, title, badges, text, live = '', source = '' }: TCards) {
 				<p>{text}</p>
 				<div className='flex grow flex-wrap items-start gap-2'>
 					{badges.map((badge, index) => (
-						<div key={index} className='bg-body-300 text-text-600 flex items-center gap-1 rounded-full px-3 py-1 text-sm'>
-							{badge.svg && <badge.svg className='fill-text-600 size-[1em] *:fill-current!' />} {badge.text}
+						<div key={index} className='bg-body-300 text-text-800 flex items-center gap-1 rounded-full px-3 py-1 text-sm'>
+							{badge.svg && <badge.svg className='fill-text-800 size-[1em] *:fill-current!' />} {badge.text}
 						</div>
 					))}
 				</div>
 				<div className='grid grid-cols-2 gap-4'>
-					<A href={live} className={cn(classes, 'bg-primary-500 text-input ring-offset-body-50 dark:ring-offset-body-200')} {...(!live && { disabled: true })}>
-						<Public className='fill-input size-5' /> Live
-					</A>
-					<A href={source} className={cn(classes, 'bg-body-300 text-text-700 ring-offset-body-50 dark:text-input dark:ring-offset-body-200')} {...(!source && { disabled: true })}>
-						<CodeBlock className='fill-text-700 dark:fill-input size-5' /> Source
-					</A>
+					<LinkButton
+						href={live}
+						className={cn(classes, 'bg-primary-500 text-primary-50 ring-offset-body-50 dark:ring-offset-body-200')}
+						disabled={!live}
+						isButton
+					>
+						<Public className='fill-primary-50 size-5' /> Live
+					</LinkButton>
+					<LinkButton
+						href={source}
+						className={cn(classes, 'bg-body-300 text-text-900 ring-offset-body-50 dark:text-primary-50 dark:ring-offset-body-200')}
+						disabled={!source}
+						isButton
+					>
+						<CodeBlock className='fill-text-900 dark:fill-primary-50 size-5' /> Source
+					</LinkButton>
 				</div>
 			</div>
 		</div>
@@ -61,7 +71,13 @@ export function Portfolio() {
 					<p>Most recent work</p>
 				</div>
 				<div className='grid w-full gap-x-5 gap-y-6 md:grid-cols-2 lg:grid-cols-3'>
-					<Cards img={MaxPA} title='MaxPA' badges={[{ svg: Lock }]} text='Swedish payroll system' live='https://www.maxpa.se/' />
+					<Cards
+						img={MaxPA}
+						title='MaxPA'
+						badges={[{ svg: Lock }]}
+						text='Swedish payroll system'
+						live='https://www.maxpa.se/'
+					/>
 					<Cards
 						img={Phadonia}
 						title='Phadonia'
@@ -147,9 +163,13 @@ export function Portfolio() {
 						source='https://github.com/Etsi0/DiceGame'
 					/>
 				</div>
-				<A className='bg-primary-500 text-input rounded-md px-[1.5em] py-[0.75em] text-lg' href='#'>
+				<LinkButton
+					href='#'
+					className='bg-primary-500 text-primary-50 rounded-md px-[1.5em] py-[0.75em] text-lg'
+					isButton
+				>
 					See all (Coming soon)
-				</A>
+				</LinkButton>
 			</section>
 		</>
 	);

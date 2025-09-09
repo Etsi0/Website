@@ -115,7 +115,7 @@ export function Client() {
 						max='9999'
 						value={year}
 						onChange={(e) => setYear(Number(e.target.value))}
-						className='rounded-sm border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
+						className='rounded-sm border border-body-50 bg-white p-2 dark:border-body-200 dark:bg-body-50'
 					/>
 				</label>
 				<label className='inline-grid text-sm font-medium'>
@@ -126,7 +126,7 @@ export function Client() {
 						max='12'
 						value={startMonth}
 						onChange={(e) => setStartMonth(Number(e.target.value))}
-						className='rounded-sm border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
+						className='rounded-sm border border-body-50 bg-white p-2 dark:border-body-200 dark:bg-body-50'
 					/>
 				</label>
 				<label className='inline-grid text-sm font-medium'>
@@ -137,7 +137,7 @@ export function Client() {
 						max='999'
 						value={totalMonths}
 						onChange={(e) => setTotalMonths(Number(e.target.value))}
-						className='rounded-sm border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
+						className='rounded-sm border border-body-50 bg-white p-2 dark:border-body-200 dark:bg-body-50'
 					/>
 				</label>
 				<label className='inline-grid text-sm font-medium'>
@@ -149,7 +149,7 @@ export function Client() {
 						step='0.001'
 						value={gap}
 						onChange={(e) => setGap(Number(e.target.value))}
-						className='rounded-sm border border-body-200 bg-body-50 p-2 dark:border-body-300 dark:bg-body-200'
+						className='rounded-sm border border-body-50 bg-white p-2 dark:border-body-200 dark:bg-body-50'
 					/>
 				</label>
 			</div>
@@ -174,23 +174,23 @@ function MonthGrid({ year, monthNum, days }: { year: number; monthNum: number; d
 	});
 
 	return (
-		<div key={monthNum} className='flex flex-col gap-2 rounded-lg border border-body-200 bg-body-50 p-4 dark:border-body-300 dark:bg-body-200'>
-			<h3 className='font-medium'>
+		<div key={monthNum} className='flex flex-col gap-2 rounded-lg border border-body-50 bg-white p-4 dark:border-body-200 dark:bg-body-50'>
+			<h2 className='text-custom-3xl font-medium'>
 				{MONTH_NAMES[(Number(monthNum) - 1) % 12]} {year + Math.floor((Number(monthNum) - 1) / 12)}
-			</h3>
+			</h2>
 			<div className='grow'>
 				<div className='grid grid-cols-7 gap-x-1 gap-y-[0.375rem] text-center'>
 					{WEEKDAYS.map((day) => (
-						<div key={day} className='font-medium text-text-400'>
+						<h3 key={day} className='font-medium text-base'>
 							{day}
-						</div>
+						</h3>
 					))}
 					{calendar.map((day, i) => (
 						<div
 							key={i}
 							className={cn(
 								'aspect-square content-center rounded-sm text-center text-sm',
-								day === null ? '' : days.includes(day) ? 'bg-primary-500 text-input' : 'bg-body-100 text-text-400 dark:bg-body-300'
+								day === null ? '' : days.includes(day) ? 'bg-primary-500 text-primary-50' : 'bg-body-100 text-text-700/75 dark:bg-body-200'
 							)}
 						>
 							{day}

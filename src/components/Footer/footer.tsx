@@ -1,28 +1,42 @@
-import { A } from '@/components/ui/link';
+import { LinkButton } from '@/components/ui/link';
 
-export default function Footer() {
+export default async function Footer() {
+	const now = new Date();
+
 	return (
 		<>
 			<hr />
-			<footer className='bg-primary-500 text-input space-y-8 p-16'>
-				<div className='space-y-4'>
-					<div className='divide-input/25 flex justify-center gap-4 divide-x [&>:not(:last-child)]:pr-4'>
-						<A href='/'>Home</A>
-						<A href='/#about'>About</A>
-						<A href='/#skills'>Skills</A>
-						<A href='/#portfolio'>Portfolio</A>
-					</div>
-					<div className='divide-input/25 flex justify-center gap-4 divide-x [&>:not(:last-child)]:pr-4'>
-						<A href='/minecraft'>Minecraft mods</A>
-						<A href='/habit-remover'>Habit Remover</A>
-						<A href='/pomodoro'>Pomodoro</A>
-						<A href='https://cv-maker.phadonia.com'>CV Maker</A>
-						<A href='https://etsi0.github.io/Infinity-tic-tac-toe'>Infinity tic tac toe</A>
-						<A href='https://etsi0.github.io/DiceGame'>Dice Game</A>
-					</div>
-				</div>
+			<footer className='bg-primary-500 text-primary-50 space-y-8 p-16'>
+				<ul className='grid lg:flex justify-center gap-6 max-w-max text-center mx-auto'>
+					{[{
+						path: '/',
+						name: 'Home',
+					},
+					{
+						path: '/habit-remover',
+						name: 'Habit Remover',
+					},
+					{
+						path: '/minecraft',
+						name: 'Minecraft Mods',
+					},
+					{
+						path: '/pomodoro',
+						name: 'Pomodoro',
+					},
+					// {
+					// 	path: '/settings/firefox',
+					// 	name: 'Firefox Settings',
+					// },
+					{
+						path: '/settings/vscode',
+						name: 'VSCode Settings',
+					}].map((item, i) => (
+						<li key={i}><LinkButton href={item.path}>{item.name}</LinkButton></li>
+					))}
+				</ul>
 				<div className='grid justify-items-center'>
-					<p>Phadonia | 2022 - {new Date().getFullYear()}</p>
+					<p>© {now.getFullYear()} Phadonia</p>
 				</div>
 			</footer>
 		</>

@@ -114,7 +114,7 @@ export function InfinityScroll({
 	return (
 		<>
 			<section
-				className='my-12 bg-body-50 py-4 shadow-[0_0_0_100vmax_hsl(var(--body-color-50))] [clip-path:inset(0_-100vmax)] dark:bg-body-200 dark:shadow-[0_0_0_100vmax_hsl(var(--body-color-200))]'
+				className='my-12 bg-body-50 py-4 shadow-[0_0_0_100vmax_oklch(var(--body-color-50))] [clip-path:inset(0_-100vmax)] dark:bg-body-200 dark:shadow-[0_0_0_100vmax_oklch(var(--body-color-200))]'
 				id='experience'
 				ref={refContainer}
 			>

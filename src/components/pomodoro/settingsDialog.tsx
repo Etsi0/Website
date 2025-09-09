@@ -54,7 +54,7 @@ export const SettingsDialog = ({ isOpen, options, setOptions, onClose }: { isOpe
 				<input className='rounded-md p-2' type='number' value={options.longBreakInterval} min={1} max={999} onChange={handleNumberChange('longBreakInterval')} />
 			</Label>
 
-			<Button className='justify-self-end rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-input' onClick={onClose}>
+			<Button className='justify-self-end rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-primary-50' onClick={onClose}>
 				Close
 			</Button>
 		</Dialog>

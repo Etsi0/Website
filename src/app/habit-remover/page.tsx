@@ -1,8 +1,9 @@
 import { Client } from '@/components/habit-remover/client';
+import { pageTitle } from '@/lib/util';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Habit Remover | Phadonia',
+	title: pageTitle('Habit Remover'),
 	description: "Are there something you want to stop doing? Then you can use this to see when you should do that thing or when you shouldn't do that thing",
 };
 

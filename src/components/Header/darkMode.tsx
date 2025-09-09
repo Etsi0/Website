@@ -1,52 +1,37 @@
 'use client';
 import { cn } from '@/lib/util';
-import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-
-function isSystemThemeDark() {
-	return window.matchMedia('(prefers-color-scheme: dark)').matches;
-}
+import { useTheme } from 'next-themes'
 
 export function DarkMode() {
-	const [isMounted, setMounted] = useState<boolean>(false);
-	const [darkMode, setDarkMode] = useState<'auto' | 'dark' | 'light'>('auto');
+	const { theme, setTheme } = useTheme();
 
 	function toggleDarkMode() {
-		if (darkMode === 'auto') {
-			setDarkMode(isSystemThemeDark() ? 'light' : 'dark');
-		} else if (darkMode === 'dark') {
-			setDarkMode('light');
-		} else {
-			setDarkMode('dark');
-		}
+		console.log(theme);
+		setTheme(
+			theme === 'system'
+				? window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'light'
+					: 'dark'
+				: theme === 'dark'
+					? 'light'
+					: 'dark'
+		);
 	}
-
-	useEffect(() => {
-		if (isMounted) {
-			const savedTheme = localStorage.getItem('ThemeSwitch');
-			const initialDarkMode = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'auto';
-			setDarkMode(initialDarkMode);
-		} else {
-			setMounted(true);
-		}
-	}, [isMounted]);
-
-	useEffect(() => {
-		if (isMounted) {
-			const root = document.documentElement;
-			root.classList.toggle('dark', darkMode === 'dark' || (darkMode === 'auto' && isSystemThemeDark()));
-			root.classList.toggle('light', darkMode === 'light' || (darkMode === 'auto' && !isSystemThemeDark()));
-
-			localStorage.setItem('ThemeSwitch', darkMode.toString());
-		}
-	}, [darkMode, isMounted]);
 
 	return (
 		<Button
 			className='aspect-square h-full rounded-md'
 			focusable={false}
-			aria-label={darkMode === 'dark' ? 'Change theme to light mode' : darkMode === 'light' ? 'Change theme to dark mode' : 'Set theme'}
+			aria-label={
+				theme === 'dark'
+					? 'Change theme to light mode'
+					: theme === 'light'
+						? 'Change theme to dark mode'
+						: 'Set theme'
+			}
 			onClick={toggleDarkMode}
+			suppressHydrationWarning
 		>
 			<svg className={cn('text-primary-500')} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 				<path

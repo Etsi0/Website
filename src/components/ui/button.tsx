@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
-import { cn, whenFocusing, whenHovering } from '@/lib/util';
+import { cn, whenFocusing, whenHoveringButton } from '@/lib/util';
 
 type TButton = {
 	className?: string;
@@ -12,7 +12,7 @@ export function Button({ className, hoverable = true, focusable = true, children
 	return (
 		<button
 			tabIndex={disabled ? -1 : 0}
-			className={cn(hoverable && !disabled && whenHovering, focusable && !disabled && whenFocusing, disabled && 'cursor-not-allowed opacity-50', className)}
+			className={cn(hoverable && !disabled && whenHoveringButton, focusable && !disabled && whenFocusing, disabled && 'cursor-not-allowed opacity-50', className)}
 			{...props}
 		>
 			{children}

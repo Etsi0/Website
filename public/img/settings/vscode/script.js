@@ -3,8 +3,9 @@ const path = require('path');
 const os = require('os');
 
 // Default paths
-const DEFAULT_JSON_OUTPUT = 'C:\\Users\\albin\\Documents\\Desktop\\Projects\\phadonia\\src\\components\\settings\\vscode';
-const DEFAULT_IMG_OUTPUT = 'C:\\Users\\albin\\Documents\\Desktop\\Projects\\phadonia\\public\\img\\settings\\vscode';
+const BASE_PROJECT_DIR = path.join(os.homedir(), 'Documents', 'Desktop', 'Projects', 'phadonia');
+const DEFAULT_JSON_OUTPUT = path.join(BASE_PROJECT_DIR, 'src', 'json', 'settings', 'vscode');
+const DEFAULT_IMG_OUTPUT = path.join(BASE_PROJECT_DIR, 'public', 'img', 'settings', 'vscode');
 
 function copyImage(sourcePath, destPath, extensionName) {
 	try {
@@ -123,14 +124,7 @@ function getExtensionsData(imgOutputPath) {
 				}
 
 				// Try to get link from various possible fields
-				let link = '';
-				if (packageJson.homepage) {
-					link = packageJson.homepage;
-				} else if (packageJson.repository && packageJson.repository.url) {
-					link = packageJson.repository.url;
-				} else if (packageJson.bugs && packageJson.bugs.url) {
-					link = packageJson.bugs.url;
-				}
+				const link = 'https://marketplace.visualstudio.com/items?itemName=${packageJson.publisher}.${packageJson.name}';
 
 				extensions.push({
 					title,
@@ -181,7 +175,7 @@ function main() {
 
 	// Also log to console for preview
 	console.log('\nPreview:');
-	console.log(jsonOutput);
+	console.log(jsonOutput);rd
 }
 
 main();

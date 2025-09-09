@@ -80,7 +80,7 @@ export const useTypewriter = ({words, loop = 1, typeSpeed = 100, deleteSpeed = t
 		if (isDelay.current && onDelay) {
 			onDelay();
 		}
-	}, [count, delaySpeed, speed, loop, words, text, onType, onDelete, onDelay]);
+	}, [count, typeSpeed, deleteSpeed, delaySpeed, speed, loop, words, text, onType, onDelete, onDelay]);
 
 	useEffect(() => {
 		const typing = setTimeout(handleTyping, speed);

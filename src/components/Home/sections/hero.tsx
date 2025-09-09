@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { cn } from '@/lib/util';
-import { A } from '@/components/ui/link';
+import { LinkButton } from '@/components/ui/link';
 import { YearsElapsed } from '@/components/yearsElapsed';
 import { Typewriter } from '@/components/typingText';
 import { SocialLinkJson } from '@/json/socialLink';
@@ -12,9 +12,9 @@ function SocialLinks({ className }: { className: string }) {
 		<ul className={cn('gap-3', className)} aria-label='Social Media Links'>
 			{SocialLinkJson.map((item, index) => (
 				<li key={index}>
-					<A className='rounded-xs' href={item.path} aria-label={item.name}>
+					<LinkButton className='rounded-xs' href={item.path} aria-label={item.name} isButton>
 						<item.img className='*:fill-primary-500 size-8' />
-					</A>
+					</LinkButton>
 				</li>
 			))}
 		</ul>

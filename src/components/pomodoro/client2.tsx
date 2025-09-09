@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { NoScript } from '@/components/ui/noScript';
 import SkipNext from '@/svg/materialDesignIcons/skip_next.svg';
 import Settings from '@/svg/materialDesignIcons/settings.svg';
-import { cn } from '@/lib/util';
+import { cn, pageTitle } from '@/lib/util';
 import { useTimer } from '@/components/pomodoro/useTimer';
 import { SettingsDialog } from '@/components/pomodoro/settingsDialog';
 
@@ -45,7 +45,7 @@ export default function Client() {
 	}, []);
 
 	useEffect(() => {
-		document.title = `${minutes}:${seconds} - Pomodoro | Phadonia`;
+		document.title = pageTitle(`${minutes}:${seconds} - Pomodoro`);
 	}, [minutes, seconds]);
 
 	return (
@@ -58,7 +58,7 @@ export default function Client() {
 						{STATES.map((item) => (
 							<Button
 								key={item}
-								className='rounded-md bg-primary-50 px-6 py-1 text-primary-500 dark:bg-body-300 dark:text-text-500'
+								className='rounded-md bg-primary-200 px-6 py-1 text-primary-600 dark:bg-body-50 dark:text-text-600'
 								{...(state === item ? { disabled: true } : { onClick: () => handleStateTransition(item) })}
 							>
 								{item.replace(/([A-Z])/g, ' $1').replace(/(^\w)/g, (c) => c.toUpperCase())}
@@ -70,12 +70,12 @@ export default function Client() {
 					</h1>
 					<div className='mt-4 flex items-center justify-center gap-8'>
 						<Button aria-label='Settings' onClick={() => setIsSettingsOpen(true)}>
-							<Settings className='size-[calc(1.25em_+_1rem)] fill-text-500' />
+							<Settings className='size-[calc(1.25em_+_1rem)] fill-text-700' />
 						</Button>
 
 						<Button
 							className={cn(
-								'grow rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-input transition-colors duration-300',
+								'grow rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-primary-50 transition-colors duration-300',
 								isRunning === 'mute' && 'bg-amber-400 text-amber-950',
 								isRunning === 'running' && 'bg-red-500 text-red-50'
 							)}
@@ -91,7 +91,7 @@ export default function Client() {
 						</Button>
 
 						<Button aria-label='Skip' onClick={() => handleStateTransition()}>
-							<SkipNext className='size-[calc(1.25em_+_1rem)] fill-text-500' />
+							<SkipNext className='size-[calc(1.25em_+_1rem)] fill-text-700' />
 						</Button>
 					</div>
 				</div>

@@ -3,7 +3,8 @@ import { HTTP_METHOD } from 'next/dist/server/web/http';
 import { twMerge } from 'tailwind-merge';
 import { z } from 'zod';
 
-export const whenHovering = 'hover:opacity-85 hover:active:opacity-50';
+export const whenHoveringLink = 'hover:brightness-125 hover:active:brightness-150';
+export const whenHoveringButton = 'hover:opacity-85 hover:active:opacity-50';
 export const whenFocusing = 'ring-primary-500 ring-offset-2 ring-offset-body-100 focus-visible:outline-hidden focus-visible:ring-2';
 
 export function cn(...input: ClassValue[]) {
@@ -18,6 +19,10 @@ export function createCounter() {
 export function validateData<T>(input: unknown, schema: z.ZodType<T>): T | false {
 	const result = schema.safeParse(input);
 	return result.success ? result.data : false;
+}
+
+export function pageTitle(title: string): string {
+	return `${title} | Phadonia`;
 }
 
 type TRequest = {

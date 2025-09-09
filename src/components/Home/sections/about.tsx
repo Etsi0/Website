@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import Download from '@/svg/materialDesignIcons/download.svg';
 import StudentCapSelfie from '@/../public/img/production/student cap selfie/selfie.webp';
-import { A } from '@/components/ui/link';
+import { LinkButton } from '@/components/ui/link';
 
 export function About() {
 	return (
@@ -31,9 +31,14 @@ export function About() {
 							As a full-stack developer specializing in modern web technologies, I develop enterprise payroll systems and create developer tools that have collected over 3,000 downloads.
 							When I{"'"}m not coding, I enjoy mentoring aspiring programmers on Discord, building custom mechanical keyboards or computers, and exploring the latest in tech.
 						</p>
-						<A className='inline-flex items-center rounded-md bg-primary-500 px-[1.5em] py-[0.75em] font-semibold text-input' href='/Albin_Karlsson_CV.pdf' download="Albin Karlsson's CV">
+						<LinkButton
+							className='inline-flex items-center rounded-md bg-primary-500 px-[1.5em] py-[0.75em] font-semibold text-primary-50'
+							href='/Albin_Karlsson_CV.pdf'
+							download="Albin Karlsson's CV"
+							isButton
+						>
 							Download CV <Download className='size-6 fill-current' />
-						</A>
+						</LinkButton>
 					</div>
 				</div>
 			</section>

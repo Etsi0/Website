@@ -2,18 +2,22 @@ import { ReactNode } from 'react';
 import Image from 'next/image';
 import { z } from 'zod';
 import { GetCollection, GetProjects, GetVersions } from '@/api/modrinth/main';
-// import FilterContext from '@/context/minecraft/filterContext';
 import { versionSchema } from '@/schema/minecraft/main';
 import { TProject } from '@/types/minecraft/main';
-import { cn } from '@/lib/util';
+import { cn, pageTitle } from '@/lib/util';
 import { MinecraftModsJson } from '@/json/minecraft/minecraftModsJson';
-import { A } from '@/components/ui/link';
-// import { Filter } from '@/components/minecraft/filter';
+import { LinkButton } from '@/components/ui/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: pageTitle('Minecraft Mods'),
+	description: "Are there something you want to stop doing? Then you can use this to see when you should do that thing or when you shouldn't do that thing",
+};
 
 const StrToColor = Object.freeze({
-	green: 'bg-green-500 dark:bg-green-600',
-	yellow: 'bg-yellow-500 dark:bg-yellow-600',
-	red: 'bg-red-500 dark:bg-red-600',
+	green: 'bg-green-600',
+	yellow: 'bg-yellow-600',
+	red: 'bg-red-600',
 });
 
 type TGetMod = {
@@ -120,9 +124,12 @@ async function GetMod({ project, className }: TGetMod) {
 
 						return (
 							<li key={i}>
-								<A className='text-primary-500' href={`#${item.project_id}`}>
+								<LinkButton
+									href={`#${item.project_id}`}
+									className='text-primary-500 dark:text-primary-300'
+								>
 									{item.project_id}
-								</A>
+								</LinkButton>
 							</li>
 						);
 					})
@@ -131,9 +138,9 @@ async function GetMod({ project, className }: TGetMod) {
 	];
 
 	return (
-		<div id={project.id === '' ? project.title : project.id} className='flex w-72 flex-col gap-3 rounded-lg bg-body-50 p-4 shadow-lg dark:bg-body-200'>
+		<div id={project.id === '' ? project.title : project.id} className='flex w-72 flex-col gap-3 rounded-lg bg-white p-4 shadow-lg dark:bg-body-50'>
 			{(project.icon_url !== '' && (
-				<Image src={project.icon_url} alt={`logo for the mod called '${project.title}'`} width={192} height={192} className='mx-auto rounded-md bg-primary-50 dark:bg-body-300' />
+				<Image src={project.icon_url} alt={`logo for the mod called '${project.title}'`} width={192} height={192} className='mx-auto rounded-md bg-primary-100 dark:bg-body-200' unoptimized={true} />
 			)) || <div className='mx-auto aspect-square w-48 rounded-md bg-primary-50 dark:bg-body-300'></div>}
 			<h2 className='overflow-hidden text-ellipsis text-center text-3xl'>{project.title}</h2>
 			<ul className='grow'>
@@ -147,22 +154,24 @@ async function GetMod({ project, className }: TGetMod) {
 						</li>
 					))}
 			</ul>
-			<A
+			<LinkButton
 				href={project.id === '' ? `https://www.curseforge.com/minecraft/mc-mods/${project.slug}` : `https://modrinth.com/mod/${project.slug}/versions`}
-				className='w-full rounded-md bg-primary-500 p-3 text-center text-input'
+				className='w-full rounded-md bg-primary-500 p-3 text-center text-primary-50'
+				isButton
 			>
 				{project.title}
-			</A>
-			{(latestVersion && (
-				<A href={latestVersion.files[0].url} className={cn('w-full rounded-md bg-primary-500 p-3 text-center text-input', className)}>
-					Fabric {latestVersion.game_versions[0]}
-					{latestVersion.game_versions.length > 1 && ` - ${latestVersion.game_versions[latestVersion.game_versions.length - 1]}`}
-				</A>
-			)) || (
-				<button disabled className='w-full cursor-not-allowed rounded-md bg-slate-500 p-3 text-slate-400'>
-					NaN
-				</button>
-			)}
+			</LinkButton>
+			<LinkButton
+				href={latestVersion?.files[0].url ?? ''}
+				className={cn(...(latestVersion ? ['w-full rounded-md bg-primary-500 p-3 text-center text-text-800 dark:text-text-200', className] : ['w-full cursor-not-allowed rounded-md bg-slate-500 p-3 text-slate-400']))}
+				disabled={!latestVersion}
+				isButton
+			>
+				{latestVersion
+					? `Fabric ${latestVersion.game_versions[0]} ${latestVersion.game_versions.length > 1 && ` - ${latestVersion.game_versions[latestVersion.game_versions.length - 1]}`}`
+					: 'NaN'
+				}
+			</LinkButton>
 		</div>
 	);
 }
@@ -188,24 +197,21 @@ export default async function Page() {
 				<h1>Minecraft Mods</h1>
 				<p>Mods listed bellow is what i recommend or use, look at the section that explains what the different colors means if you are confused</p>
 			</div>
-			<div className='grid gap-3 rounded-lg bg-body-50 p-6 dark:bg-body-200'>
+			<div className='grid gap-3 rounded-lg bg-white dark:bg-body-50 p-6'>
 				<DoneCategoryWrapper className={StrToColor['green']}>This icon indicates that i recommend these mods</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['yellow']}>This icon indicates that these mods are a dependency for another mod on this list</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['red']}>
 					This icon indicates that I only recommend these mods for quick setup. (
-					<A className='text-primary-500' href='https://optifine.net/downloads'>
+					<LinkButton className='text-primary-500 dark:text-primary-300' href='https://optifine.net/downloads'>
 						Optifine
-					</A>
+					</LinkButton>
 					)
 				</DoneCategoryWrapper>
 			</div>
 			<div className='relative flex flex-wrap justify-center gap-5'>
-				{/* <FilterContext projects={sortedProjects}>
-					<Filter /> */}
 				{sortedProjects.map((project, index) => (
 					<GetMod key={index} project={project} className={StrToColor['green']} />
 				))}
-				{/* </FilterContext> */}
 			</div>
 		</section>
 	);
