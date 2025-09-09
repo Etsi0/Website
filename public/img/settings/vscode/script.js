@@ -124,7 +124,7 @@ function getExtensionsData(imgOutputPath) {
 				}
 
 				// Try to get link from various possible fields
-				const link = 'https://marketplace.visualstudio.com/items?itemName=${packageJson.publisher}.${packageJson.name}';
+				const link = `https://marketplace.visualstudio.com/items?itemName=${packageJson.publisher}.${packageJson.name}`;
 
 				extensions.push({
 					title,
