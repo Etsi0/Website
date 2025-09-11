@@ -264,8 +264,62 @@
 	/*==================================================
 		make section take up the full viewport - header
 	==================================================*/
+	.breakout-wrapper {
+		--gap: 2rem;
+		--full: minmax(var(--gap), 1fr);
+		--breakout: minmax(0, var(--gap));
+		--content: min(100% - var(--gap) * 2, 80rem); /* 80rem = 1280px */
+
+		display: grid;
+		grid-template-columns:
+			[full-start] var(--full)
+			[\2xl-start] var(--breakout)
+			[xl-start] var(--breakout)
+			[lg-start] var(--breakout)
+			[md-start] var(--breakout)
+			[sm-start] var(--breakout)
+			[content-start] var(--content) [content-end]
+			var(--breakout) [sm-end]
+			var(--breakout) [md-end]
+			var(--breakout) [lg-end]
+			var(--breakout) [xl-end]
+			var(--breakout) [\2xl-end]
+			var(--full) [full-end];
+
+		& > * {
+			grid-column: content;
+		}
+
+		& > .col-sm {
+			grid-column: sm;
+		}
+
+		& > .col-md {
+			grid-column: md;
+		}
+
+		& > .col-lg {
+			grid-column: lg;
+		}
+
+		& > .col-xl {
+			grid-column: xl;
+		}
+
+		& > .col-2xl {
+			grid-column: \2xl;
+		}
+
+		& > .col-full {
+			grid-column: full;
+		}
+	}
+
+
+	/*==================================================
+		max height allowed on the header
+	==================================================*/
 	.heroSection {
-		min-height: calc(min(62.5rem, 100vh) - 4rem);
 		min-height: calc(min(62.5rem, 100svh) - 4rem);
 	}
 

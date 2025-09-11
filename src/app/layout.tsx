@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				<ThemeProvider attribute='class'>
 					<div id='root' className='flex min-h-screen flex-col overflow-x-hidden'>
 						<Header />
-						<main className='mx-auto flex w-full max-w-7xl grow flex-col px-8 pt-16'>{children}</main>
+						<main className='breakout-wrapper w-full grow pt-16'>{children}</main>
 						<Footer />
 						<Analytics />
 						<SpeedInsights />
