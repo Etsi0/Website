@@ -4,6 +4,7 @@ import { cn } from '@/lib/util';
 import CodeBlock from '@/svg/materialDesignIcons/code_blocks.svg';
 import Public from '@/svg/materialDesignIcons/public.svg';
 import { LinkButton } from '@/components/ui/link';
+
 import HTML from '@/svg/vscode-icons/html--custom.svg';
 import CSS from '@/svg/vscode-icons/css--custom.svg';
 import JS from '@/svg/vscode-icons/js.svg';
@@ -13,7 +14,9 @@ import ReactIcon from '@/svg/vscode-icons/reactjs.svg';
 import Next from '@/svg/vscode-icons/next.svg';
 import TS from '@/svg/vscode-icons/typescript.svg';
 import SQL from '@/svg/vscode-icons/sql.svg';
+
 import Lock from '@/svg/materialDesignIcons/lock.svg';
+
 import Icon from '@/../public/img/production/icon.png';
 import Phadonia from '@/../public/img/WIP/svgomg.net/new phadonia logo (phadon).svg?url';
 import ForgetMe from '@/../public/img/forgetMe.png';
@@ -24,17 +27,17 @@ type TCards = { img: StaticImageData; title: string; badges: { svg?: FC<SVGProps
 
 function Cards({ img, title, badges, text, live = '', source = '' }: TCards) {
 	return (
-		<div className='border-body-200 bg-body-50 dark:border-body-300 dark:bg-body-200 flex flex-col overflow-hidden rounded-xl border'>
-			<div className='dark:border-body-300 border-body-200 grid border-b *:col-[1_/_span_1] *:row-[1_/_span_1] *:aspect-16/10'>
-				<Image className={`w-full object-cover blur-2xl brightness-50 [clip-path:polygon(0_0,100%0,100%100%,0_100%)]`} width={img.width} height={img.height} src={img} alt='asd' />
-				<Image className='relative z-10 w-full scale-90 object-contain' width={img.width} height={img.height} src={img} alt='asd' />
+		<div className='border-body-200 bg-body-100 flex flex-col overflow-hidden rounded-xl border'>
+			<div className='border-body-200 grid border-b *:col-[1_/_span_1] *:row-[1_/_span_1] *:aspect-16/10'>
+				<Image className={`w-full object-cover blur-3xl brightness-50 scale-200 [clip-path:polygon(25%25%,75%25%,75%75%,25%75%)]`} width={img.width} height={img.height} src={img} alt='asd' />
+				<Image className='w-full scale-90 object-contain' width={img.width} height={img.height} src={img} alt='asd' />
 			</div>
 			<div className='flex grow flex-col gap-3 p-4'>
 				<h3>{title}</h3>
 				<p>{text}</p>
 				<div className='flex grow flex-wrap items-start gap-2'>
-					{badges.map((badge, index) => (
-						<div key={index} className='bg-body-300 text-text-800 flex items-center gap-1 rounded-full px-3 py-1 text-sm'>
+					{badges.sort((a, b) => (a.text || '').localeCompare(b.text || '')).map((badge, index) => (
+						<div key={index} className='bg-body-200 text-text-800 flex items-center gap-1 rounded-full px-3 py-1 text-sm'>
 							{badge.svg && <badge.svg className='fill-text-800 size-[1em] *:fill-current!' />} {badge.text}
 						</div>
 					))}
@@ -50,11 +53,11 @@ function Cards({ img, title, badges, text, live = '', source = '' }: TCards) {
 					</LinkButton>
 					<LinkButton
 						href={source}
-						className={cn(classes, 'bg-body-300 text-text-900 ring-offset-body-50 dark:text-primary-50 dark:ring-offset-body-200')}
+						className={cn(classes, 'bg-body-300 text-text-900 ring-offset-body-50 dark:text-primary-100 dark:ring-offset-body-200')}
 						disabled={!source}
 						isButton
 					>
-						<CodeBlock className='fill-text-900 dark:fill-primary-50 size-5' /> Source
+						<CodeBlock className='fill-text-900 dark:fill-primary-100 size-5' /> Source
 					</LinkButton>
 				</div>
 			</div>
@@ -84,8 +87,8 @@ export function Portfolio() {
 						badges={[
 							{ svg: Tailwind, text: 'Tailwind' },
 							{ svg: TS, text: 'Typescript' },
-							{ svg: ReactIcon, text: 'React' },
 							{ svg: Next, text: 'Next.js' },
+							{ svg: ReactIcon, text: 'React' },
 							{ svg: SQL, text: 'Postgresql' },
 						]}
 						text='The site you are on right now'
@@ -165,7 +168,7 @@ export function Portfolio() {
 				</div>
 				<LinkButton
 					href='#'
-					className='bg-primary-500 text-primary-50 rounded-md px-[1.5em] py-[0.75em] text-lg'
+					className='bg-primary-500 text-primary-100 rounded-md px-[1.5em] py-[0.75em] text-lg'
 					isButton
 				>
 					See all (Coming soon)

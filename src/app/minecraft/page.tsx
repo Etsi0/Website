@@ -132,38 +132,41 @@ async function GetMod({ project, className }: TGetMod) {
 								</LinkButton>
 							</li>
 						);
-					})
+					}).filter(Boolean)
 				: false,
 		},
 	];
 
 	return (
-		<div id={project.id === '' ? project.title : project.id} className='flex w-72 flex-col gap-3 rounded-lg bg-white p-4 shadow-lg dark:bg-body-50'>
+		<div id={project.id === '' ? project.title : project.id} className='flex w-72 flex-col gap-3 rounded-lg bg-body-100 border border-body-200 p-4 shadow-lg'>
 			{(project.icon_url !== '' && (
-				<Image src={project.icon_url} alt={`logo for the mod called '${project.title}'`} width={192} height={192} className='mx-auto rounded-md bg-primary-100 dark:bg-body-200' unoptimized={true} />
-			)) || <div className='mx-auto aspect-square w-48 rounded-md bg-primary-50 dark:bg-body-300'></div>}
+				<Image src={project.icon_url} alt={`logo for the mod called '${project.title}'`} width={192} height={192} className='mx-auto rounded-md bg-primary-50 dark:bg-body-200' unoptimized={true} />
+			)) || <div className='mx-auto aspect-square w-48 rounded-md bg-primary-100 dark:bg-body-300'></div>}
 			<h2 className='overflow-hidden text-ellipsis text-center text-3xl'>{project.title}</h2>
 			<ul className='grow'>
 				{liContent
-					.filter((item) => item.text || item.list)
+					.filter((item) => item.text || (Array.isArray(item.list) && item.list.length > 0))
 					.map((item, index) => (
 						<li key={index}>
 							<h3 className='text-xl'>{item.title}</h3>
-							<p className='line-clamp-3'>{item.text}</p>
-							<ul>{item.list}</ul>
+							{item.text && <p className='line-clamp-3'>{item.text}</p>}
+							{item.list && <ul>{item.list}</ul>}
 						</li>
 					))}
 			</ul>
 			<LinkButton
 				href={project.id === '' ? `https://www.curseforge.com/minecraft/mc-mods/${project.slug}` : `https://modrinth.com/mod/${project.slug}/versions`}
-				className='w-full rounded-md bg-primary-500 p-3 text-center text-primary-50'
+				className='w-full rounded-md bg-primary-500 p-3 text-center text-primary-100'
 				isButton
 			>
 				{project.title}
 			</LinkButton>
 			<LinkButton
 				href={latestVersion?.files[0].url ?? ''}
-				className={cn(...(latestVersion ? ['w-full rounded-md bg-primary-500 p-3 text-center text-text-800 dark:text-text-200', className] : ['w-full cursor-not-allowed rounded-md bg-slate-500 p-3 text-slate-400']))}
+				className={cn(
+					latestVersion && `w-full rounded-md bg-primary-500 p-3 text-center text-text-800 dark:text-text-200 ${className}`,
+					!latestVersion && 'w-full cursor-not-allowed rounded-md bg-slate-500 p-3 text-slate-400'
+				)}
 				disabled={!latestVersion}
 				isButton
 			>
@@ -197,7 +200,7 @@ export default async function Page() {
 				<h1>Minecraft Mods</h1>
 				<p>Mods listed bellow is what i recommend or use, look at the section that explains what the different colors means if you are confused</p>
 			</div>
-			<div className='grid gap-3 rounded-lg bg-white dark:bg-body-50 p-6'>
+			<div className='grid gap-3 rounded-lg bg-body-100 border border-body-200 dark:bg-body-100 p-6'>
 				<DoneCategoryWrapper className={StrToColor['green']}>This icon indicates that i recommend these mods</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['yellow']}>This icon indicates that these mods are a dependency for another mod on this list</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['red']}>

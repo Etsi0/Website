@@ -12,7 +12,7 @@ export default function App() {
 					</div>
 				</div>
 				<p className='max-w-prose p-4'>Lost your way? No worries, we&apos;ve all been there. Just like our coffee-loving friend here. Let&apos;s guide you home.</p>
-				<LinkButton href='/' className='rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-primary-50' isButton>
+				<LinkButton href='/' className='rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-primary-100' isButton>
 					Home Page
 				</LinkButton>
 			</section>

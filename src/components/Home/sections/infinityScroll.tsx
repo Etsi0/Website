@@ -8,7 +8,7 @@ import gsap from 'gsap';
 /**
  *
  * @param className - An array with classes. index 0 is for the parent and index 1 is for all the images
- * @param duration - How much time it should take for an item to get from one end of the container to the other one in seconds. for example, 75
+ * @param pxPerSec - How many px it will move per second. for example, 15
  * @param gap - How much space it should be in between images. for example, 50px
  * @param images - All the images you want to display in the horisontal scroller
  * @param size - The size you want the images to be. for example, 100px x 100px
@@ -16,20 +16,22 @@ import gsap from 'gsap';
  */
 export function InfinityScroll({
 	className,
-	duration,
+	pxPerSec,
 	gap,
 	images,
 	size,
 }: {
 	className: string[];
-	duration: number;
+	pxPerSec: number;
 	gap: number;
 	images: StaticImageData[];
 	size: number;
 }) {
 	const [isMounted, setIsMounted] = useState<boolean>(false);
-	const refContainer = useRef<HTMLElement>(null);
+	const refContainer = useRef<HTMLDivElement>(null);
 	const { contextSafe } = useGSAP({ scope: refContainer });
+	const totalWidth = Position(images.length);
+	const finalDuration: number = 1280/pxPerSec; /* 15px per sec if content section is at max width */
 
 	/*==================================================
 		Helpers
@@ -46,10 +48,6 @@ export function InfinityScroll({
 	function Position(index: number): number {
 		return (size + gap) * index;
 	}
-
-	const totalWidth = Position(images.length);
-	const durationPerPx = (refContainer.current?.clientWidth || duration) / duration;
-	const finalDuration = Math.max(duration, totalWidth / durationPerPx);
 
 	/*==================================================
 		Animation
@@ -114,28 +112,20 @@ export function InfinityScroll({
 	return (
 		<>
 			<section
-				className='col-full breakout-wrapper my-12 bg-body-50 py-4 dark:bg-body-200'
+				className='col-full breakout-wrapper my-12  py-4 bg-body-100'
 				id='experience'
-				ref={refContainer}
 			>
 				<div
-					className={cn(
-						'relative overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_25px,_black_calc(100%-25px),transparent_100%)]',
-						className[0]
-					)}
+					className={cn('relative overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_25px,_black_calc(100%-25px),transparent_100%)]', className[0])}
+					ref={refContainer}
 				>
 					{images.map((item, index) => {
 						const { height, width } = GetSize(item.height, item.width);
 						return (
 							<div
-								className={cn(
-									`horizontalScroll-${index} absolute left-0 grid place-items-center opacity-75 grayscale`,
-									className[1]
-								)}
+								className={cn(`horizontalScroll-${index} absolute left-0 grid place-items-center opacity-75 grayscale`, className[1])}
 								key={index}
-								style={{
-									left: !isMounted ? FallbackPosition(index) : '',
-								}}
+								style={{left: isMounted ? '' : FallbackPosition(index)}}
 							>
 								<Image
 									alt={`Gray scale version of a company logo`}

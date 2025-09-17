@@ -24,8 +24,8 @@ export default function App() {
 	return (
 		<>
 			<header className='pointer-events-none fixed z-50 w-full' ref={headerRef}>
-				<div className='pointer-events-auto bg-body-100/90 backdrop-blur-xl'>
-					<div className='mx-auto flex h-16 max-w-7xl items-center justify-between p-3'>
+				<div className='breakout-wrapper pointer-events-auto bg-body-50/90 backdrop-blur-xl'>
+					<div className='flex h-16 items-center justify-between p-3'>
 						{/*==================================================
 							Page icon
 						==================================================*/}

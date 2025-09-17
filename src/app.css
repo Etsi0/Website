@@ -80,10 +80,10 @@
 		--body-step: calc(0.05 * (-1 + 2 * var(--isDarkMode)));
 		--body-base: calc(var(--body-light) - (var(--body-light) - var(--body-dark)) * var(--isDarkMode));
 
-		--body-lightness-50: calc(var(--body-base) + (var(--body-step) * 1));
+		--body-lightness-50: calc(var(--body-base) + (var(--body-step) * 0));
 		--body-color-50 : var(--body-lightness-50) var(--neutral-chroma) var(--hue-color);
 
-		--body-lightness-100: calc(var(--body-base) + (var(--body-step) * 0));
+		--body-lightness-100: calc(var(--body-base) + (var(--body-step) * 1));
 		--body-color-100: var(--body-lightness-100) var(--neutral-chroma) var(--hue-color);
 
 		--body-lightness-200: calc(var(--body-base) + (var(--body-step) * 2));
@@ -164,7 +164,7 @@
 	}
 
 	::selection {
-		color: var(--color-primary-50);
+		color: var(--color-primary-100);
 		background: var(--color-primary-500);
 	}
 
@@ -176,19 +176,9 @@
 	body,
 	dialog > * {
 		color: var(--color-text-700);
-		font-size: 1rem;
+		font-size: var(--font-size-1);
 		font-weight: 400;
-		line-height: 1.5rem;
-	}
-
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	p {
-		line-height: 1.33em;
+		line-height: 1.33;
 	}
 
 	h1,
@@ -228,7 +218,6 @@
 	}
 
 	p {
-		font-size: var(--font-size-1);
 		max-width: 65ch;
 		text-wrap: pretty;
 	}

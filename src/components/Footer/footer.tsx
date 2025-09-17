@@ -6,7 +6,7 @@ export default async function Footer() {
 	return (
 		<>
 			<hr />
-			<footer className='bg-primary-500 text-primary-50 space-y-8 p-16'>
+			<footer className='bg-primary-500 text-primary-100 space-y-8 p-16'>
 				<ul className='grid lg:flex justify-center gap-6 max-w-max text-center mx-auto'>
 					{[{
 						path: '/',

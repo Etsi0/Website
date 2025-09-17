@@ -100,8 +100,8 @@ export function Navigation({ref, setCurrentPath, currentPath, setIsNavOpen, isNa
 							}
 							className={cn(
 								'block p-3 text-text-900',
-								isActive(link.path) && 'bg-primary-500 text-primary-50',
-								!isActive(link.path) && 'hover:bg-primary-50 hover:text-primary-600 focus-visible:bg-primary-50 focus-visible:text-primary-600 dark:hover:bg-primary-800 dark:hover:text-primary-400 dark:focus-visible:bg-primary-800 dark:focus-visible:text-primary-400'
+								isActive(link.path) && 'bg-primary-500 text-primary-100',
+								!isActive(link.path) && 'hover:bg-primary-100 hover:text-primary-600 focus-visible:bg-primary-100 focus-visible:text-primary-600 dark:hover:bg-primary-800 dark:hover:text-primary-400 dark:focus-visible:bg-primary-800 dark:focus-visible:text-primary-400'
 							)}
 							href={link.path}
 							onClick={() => navClick(link.path)}

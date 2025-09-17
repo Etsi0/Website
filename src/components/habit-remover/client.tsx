@@ -115,7 +115,7 @@ export function Client() {
 						max='9999'
 						value={year}
 						onChange={(e) => setYear(Number(e.target.value))}
-						className='rounded-sm border border-body-50 bg-white p-2 dark:border-body-200 dark:bg-body-50'
+						className='rounded-sm border border-body-200 bg-body-100 p-2'
 					/>
 				</label>
 				<label className='inline-grid text-sm font-medium'>
@@ -126,7 +126,7 @@ export function Client() {
 						max='12'
 						value={startMonth}
 						onChange={(e) => setStartMonth(Number(e.target.value))}
-						className='rounded-sm border border-body-50 bg-white p-2 dark:border-body-200 dark:bg-body-50'
+						className='rounded-sm border border-body-200 bg-body-100 p-2'
 					/>
 				</label>
 				<label className='inline-grid text-sm font-medium'>
@@ -137,7 +137,7 @@ export function Client() {
 						max='999'
 						value={totalMonths}
 						onChange={(e) => setTotalMonths(Number(e.target.value))}
-						className='rounded-sm border border-body-50 bg-white p-2 dark:border-body-200 dark:bg-body-50'
+						className='rounded-sm border border-body-200 bg-body-100 p-2'
 					/>
 				</label>
 				<label className='inline-grid text-sm font-medium'>
@@ -149,7 +149,7 @@ export function Client() {
 						step='0.001'
 						value={gap}
 						onChange={(e) => setGap(Number(e.target.value))}
-						className='rounded-sm border border-body-50 bg-white p-2 dark:border-body-200 dark:bg-body-50'
+						className='rounded-sm border border-body-200 bg-body-100 p-2'
 					/>
 				</label>
 			</div>
@@ -174,7 +174,7 @@ function MonthGrid({ year, monthNum, days }: { year: number; monthNum: number; d
 	});
 
 	return (
-		<div key={monthNum} className='flex flex-col gap-2 rounded-lg border border-body-50 bg-white p-4 dark:border-body-200 dark:bg-body-50'>
+		<div key={monthNum} className='flex flex-col gap-2 rounded-lg border border-body-200 bg-body-100 p-4'>
 			<h2 className='text-custom-3xl font-medium'>
 				{MONTH_NAMES[(Number(monthNum) - 1) % 12]} {year + Math.floor((Number(monthNum) - 1) / 12)}
 			</h2>
@@ -190,7 +190,7 @@ function MonthGrid({ year, monthNum, days }: { year: number; monthNum: number; d
 							key={i}
 							className={cn(
 								'aspect-square content-center rounded-sm text-center text-sm',
-								day === null ? '' : days.includes(day) ? 'bg-primary-500 text-primary-50' : 'bg-body-100 text-text-700/75 dark:bg-body-200'
+								day === null ? '' : days.includes(day) ? 'bg-primary-500 border border-primary-400 text-primary-100 dark:border-primary-600' : 'bg-body-200 border border-body-300 text-text-700/75'
 							)}
 						>
 							{day}

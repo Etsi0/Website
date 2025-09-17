@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang='en' suppressHydrationWarning>
 			<ReactScan />
-			<body className='bg-body-100'>
+			<body className='bg-body-50'>
 				<ThemeProvider attribute='class'>
 					<div id='root' className='flex min-h-screen flex-col overflow-x-hidden'>
 						<Header />

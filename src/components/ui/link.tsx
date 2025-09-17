@@ -35,7 +35,7 @@ export function LinkButton({ ...props }: TLinkButton): ReactNode {
 		const isExternal = !href.startsWith('/') && !href.startsWith('#') && !href.startsWith('?');
 		const security = isExternal || target === '_blank' ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
-		const clazz = [standard, isHoverable && (isButton ? whenHoveringButton : whenHoveringLink), isFocusable && whenFocusing, className];
+		const clazz = [standard, isHoverable && (isButton ? `${whenHoveringButton} transition-opacity` : `${whenHoveringLink} transition-colors`), isFocusable && whenFocusing, className];
 
 		const properties = {
 			tabIndex: isFocusable ? 0 : -1,

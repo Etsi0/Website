@@ -32,7 +32,7 @@ export function About() {
 							When I{"'"}m not coding, I enjoy mentoring aspiring programmers on Discord, building custom mechanical keyboards or computers, and exploring the latest in tech.
 						</p>
 						<LinkButton
-							className='inline-flex items-center rounded-md bg-primary-500 px-[1.5em] py-[0.75em] font-semibold text-primary-50'
+							className='inline-flex items-center rounded-md bg-primary-500 px-[1.5em] py-[0.75em] font-semibold text-primary-100'
 							href='/Albin_Karlsson_CV.pdf'
 							download="Albin Karlsson's CV"
 							isButton

@@ -3,10 +3,7 @@ import { SkillCards } from '@/components/skillCard';
 export function Skills() {
 	return (
 		<>
-			<section
-				id='skills'
-				className='col-full breakout-wrapper bg-body-50 py-8 dark:bg-body-200'
-			>
+			<section id='skills' className='col-full breakout-wrapper bg-body-100 py-8'>
 				<div className='grid justify-items-center'>
 					<h2>Skills</h2>
 					<p>My technical level</p>

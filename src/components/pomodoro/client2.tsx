@@ -58,7 +58,7 @@ export default function Client() {
 						{STATES.map((item) => (
 							<Button
 								key={item}
-								className='rounded-md bg-primary-200 px-6 py-1 text-primary-600 dark:bg-body-50 dark:text-text-600'
+								className='rounded-md bg-primary-200 border border-primary-100 px-6 py-1 text-primary-600 dark:bg-body-100 dark:border-body-200 dark:text-text-600'
 								{...(state === item ? { disabled: true } : { onClick: () => handleStateTransition(item) })}
 							>
 								{item.replace(/([A-Z])/g, ' $1').replace(/(^\w)/g, (c) => c.toUpperCase())}
@@ -75,7 +75,7 @@ export default function Client() {
 
 						<Button
 							className={cn(
-								'grow rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-primary-50 transition-colors duration-300',
+								'grow rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-primary-100 transition-colors duration-300',
 								isRunning === 'mute' && 'bg-amber-400 text-amber-950',
 								isRunning === 'running' && 'bg-red-500 text-red-50'
 							)}
