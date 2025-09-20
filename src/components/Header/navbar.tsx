@@ -86,26 +86,22 @@ export function Navigation({ref, setCurrentPath, currentPath, setIsNavOpen, isNa
 	}, [currentPath]);
 
 	return (
-		<nav aria-label='Main Navigation' className='HeaderMainNav pointer-events-auto float-right h-screen min-w-72 translate-x-full overflow-hidden border-l bg-body-100' ref={navContainer}>
+		<nav aria-label='Main Navigation' className='HeaderMainNav pointer-events-auto float-right h-screen min-w-72 translate-x-full overflow-hidden border-l bg-body-50' ref={navContainer} inert={!isNavOpen}>
 			<ul>
 				{navLinks.internal.map((link) => (
 					<li key={link.path}>
 						<LinkButton
-							tabIndex={
-								isNavOpen
-									? isActive(link.path)
-										? -1
-										: 0
-									: -1
-							}
+							tabIndex={isActive(link.path) ? -1 : 0}
 							className={cn(
 								'block p-3 text-text-900',
-								isActive(link.path) && 'bg-primary-500 text-primary-100',
+								isActive(link.path) && 'bg-primary-500 text-primary-50 w-full text-left',
 								!isActive(link.path) && 'hover:bg-primary-100 hover:text-primary-600 focus-visible:bg-primary-100 focus-visible:text-primary-600 dark:hover:bg-primary-800 dark:hover:text-primary-400 dark:focus-visible:bg-primary-800 dark:focus-visible:text-primary-400'
 							)}
 							href={link.path}
 							onClick={() => navClick(link.path)}
 							isButton
+							isHoverable={false}
+							isFocusable={false}
 						>
 							{link.name}
 						</LinkButton>

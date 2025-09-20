@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { LinkButton } from '@/components/ui/link';
 import { NoScript } from '@/components/ui/noScript';
 import SkipNext from '@/svg/materialDesignIcons/skip_next.svg';
 import Settings from '@/svg/materialDesignIcons/settings.svg';
@@ -56,24 +56,24 @@ export default function Client() {
 					<div className='mx-auto'>{index}</div>
 					<div className='flex items-center justify-center gap-4'>
 						{STATES.map((item) => (
-							<Button
+							<LinkButton
 								key={item}
 								className='rounded-md bg-primary-200 border border-primary-100 px-6 py-1 text-primary-600 dark:bg-body-100 dark:border-body-200 dark:text-text-600'
 								{...(state === item ? { disabled: true } : { onClick: () => handleStateTransition(item) })}
 							>
 								{item.replace(/([A-Z])/g, ' $1').replace(/(^\w)/g, (c) => c.toUpperCase())}
-							</Button>
+							</LinkButton>
 						))}
 					</div>
 					<h1 className='text-center text-9xl'>
 						{minutes}:{seconds}
 					</h1>
 					<div className='mt-4 flex items-center justify-center gap-8'>
-						<Button aria-label='Settings' onClick={() => setIsSettingsOpen(true)}>
+						<LinkButton aria-label='Settings' onClick={() => setIsSettingsOpen(true)}>
 							<Settings className='size-[calc(1.25em_+_1rem)] fill-text-700' />
-						</Button>
+						</LinkButton>
 
-						<Button
+						<LinkButton
 							className={cn(
 								'grow rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-primary-100 transition-colors duration-300',
 								isRunning === 'mute' && 'bg-amber-400 text-amber-950',
@@ -88,11 +88,11 @@ export default function Client() {
 							}}
 						>
 							{isRunning === 'mute' ? 'Mute' : isRunning === 'stopped' ? 'Start' : 'Pause'}
-						</Button>
+						</LinkButton>
 
-						<Button aria-label='Skip' onClick={() => handleStateTransition()}>
+						<LinkButton aria-label='Skip' onClick={() => handleStateTransition()}>
 							<SkipNext className='size-[calc(1.25em_+_1rem)] fill-text-700' />
-						</Button>
+						</LinkButton>
 					</div>
 				</div>
 			</section>

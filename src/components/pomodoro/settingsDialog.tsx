@@ -1,5 +1,5 @@
 import { TOptions } from '@/components/pomodoro/client2';
-import { Button } from '@/components/ui/button';
+import { LinkButton } from '@/components/ui/link';
 import { Dialog } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/util';
@@ -54,9 +54,9 @@ export const SettingsDialog = ({ isOpen, options, setOptions, onClose }: { isOpe
 				<input className='rounded-md p-2' type='number' value={options.longBreakInterval} min={1} max={999} onChange={handleNumberChange('longBreakInterval')} />
 			</Label>
 
-			<Button className='justify-self-end rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-primary-100' onClick={onClose}>
+			<LinkButton className='justify-self-end rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-primary-100' onClick={onClose}>
 				Close
-			</Button>
+			</LinkButton>
 		</Dialog>
 	);
 };

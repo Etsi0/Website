@@ -1,12 +1,12 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/util';
 
 import PhadoniaLogo from '@/svg/phadonia.svg';
 import { DarkMode } from '@/components/Header/darkMode';
 import { Navigation } from '@/components/Header/navbar';
 import { LinkButton } from '@/components/ui/link';
-import { Hamburger } from '@/components/Hamburger';
 
 export default function App() {
 	const [isNavOpen, setIsNavOpen] = useState<boolean | undefined>(undefined);
@@ -25,12 +25,12 @@ export default function App() {
 		<>
 			<header className='pointer-events-none fixed z-50 w-full' ref={headerRef}>
 				<div className='breakout-wrapper pointer-events-auto bg-body-50/90 backdrop-blur-xl'>
-					<div className='flex h-16 items-center justify-between p-3'>
+					<div className='flex h-14 items-center justify-between p-3'>
 						{/*==================================================
 							Page icon
 						==================================================*/}
 						<LinkButton href='/' aria-label='Phadonia'>
-							<PhadoniaLogo className='h-8 *:fill-[oklch(from_var(--color-body-100)_calc(1.05_-_l)_c_h)]' />
+							<PhadoniaLogo className='h-8 *:fill-text-900' />
 						</LinkButton>
 						{/*==================================================
 							Hamburger icon
@@ -44,7 +44,24 @@ export default function App() {
 								aria-expanded={isNavOpen}
 								onClick={() => setIsNavOpen((current) => !current)}
 							>
-								<Hamburger className='text-text-900' />
+								<svg
+									viewBox='0 0 100 100'
+									xmlns='http://www.w3.org/2000/svg'
+									stroke='currentColor'
+									strokeWidth={6.4}
+									fill='none'
+									className={cn('scale-125 *:transition-[stroke-dashoffset,_stroke-dasharray] *:duration-500', 'text-text-900')}
+								>
+									<path
+										className='path1'
+										d='M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058'
+									/>
+									<path className='path2' d='M 20,50 H 80' />
+									<path
+										className='path3'
+										d='M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942'
+									/>
+								</svg>
 							</LinkButton>
 						</div>
 					</div>

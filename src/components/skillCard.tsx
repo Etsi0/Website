@@ -40,7 +40,7 @@ export function SkillCard({ SVG, title, description, onOpen }: TSkillCard) {
 	return (
 		<>
 			<button
-				className='group grid aspect-[1/1.125] place-content-center place-items-center gap-3 rounded-lg bg-primary-500 p-3 shadow-lg duration-300 transition-colors *:transition-colors *:*:transition-colors hover:bg-body-50 hover:shadow-inner focus-visible:bg-body-100 focus-visible:shadow-inner focus-visible:outline-hidden'
+				className='group grid aspect-[1/1.125] place-content-center place-items-center gap-3 rounded-lg bg-primary-500 p-3 shadow-lg duration-300 transition-colors *:transition-colors *:*:transition-colors hover:bg-body-50 hover:shadow-inner focus-visible:bg-body-50 focus-visible:shadow-inner focus-visible:outline-hidden'
 				onClick={() => onOpen(title, description, SVG)}
 			>
 				<SVG className='aspect-square w-1/2 *:fill-primary-100! *:group-hover:fill-primary-500! *:group-focus-visible:fill-primary-500! dark:*:group-hover:fill-body-300! dark:*:group-focus-visible:fill-body-300!' />

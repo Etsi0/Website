@@ -23,24 +23,36 @@ import ForgetMe from '@/../public/img/forgetMe.png';
 import MaxPA from '@/../public/img/production/companies/MaxPA.svg?url';
 
 const classes = 'flex items-center justify-center gap-1 rounded-lg p-4';
-type TCards = { img: StaticImageData; title: string; badges: { svg?: FC<SVGProps<SVGElement>>; text?: string }[]; text: string; live?: string; source?: string };
+type TCards = {
+	img: StaticImageData;
+	title: string;
+	text: string;
+	badges: {
+		svg?: FC<SVGProps<SVGElement>>;
+		text?: string
+	}[];
+	live?: string;
+	source?: string
+};
 
-function Cards({ img, title, badges, text, live = '', source = '' }: TCards) {
+function Cards({ img, title, text, badges, live = '', source = '' }: TCards) {
 	return (
-		<div className='border-body-200 bg-body-100 flex flex-col overflow-hidden rounded-xl border'>
+		<div className='border-body-200 bg-body-100 flex flex-col overflow-hidden rounded-2xl border'>
 			<div className='border-body-200 grid border-b *:col-[1_/_span_1] *:row-[1_/_span_1] *:aspect-16/10'>
 				<Image className={`w-full object-cover blur-3xl brightness-50 scale-200 [clip-path:polygon(25%25%,75%25%,75%75%,25%75%)]`} width={img.width} height={img.height} src={img} alt='asd' />
 				<Image className='w-full scale-90 object-contain' width={img.width} height={img.height} src={img} alt='asd' />
 			</div>
-			<div className='flex grow flex-col gap-3 p-4'>
-				<h3>{title}</h3>
-				<p>{text}</p>
-				<div className='flex grow flex-wrap items-start gap-2'>
-					{badges.sort((a, b) => (a.text || '').localeCompare(b.text || '')).map((badge, index) => (
-						<div key={index} className='bg-body-200 text-text-800 flex items-center gap-1 rounded-full px-3 py-1 text-sm'>
-							{badge.svg && <badge.svg className='fill-text-800 size-[1em] *:fill-current!' />} {badge.text}
-						</div>
-					))}
+			<div className='flex grow flex-col gap-3 p-2'>
+				<div className='px-2 grow space-y-2'>
+					<h3>{title}</h3>
+					<p>{text}</p>
+					<div className='flex flex-wrap items-start gap-2'>
+						{badges.sort((a, b) => (a.text || '').localeCompare(b.text || '')).map((badge, index) => (
+							<div key={index} className='bg-body-200 text-text-800 flex items-center gap-1 rounded-full px-3 py-1 text-sm'>
+								{badge.svg && <badge.svg className='fill-text-800 size-[1em] *:fill-current!' />} {badge.text}
+							</div>
+						))}
+					</div>
 				</div>
 				<div className='grid grid-cols-2 gap-4'>
 					<LinkButton

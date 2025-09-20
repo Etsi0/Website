@@ -1,6 +1,6 @@
 import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 import Link from 'next/link';
-import { cn, whenFocusing, whenHoveringButton, whenHoveringLink } from '@/lib/util';
+import { cn, whenHoveringButton, whenHoveringLink, disableFocusing } from '@/lib/util';
 
 type TStandard = {
 	className?: string;
@@ -35,10 +35,17 @@ export function LinkButton({ ...props }: TLinkButton): ReactNode {
 		const isExternal = !href.startsWith('/') && !href.startsWith('#') && !href.startsWith('?');
 		const security = isExternal || target === '_blank' ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
-		const clazz = [standard, isHoverable && (isButton ? `${whenHoveringButton} transition-opacity` : `${whenHoveringLink} transition-colors`), isFocusable && whenFocusing, className];
+		const clazz = [
+			standard,
+			isHoverable && (isButton
+				? `${whenHoveringButton} transition-opacity`
+				: `${whenHoveringLink} transition-colors`
+			),
+			!isFocusable && disableFocusing,
+			className
+		];
 
 		const properties = {
-			tabIndex: isFocusable ? 0 : -1,
 			className: cn(...clazz),
 			href: href,
 			...security,
@@ -63,12 +70,19 @@ export function LinkButton({ ...props }: TLinkButton): ReactNode {
 	delete props.href;
 	delete props.isButton;
 	const { className, isHoverable = true, isFocusable = true, children, disabled = false, type = 'button', ...restProps } = props as TButton;
-	const clazz = [standard, ...(disabled ? ['cursor-not-allowed opacity-50'] : [isHoverable && whenHoveringButton, isFocusable && whenFocusing]), className]
+	const clazz = [
+		standard,
+		...(disabled
+			? ['cursor-not-allowed opacity-50']
+			: [isHoverable && whenHoveringButton, isFocusable && disableFocusing]
+		),
+		className
+	];
 
 	return (
 		<button
 			type={type}
-			tabIndex={!disabled && isFocusable ? 0 : -1}
+			tabIndex={disabled ? -1 : 0}
 			className={cn(...clazz)}
 			aria-disabled={disabled || undefined}
 			disabled={disabled}
