@@ -139,7 +139,7 @@ async function GetMod({ project, className }: TGetMod) {
 
 	return (
 		<div id={project.id === '' ? project.title : project.id} className='flex w-72 flex-col gap-3 rounded-lg bg-body-100 border border-body-200 p-4 shadow-lg'>
-			{(project.icon_url !== '' && (
+			{(project.icon_url && (
 				<Image src={project.icon_url} alt={`logo for the mod called '${project.title}'`} width={192} height={192} className='mx-auto rounded-md bg-primary-50 dark:bg-body-200' unoptimized={true} />
 			)) || <div className='mx-auto aspect-square w-48 rounded-md bg-primary-100 dark:bg-body-300'></div>}
 			<h2 className='overflow-hidden text-ellipsis text-center text-3xl'>{project.title}</h2>
