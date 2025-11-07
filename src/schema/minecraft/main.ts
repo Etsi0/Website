@@ -6,7 +6,7 @@ export const projectSchema = z.array(
 		categories: z.array(z.string()),
 		client_side: z.enum(side),
 		game_versions: z.array(z.string()),
-		icon_url: z.string(),
+		icon_url: z.nullable(z.string()),
 		id: z.string(),
 		loaders: z.array(z.string()),
 		server_side: z.enum(side),
