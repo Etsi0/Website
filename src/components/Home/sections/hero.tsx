@@ -34,7 +34,7 @@ export function Hero() {
 					</div>
 					<div>
 						<p>
-							<Location className='fill-primary-300 inline size-4' />
+							<Location className='fill-primary-300 align-center inline size-4' />
 							Sweden, Skövde
 						</p>
 						<p className='group max-w-prose'>

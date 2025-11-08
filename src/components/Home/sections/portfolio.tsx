@@ -18,13 +18,13 @@ import SQL from '@/svg/vscode-icons/sql.svg';
 import Lock from '@/svg/materialDesignIcons/lock.svg';
 
 import Icon from '@/../public/img/production/icon.png';
-import Phadonia from '@/svg/phadonia.svg?url';
+import Phadonia from '@/svg/phadonia.svg';
 import ForgetMe from '@/../public/img/forgetMe.png';
 import MaxPA from '@/../public/img/production/companies/MaxPA.svg?url';
 
-const classes = 'flex items-center justify-center gap-1 rounded-lg p-4';
+const classes = 'inline text-center align-middle rounded-lg p-4';
 type TCards = {
-	img: StaticImageData;
+	src: StaticImageData | FC<SVGProps<SVGElement>>;
 	title: string;
 	text: string;
 	badges: {
@@ -35,12 +35,26 @@ type TCards = {
 	source?: string
 };
 
-function Cards({ img, title, text, badges, live = '', source = '' }: TCards) {
+function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
+	const Icon = src;
+	const bgIconClass = 'w-full object-cover blur-3xl brightness-50 scale-200 [clip-path:polygon(25%25%,75%25%,75%75%,25%75%)]';
+	const iconClass = 'w-full scale-90 object-contain';
+
 	return (
 		<div className='border-body-200 bg-body-100 flex flex-col overflow-hidden rounded-2xl border'>
 			<div className='border-body-200 grid border-b *:col-[1_/_span_1] *:row-[1_/_span_1] *:aspect-16/10'>
-				<Image className={`w-full object-cover blur-3xl brightness-50 scale-200 [clip-path:polygon(25%25%,75%25%,75%75%,25%75%)]`} width={img.width} height={img.height} src={img} alt='asd' />
-				<Image className='w-full scale-90 object-contain' width={img.width} height={img.height} src={img} alt='asd' />
+				{typeof Icon === 'function' && (
+					<>
+						<Icon className={cn(bgIconClass, '*:fill-text-600 dark:*:fill-text-800')} />
+						<Icon className={cn(iconClass, '*:fill-text-600 dark:*:fill-text-800')} />
+					</>
+				)}
+				{(typeof Icon === 'object' && Icon !== null && 'src' in Icon && 'height' in Icon && 'width' in Icon) && (
+					<>
+						<Image className={bgIconClass} width={Icon.width} height={Icon.height} src={Icon} alt='asd' />
+						<Image className={iconClass} width={Icon.width} height={Icon.height} src={Icon} alt='asd' />
+					</>
+				)}
 			</div>
 			<div className='flex grow flex-col gap-3 p-2'>
 				<div className='px-2 grow space-y-2'>
@@ -61,7 +75,7 @@ function Cards({ img, title, text, badges, live = '', source = '' }: TCards) {
 						disabled={!live}
 						isButton
 					>
-						<Public className='fill-primary-50 size-5' /> Live
+						<Public className='inline-block align-center fill-primary-50 size-5' /> Live
 					</LinkButton>
 					<LinkButton
 						href={source}
@@ -69,7 +83,7 @@ function Cards({ img, title, text, badges, live = '', source = '' }: TCards) {
 						disabled={!source}
 						isButton
 					>
-						<CodeBlock className='fill-text-900 dark:fill-primary-100 size-5' /> Source
+						<CodeBlock className='inline-block align-center fill-text-900 dark:fill-primary-100 size-5' /> Source
 					</LinkButton>
 				</div>
 			</div>
@@ -87,14 +101,14 @@ export function Portfolio() {
 				</div>
 				<div className='grid w-full gap-x-5 gap-y-6 md:grid-cols-2 lg:grid-cols-3'>
 					<Cards
-						img={MaxPA}
+						src={MaxPA}
 						title='MaxPA'
 						badges={[{ svg: Lock }]}
 						text='Swedish payroll system'
 						live='https://www.maxpa.se/'
 					/>
 					<Cards
-						img={Phadonia}
+						src={Phadonia}
 						title='Phadonia'
 						badges={[
 							{ svg: Tailwind, text: 'Tailwind' },
@@ -108,7 +122,7 @@ export function Portfolio() {
 						source='https://github.com/Etsi0/Website'
 					/>
 					<Cards
-						img={ForgetMe}
+						src={ForgetMe}
 						title='ForgetMe'
 						badges={[
 							{ svg: HTML, text: 'HTML' },
@@ -120,7 +134,7 @@ export function Portfolio() {
 						source='https://github.com/Etsi0/ForgetMe'
 					/>
 					<Cards
-						img={Phadonia}
+						src={Phadonia}
 						title='Phadonia Search'
 						badges={[
 							{ svg: HTML, text: 'HTML' },
@@ -133,7 +147,7 @@ export function Portfolio() {
 						source='https://github.com/Etsi0/search'
 					/>
 					<Cards
-						img={Phadonia}
+						src={Phadonia}
 						title='CV-Maker'
 						badges={[
 							{ svg: Tailwind, text: 'Tailwind' },
@@ -146,7 +160,7 @@ export function Portfolio() {
 						source='https://github.com/Etsi0/cv-maker'
 					/>
 					<Cards
-						img={Icon}
+						src={Icon}
 						title='Class Collapse'
 						badges={[{ svg: TS, text: 'Typescript' }]}
 						text='A VSCode extension that allows you to collapse section of code. for example, classes'
@@ -154,7 +168,7 @@ export function Portfolio() {
 						source='https://github.com/Etsi0/class-collapse'
 					/>
 					<Cards
-						img={Icon}
+						src={Icon}
 						title='Infinity tic tac toe'
 						badges={[
 							{ svg: HTML, text: 'HTML' },
@@ -166,7 +180,7 @@ export function Portfolio() {
 						source='https://github.com/Etsi0/Infinity-tic-tac-toe'
 					/>
 					<Cards
-						img={Icon}
+						src={Icon}
 						title='Dice Game'
 						badges={[
 							{ svg: HTML, text: 'HTML' },
