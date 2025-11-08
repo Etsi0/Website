@@ -5,7 +5,6 @@ import { GetCollection, GetProjects, GetVersions } from '@/api/modrinth/main';
 import { versionSchema } from '@/schema/minecraft/main';
 import { TProject } from '@/types/minecraft/main';
 import { cn, pageTitle } from '@/lib/util';
-import { MinecraftModsJson } from '@/json/minecraft/minecraftModsJson';
 import { LinkButton } from '@/components/ui/link';
 import { Metadata } from 'next';
 
@@ -21,7 +20,7 @@ const StrToColor = Object.freeze({
 });
 
 type TGetMod = {
-	project: (typeof MinecraftModsJson)[number] | TProject;
+	project: TProject;
 	className: (typeof StrToColor)[keyof typeof StrToColor];
 };
 
@@ -36,11 +35,7 @@ async function Projects() {
 		return false;
 	}
 
-	return data.concat(MinecraftModsJson).sort((a, b) => {
-		if (a.title < b.title) return -1;
-		if (a.title > b.title) return 1;
-		return 0;
-	});
+	return data;
 }
 
 async function Versions(id: string) {
