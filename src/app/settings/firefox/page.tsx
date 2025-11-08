@@ -5,6 +5,7 @@ import { codeToHtml } from 'shiki';
 import { LinkButton } from '@/components/ui/link';
 
 const aboutConfig = `browser.compactmode.show	true
+browser.tabs.closeWindowWithLastTab	false
 devtools.cache.disabled	true
 devtools.inspector.showAllAnonymousContent	true
 devtools.inspector.showUserAgentShadowRoots	true

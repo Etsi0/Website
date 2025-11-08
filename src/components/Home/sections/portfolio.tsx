@@ -18,7 +18,7 @@ import SQL from '@/svg/vscode-icons/sql.svg';
 import Lock from '@/svg/materialDesignIcons/lock.svg';
 
 import Icon from '@/../public/img/production/icon.png';
-import Phadonia from '@/../public/img/WIP/svgomg.net/new phadonia logo (phadon).svg?url';
+import Phadonia from '@/svg/phadonia.svg?url';
 import ForgetMe from '@/../public/img/forgetMe.png';
 import MaxPA from '@/../public/img/production/companies/MaxPA.svg?url';
 

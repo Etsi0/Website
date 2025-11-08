@@ -175,7 +175,7 @@ function main() {
 
 	// Also log to console for preview
 	console.log('\nPreview:');
-	console.log(jsonOutput);rd
+	console.log(jsonOutput);
 }
 
 main();
