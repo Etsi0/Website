@@ -168,14 +168,6 @@ function main() {
 	// Write to file
 	const jsonFilePath = path.join(jsonOutputPath, 'extensions.json');
 	fs.writeFileSync(jsonFilePath, jsonOutput);
-
-	console.log(`Found ${extensions.length} extensions`);
-	console.log(`Data written to ${jsonFilePath}`);
-	console.log(`Icons copied to ${imgOutputPath}`);
-
-	// Also log to console for preview
-	console.log('\nPreview:');
-	console.log(jsonOutput);
 }
 
 main();
