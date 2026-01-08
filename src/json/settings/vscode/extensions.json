@@ -7,37 +7,37 @@
 	},
 	{
 		"title": "Bookmarks",
-		"icon": "alefragnani.bookmarks-13.5.0.png",
+		"icon": "alefragnani.bookmarks-14.0.0.png",
 		"description": "Mark lines and jump to them",
 		"link": "https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks"
 	},
 	{
 		"title": "PHP Intelephense",
-		"icon": "bmewburn.vscode-intelephense-client-1.14.4.png",
+		"icon": "bmewburn.vscode-intelephense-client-1.16.3.png",
 		"description": "PHP code intelligence for Visual Studio Code",
 		"link": "https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client"
 	},
 	{
 		"title": "Tailwind CSS IntelliSense",
-		"icon": "bradlc.vscode-tailwindcss-0.14.26.png",
+		"icon": "bradlc.vscode-tailwindcss-0.14.29.png",
 		"description": "Intelligent Tailwind CSS tooling for VS Code",
 		"link": "https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss"
 	},
 	{
 		"title": "ESLint",
-		"icon": "dbaeumer.vscode-eslint-3.0.16.png",
+		"icon": "dbaeumer.vscode-eslint-3.0.20.png",
 		"description": "Integrates ESLint JavaScript into VS Code.",
 		"link": "https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint"
 	},
 	{
 		"title": "Docker DX",
-		"icon": "docker.docker-0.16.0-win32-x64.png",
+		"icon": "docker.docker-0.18.0-win32-x64.png",
 		"description": "Edit smarter, ship faster with an enhanced Docker-development experience",
 		"link": "https://marketplace.visualstudio.com/items?itemName=docker.docker"
 	},
 	{
 		"title": "GitLens — Git supercharged",
-		"icon": "eamodio.gitlens-17.4.1.png",
+		"icon": "eamodio.gitlens-17.8.1.png",
 		"description": "Supercharge Git within VS Code — Visualize code authorship at a glance via Git blame annotations and CodeLens, seamlessly navigate and explore Git repositories, gain valuable insights via rich visualizations and powerful comparison commands, and so much more",
 		"link": "https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens"
 	},
@@ -61,7 +61,7 @@
 	},
 	{
 		"title": "Container Tools",
-		"icon": "ms-azuretools.vscode-containers-2.1.0.png",
+		"icon": "ms-azuretools.vscode-containers-2.3.0.png",
 		"description": "Makes it easy to create, manage, and debug containerized applications.",
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers"
 	},
@@ -73,27 +73,33 @@
 	},
 	{
 		"title": "Python Debugger",
-		"icon": "ms-python.debugpy-2025.10.0-win32-x64.png",
+		"icon": "ms-python.debugpy-2025.18.0-win32-x64.png",
 		"description": "Python Debugger extension using debugpy.",
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy"
 	},
 	{
 		"title": "Python",
-		"icon": "ms-python.python-2025.12.0-win32-x64.png",
+		"icon": "ms-python.python-2025.20.1-win32-x64.png",
 		"description": "Python language support with extension access points for IntelliSense (Pylance), Debugging (Python Debugger), linting, formatting, refactoring, unit tests, and more.",
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-python.python"
 	},
 	{
 		"title": "Pylance",
-		"icon": "ms-python.vscode-pylance-2025.7.1.png",
+		"icon": "ms-python.vscode-pylance-2025.10.4.png",
 		"description": "A performant, feature-rich language server for Python in VS Code",
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance"
 	},
 	{
 		"title": "Python Environments",
-		"icon": "ms-python.vscode-python-envs-1.2.0-win32-x64.png",
+		"icon": "ms-python.vscode-python-envs-1.14.0-win32-x64.png",
 		"description": "Provides a unified python environment experience",
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-python-envs"
+	},
+	{
+		"title": "WSL",
+		"icon": "ms-vscode-remote.remote-wsl-0.104.3.png",
+		"description": "Open any folder in the Windows Subsystem for Linux (WSL) and take advantage of Visual Studio Code's full feature set.",
+		"link": "https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl"
 	},
 	{
 		"title": "CMake Tools",
@@ -103,7 +109,7 @@
 	},
 	{
 		"title": "C/C++",
-		"icon": "ms-vscode.cpptools-1.26.4-win32-x64.png",
+		"icon": "ms-vscode.cpptools-1.29.3-win32-x64.png",
 		"description": "C/C++ IntelliSense, debugging, and code browsing.",
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools"
 	},
@@ -115,7 +121,7 @@
 	},
 	{
 		"title": "JavaScript and TypeScript Nightly",
-		"icon": "ms-vscode.vscode-typescript-next-6.0.20250908.png",
+		"icon": "ms-vscode.vscode-typescript-next-6.0.20260107.png",
 		"description": "Enables typescript@next to power VS Code's built-in JavaScript and TypeScript support",
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next"
 	},
@@ -127,7 +133,7 @@
 	},
 	{
 		"title": "Material Icon Theme",
-		"icon": "pkief.material-icon-theme-5.27.0.png",
+		"icon": "pkief.material-icon-theme-5.30.0.png",
 		"description": "Material Design Icons for Visual Studio Code",
 		"link": "https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme"
 	},
@@ -151,7 +157,7 @@
 	},
 	{
 		"title": "Code Spell Checker",
-		"icon": "streetsidesoftware.code-spell-checker-4.2.6.png",
+		"icon": "streetsidesoftware.code-spell-checker-4.4.0.png",
 		"description": "Spelling checker for source code",
 		"link": "https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker"
 	},
@@ -181,7 +187,7 @@
 	},
 	{
 		"title": "Pretty TypeScript Errors",
-		"icon": "yoavbls.pretty-ts-errors-0.6.1.png",
+		"icon": "yoavbls.pretty-ts-errors-0.7.0.png",
 		"description": "Make TypeScript errors prettier and more human-readable in VSCode",
 		"link": "https://marketplace.visualstudio.com/items?itemName=YoavBls.pretty-ts-errors"
 	}
