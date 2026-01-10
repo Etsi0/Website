@@ -35,7 +35,7 @@ async function Projects() {
 		return false;
 	}
 
-	return data;
+	return data.sort((a, b) => a.title.localeCompare(b.title));
 }
 
 async function Versions(id: string) {
