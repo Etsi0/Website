@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			<ReactScan />
 			<body className='bg-body-50'>
 				<ThemeProvider attribute='class'>
-					<div id='root' className='flex min-h-screen flex-col'>
+					<div id='root' className='flex min-h-svh flex-col'>
 						<Header />
 						<main className='breakout-wrapper w-full grow pt-16'>{children}</main>
 						<Footer />

@@ -86,7 +86,7 @@ export function Navigation({ref, setCurrentPath, currentPath, setIsNavOpen, isNa
 	}, [currentPath]);
 
 	return (
-		<nav aria-label='Main Navigation' className='HeaderMainNav pointer-events-auto float-right h-screen min-w-72 translate-x-full overflow-hidden border-l bg-body-50' ref={navContainer} inert={!isNavOpen}>
+		<nav aria-label='Main Navigation' className='HeaderMainNav pointer-events-auto float-right flex-1 min-w-72 translate-x-full overflow-hidden border-l bg-body-50' ref={navContainer} inert={!isNavOpen}>
 			<ul>
 				{navLinks.internal.map((link) => (
 					<li key={link.path}>

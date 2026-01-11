@@ -23,8 +23,8 @@ export default function App() {
 
 	return (
 		<>
-			<header className='pointer-events-none fixed z-50 w-full' ref={headerRef}>
-				<div className='breakout-wrapper pointer-events-auto bg-body-50/90 backdrop-blur-xl'>
+			<header className='pointer-events-none flex flex-col items-end fixed h-svh w-full z-50' ref={headerRef}>
+				<div className='breakout-wrapper pointer-events-auto w-full bg-body-50/90 backdrop-blur-xl'>
 					<div className='flex h-14 items-center justify-between p-3'>
 						{/*==================================================
 							Page icon
@@ -35,7 +35,7 @@ export default function App() {
 						{/*==================================================
 							Hamburger icon
 						==================================================*/}
-						<div className='flex h-full gap-[4px]'>
+						<div className='flex h-full gap-1'>
 							<DarkMode />
 							{/* !!! I did not make this hamburgerBtn, https://codepen.io/ainalem/pen/wvKOEMV !!! */}
 							<LinkButton
@@ -50,7 +50,7 @@ export default function App() {
 									stroke='currentColor'
 									strokeWidth={6.4}
 									fill='none'
-									className={cn('scale-125 *:transition-[stroke-dashoffset,_stroke-dasharray] *:duration-500', 'text-text-900')}
+									className={cn('scale-125 *:transition-[stroke-dashoffset,stroke-dasharray] *:duration-500', 'text-text-900')}
 								>
 									<path
 										className='path1'
@@ -66,7 +66,7 @@ export default function App() {
 						</div>
 					</div>
 				</div>
-				<hr />
+				<hr className='w-full' />
 				{/*==================================================
 					nav with all the links in it
 				==================================================*/}

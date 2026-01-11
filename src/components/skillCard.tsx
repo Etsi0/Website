@@ -43,8 +43,8 @@ export function SkillCard({ SVG, title, description, onOpen }: TSkillCard) {
 				className='group grid aspect-[1/1.125] place-content-center place-items-center gap-3 rounded-lg bg-primary-500 p-3 shadow-lg duration-300 transition-colors *:transition-colors *:*:transition-colors hover:bg-body-50 hover:shadow-inner focus-visible:bg-body-50 focus-visible:shadow-inner focus-visible:outline-hidden'
 				onClick={() => onOpen(title, description, SVG)}
 			>
-				<SVG className='aspect-square w-1/2 *:fill-primary-100! *:group-hover:fill-primary-500! *:group-focus-visible:fill-primary-500! dark:*:group-hover:fill-body-300! dark:*:group-focus-visible:fill-body-300!' />
-				<h3 className='text-lg leading-5 text-primary-100 group-hover:text-primary-500 group-focus-visible:text-primary-500 dark:group-hover:text-body-300 dark:group-focus-visible:text-body-300'>
+				<SVG className='aspect-square w-1/2 *:fill-primary-50! *:group-hover:fill-primary-500! *:group-focus-visible:fill-primary-500! dark:*:group-hover:fill-body-300! dark:*:group-focus-visible:fill-body-300!' />
+				<h3 className='text-lg leading-5 text-primary-50 group-hover:text-primary-500 group-focus-visible:text-primary-500 dark:group-hover:text-body-300 dark:group-focus-visible:text-body-300'>
 					{title}
 				</h3>
 			</button>
