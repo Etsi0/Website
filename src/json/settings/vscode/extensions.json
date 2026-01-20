@@ -13,7 +13,7 @@
 	},
 	{
 		"title": "PHP Intelephense",
-		"icon": "bmewburn.vscode-intelephense-client-1.16.3.png",
+		"icon": "bmewburn.vscode-intelephense-client-1.16.4.png",
 		"description": "PHP code intelligence for Visual Studio Code",
 		"link": "https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client"
 	},
@@ -37,7 +37,7 @@
 	},
 	{
 		"title": "GitLens — Git supercharged",
-		"icon": "eamodio.gitlens-17.8.1.png",
+		"icon": "eamodio.gitlens-17.9.0.png",
 		"description": "Supercharge Git within VS Code — Visualize code authorship at a glance via Git blame annotations and CodeLens, seamlessly navigate and explore Git repositories, gain valuable insights via rich visualizations and powerful comparison commands, and so much more",
 		"link": "https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens"
 	},
@@ -79,7 +79,7 @@
 	},
 	{
 		"title": "Python",
-		"icon": "ms-python.python-2025.20.1-win32-x64.png",
+		"icon": "ms-python.python-2026.0.0-win32-x64.png",
 		"description": "Python language support with extension access points for IntelliSense (Pylance), Debugging (Python Debugger), linting, formatting, refactoring, unit tests, and more.",
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-python.python"
 	},
@@ -91,7 +91,7 @@
 	},
 	{
 		"title": "Python Environments",
-		"icon": "ms-python.vscode-python-envs-1.14.0-win32-x64.png",
+		"icon": "ms-python.vscode-python-envs-1.16.0-win32-x64.png",
 		"description": "Provides a unified python environment experience",
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-python-envs"
 	},
@@ -121,7 +121,7 @@
 	},
 	{
 		"title": "JavaScript and TypeScript Nightly",
-		"icon": "ms-vscode.vscode-typescript-next-6.0.20260107.png",
+		"icon": "ms-vscode.vscode-typescript-next-6.0.20260119.png",
 		"description": "Enables typescript@next to power VS Code's built-in JavaScript and TypeScript support",
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next"
 	},
