@@ -30,12 +30,6 @@
 		"link": "https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint"
 	},
 	{
-		"title": "Docker DX",
-		"icon": "docker.docker-0.18.0-win32-x64.png",
-		"description": "Edit smarter, ship faster with an enhanced Docker-development experience",
-		"link": "https://marketplace.visualstudio.com/items?itemName=docker.docker"
-	},
-	{
 		"title": "GitLens — Git supercharged",
 		"icon": "eamodio.gitlens-17.9.0.png",
 		"description": "Supercharge Git within VS Code — Visualize code authorship at a glance via Git blame annotations and CodeLens, seamlessly navigate and explore Git repositories, gain valuable insights via rich visualizations and powerful comparison commands, and so much more",
@@ -58,18 +52,6 @@
 		"icon": "icrawl.discord-vscode-5.9.2.png",
 		"description": "Update your discord status with a rich presence.",
 		"link": "https://marketplace.visualstudio.com/items?itemName=icrawl.discord-vscode"
-	},
-	{
-		"title": "Container Tools",
-		"icon": "ms-azuretools.vscode-containers-2.3.0.png",
-		"description": "Makes it easy to create, manage, and debug containerized applications.",
-		"link": "https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers"
-	},
-	{
-		"title": "Docker",
-		"icon": "ms-azuretools.vscode-docker-2.0.0.png",
-		"description": "Makes it easy to create, manage, and debug containerized applications.",
-		"link": "https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker"
 	},
 	{
 		"title": "Python Debugger",
@@ -102,18 +84,6 @@
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl"
 	},
 	{
-		"title": "CMake Tools",
-		"icon": "ms-vscode.cmake-tools-1.21.36.png",
-		"description": "Extended CMake support in Visual Studio Code",
-		"link": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools"
-	},
-	{
-		"title": "C/C++",
-		"icon": "ms-vscode.cpptools-1.29.3-win32-x64.png",
-		"description": "C/C++ IntelliSense, debugging, and code browsing.",
-		"link": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools"
-	},
-	{
 		"title": "Hex Editor",
 		"icon": "ms-vscode.hexeditor-1.11.1.png",
 		"description": "Allows viewing and editing files in a hex editor",
@@ -121,7 +91,7 @@
 	},
 	{
 		"title": "JavaScript and TypeScript Nightly",
-		"icon": "ms-vscode.vscode-typescript-next-6.0.20260119.png",
+		"icon": "ms-vscode.vscode-typescript-next-6.0.20260120.png",
 		"description": "Enables typescript@next to power VS Code's built-in JavaScript and TypeScript support",
 		"link": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next"
 	},
@@ -133,7 +103,7 @@
 	},
 	{
 		"title": "Material Icon Theme",
-		"icon": "pkief.material-icon-theme-5.30.0.png",
+		"icon": "pkief.material-icon-theme-5.31.0.png",
 		"description": "Material Design Icons for Visual Studio Code",
 		"link": "https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme"
 	},
@@ -172,12 +142,6 @@
 		"icon": "t3dotgg.vsc-material-theme-but-i-wont-sue-you-35.0.3.png",
 		"description": "A Apache-2 licensed fork of Material Theme with no threats of legal action",
 		"link": "https://marketplace.visualstudio.com/items?itemName=t3dotgg.vsc-material-theme-but-i-wont-sue-you"
-	},
-	{
-		"title": "CMake",
-		"icon": "twxs.cmake-0.0.17.png",
-		"description": "CMake langage support for Visual Studio Code",
-		"link": "https://marketplace.visualstudio.com/items?itemName=twxs.cmake"
 	},
 	{
 		"title": "Error Lens",
