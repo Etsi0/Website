@@ -22,11 +22,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang='en' suppressHydrationWarning className={inter.className}>
 			<head>
-				<Script
-					src="//unpkg.com/react-scan/dist/auto.global.js"
-					crossOrigin="anonymous"
-					strategy="beforeInteractive"
-				/>
+				{process.env.NODE_ENV === 'development' && (
+					<Script
+						src="//unpkg.com/react-scan/dist/auto.global.js"
+						crossOrigin="anonymous"
+						strategy="beforeInteractive"
+					/>
+				)}
 			</head>
 			<body className='bg-body-50'>
 				<ThemeProvider attribute='class'>
