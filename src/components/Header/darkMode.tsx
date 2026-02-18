@@ -2,13 +2,13 @@
 import { cn } from '@/lib/util';
 import { LinkButton } from '@/components/ui/link';
 import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
+
+const emptySubscribe = () => () => {};
 
 export function DarkMode() {
 	const { theme, setTheme } = useTheme();
-	const [mounted, setMounted] = useState(false);
-
-	useEffect(() => setMounted(true), []);
+	const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
 
 	const themeIs = (): 'dark' | 'light' => {
 		if (!mounted || !theme) return 'light';

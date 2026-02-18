@@ -20,7 +20,7 @@ import Lock from '@/svg/materialDesignIcons/lock.svg';
 import Icon from '@/../public/img/production/icon.png';
 import Phadonia from '@/svg/phadonia.svg';
 import ForgetMe from '@/../public/img/forgetMe.png';
-import MaxPA from '@/../public/img/production/companies/MaxPA.svg?url';
+import MaxPA from '@/../public/img/production/companies/MaxPA.svg';
 
 const classes = 'inline text-center align-middle rounded-lg p-4';
 type TCards = {

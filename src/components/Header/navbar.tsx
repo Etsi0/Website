@@ -22,7 +22,7 @@ export function Navigation({ref, setCurrentPath, currentPath, setIsNavOpen, isNa
 	const navContainer = useRef<HTMLDivElement>(null);
 	const { contextSafe } = useGSAP({ scope: ref });
 
-	const navAnimation = contextSafe(() => {
+	const navAnimation = useCallback(() => {
 		// if isNavOpen true it's about to open, and it it's false it's about to close
 		const navWidth = navContainer.current?.clientWidth;
 		const [start, end] = isNavOpen ? [navWidth, 0] : [0, navWidth];
@@ -38,11 +38,12 @@ export function Navigation({ref, setCurrentPath, currentPath, setIsNavOpen, isNa
 				x: end,
 			}
 		);
-	});
+	}, [isNavOpen]);
 
 	useEffect(() => {
+		const safeNavAnimation = contextSafe(navAnimation);
 		if (isNavOpen !== undefined) {
-			navAnimation();
+			safeNavAnimation();
 		}
 
 		if (!isNavOpen) return;
@@ -72,7 +73,7 @@ export function Navigation({ref, setCurrentPath, currentPath, setIsNavOpen, isNa
 			document.removeEventListener('mousedown', handleClickOutside);
 			document.removeEventListener('keydown', handleEscape);
 		};
-	}, [setIsNavOpen, isNavOpen, navAnimation]);
+	}, [contextSafe, setIsNavOpen, isNavOpen, navAnimation]);
 
 	function navClick(str: string) {
 		setCurrentPath(str);

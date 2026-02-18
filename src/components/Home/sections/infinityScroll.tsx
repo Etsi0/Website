@@ -1,9 +1,19 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useSyncExternalStore } from 'react';
 import { useGSAP } from '@gsap/react';
 import { cn } from '@/lib/util';
 import Image, { type StaticImageData } from 'next/image';
 import gsap from 'gsap';
+
+type ImageSource = StaticImageData | string;
+
+function isStaticImageData(src: ImageSource): src is StaticImageData {
+	return typeof src === 'object' && src !== null && 'height' in src && 'width' in src;
+}
+
+function isSvg(src: ImageSource): boolean {
+	return typeof src === 'string' && src.endsWith('.svg');
+}
 
 /**
  *
@@ -24,12 +34,17 @@ export function InfinityScroll({
 	className: string[];
 	pxPerSec: number;
 	gap: number;
-	images: StaticImageData[];
+	images: ImageSource[];
 	size: number;
 }) {
-	const [isMounted, setIsMounted] = useState<boolean>(false);
+	const emptySubscribe = useCallback(() => () => {}, []);
+	const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
 	const refContainer = useRef<HTMLDivElement>(null);
+	const imagesRef = useRef(images);
 	const { contextSafe } = useGSAP({ scope: refContainer });
+	useEffect(() => {
+		imagesRef.current = images;
+	}, [images]);
 	const totalWidth = Position(images.length);
 	const finalDuration: number = 1280/pxPerSec; /* 15px per sec if content section is at max width */
 
@@ -52,10 +67,6 @@ export function InfinityScroll({
 	/*==================================================
 		Animation
 	==================================================*/
-	function AnimationDelay(index: number): number {
-		return ((finalDuration * Position(images.length - 1 - index)) / totalWidth) * -1;
-	}
-
 	function Segment(index: number): string {
 		return `((max(${totalWidth}px, 100%) * ${Position(index)}) / ${totalWidth})`;
 	}
@@ -67,44 +78,48 @@ export function InfinityScroll({
 	/*==================================================
 		GSAP
 	==================================================*/
-	const onResize = contextSafe(() => {
-		images.forEach((_, index) => {
-			gsap.killTweensOf(`.horizontalScroll-${index}`);
-		});
-
-		images.forEach((_, index) => {
-			gsap.fromTo(
-				`.horizontalScroll-${index}`,
-				{
-					x: Math.max(totalWidth, refContainer.current?.clientWidth || 0),
-				},
-				{
-					ease: 'none',
-					delay: AnimationDelay(index),
-					duration: finalDuration,
-					repeat: -1,
-					x: -size,
-				}
-			);
-		});
-	});
-
 	useEffect(() => {
-		onResize();
+		function runResize() {
+			const currentImages = imagesRef.current;
+			function PositionLocal(index: number): number {
+				return (size + gap) * index;
+			}
 
-		window.addEventListener('resize', () => onResize());
+			function AnimationDelay(index: number): number {
+				return ((finalDuration * PositionLocal(currentImages.length - 1 - index)) / totalWidth) * -1;
+			}
+
+			currentImages.forEach((_, index) => {
+				gsap.killTweensOf(`.horizontalScroll-${index}`);
+			});
+
+			currentImages.forEach((_, index) => {
+				gsap.fromTo(
+					`.horizontalScroll-${index}`,
+					{
+						x: Math.max(totalWidth, refContainer.current?.clientWidth || 0),
+					},
+					{
+						ease: 'none',
+						delay: AnimationDelay(index),
+						duration: finalDuration,
+						repeat: -1,
+						x: -size,
+					}
+				);
+			});
+		}
+
+		const safeOnResize = contextSafe(runResize);
+		safeOnResize();
+
+		const handleResize = () => safeOnResize();
+		window.addEventListener('resize', handleResize);
 
 		return () => {
-			window.removeEventListener('resize', () => onResize());
+			window.removeEventListener('resize', handleResize);
 		};
-	}, [onResize]);
-
-	/*==================================================
-		Mount
-	==================================================*/
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
+	}, [contextSafe, totalWidth, finalDuration, size, gap]);
 
 	/*==================================================
 		XML
@@ -120,19 +135,32 @@ export function InfinityScroll({
 					ref={refContainer}
 				>
 					{images.map((item, index) => {
-						const { height, width } = GetSize(item.height, item.width);
+						const imgHeight = isStaticImageData(item) ? item.height : size;
+						const imgWidth = isStaticImageData(item) ? item.width : size;
+						const { height, width } = GetSize(imgHeight, imgWidth);
+						const src = typeof item === 'string' ? item : item.src;
 						return (
 							<div
 								className={cn(`horizontalScroll-${index} absolute left-0 grid place-items-center opacity-75 grayscale`, className[1])}
 								key={index}
 								style={{left: isMounted ? '' : FallbackPosition(index)}}
 							>
-								<Image
-									alt={`Gray scale version of a company logo`}
+							{isSvg(item) ? (
+								// eslint-disable-next-line @next/next/no-img-element
+								<img
+									alt="Gray scale version of a company logo"
 									height={height}
-									src={item}
+									src={src}
 									width={width}
 								/>
+							) : (
+									<Image
+										alt="Gray scale version of a company logo"
+										height={height}
+										src={item}
+										width={width}
+									/>
+								)}
 							</div>
 						);
 					})}

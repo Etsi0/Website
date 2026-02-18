@@ -51,7 +51,7 @@ export const useTimer = (initialState: (typeof STATES)[number], options: TOption
 			return;
 		}
 
-		setTimeLeft(options[state] * 60);
+		queueMicrotask(() => setTimeLeft(options[state] * 60));
 	}, [state, options]);
 
 	useEffect(() => {

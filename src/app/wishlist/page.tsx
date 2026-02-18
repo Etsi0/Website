@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { db } from '@vercel/postgres';
+import { neon } from '@neondatabase/serverless';
 import { z } from 'zod';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { schemaWishlist } from '@/schema/wishlist/main';
@@ -45,8 +45,9 @@ function Card({ product }: { product: z.infer<typeof schemaWishlist>[number] }) 
 }
 
 export default async function page() {
-	const client = await db.connect();
-	const { rows } = await client.sql`SELECT * FROM wishlist;`;
+	'use server';
+	const sql = neon(`${process.env.POSTGRES_URL}`);
+	const rows = await sql`SELECT * FROM wishlist`;
 	const parsedRows = schemaWishlist.safeParse(rows);
 	if (!parsedRows.success) {
 		return <>Something when wrong please contact admin</>;

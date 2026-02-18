@@ -3,12 +3,12 @@ import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
-import { ReactScan } from '@/components/reactScan';
 
 import Header from '@/components/Header/header';
 import Footer from '@/components/Footer/footer';
 
-import '../output.css';
+import '../app.css';
+import Script from 'next/script';
 
 const inter = Inter({
 	weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -21,7 +21,13 @@ const inter = Inter({
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang='en' suppressHydrationWarning className={inter.className}>
-			<ReactScan />
+			<head>
+				<Script
+					src="//unpkg.com/react-scan/dist/auto.global.js"
+					crossOrigin="anonymous"
+					strategy="beforeInteractive"
+				/>
+			</head>
 			<body className='bg-body-50'>
 				<ThemeProvider attribute='class'>
 					<div id='root' className='flex min-h-svh flex-col'>

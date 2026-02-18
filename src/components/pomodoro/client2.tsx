@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { LinkButton } from '@/components/ui/link';
 import { NoScript } from '@/components/ui/noScript';
 import SkipNext from '@/svg/materialDesignIcons/skip_next.svg';
@@ -28,8 +28,10 @@ export const DEFAULT_OPTIONS: TOptions = {
 	longBreakInterval: 4,
 } as const;
 
+const emptySubscribe = () => () => {};
+
 export default function Client() {
-	const [isMounted, setIsMounted] = useState(false);
+	const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
 	const [options, setOptions] = useState<TOptions>(DEFAULT_OPTIONS);
 	const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
@@ -39,10 +41,6 @@ export default function Client() {
 		.toString()
 		.padStart(2, '0');
 	const seconds = (timeLeft % 60).toString().padStart(2, '0');
-
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
 
 	useEffect(() => {
 		document.title = pageTitle(`${minutes}:${seconds} - Pomodoro`);

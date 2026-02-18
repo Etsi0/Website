@@ -27,19 +27,14 @@ export function Client() {
 			const tempStartMonth = Number(window.localStorage.getItem('startMonth'));
 			const tempTotalMonths = Number(window.localStorage.getItem('totalMonths'));
 			const tempGap = Number(window.localStorage.getItem('gap'));
-			if (tempYear) {
-				setYear(tempYear);
-			}
-			if (tempStartMonth) {
-				setStartMonth(tempStartMonth);
-			}
-			if (tempTotalMonths) {
-				setTotalMonths(tempTotalMonths);
-			}
-			if (tempGap) {
-				setGap(tempGap);
-			}
-			setIsMounted(true);
+
+			queueMicrotask(() => {
+				if (tempYear) setYear(tempYear);
+				if (tempStartMonth) setStartMonth(tempStartMonth);
+				if (tempTotalMonths) setTotalMonths(tempTotalMonths);
+				if (tempGap) setGap(tempGap);
+				setIsMounted(true);
+			});
 		}
 	}, [isMounted]);
 
