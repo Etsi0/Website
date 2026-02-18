@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
@@ -9,9 +10,17 @@ import Footer from '@/components/Footer/footer';
 
 import '../output.css';
 
+const inter = Inter({
+	weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+	style: ['normal', 'italic'],
+	display: 'swap',
+	variable: '--font-inter',
+	subsets: ['latin', 'latin-ext', 'cyrillic', 'cyrillic-ext', 'greek', 'greek-ext', 'vietnamese'],
+});
+
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
-		<html lang='en' suppressHydrationWarning>
+		<html lang='en' suppressHydrationWarning className={inter.className}>
 			<ReactScan />
 			<body className='bg-body-50'>
 				<ThemeProvider attribute='class'>

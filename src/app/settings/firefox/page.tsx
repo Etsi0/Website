@@ -13,7 +13,8 @@ devtools.inspector.showUserAgentStyles	true
 full-screen-api.transition-duration.enter	0 0
 full-screen-api.transition-duration.leave	0 0
 full-screen-api.warning.timeout	0
-toolkit.legacyUserProfileCustomizations.stylesheets	true` as const;
+toolkit.legacyUserProfileCustomizations.stylesheets	true
+network.IDN_show_punycode	true` as const;
 
 export default async function Page() {
 	return (

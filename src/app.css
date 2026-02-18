@@ -207,11 +207,18 @@
 		hanging-punctuation: first last;
 	}
 
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			scroll-behavior: smooth;
+		}
+	}
+
 	body,
 	dialog > * {
 		color: var(--color-text-700);
 		font-size: var(--font-size-1);
 		font-weight: 400;
+		font-variant-ligatures: none;
 		line-height: 1.33;
 	}
 
@@ -399,11 +406,6 @@
 		text-decoration: var(--shiki-dark-text-decoration) !important;
 	}
 
-	@media (prefers-reduced-motion: no-preference) {
-		:has(:target) {
-			scroll-behavior: smooth;
-		}
-	}
 
 	@keyframes cursorBlink {
 		50% {
