@@ -1,5 +1,4 @@
 'use client';
-import { cn } from '@/lib/util';
 import { LinkButton } from '@/components/ui/link';
 import { useTheme } from 'next-themes'
 import { useSyncExternalStore } from 'react';
@@ -36,13 +35,13 @@ export function DarkMode() {
 
 	return (
 		<LinkButton
-			className='aspect-square h-full rounded-md'
+			className='cursor-pointer h-full aspect-square rounded-md'
 			isFocusable={false}
 			aria-label={`Change theme to ${themeIs()} mode`}
 			onClick={toggleDarkMode}
 			suppressHydrationWarning
 		>
-			<svg className={cn('text-primary-500')} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+			<svg className='text-text-900' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
 				<path
 					id='Sun'
 					className='block dark:hidden'

@@ -151,15 +151,15 @@
 		/*==================================================
 			Text colors
 		==================================================*/
-		--text-color-100: abs(0.90 - 1 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
-		--text-color-200: abs(0.80 - 1 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
-		--text-color-300: abs(0.70 - 1 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
-		--text-color-400: abs(0.60 - 1 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
-		--text-color-500: abs(0.50 - 1 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
-		--text-color-600: abs(0.40 - 1 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
-		--text-color-700: abs(0.30 - 1 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
-		--text-color-800: abs(0.20 - 1 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
-		--text-color-900: abs(0.10 - 1 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
+		--text-color-100: abs(0.97 - 1.17 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
+		--text-color-200: abs(0.87375 - 1.17 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
+		--text-color-300: abs(0.7775 - 1.17 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
+		--text-color-400: abs(0.68125 - 1.17 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
+		--text-color-500: abs(0.585 - 1.17 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
+		--text-color-600: abs(0.48875 - 1.17 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
+		--text-color-700: abs(0.3925 - 1.17 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
+		--text-color-800: abs(0.29625 - 1.17 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
+		--text-color-900: abs(0.20 - 1.17 * var(--isDarkMode)) var(--neutral-chroma) var(--hue-color);
 	}
 
 	/*==================================================
@@ -215,6 +215,7 @@
 
 	body,
 	dialog > * {
+		font-family: var(--font-inter), ui-sans-serif, sans-serif;
 		color: var(--color-text-700);
 		font-size: var(--font-size-1);
 		font-weight: 400;
@@ -228,8 +229,9 @@
 	h4,
 	h5,
 	h6 {
+		font-family: var(--font-instrument-serif), ui-serif, serif;
 		color: var(--color-text-800);
-		font-weight: 600;
+		line-height: 1;
 		text-wrap: balance;
 	}
 
@@ -261,6 +263,13 @@
 	p {
 		max-width: 65ch;
 		text-wrap: pretty;
+	}
+
+	code,
+	kbd,
+	pre,
+	samp {
+		font-family: var(--font-jetBrains-mono), ui-monospace, monospace;
 	}
 
 	.align-center {
@@ -342,14 +351,6 @@
 		}
 	}
 
-
-	/*==================================================
-		max height allowed on the header
-	==================================================*/
-	.heroSection {
-		min-height: calc(min(62.5rem, 100svh) - 4rem);
-	}
-
 	/*==================================================
 		make details animated
 	==================================================*/
@@ -389,7 +390,7 @@
 	.shiki .line::before {
 		content: counter(step);
 		counter-increment: step;
-		width: 1rem;
+		width: 2ch;
 		margin-right: 1.5rem;
 		display: inline-block;
 		text-align: right;

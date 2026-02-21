@@ -8,7 +8,7 @@ export const whenHoveringButton = 'hover:opacity-85 hover:active:opacity-50';
 export const disableFocusing = 'outline-hidden';
 
 export function cn(...input: ClassValue[]) {
-	return twMerge(clsx(...input));
+	return twMerge(clsx(input));
 }
 
 export function createCounter() {
