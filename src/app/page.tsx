@@ -16,11 +16,12 @@ export const metadata: Metadata = {
 export default function App() {
 	return (
 		<>
-			<HeroWrapper className="text-center gap-[calc(1rem*sqrt((5.75*16)*(1*16))/16/1.5)]">
-				<h1 className='text-[5.75rem]'>Building my own <span className='text-text-800'>solutions,</span><br />one <span className='text-black dark:text-white'>program</span> after another</h1>
+			<HeroWrapper className="text-center gap-[calc(1rem*sqrt(5.75*1)/1.5)] border-primary-500">
+				<h1 className='text-[5.75rem]'>Building my own <span className='text-text-800 italic'>solutions,</span> one <span className='text-black dark:text-white'>program</span> after another</h1>
 				<p>Every project here started with the same thought: “This should be better.” So I made it better and shared it with the world.</p>
-				<LinkButton>asd</LinkButton>
+				<LinkButton className='font-(family-name:--mono) text-custom-lg uppercase bg-body-50 w-[32.5ch] px-[1.5em] py-[0.75em] border border-body-100 rounded-full'>My solutions</LinkButton>
 			</HeroWrapper>
+			<div className='col-full bg-linear-to-r from-primary-100 via-primary-300 to-primary-100 via-[calc(50%-20rem)] h-[2px] dark:from-primary-900 dark:via-primary-700 dark:to-primary-900'></div>
 			<Hero />
 			<InfinityScrollWrapper />
 			<About />

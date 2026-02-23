@@ -18,6 +18,8 @@ type TA = AnchorHTMLAttributes<HTMLAnchorElement> & TStandard & {
 type TButton = ButtonHTMLAttributes<HTMLButtonElement> & TStandard & {
 	href?: never;
 	isButton?: never;
+	command?: string
+	commandfor?: string
 }
 
 type TLinkButton = TA | TButton

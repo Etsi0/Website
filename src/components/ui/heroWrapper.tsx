@@ -14,6 +14,9 @@ export function HeroWrapper({ children, className }: THeroWrapper) {
 			<div className="relative -z-10 grid size-full min-w-0 min-h-0 *:col-1 *:row-1 ">
 				<Silk
 					speed={5}
+					scale={1}
+					fg="primary-200 dark:primary-800"
+					bg="body-50"
 					noiseIntensity={1.33}
 					rotation={6}
 				/>

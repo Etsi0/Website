@@ -176,9 +176,9 @@ export const Typewriter = ({words = [], loop = 1, typeSpeed = 80, deleteSpeed = 
 
 	return (
 		<>
-			<span>{text}</span>
+			<span className='font-(family-name:--mono)'>{text}</span>
 			{showCursor && (
-				<span className={cn('animate-[cursorBlink_1.5s_steps(1)_infinite_alternate]', !isDelay && '[animation-play-state:paused] [animation-iteration-count:0]')}>|</span>
+				<span className={cn('font-(family-name:--mono) animate-[cursorBlink_1.5s_steps(1)_infinite_alternate]', !isDelay && '[animation-play-state:paused] [animation-iteration-count:0]')}>|</span>
 			)}
 		</>
 	)
