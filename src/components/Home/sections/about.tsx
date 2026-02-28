@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import Download from '@/svg/materialDesignIcons/download.svg';
+import Download from '@/svg/materialDesignIcons/rounded/download.svg';
 import StudentCapSelfie from '@/../public/img/production/student cap selfie/selfie.webp';
 import { LinkButton } from '@/components/ui/link';
 

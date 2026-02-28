@@ -5,7 +5,7 @@ import { YearsElapsed } from '@/components/yearsElapsed';
 import { Typewriter } from '@/components/typingText';
 import { SocialLinkJson } from '@/json/socialLink';
 import selfie from '@/../public/img/production/casual_selfie/selfie.webp';
-import Location from '@/svg/materialDesignIcons/location_on.svg';
+import Location from '@/svg/materialDesignIcons/rounded/location_on.svg';
 
 function SocialLinks({ className }: { className: string }) {
 	return (

@@ -2,8 +2,8 @@
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import { LinkButton } from '@/components/ui/link';
 import { NoScript } from '@/components/ui/noScript';
-import SkipNext from '@/svg/materialDesignIcons/skip_next.svg';
-import Settings from '@/svg/materialDesignIcons/settings.svg';
+import SkipNext from '@/svg/materialDesignIcons/rounded/skip_next.svg';
+import Settings from '@/svg/materialDesignIcons/rounded/settings.svg';
 import { cn, pageTitle } from '@/lib/util';
 import { useTimer } from '@/components/pomodoro/useTimer';
 import { SettingsDialog } from '@/components/pomodoro/settingsDialog';

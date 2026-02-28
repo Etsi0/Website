@@ -1,8 +1,8 @@
 import { FC, SVGProps } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { cn } from '@/lib/util';
-import CodeBlock from '@/svg/materialDesignIcons/code_blocks.svg';
-import Public from '@/svg/materialDesignIcons/public.svg';
+import CodeBlock from '@/svg/materialDesignIcons/rounded/code_blocks.svg';
+import Public from '@/svg/materialDesignIcons/rounded/public.svg';
 import { LinkButton } from '@/components/ui/link';
 
 import HTML from '@/svg/vscode-icons/html--custom.svg';
@@ -15,7 +15,7 @@ import Next from '@/svg/vscode-icons/next.svg';
 import TS from '@/svg/vscode-icons/typescript.svg';
 import SQL from '@/svg/vscode-icons/sql.svg';
 
-import Lock from '@/svg/materialDesignIcons/lock.svg';
+import Lock from '@/svg/materialDesignIcons/rounded/lock.svg';
 
 import Icon from '@/../public/img/production/icon.png';
 import Phadonia from '@/svg/phadonia.svg';
