@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/*==================================================
+	Variant
+==================================================*/
 @custom-variant light {
 	@media (prefers-color-scheme: light) {
 		&:not(.dark *) {
@@ -22,6 +25,25 @@
 	}
 }
 
+/*==================================================
+	Better border-radius and blur
+==================================================*/
+@utility corner-shape-* {
+	border-radius: --value([*]);
+	border-radius: calc(var(--spacing) * --value(integer, [integer]));
+
+	@supports (corner-shape: superellipse(1)) {
+		--compensation: 0.9;
+		--exponent: 1.6;
+		border-radius: calc(--value([*]) * var(--exponent) * var(--compensation));
+		border-radius: calc(var(--spacing) * --value(integer, [integer]) * var(--exponent) * var(--compensation));
+		corner-shape: superellipse(var(--exponent));
+	}
+}
+
+/*==================================================
+	Custom Theme
+==================================================*/
 @theme {
 	--color-body-50: oklch(var(--body-lightness-50) var(--neutral-chroma) var(--hue-color));
 	--color-body-100: oklch(var(--body-lightness-100) var(--neutral-chroma) var(--hue-color));
@@ -65,6 +87,9 @@
 	--text-custom-5xl: calc(1rem + (3rem - 1rem) * pow((6 / 6), 1.5)); /* 3.0000000000rem */
 }
 
+/*==================================================
+	Base styles
+==================================================*/
 @layer base {
 	:root {
 		color-scheme: light;
@@ -162,6 +187,8 @@
 	::before,
 	::after {
 		border-color: var(--color-body-200);
+		outline: solid 2px transparent;
+		outline-offset: 2pt;
 		transition-property: none;
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		transition-duration: 150ms;
@@ -169,7 +196,6 @@
 
 	*:focus-visible {
 		outline: solid 2px var(--color-primary-500);
-		outline-offset: 2px;
 	}
 
 	::selection {
@@ -217,13 +243,12 @@
 	h5,
 	h6 {
 		font-family: var(--serif);
-		color: var(--color-text-800);
+		color: var(--color-text-900);
 		line-height: 1;
 		text-wrap: balance;
 	}
 
 	h1 {
-		color: var(--color-text-900);
 		font-size: var(--text-custom-5xl);
 	}
 
@@ -248,7 +273,7 @@
 	}
 
 	p {
-		max-width: 65ch;
+		max-width: 51.5ch;
 		text-wrap: pretty;
 	}
 
@@ -278,12 +303,12 @@
 	.hamburger-button .path2 {
 		stroke-dasharray: 60 60;
 	}
-	.hamburger-button:has(~ #mobile-nav:popover-open) .path1,
-	.hamburger-button:has(~ #mobile-nav:popover-open) .path3 {
+	body:has(#mobile-nav:popover-open) .hamburger-button .path1,
+	body:has(#mobile-nav:popover-open) .hamburger-button .path3 {
 		stroke-dasharray: 90 207;
 		stroke-dashoffset: -134;
 	}
-	.hamburger-button:has(~ #mobile-nav:popover-open) .path2 {
+	body:has(#mobile-nav:popover-open) .hamburger-button .path2 {
 		stroke-dasharray: 1 60;
 		stroke-dashoffset: -30;
 	}

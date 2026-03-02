@@ -166,7 +166,7 @@ async function GetMod({ project, className }: TGetMod) {
 				isButton
 			>
 				{latestVersion
-					? `Fabric ${latestVersion.game_versions[0]} ${latestVersion.game_versions.length > 1 && ` - ${latestVersion.game_versions[latestVersion.game_versions.length - 1]}`}`
+					? `Fabric ${latestVersion.game_versions[0]} ${latestVersion.game_versions.length > 1 ? ` - ${latestVersion.game_versions[latestVersion.game_versions.length - 1]}` : ''}`
 					: 'NaN'
 				}
 			</LinkButton>

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import PhadoniaLogo from '@/svg/phadonia.svg';
 import { DarkMode } from '@/components/Header/darkMode';
@@ -7,39 +7,39 @@ import { Navigation } from '@/components/Header/navbar';
 import { LinkButton } from '@/components/ui/link';
 
 const link = {'About': '#', 'Settings': '#', 'Minecraft Mods': '#', 'Pomodoro': '#'};
-const linkWidth = Object.keys(link).reduce((sum, key) => sum + key.length, 0);
 
-export default function App() {
-	const [isNavOpen, setIsNavOpen] = useState<boolean | undefined>(undefined);
+export function Header() {
+	const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+	const navRef = useRef<HTMLElement | null>(null);
+
+	useEffect(() => {
+		const nav = navRef.current;
+		if (!nav) return;
+		const handler = () => setIsNavOpen(nav.matches(':popover-open'));
+		nav.addEventListener('toggle', handler);
+		return () => nav.removeEventListener('toggle', handler);
+	}, []);
 
 	return (
-		<>
-			<div className='breakout-wrapper fixed left-1/2 -translate-x-1/2 translate-y-1/2 z-50'>
-				<header className='grid grid-cols-[1fr_auto_1fr] items-center bg-body-50/25 max-w-7xl px-9 py-4.5 border border-body-50/25 rounded-[1em] backdrop-blur-xl'>
-					{/*==================================================
-						Page icon
-					==================================================*/}
-					<LinkButton href='/' aria-label='Phadonia'>
+		<header className='breakout-wrapper fixed w-full top-7.5 z-50'>
+			<div className='col-sm overflow-clip relative corner-shape-6'>
+				<div className='[anchor-name:--header] absolute bg-body-50/25 w-screen h-[200%] left-1/2 top-0 -translate-x-1/2 -translate-y-1/4 backdrop-blur-xl -z-10'></div>
+				<div className='grid grid-cols-[1fr_auto_1fr] items-center px-9 py-4.5 border border-body-50/25'>
+					<LinkButton className='justify-self-start rounded-xs outline-offset-4' href='/' aria-label='Phadonia'>
 						<PhadoniaLogo className='h-6 *:fill-text-900' />
 					</LinkButton>
-					{/*==================================================
-						Desktop nav
-					==================================================*/}
 					<nav className='text-custom-md'>
 						<ul className='hidden min-[84rem]:flex gap-8 flex-wrap'>
 							{Object.entries(link).map(([label, path]: [string, string]) => (
-								<li key={label}><LinkButton href={path}>{label}</LinkButton></li>
+								<li key={label}><LinkButton className='rounded-xs outline-offset-4' href={path}>{label}</LinkButton></li>
 							))}
 						</ul>
 					</nav>
-					{/*==================================================
-						Hamburger icon
-					==================================================*/}
 					<div className='justify-self-end flex gap-1'>
 						<DarkMode />
 						{/* !!! I did not make this hamburgerBtn, https://codepen.io/ainalem/pen/wvKOEMV !!! */}
 						<LinkButton
-							className='hamburger-button cursor-pointer grid place-items-center size-6 *:col-1 *:row-1'
+							className='hamburger-button [anchor-name:--hamburger] cursor-pointer grid place-items-center size-6 rounded-sm *:col-1 *:row-1'
 							aria-label={isNavOpen ? 'Close menu' : 'Open menu'}
 							aria-expanded={isNavOpen}
 							onClick={() => setIsNavOpen((current) => !current)}
@@ -65,13 +65,10 @@ export default function App() {
 								/>
 							</svg>
 						</LinkButton>
-						{/*==================================================
-							Mobile nav
-						==================================================*/}
-						<Navigation />
+						<Navigation ref={navRef} />
 					</div>
-				</header>
+				</div>
 			</div>
-		</>
+		</header>
 	);
 }

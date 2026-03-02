@@ -1,11 +1,11 @@
 'use client'
 import { LinkButton } from "@/components/ui/link";
-import { useCallback, useEffect, useState } from "react";
+import { forwardRef, useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/util";
 import { navLinks } from "@/json/navLinks";
 import { usePathname } from "next/navigation";
 
-export function Navigation() {
+export const Navigation = forwardRef<HTMLElement>(function Navigation(_, ref) {
 	const [currentPath, setCurrentPath] = useState<string>('');
 	const pathname = usePathname();
 
@@ -23,7 +23,7 @@ export function Navigation() {
 	}, [currentPath]);
 
 	return (
-		<nav id="mobile-nav" className='[position-area:bottom_left] bg-body-50 min-w-72 mt-4.5 -mr-6' aria-label='Main Navigation' popover="">
+		<nav ref={ref} id="mobile-nav" className='bg-body-50 min-w-72 left-[anchor(--hamburger_right)] top-[anchor(--header_bottom)] -translate-x-full' aria-label='Main Navigation' popover="">
 			<ul>
 				{navLinks.internal.map((link) => (
 					<li key={link.path}>
@@ -46,4 +46,4 @@ export function Navigation() {
 			</ul>
 		</nav>
 	);
-}
+});

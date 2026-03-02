@@ -1,17 +1,14 @@
-import Image from 'next/image';
 import { ReactNode } from "react";
-import { cn } from "@/lib/util";
 import Silk from "@/components/Silk";
 
 type THeroWrapper = {
 	children: ReactNode;
-	className?: string;
 }
 
-export function HeroWrapper({ children, className }: THeroWrapper) {
+export function SilkWrapper({ children }: THeroWrapper) {
 	return (
-		<section className="col-full grid h-svh max-h-250 *:col-1 *:row-1">
-			<div className="relative -z-10 grid size-full min-w-0 min-h-0 *:col-1 *:row-1 ">
+		<div className="col-full relative">
+			<div className="absolute grid inset-0 -z-10 *:col-1 *:row-1">
 				<Silk
 					speed={5}
 					scale={1}
@@ -38,7 +35,9 @@ export function HeroWrapper({ children, className }: THeroWrapper) {
 					</div>
 				</noscript>
 			</div>
-			<div className={cn("breakout-wrapper place-content-center place-items-center", className)}>{children}</div>
-		</section>
+			<div className="breakout-wrapper">
+				{children}
+			</div>
+		</div>
 	);
 }

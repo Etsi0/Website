@@ -1,46 +1,37 @@
 import Image from 'next/image';
 
-import Download from '@/svg/materialDesignIcons/rounded/download.svg';
-import StudentCapSelfie from '@/../public/img/production/student cap selfie/selfie.webp';
+import Docs from '@/svg/materialDesignIcons/rounded/docs.svg';
+import CasualSelfie from '@/../public/img/production/casual_selfie/test.png';
 import { LinkButton } from '@/components/ui/link';
 
 export function About() {
 	return (
 		<>
-			<section id='about' className='py-8'>
-				<div className='grid justify-items-center'>
-					<h2>About Me</h2>
-					<p>My Introduction</p>
+			<section id='about' className='grid justify-center gap-3 pt-32 py-16 lg:flex lg:justify-between'>
+				<div className='grid justify-items-start gap-[calc(1rem*sqrt(2.5214515486*1)/1.5)] my-auto'>
+					<h2>A bit about <span className='italic text-text-800'>myself</span></h2>
+					<p>
+						Hi! I{"'"}m Albin Karlsson, a full-stack developer from Sweden who can{"'"}t resist improving things. I have a habit of building tools to solve my own problems, and I{"'"}m always looking for ways to make workflows faster and more efficient.
+					</p>
+					<LinkButton
+						className='flex items-center gap-1 text-text-800 bg-body-50 px-[1.5em] py-[0.75em] border border-body-100 rounded-full'
+						href='/Albin_Karlsson_CV.pdf'
+						download="Albin Karlsson's CV"
+						isButton
+					>
+						<Docs className='size-4 fill-current' /> View My CV
+					</LinkButton>
 				</div>
-				<div className='grid place-items-center gap-3 pt-3 lg:grid-cols-2'>
-					<div>
-						<Image
-							className='aspect-square w-full max-w-prose rounded-2xl object-cover'
-							src={StudentCapSelfie}
-							alt='Portrait of a young man wearing a student cap and a black suit with a red tie.'
-							width={449}
-							height={449}
-							sizes='(max-width: 1024px) 100%, 449px'
-							blurDataURL={StudentCapSelfie.blurDataURL}
-							placeholder='blur'
-						/>
-					</div>
-					<div className='my-auto space-y-3'>
-						<h3>Working With Passion</h3>
-						<p>
-							As a full-stack developer specializing in modern web technologies, I develop enterprise payroll systems and create developer tools that have collected over 3,000 downloads.
-							When I{"'"}m not coding, I enjoy mentoring aspiring programmers on Discord, building custom mechanical keyboards or computers, and exploring the latest in tech.
-						</p>
-						<LinkButton
-							className='inline-flex items-center rounded-md bg-primary-500 px-[1.5em] py-[0.75em] font-semibold text-primary-100'
-							href='/Albin_Karlsson_CV.pdf'
-							download="Albin Karlsson's CV"
-							isButton
-						>
-							Download CV <Download className='size-6 fill-current' />
-						</LinkButton>
-					</div>
-				</div>
+				<Image
+					className='object-cover object-bottom w-full max-w-prose aspect-373/434 rounded-2xl lg:w-[calc(1rem*373/16)]'
+					src={CasualSelfie}
+					alt='Portrait of a young man wearing a student cap and a black suit with a red tie.'
+					width={373}
+					height={434}
+					sizes='(max-width: 1024px) 100%, 449px'
+					blurDataURL={CasualSelfie.blurDataURL}
+					placeholder='blur'
+				/>
 			</section>
 		</>
 	);

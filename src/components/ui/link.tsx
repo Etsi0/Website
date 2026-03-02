@@ -76,7 +76,7 @@ export function LinkButton({ ...props }: TLinkButton): ReactNode {
 		standard,
 		...(disabled
 			? ['cursor-not-allowed opacity-50']
-			: [isHoverable && whenHoveringButton, isFocusable && disableFocusing]
+			: [isHoverable && whenHoveringButton, !isFocusable && disableFocusing]
 		),
 		className
 	];

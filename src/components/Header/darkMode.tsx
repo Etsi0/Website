@@ -35,8 +35,7 @@ export function DarkMode() {
 
 	return (
 		<LinkButton
-			className='cursor-pointer h-6 aspect-square rounded-md'
-			isFocusable={false}
+			className='cursor-pointer h-6 aspect-square rounded-sm'
 			aria-label={`Change theme to ${themeIs()} mode`}
 			onClick={toggleDarkMode}
 			suppressHydrationWarning

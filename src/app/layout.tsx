@@ -4,7 +4,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 
-import Header from '@/components/Header/header';
+import { Header } from '@/components/Header/header';
 import Footer from '@/components/Footer/footer';
 
 import '../app.css';
@@ -15,7 +15,7 @@ const inter = Inter({
 	style: ['normal', 'italic'],
 	display: 'swap',
 	variable: '--font-inter',
-	subsets: ['latin', 'latin-ext', 'cyrillic', 'cyrillic-ext', 'greek', 'greek-ext', 'vietnamese'],
+	subsets: ['latin'],
 });
 
 const instrumentSerif = Instrument_Serif({
@@ -23,7 +23,7 @@ const instrumentSerif = Instrument_Serif({
 	style: ['normal', 'italic'],
 	display: 'swap',
 	variable: '--font-instrument-serif',
-	subsets: ['latin', 'latin-ext'],
+	subsets: ['latin'],
 });
 
 const jetBrainsMono = JetBrains_Mono({
@@ -31,7 +31,7 @@ const jetBrainsMono = JetBrains_Mono({
 	style: ['normal', 'italic'],
 	display: 'swap',
 	variable: '--font-jetbrains-mono',
-	subsets: ['latin', 'latin-ext', 'cyrillic', 'cyrillic-ext', 'greek', 'vietnamese'],
+	subsets: ['latin'],
 });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
