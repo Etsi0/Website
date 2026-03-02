@@ -26,7 +26,7 @@
 }
 
 /*==================================================
-	Better border-radius and blur
+	Better border-radius
 ==================================================*/
 @utility corner-shape-* {
 	border-radius: --value([*]);
