@@ -24,7 +24,7 @@ export function InfinityScroll({
 	className: string[];
 	pxPerSec: number;
 	gap: number;
-	images: StaticImageData[];
+	images: (StaticImageData | string)[];
 	size: number;
 }) {
 	const emptySubscribe = useCallback(() => () => {}, []);
