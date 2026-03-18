@@ -1,14 +1,14 @@
-import { ReactNode } from 'react';
-import { Inter, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/react';
+import type { ReactNode } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
+import Script from 'next/script';
+import { Inter, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 
 import { Header } from '@/components/Header/header';
 import Footer from '@/components/Footer/footer';
 
 import '../app.css';
-import Script from 'next/script';
 
 const inter = Inter({
 	weight: 'variable',

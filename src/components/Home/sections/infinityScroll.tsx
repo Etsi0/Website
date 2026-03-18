@@ -1,9 +1,9 @@
 'use client';
 import { useCallback, useEffect, useRef, useSyncExternalStore } from 'react';
-import { useGSAP } from '@gsap/react';
-import { cn } from '@/lib/util';
 import Image, { type StaticImageData } from 'next/image';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { cn } from '@/lib/cn';
 
 /**
  *

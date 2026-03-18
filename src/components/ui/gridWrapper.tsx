@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { cn } from "@/lib/util";
+import type { ReactNode } from "react";
+import { cn } from "@/lib/cn";
 
 type TSvg = {
 	className: string

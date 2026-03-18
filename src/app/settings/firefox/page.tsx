@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import json from '@/json/settings/vscode/extensions.json';
 import type { BundledLanguage } from 'shiki';
 import { codeToHtml } from 'shiki';
+import json from '@/json/settings/vscode/extensions.json';
 import { LinkButton } from '@/components/ui/link';
 
 const aboutConfig = `browser.compactmode.show	true

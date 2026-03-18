@@ -1,12 +1,13 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { z } from 'zod';
+import { cn } from '@/lib/cn';
 import { GetCollection, GetProjects, GetVersions } from '@/api/modrinth/main';
+import { pageTitle } from '@/lib/pageTitle';
 import { versionSchema } from '@/schema/minecraft/main';
 import { TProject } from '@/types/minecraft/main';
-import { cn, pageTitle } from '@/lib/util';
 import { LinkButton } from '@/components/ui/link';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
 	title: pageTitle('Minecraft Mods'),

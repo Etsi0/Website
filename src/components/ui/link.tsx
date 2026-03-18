@@ -1,6 +1,7 @@
 import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 import Link from 'next/link';
-import { cn, whenHoveringButton, whenHoveringLink, disableFocusing } from '@/lib/util';
+import { whenHoveringButton, whenHoveringLink, disableFocusing } from '@/lib/util';
+import { cn } from '@/lib/cn';
 
 type TStandard = {
 	className?: string;

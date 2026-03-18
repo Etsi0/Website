@@ -1,7 +1,7 @@
 'use client';
-import { LinkButton } from '@/components/ui/link';
-import { useTheme } from 'next-themes'
 import { useSyncExternalStore } from 'react';
+import { useTheme } from 'next-themes';
+import { LinkButton } from '@/components/ui/link';
 
 const emptySubscribe = () => () => {};
 

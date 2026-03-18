@@ -1,5 +1,5 @@
 import Image from 'next/image';
-
+import { cn } from '@/lib/cn';
 import Docs from '@/svg/materialDesignIcons/rounded/docs.svg';
 import CasualSelfie from '@/../public/img/production/casual_selfie/test.png';
 import { LinkButton } from '@/components/ui/link';

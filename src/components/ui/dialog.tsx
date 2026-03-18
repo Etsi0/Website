@@ -1,5 +1,5 @@
-import { cn } from '@/lib/util';
-import { DialogHTMLAttributes, ForwardedRef, ReactNode } from 'react';
+import type { DialogHTMLAttributes, ForwardedRef, ReactNode } from 'react';
+import { cn } from '@/lib/cn';
 
 type TDialog = DialogHTMLAttributes<HTMLDialogElement> & {
 	className?: string;

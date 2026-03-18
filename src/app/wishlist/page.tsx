@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 import { neon } from '@neondatabase/serverless';
 import { z } from 'zod';
-import { MDXRemote } from 'next-mdx-remote/rsc';
+import { pageTitle } from '@/lib/pageTitle';
 import { schemaWishlist } from '@/schema/wishlist/main';
 import Play from '@/svg/play.svg';
 import { LinkButton } from '@/components/ui/link';
-import { pageTitle } from '@/lib/util';
 
 // Cache for 24 hours (86400 seconds)
 export const revalidate = 86400;

@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import json from '@/json/settings/vscode/extensions.json';
+import type { Metadata } from 'next';
 import type { BundledLanguage } from 'shiki';
 import { codeToHtml } from 'shiki';
+import { pageTitle } from '@/lib/pageTitle';
+import json from '@/json/settings/vscode/extensions.json';
 import { LinkButton } from '@/components/ui/link';
-import { Metadata } from 'next';
-import { pageTitle } from '@/lib/util';
 
 export const metadata: Metadata = {
 	title: pageTitle('VS Code Settings'),

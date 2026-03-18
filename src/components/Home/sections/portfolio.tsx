@@ -1,7 +1,7 @@
 import { FC, ReactNode, SVGProps } from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
 import Image, { StaticImageData } from 'next/image';
-import { cn } from '@/lib/util';
+import { cn } from '@/lib/cn';
 import CodeBlock from '@/svg/materialDesignIcons/rounded/code_blocks.svg';
 import Public from '@/svg/materialDesignIcons/rounded/public.svg';
 import { LinkButton } from '@/components/ui/link';

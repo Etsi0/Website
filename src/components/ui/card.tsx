@@ -1,6 +1,6 @@
 import { createElement } from "react";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/util";
+import { cn } from "@/lib/cn";
 
 type CardElement = "article" | "section";
 type TCard<T extends CardElement = "article"> = { as?: T } & ComponentPropsWithoutRef<T>;

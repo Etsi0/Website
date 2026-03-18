@@ -1,9 +1,9 @@
-import { TOptions } from '@/components/pomodoro/client2';
+import { useEffect, useRef } from 'react';
+import { cn } from '@/lib/cn';
+import type { TOptions } from '@/components/pomodoro/client2';
 import { LinkButton } from '@/components/ui/link';
 import { Dialog } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
-import { cn } from '@/lib/util';
-import { useEffect, useRef } from 'react';
 
 export const SettingsDialog = ({ isOpen, options, setOptions, onClose }: { isOpen: boolean; options: TOptions; setOptions: (options: TOptions) => void; onClose: () => void }) => {
 	const dialogRef = useRef<HTMLDialogElement>(null);
@@ -45,7 +45,7 @@ export const SettingsDialog = ({ isOpen, options, setOptions, onClose }: { isOpe
 			{(['autoStartBreaks', 'autoStartPomodoros'] as const).map((setting) => (
 				<Label key={setting} className='flex items-center justify-between' type='horizontal'>
 					{setting.replace(/([A-Z])/g, ' $1')}
-					<input className='aspect-square h-[calc(1.25em_+_1rem)]' type='checkbox' checked={options[setting]} onChange={handleCheckboxChange(setting)} />
+					<input className='aspect-square h-[calc(1.25em+1rem)]' type='checkbox' checked={options[setting]} onChange={handleCheckboxChange(setting)} />
 				</Label>
 			))}
 

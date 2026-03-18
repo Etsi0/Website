@@ -1,7 +1,7 @@
 'use client';
-import { InfinityScroll } from './infinityScroll';
 import Icon from '@/../public/img/production/icon.png';
 import Farsight from '@/../public/img/production/companies/Farsight.webp';
+import { InfinityScroll } from '@/components/Home/sections/infinityScroll';
 const MaxPA = '/img/production/companies/MaxPA.svg';
 const HCLTech = '/img/production/companies/HCLTech.svg';
 

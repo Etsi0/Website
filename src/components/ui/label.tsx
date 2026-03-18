@@ -1,5 +1,5 @@
-import { cn } from '@/lib/util';
-import { LabelHTMLAttributes, ReactNode } from 'react';
+import type { LabelHTMLAttributes, ReactNode } from 'react';
+import { cn } from '@/lib/cn';
 
 type variants = 'vertical' | 'horizontal';
 

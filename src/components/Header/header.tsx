@@ -1,10 +1,9 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-
+import { cn } from '@/lib/cn';
 import PhadoniaLogo from '@/svg/phadonia.svg';
 import { DarkMode } from '@/components/Header/darkMode';
 import { LinkButton } from '@/components/ui/link';
-import { cn } from '@/lib/util';
 
 const link: Record<string, string> = {
 	About: '#',
