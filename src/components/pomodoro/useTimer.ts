@@ -74,7 +74,7 @@ export const useTimer = (initialState: (typeof STATES)[number], options: TOption
 			return;
 		}
 
-		const worker = new Worker(new URL('../../workers/timer.ts', import.meta.url));
+		const worker = new Worker(new URL('../../workers/pomodoro/timer.ts', import.meta.url));
 
 		worker.addEventListener('message', (e: MessageEvent) => {
 			const { type, remainingTime } = e.data;
