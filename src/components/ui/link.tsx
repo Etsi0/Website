@@ -74,6 +74,7 @@ export function LinkButton({ ...props }: TLinkButton): ReactNode {
 	const { className, isHoverable = true, isFocusable = true, children, disabled = false, type = 'button', ...restProps } = props as TButton;
 	const clazz = [
 		standard,
+		'cursor-pointer',
 		...(disabled
 			? ['cursor-not-allowed opacity-50']
 			: [isHoverable && whenHoveringButton, !isFocusable && disableFocusing]

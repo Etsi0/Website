@@ -9,6 +9,7 @@ const withMdx = nextMdx({
 });
 
 const nextConfig: NextConfig = withMdx({
+	productionBrowserSourceMaps: true,
 	images: {
 		remotePatterns: [
 			{

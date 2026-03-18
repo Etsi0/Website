@@ -29,7 +29,7 @@ export function InfinityScroll({
 }) {
 	const emptySubscribe = useCallback(() => () => {}, []);
 	const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
-	const refContainer = useRef<HTMLSelectElement>(null);
+	const refContainer = useRef<HTMLElement>(null);
 	const imagesRef = useRef(images);
 	const { contextSafe } = useGSAP({ scope: refContainer });
 	useEffect(() => {
@@ -62,32 +62,37 @@ export function InfinityScroll({
 	useEffect(() => {
 		function runResize() {
 			const currentImages = imagesRef.current;
-			function PositionLocal(index: number): number {
-				return (size + gap) * index;
-			}
+			requestAnimationFrame(() => {
+				const containerWidth = refContainer.current?.clientWidth ?? 0;
+				const startX = Math.max(totalWidth, containerWidth);
 
-			function AnimationDelay(index: number): number {
-				return ((finalDuration * PositionLocal(currentImages.length - 1 - index)) / totalWidth) * -1;
-			}
+				function PositionLocal(index: number): number {
+					return (size + gap) * index;
+				}
 
-			currentImages.forEach((_, index) => {
-				gsap.killTweensOf(`.horizontalScroll-${index}`);
-			});
+				function AnimationDelay(index: number): number {
+					return ((finalDuration * PositionLocal(currentImages.length - 1 - index)) / totalWidth) * -1;
+				}
 
-			currentImages.forEach((_, index) => {
-				gsap.fromTo(
-					`.horizontalScroll-${index}`,
-					{
-						x: Math.max(totalWidth, refContainer.current?.clientWidth || 0),
-					},
-					{
-						ease: 'none',
-						delay: AnimationDelay(index),
-						duration: finalDuration,
-						repeat: -1,
-						x: -size,
-					}
-				);
+				currentImages.forEach((_, index) => {
+					gsap.killTweensOf(`.horizontalScroll-${index}`);
+				});
+
+				currentImages.forEach((_, index) => {
+					gsap.fromTo(
+						`.horizontalScroll-${index}`,
+						{
+							x: startX,
+						},
+						{
+							ease: 'none',
+							delay: AnimationDelay(index),
+							duration: finalDuration,
+							repeat: -1,
+							x: -size,
+						}
+					);
+				});
 			});
 		}
 

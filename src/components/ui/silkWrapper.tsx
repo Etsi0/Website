@@ -12,8 +12,8 @@ export function SilkWrapper({ children }: THeroWrapper) {
 				<Silk
 					speed={5}
 					scale={1}
-					fg="primary-200 dark:primary-800"
-					bg="body-50"
+					fg="var(--color-primary-200) dark:var(--color-primary-800)"
+					bg="var(--color-body-50)"
 					noiseIntensity={1.33}
 					rotation={6}
 				/>

@@ -1,4 +1,5 @@
-import { FC, SVGProps } from 'react';
+import { FC, ReactNode, SVGProps } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { cn } from '@/lib/util';
 import CodeBlock from '@/svg/materialDesignIcons/rounded/code_blocks.svg';
@@ -18,7 +19,7 @@ import Phadonia from '@/svg/phadonia.svg';
 import CvMaker from '@/svg/cv-maker.svg';
 import { Card } from '@/components/ui/card';
 
-const clazz = 'grow shrink-0 basis-[calc(50%-0.25rem)] text-nowrap text-center px-[1.5em] py-[0.75em] rounded-full border';
+const clazz = 'grow shrink-0 basis-[calc(50%-0.25rem)] text-nowrap text-center px-[1.5em] py-[0.75em] corner-shape-[1.3125rem] border';
 const bgIconClass = 'object-contain aspect-video scale-500 filter-[url(#light-figma-fx)] dark:filter-[url(#dark-figma-fx)]';
 const iconClass = 'object-contain aspect-square scale-62';
 
@@ -34,9 +35,22 @@ type TCards = {
 	source?: string
 };
 
+type TBadge = { children: ReactNode, className?: string } & ComponentPropsWithoutRef<'div'>;
+function Badge({ children, className, ...props }: TBadge) {
+	return (
+		<div
+			className={cn('flex items-center gap-1 text-text-700 text-sm bg-body-200 px-3 py-1 border border-body-300 corner-shape-9999', className)}
+			{...props}
+		>
+			{ children }
+		</div>
+	);
+}
+
 function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 	const Icon = src;
 	const badge = badges[0];
+	const anchorName = `--card-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}` as const;
 
 	return (
 		<Card className='@container grid gap-4'>
@@ -59,19 +73,25 @@ function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 					<h3 className='text-custom-2xl'>{title}</h3>
 					<p>{text}</p>
 					<div className='flex flex-wrap items-start gap-2 font-(family-name:--mono)'>
-						<div className='flex items-center gap-1 text-text-700 text-sm bg-body-200 rounded-full px-3 py-1 border border-body-300'>
+						<Badge>
 							{<badge.svg className='fill-text-700 size-[1em] *:fill-current!' />} {badge.text}
-						</div>
+						</Badge>
 						{badges.length > 1 && (
-							<div className='text-text-700 text-sm bg-body-200 rounded-full px-[0.35rem] py-1 border border-body-300'>
-								+{badges.length - 1}
-							</div>
+							<>
+								<Badge tabIndex={0} className='peer px-[0.35rem]' style={{ anchorName }}>+{badges.length - 1}</Badge>
+								<div
+									popover=""
+									className='flex flex-wrap gap-2 bg-body-100 p-3 border border-body-200 corner-shape-[1.6875rem] mx-8 mb-3 shadow-xl opacity-0 transition-opacity [.peer:hover+&]:opacity-100 [.peer:focus-visible+&]:opacity-100'
+									style={{ positionAnchor: anchorName, positionArea: "top" }}
+								>
+									{badges.slice(1).sort((a, b) => (a.text || '').localeCompare(b.text || '')).map((badge, index) => (
+										<Badge key={index} className='flex-[0_0_0]'>
+											{<badge.svg className='fill-text-800 size-[1em] *:fill-current!' />} {badge.text}
+										</Badge>
+									))}
+								</div>
+							</>
 						)}
-						{/* {badges.sort((a, b) => (a.text || '').localeCompare(b.text || '')).map((badge, index) => (
-							<div key={index} className='bg-body-200 text-text-800 flex items-center gap-1 rounded-full px-3 py-1 text-sm'>
-								{badge.svg && <badge.svg className='fill-text-800 size-[1em] *:fill-current!' />} {badge.text}
-							</div>
-						))} */}
 					</div>
 				</div>
 				<div className='flex flex-wrap gap-2 leading-none px-[calc(2.5rem-21px)] pb-[calc(2.5rem-21px)]'>
@@ -149,7 +169,7 @@ export function Portfolio() {
 					<h2>Highlighted <span className='italic text-text-800'>Projects</span></h2>
 					<LinkButton
 						href='#'
-						className='text-text-800 text-custom-lg rounded-xs'
+						className='text-text-800 text-custom-lg rounded-xs tracking-wider'
 						isButton
 					>
 						View All <ArrowOutward className="inline-block fill-current" />
@@ -186,7 +206,7 @@ export function Portfolio() {
 						src={Icon}
 						title='Class Collapse'
 						badges={[{ svg: TS, text: 'Typescript' }]}
-						text='A VSCode extension with 6K+ downloads that allows you to collapse section of code.'
+						text='A VSCode extension with 8K+ downloads that allows you to collapse section of code.'
 						live='https://marketplace.visualstudio.com/items?itemName=Etsi0.class-collapse'
 						source='https://github.com/Etsi0/class-collapse'
 					/>

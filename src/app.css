@@ -30,13 +30,13 @@
 ==================================================*/
 @utility corner-shape-* {
 	border-radius: --value([*]);
-	border-radius: calc(var(--spacing) * --value(integer, [integer]));
+	border-radius: calc(var(--spacing) * --value(number, [number]));
 
 	@supports (corner-shape: superellipse(1)) {
 		--compensation: 0.9;
 		--exponent: 1.6;
 		border-radius: calc(--value([*]) * var(--exponent) * var(--compensation));
-		border-radius: calc(var(--spacing) * --value(integer, [integer]) * var(--exponent) * var(--compensation));
+		border-radius: calc(var(--spacing) * --value(number, [number]) * var(--exponent) * var(--compensation));
 		corner-shape: superellipse(var(--exponent));
 	}
 }
@@ -294,23 +294,34 @@
 	}
 
 	/*==================================================
-		Hamburger icon
+		Header
 	==================================================*/
-	.hamburger-button .path1,
-	.hamburger-button .path3 {
-		stroke-dasharray: 60 207;
-	}
-	.hamburger-button .path2 {
-		stroke-dasharray: 60 60;
-	}
-	body:has(#mobile-nav:popover-open) .hamburger-button .path1,
-	body:has(#mobile-nav:popover-open) .hamburger-button .path3 {
-		stroke-dasharray: 90 207;
-		stroke-dashoffset: -134;
-	}
-	body:has(#mobile-nav:popover-open) .hamburger-button .path2 {
-		stroke-dasharray: 1 60;
-		stroke-dashoffset: -30;
+	header {
+		.hamburger-button {
+			.path1,
+			.path3 {
+				stroke-dasharray: 60 207;
+			}
+
+			.path2 {
+				stroke-dasharray: 60 60;
+			}
+		}
+
+		&:popover-open {
+			.hamburger-button {
+				.path1,
+				.path3 {
+					stroke-dasharray: 90 207;
+					stroke-dashoffset: -134;
+				}
+
+				.path2 {
+					stroke-dasharray: 1 60;
+					stroke-dashoffset: -30;
+				}
+			}
+		}
 	}
 
 	/*==================================================
@@ -342,29 +353,12 @@
 			grid-column: content;
 		}
 
-		& > .col-sm {
-			grid-column: sm;
-		}
-
-		& > .col-md {
-			grid-column: md;
-		}
-
-		& > .col-lg {
-			grid-column: lg;
-		}
-
-		& > .col-xl {
-			grid-column: xl;
-		}
-
-		& > .col-2xl {
-			grid-column: \2xl;
-		}
-
-		& > .col-full {
-			grid-column: full;
-		}
+		& > .col-sm { grid-column: sm; }
+		& > .col-md { grid-column: md; }
+		& > .col-lg { grid-column: lg; }
+		& > .col-xl { grid-column: xl; }
+		& > .col-2xl { grid-column: \2xl; }
+		& > .col-full { grid-column: full; }
 	}
 
 	/*==================================================
