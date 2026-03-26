@@ -74,6 +74,10 @@
 	--color-text-800: oklch(var(--text-lightness-800) var(--neutral-chroma) var(--hue-color));
 	--color-text-900: oklch(var(--text-lightness-900) var(--neutral-chroma) var(--hue-color));
 
+
+	--font-serif: var(--font-instrument-serif), ui-serif, serif;
+	--font-sans-serif: var(--font-inter), ui-sans-serif, sans-serif;
+	--font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 	/*==================================================
 		Font
 		startValue + (endValue - startValue) * (((index - 1) / (totalNumber - 1)) ^ 1.5)
@@ -98,10 +102,6 @@
 		/*==================================================
 			Global styling variables
 		==================================================*/
-		--serif: var(--font-instrument-serif), ui-serif, serif;
-		--sans-serif: var(--font-inter), ui-sans-serif, sans-serif;
-		--mono: var(--font-jetbrains-mono), ui-monospace, monospace;
-
 		--isDarkMode:     0.00;
 		--lightness-max:  0.97;
 		--lightness-min:  0.20;
@@ -236,7 +236,7 @@
 	==================================================*/
 	body,
 	dialog > * {
-		font-family: var(--sans-serif);
+		font-family: var(--font-sans-serif);
 		color: var(--color-text-700);
 		font-size: var(--text-custom-md);
 		font-weight: 400;
@@ -250,7 +250,7 @@
 	h4,
 	h5,
 	h6 {
-		font-family: var(--serif);
+		font-family: var(--font-serif);
 		color: var(--color-text-900);
 		line-height: 1;
 		text-wrap: balance;
@@ -285,7 +285,7 @@
 		text-wrap: pretty;
 	}
 
-	*[class*="--mono"] {
+	*[class*="mono"] {
 		font-variant-ligatures: normal;
 	}
 
@@ -293,7 +293,8 @@
 	kbd,
 	pre,
 	samp {
-		font-family: var(--mono);
+		font-family: var(--font-mono);
+		font-variant-ligatures: normal;
 	}
 
 	.align-center {

@@ -31,7 +31,7 @@ export default function Page() {
 					<p>Every project here started with the same thought: “This should be better.” So I made it better and shared it with the world.</p>
 					<LinkButton
 						className='
-							animate-[animatedButtonBorder_15s_linear_infinite] font-(family-name:--mono) text-custom-lg uppercase [background:linear-gradient(var(--color-body-50),var(--color-body-50))_padding-box,conic-gradient(from_var(--turn),var(--color-body-100)_0deg_5deg,var(--color-primary-500)_5deg_38.33deg,var(--color-body-100)_38.33deg_43.33deg)_border-box] w-[30ch] px-[1.5em] py-[0.75em] border border-transparent rounded-full
+							animate-[animatedButtonBorder_15s_linear_infinite] font-mono text-custom-lg uppercase [background:linear-gradient(var(--color-body-50),var(--color-body-50))_padding-box,conic-gradient(from_var(--turn),var(--color-body-100)_0deg_5deg,var(--color-primary-500)_5deg_38.33deg,var(--color-body-100)_38.33deg_43.33deg)_border-box] w-[30ch] px-[1.5em] py-[0.75em] border border-transparent rounded-full
 							hover:text-text-600
 							focus-visible:text-text-600
 							active:text-text-500

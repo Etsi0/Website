@@ -72,7 +72,7 @@ function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 				<div className='px-[calc(2.5rem*0.9)] grow space-y-2'>
 					<h3 className='text-custom-2xl'>{title}</h3>
 					<p>{text}</p>
-					<div className='flex flex-wrap items-start gap-2 font-(family-name:--mono)'>
+					<div className='flex flex-wrap items-start gap-2 font-mono'>
 						<Badge>
 							{<badge.svg className='fill-text-700 size-[1em] *:fill-current!' />} {badge.text}
 						</Badge>

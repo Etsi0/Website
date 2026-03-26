@@ -81,14 +81,14 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 										<p>
 											Bonus: add
 											{' '}
-											<code className='font-(family-name:--mono) text-xs bg-body-100 px-1 rounded-sm'>
+											<code className='text-xs bg-body-100 px-1 rounded-sm'>
 												-site:w3schools.com
 											</code>
 											{' '}
 											to searches to filter W3Schools out (may not work on every search engine). Or use a custom
 											search URL — replace
 											{' '}
-											<code className='font-(family-name:--mono) text-xs bg-body-100 px-1 rounded-sm'>
+											<code className='text-xs bg-body-100 px-1 rounded-sm'>
 												%s
 											</code>
 											{' '}
@@ -163,7 +163,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 										</li>
 										<li>
 											<strong className='text-text-800'>
-												<code className='font-(family-name:--mono) text-sm bg-body-200 px-1 rounded-sm'>
+												<code className='text-sm bg-body-200 px-1 rounded-sm'>
 													clamp()
 												</code>
 											</strong>
@@ -176,7 +176,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 										</li>
 										<li>
 											<strong className='text-text-800'>
-												<code className='font-(family-name:--mono) text-sm bg-body-200 px-1 rounded-sm'>
+												<code className='text-sm bg-body-200 px-1 rounded-sm'>
 													display: grid
 												</code>
 											</strong>
@@ -195,7 +195,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 										</li>
 										<li>
 											<strong className='text-text-800'>
-												<code className='font-(family-name:--mono) text-sm bg-body-200 px-1 rounded-sm'>
+												<code className='text-sm bg-body-200 px-1 rounded-sm'>
 													display: flex
 												</code>
 											</strong>
@@ -296,8 +296,8 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 											</li>
 											<li>
 												You know{' '}
-												<code className='font-(family-name:--mono) text-sm bg-body-100 px-1 rounded-sm'>display: flex</code> and{' '}
-												<code className='font-(family-name:--mono) text-sm bg-body-100 px-1 rounded-sm'>display: grid</code>.
+												<code className='text-sm bg-body-100 px-1 rounded-sm'>display: flex</code> and{' '}
+												<code className='text-sm bg-body-100 px-1 rounded-sm'>display: grid</code>.
 											</li>
 											<li>
 												You can build responsive layouts (preferably mobile first) (
