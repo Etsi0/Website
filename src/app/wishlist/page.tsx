@@ -65,7 +65,7 @@ export default async function page() {
 
 	return (
 		<>
-			<div className='m-8 grid justify-center gap-3 text-center'>
+			<div className='pt-(--header-offset) grid justify-center gap-3 text-center'>
 				<h1>Wishlist</h1>
 				<p>If you are on this page and do not know me IRL, then why are you here</p>
 			</div>

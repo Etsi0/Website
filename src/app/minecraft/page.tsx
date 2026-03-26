@@ -191,7 +191,7 @@ export default async function Page() {
 	}
 
 	return (
-		<section className='grid gap-8 py-8 pt-16'>
+		<section className='grid gap-8 py-8 pt-(--header-offset)'>
 			<div className='grid justify-items-center text-center'>
 				<h1>Minecraft Mods</h1>
 				<p>Mods listed bellow is what i recommend or use, look at the section that explains what the different colors means if you are confused</p>

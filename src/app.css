@@ -109,6 +109,8 @@
 		--neutral-chroma: 0.01;
 		--hue-color:      277;
 
+		--header-offset: calc((1.5rem * .75 * 2 + 1.5rem) * 2);
+
 		/*==================================================
 			Body variables
 		==================================================*/
@@ -166,6 +168,12 @@
 		--text-lightness-700: abs(var(--lightness-diff) * (2 / 8) + var(--lightness-min) - var(--text-lightness-max) * var(--isDarkMode));
 		--text-lightness-800: abs(var(--lightness-diff) * (1 / 8) + var(--lightness-min) - var(--text-lightness-max) * var(--isDarkMode));
 		--text-lightness-900: abs(var(--lightness-diff) * (0 / 8) + var(--lightness-min) - var(--text-lightness-max) * var(--isDarkMode));
+	}
+
+	@property --tabs-index {
+		syntax: "<integer>";
+		inherits: true;
+		initial-value: 0;
 	}
 
 	/*==================================================
@@ -249,7 +257,7 @@
 	}
 
 	h1 {
-		font-size: var(--text-custom-5xl);
+		font-size: calc(69rem / 16); /* wanted 69px in rem */
 	}
 
 	h2 {
@@ -364,12 +372,12 @@
 	/*==================================================
 		Animated details
 	==================================================*/
-	details {
+	details:not(.\[--tabs-index\:sibling-index\(\)\]) {
 		overflow: hidden;
 	}
 
 	/*! don't add margin or padding here !*/
-	details::details-content {
+	details:not(.\[--tabs-index\:sibling-index\(\)\])::details-content {
 		block-size: 0;
 		transition-property: block-size, content-visibility;
 		transition-duration: 0.3s;
@@ -378,7 +386,7 @@
 	}
 
 	/*! don't add margin or padding here !*/
-	details:open::details-content {
+	details:not(.\[--tabs-index\:sibling-index\(\)\]):open::details-content {
 		block-size: auto;
 	}
 
@@ -414,5 +422,17 @@
 		font-style: var(--shiki-dark-font-style) !important;
 		font-weight: var(--shiki-dark-font-weight) !important;
 		text-decoration: var(--shiki-dark-text-decoration) !important;
+	}
+
+
+	@property --turn {
+		syntax: "<angle>";
+		inherits: false;
+		initial-value: 0turn;
+	}
+
+	@keyframes animatedButtonBorder {
+		0% { --turn: 0turn; }
+		100% { --turn: 1turn; }
 	}
 }

@@ -1,8 +1,7 @@
 import Image from 'next/image';
-import type { BundledLanguage } from 'shiki';
-import { codeToHtml } from 'shiki';
 import json from '@/json/settings/vscode/extensions.json';
 import { LinkButton } from '@/components/ui/link';
+import { ShikiCodeBlock } from '@/components/ui/shikiCodeBlock';
 
 const aboutConfig = `browser.compactmode.show	true
 browser.tabs.closeWindowWithLastTab	false
@@ -18,7 +17,7 @@ network.IDN_show_punycode	true` as const;
 
 export default async function Page() {
 	return (
-		<section className='my-16 space-y-12'>
+		<section className='pt-(--header-offset) space-y-12'>
 			<div className='grid justify-items-center text-center'>
 				<h1>Firefox Settings</h1>
 				<p>One stop shop for all your Firefox needs</p>
@@ -41,25 +40,8 @@ export default async function Page() {
 			</div>
 			<div className='space-y-5'>
 				<h2 className="text-center">about:config</h2>
-				<CodeBlock lang='jsonc'>{aboutConfig}</CodeBlock>
+				<ShikiCodeBlock lang='jsonc'>{aboutConfig}</ShikiCodeBlock>
 			</div>
 		</section>
 	);
-}
-
-type TProps = {
-	children: string;
-	lang: BundledLanguage;
-};
-
-async function CodeBlock(props: TProps) {
-	const out = await codeToHtml(props.children, {
-		lang: props.lang,
-		themes: {
-			dark: 'material-theme-palenight',
-			light: 'material-theme-lighter',
-		},
-	});
-
-	return <div dangerouslySetInnerHTML={{ __html: out }} />;
 }

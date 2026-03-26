@@ -4,12 +4,15 @@ import Docs from '@/svg/materialDesignIcons/rounded/docs.svg';
 import CasualSelfie from '@/../public/img/production/casual_selfie/test.png';
 import { LinkButton } from '@/components/ui/link';
 
-export function About() {
+type THeading = 'h1' | 'h2';
+
+export function About({ className, heading = 'h2' }: { className?: string; heading?: THeading }) {
+	const Heading = heading;
 	return (
 		<>
-			<section id='about' className='grid justify-center gap-3 pt-32 py-16 lg:flex lg:justify-between'>
+			<section id='about' className={cn('grid place-items-center gap-3 pt-32 py-16 lg:flex lg:justify-between', className)}>
 				<div className='grid justify-items-start gap-[calc(1rem*sqrt(2.5214515486*1)/1.5)] my-auto'>
-					<h2>A bit about <span className='italic text-text-800'>myself</span></h2>
+					<Heading>A bit about <span className='italic text-text-800'>myself</span></Heading>
 					<p>
 						Hi! I{"'"}m Albin Karlsson, a full-stack developer from Sweden who can{"'"}t resist improving things. I have a habit of building tools to solve my own problems, and I{"'"}m always looking for ways to make workflows faster and more efficient.
 					</p>

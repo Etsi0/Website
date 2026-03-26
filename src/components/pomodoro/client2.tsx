@@ -49,7 +49,7 @@ export default function Client() {
 
 	return (
 		<>
-			<section className='heroSection grid place-items-center'>
+			<section className='grid place-items-center min-h-[min(62.5rem,100svh)]'>
 				<NoScript />
 				<div className={cn('gap-4', isMounted ? 'grid' : 'hidden')}>
 					<div className='mx-auto'>{index}</div>
