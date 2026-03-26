@@ -1,6 +1,6 @@
 import CodePen from '@/svg/codePen.svg';
 import Discord from '@/svg/discord.svg';
-import Extension from '@/svg/materialDesignIcons/extension.svg';
+import Extension from '@/svg/materialDesignIcons/rounded/extension.svg';
 import GitHub from '@/svg/gitHub.svg';
 import LinkedIn from '@/svg/linkedIn.svg';
 

@@ -1,52 +1,64 @@
-import { FC, SVGProps } from 'react';
+import { FC, ReactNode, SVGProps } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 import Image, { StaticImageData } from 'next/image';
-import { cn } from '@/lib/util';
-import CodeBlock from '@/svg/materialDesignIcons/code_blocks.svg';
-import Public from '@/svg/materialDesignIcons/public.svg';
+import { cn } from '@/lib/cn';
+import CodeBlock from '@/svg/materialDesignIcons/rounded/code_blocks.svg';
+import Public from '@/svg/materialDesignIcons/rounded/public.svg';
 import { LinkButton } from '@/components/ui/link';
 
 import HTML from '@/svg/vscode-icons/html--custom.svg';
-import CSS from '@/svg/vscode-icons/css--custom.svg';
-import JS from '@/svg/vscode-icons/js.svg';
 import Tailwind from '@/svg/vscode-icons/tailwind.svg';
 import Vite from '@/svg/vscode-icons/vite--custom.svg';
 import ReactIcon from '@/svg/vscode-icons/reactjs.svg';
 import Next from '@/svg/vscode-icons/next.svg';
 import TS from '@/svg/vscode-icons/typescript.svg';
-import SQL from '@/svg/vscode-icons/sql.svg';
-
-import Lock from '@/svg/materialDesignIcons/lock.svg';
+import ArrowOutward from '@/svg/materialDesignIcons/rounded/arrow_outward.svg';
 
 import Icon from '@/../public/img/production/icon.png';
 import Phadonia from '@/svg/phadonia.svg';
-import ForgetMe from '@/../public/img/forgetMe.png';
-import MaxPA from '@/../public/img/production/companies/MaxPA.svg';
+import CvMaker from '@/svg/cv-maker.svg';
+import { Card } from '@/components/ui/card';
 
-const classes = 'inline text-center align-middle rounded-lg p-4';
+const clazz = 'grow shrink-0 basis-[calc(50%-0.25rem)] text-nowrap text-center px-[1.5em] py-[0.75em] corner-shape-[1.3125rem] border';
+const bgIconClass = 'object-contain aspect-video scale-500 filter-[url(#light-figma-fx)] dark:filter-[url(#dark-figma-fx)]';
+const iconClass = 'object-contain aspect-square scale-62';
+
 type TCards = {
 	src: StaticImageData | FC<SVGProps<SVGElement>>;
 	title: string;
 	text: string;
 	badges: {
-		svg?: FC<SVGProps<SVGElement>>;
-		text?: string
+		svg: FC<SVGProps<SVGElement>>;
+		text: string
 	}[];
 	live?: string;
 	source?: string
 };
 
+type TBadge = { children: ReactNode, className?: string } & ComponentPropsWithoutRef<'div'>;
+function Badge({ children, className, ...props }: TBadge) {
+	return (
+		<div
+			className={cn('flex items-center gap-1 text-text-700 text-sm bg-body-200 px-3 py-1 border border-body-300 corner-shape-9999', className)}
+			{...props}
+		>
+			{ children }
+		</div>
+	);
+}
+
 function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 	const Icon = src;
-	const bgIconClass = 'w-full object-cover blur-3xl brightness-50 scale-200 [clip-path:polygon(25%25%,75%25%,75%75%,25%75%)]';
-	const iconClass = 'w-full scale-90 object-contain';
+	const badge = badges[0];
+	const anchorName = `--card-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}` as const;
 
 	return (
-		<div className='border-body-200 bg-body-100 flex flex-col overflow-hidden rounded-2xl border'>
-			<div className='border-body-200 grid border-b *:col-[1_/_span_1] *:row-[1_/_span_1] *:aspect-16/10'>
+		<Card className='@container grid gap-4'>
+			<div className='corner-shape-[2.5rem] overflow-clip grid place-items-center border border-body-200 *:col-1 *:row-1'>
 				{typeof Icon === 'function' && (
 					<>
-						<Icon className={cn(bgIconClass, '*:fill-text-600 dark:*:fill-text-800')} />
-						<Icon className={cn(iconClass, '*:fill-text-600 dark:*:fill-text-800')} />
+						<Icon className={cn(bgIconClass, '*:fill-text-900')} />
+						<Icon className={cn(iconClass, '*:fill-text-900')} />
 					</>
 				)}
 				{(typeof Icon === 'object' && Icon !== null && 'src' in Icon && 'height' in Icon && 'width' in Icon) && (
@@ -56,106 +68,137 @@ function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 					</>
 				)}
 			</div>
-			<div className='flex grow flex-col gap-3 p-2'>
-				<div className='px-2 grow space-y-2'>
-					<h3>{title}</h3>
+			<div className='flex grow flex-col gap-3'>
+				<div className='px-[calc(2.5rem*0.9)] grow space-y-2'>
+					<h3 className='text-custom-2xl'>{title}</h3>
 					<p>{text}</p>
-					<div className='flex flex-wrap items-start gap-2'>
-						{badges.sort((a, b) => (a.text || '').localeCompare(b.text || '')).map((badge, index) => (
-							<div key={index} className='bg-body-200 text-text-800 flex items-center gap-1 rounded-full px-3 py-1 text-sm'>
-								{badge.svg && <badge.svg className='fill-text-800 size-[1em] *:fill-current!' />} {badge.text}
-							</div>
-						))}
+					<div className='flex flex-wrap items-start gap-2 font-(family-name:--mono)'>
+						<Badge>
+							{<badge.svg className='fill-text-700 size-[1em] *:fill-current!' />} {badge.text}
+						</Badge>
+						{badges.length > 1 && (
+							<>
+								<Badge tabIndex={0} className='peer px-[0.35rem]' style={{ anchorName }}>+{badges.length - 1}</Badge>
+								<div
+									popover=""
+									className='flex flex-wrap gap-2 bg-body-100 p-3 border border-body-200 corner-shape-[1.6875rem] mx-8 mb-3 shadow-xl opacity-0 transition-opacity [.peer:hover+&]:opacity-100 [.peer:focus-visible+&]:opacity-100'
+									style={{ positionAnchor: anchorName, positionArea: "top" }}
+								>
+									{badges.slice(1).sort((a, b) => (a.text || '').localeCompare(b.text || '')).map((badge, index) => (
+										<Badge key={index} className='flex-[0_0_0]'>
+											{<badge.svg className='fill-text-800 size-[1em] *:fill-current!' />} {badge.text}
+										</Badge>
+									))}
+								</div>
+							</>
+						)}
 					</div>
 				</div>
-				<div className='grid grid-cols-2 gap-4'>
+				<div className='flex flex-wrap gap-2 leading-none px-[calc(2.5rem-21px)] pb-[calc(2.5rem-21px)]'>
 					<LinkButton
 						href={live}
-						className={cn(classes, 'bg-primary-500 text-primary-50 ring-offset-body-50 dark:ring-offset-body-200')}
+						className={cn(clazz, 'text-primary-50 bg-primary-500 border-primary-400 dark:bg-primary-600 dark:border-primary-700')}
 						disabled={!live}
 						isButton
 					>
-						<Public className='inline-block align-center fill-primary-50 size-5' /> Live
+						<Public className='inline-block align-center fill-primary-50 size-[1em]' /> Live
 					</LinkButton>
 					<LinkButton
 						href={source}
-						className={cn(classes, 'bg-body-300 text-text-900 ring-offset-body-50 dark:text-primary-100 dark:ring-offset-body-200')}
+						className={cn(clazz, 'text-text-800 bg-body-200 border-body-300')}
 						disabled={!source}
 						isButton
 					>
-						<CodeBlock className='inline-block align-center fill-text-900 dark:fill-primary-100 size-5' /> Source
+						<CodeBlock className='inline-block align-center fill-text-800 size-[1em]' /> Source
 					</LinkButton>
 				</div>
 			</div>
-		</div>
+		</Card>
 	);
 }
 
 export function Portfolio() {
 	return (
 		<>
-			<section id='portfolio' className='grid justify-items-center gap-8 py-8'>
-				<div className='text-center'>
-					<h2>Portfolio</h2>
-					<p>Most recent work</p>
+			<svg className='absolute' width="0" height="0" aria-hidden>
+				{/* Dark mode: darken → blur → contrast */}
+				<filter
+					id="dark-figma-fx"
+					colorInterpolationFilters="sRGB"
+					x="-50%"
+					y="-50%"
+					width="200%"
+					height="200%"
+				>
+					<feComponentTransfer result="gamma">
+						<feFuncR type="gamma" amplitude="0.5" exponent="1" offset="0"/>
+						<feFuncG type="gamma" amplitude="0.5" exponent="1" offset="0"/>
+						<feFuncB type="gamma" amplitude="0.5" exponent="1" offset="0"/>
+					</feComponentTransfer>
+					<feComponentTransfer in="gamma" result="linear">
+						<feFuncR type="linear" slope="2" intercept="-0.5"/>
+						<feFuncG type="linear" slope="2" intercept="-0.5"/>
+						<feFuncB type="linear" slope="2" intercept="-0.5"/>
+					</feComponentTransfer>
+					<feGaussianBlur in="linear" stdDeviation="6.25"/>
+				</filter>
+				{/* Light mode: soft blur, no heavy darkening — subtle tint behind icon */}
+				<filter
+					id="light-figma-fx"
+					colorInterpolationFilters="sRGB"
+					x="-50%"
+					y="-50%"
+					width="200%"
+					height="200%"
+				>
+					<feComponentTransfer result="gamma">
+						<feFuncR type="gamma" amplitude="1.5" exponent="1" offset="0"/>
+						<feFuncG type="gamma" amplitude="1.5" exponent="1" offset="0"/>
+						<feFuncB type="gamma" amplitude="1.5" exponent="1" offset="0"/>
+					</feComponentTransfer>
+					<feComponentTransfer in="gamma" result="linear">
+						<feFuncR type="linear" slope="0.5" intercept="0.5"/>
+						<feFuncG type="linear" slope="0.5" intercept="0.5"/>
+						<feFuncB type="linear" slope="0.5" intercept="0.5"/>
+					</feComponentTransfer>
+					<feGaussianBlur stdDeviation="6.25" in="linear"/>
+				</filter>
+			</svg>
+			<section id='portfolio' className='grid gap-8 py-16 mx-auto'>
+				<div className='flex justify-between items-center'>
+					<h2>Highlighted <span className='italic text-text-800'>Projects</span></h2>
+					<LinkButton
+						href='#'
+						className='text-text-800 text-custom-lg rounded-xs tracking-wider'
+						isButton
+					>
+						View All <ArrowOutward className="inline-block fill-current" />
+					</LinkButton>
 				</div>
-				<div className='grid w-full gap-x-5 gap-y-6 md:grid-cols-2 lg:grid-cols-3'>
-					<Cards
-						src={MaxPA}
-						title='MaxPA'
-						badges={[{ svg: Lock }]}
-						text='Swedish payroll system'
-						live='https://www.maxpa.se/'
-					/>
-					<Cards
-						src={Phadonia}
-						title='Phadonia'
-						badges={[
-							{ svg: Tailwind, text: 'Tailwind' },
-							{ svg: TS, text: 'Typescript' },
-							{ svg: Next, text: 'Next.js' },
-							{ svg: ReactIcon, text: 'React' },
-							{ svg: SQL, text: 'Postgresql' },
-						]}
-						text='The site you are on right now'
-						live='/'
-						source='https://github.com/Etsi0/Website'
-					/>
-					<Cards
-						src={ForgetMe}
-						title='ForgetMe'
-						badges={[
-							{ svg: HTML, text: 'HTML' },
-							{ svg: Tailwind, text: 'Tailwind' },
-							{ svg: JS, text: 'JavaScript' },
-						]}
-						text='ForgetMe automatically removes history based on user-defined filters.'
-						live='https://addons.mozilla.org/en-CA/firefox/addon/forget-me/'
-						source='https://github.com/Etsi0/ForgetMe'
-					/>
+				<div className='[--max-width:21.24rem] grid gap-5 grid-cols-[minmax(0,var(--max-width))] justify-center w-full lg:grid-cols-[repeat(3,minmax(0,var(--max-width)))]'>
 					<Cards
 						src={Phadonia}
 						title='Phadonia Search'
 						badges={[
-							{ svg: HTML, text: 'HTML' },
-							{ svg: Tailwind, text: 'Tailwind' },
 							{ svg: TS, text: 'Typescript' },
 							{ svg: Vite, text: 'Vite' },
+							{ svg: Tailwind, text: 'Tailwind' },
+							{ svg: HTML, text: 'HTML' },
 						]}
 						text="Fast search router that supports all of DuckDuckGo's bangs without impacting speed."
 						live='https://search.phadonia.com'
 						source='https://github.com/Etsi0/search'
 					/>
 					<Cards
-						src={Phadonia}
+						src={CvMaker}
 						title='CV-Maker'
 						badges={[
-							{ svg: Tailwind, text: 'Tailwind' },
-							{ svg: TS, text: 'Typescript' },
-							{ svg: ReactIcon, text: 'React' },
 							{ svg: Next, text: 'Next.js' },
+							{ svg: ReactIcon, text: 'React' },
+							{ svg: TS, text: 'Typescript' },
+							{ svg: Tailwind, text: 'Tailwind' },
 						]}
-						text='I got sick of paying for existing CV builders, so i made my own'
+						text='Edit, preview, and export. All running locally; your data never leaves your device.'
 						live='https://cv-maker.phadonia.com'
 						source='https://github.com/Etsi0/cv-maker'
 					/>
@@ -163,42 +206,11 @@ export function Portfolio() {
 						src={Icon}
 						title='Class Collapse'
 						badges={[{ svg: TS, text: 'Typescript' }]}
-						text='A VSCode extension that allows you to collapse section of code. for example, classes'
+						text='A VSCode extension with 8K+ downloads that allows you to collapse section of code.'
 						live='https://marketplace.visualstudio.com/items?itemName=Etsi0.class-collapse'
 						source='https://github.com/Etsi0/class-collapse'
 					/>
-					<Cards
-						src={Icon}
-						title='Infinity tic tac toe'
-						badges={[
-							{ svg: HTML, text: 'HTML' },
-							{ svg: CSS, text: 'CSS' },
-							{ svg: TS, text: 'Typescript' },
-						]}
-						text='An tic tac toe that never ends if both players plays perfectly'
-						live='https://etsi0.github.io/Infinity-tic-tac-toe/'
-						source='https://github.com/Etsi0/Infinity-tic-tac-toe'
-					/>
-					<Cards
-						src={Icon}
-						title='Dice Game'
-						badges={[
-							{ svg: HTML, text: 'HTML' },
-							{ svg: CSS, text: 'CSS' },
-							{ svg: JS, text: 'JavaScript' },
-						]}
-						text='An old game i made in school that won a competition'
-						live='https://etsi0.github.io/DiceGame/'
-						source='https://github.com/Etsi0/DiceGame'
-					/>
 				</div>
-				<LinkButton
-					href='#'
-					className='bg-primary-500 text-primary-100 rounded-md px-[1.5em] py-[0.75em] text-lg'
-					isButton
-				>
-					See all (Coming soon)
-				</LinkButton>
 			</section>
 		</>
 	);

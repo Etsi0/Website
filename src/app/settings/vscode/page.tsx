@@ -1,10 +1,9 @@
 import Image from 'next/image';
+import type { Metadata } from 'next';
+import { pageTitle } from '@/lib/pageTitle';
 import json from '@/json/settings/vscode/extensions.json';
-import type { BundledLanguage } from 'shiki';
-import { codeToHtml } from 'shiki';
 import { LinkButton } from '@/components/ui/link';
-import { Metadata } from 'next';
-import { pageTitle } from '@/lib/util';
+import { ShikiCodeBlock } from '@/components/ui/shikiCodeBlock';
 
 export const metadata: Metadata = {
 	title: pageTitle('VS Code Settings'),
@@ -76,7 +75,7 @@ const workspaceSettings = `{
 
 export default async function Page() {
 	return (
-		<section className='my-16 space-y-12'>
+		<section className='pt-(--header-offset) space-y-12'>
 			<div className='grid justify-items-center text-center'>
 				<h1>VS Code Settings</h1>
 				<p>One stop shop for all your vscode needs</p>
@@ -99,11 +98,11 @@ export default async function Page() {
 			</div>
 			<div className='space-y-5'>
 				<h2 className="text-center">User Settings</h2>
-				<CodeBlock lang='jsonc'>{userSettings}</CodeBlock>
+				<ShikiCodeBlock lang='jsonc'>{userSettings}</ShikiCodeBlock>
 			</div>
 			<div className='space-y-5'>
 				<h2 className="text-center">.vscode/settings.json</h2>
-				<CodeBlock lang='jsonc'>{workspaceSettings}</CodeBlock>
+				<ShikiCodeBlock lang='jsonc'>{workspaceSettings}</ShikiCodeBlock>
 			</div>
 			<div className='space-y-5'>
 				<h2 className="text-center">FAQ</h2>
@@ -146,21 +145,4 @@ export default async function Page() {
 			</div>
 		</section>
 	);
-}
-
-type TProps = {
-	children: string;
-	lang: BundledLanguage;
-};
-
-async function CodeBlock(props: TProps) {
-	const out = await codeToHtml(props.children, {
-		lang: props.lang,
-		themes: {
-			dark: 'material-theme-palenight',
-			light: 'material-theme-lighter',
-		},
-	});
-
-	return <div dangerouslySetInnerHTML={{ __html: out }} />;
 }

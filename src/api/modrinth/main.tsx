@@ -1,4 +1,4 @@
-import { apiFetch } from '@/lib/util';
+import { apiFetch } from '@/lib/apiFetch';
 import { collectionSchema, projectSchema, versionSchema } from '@/schema/minecraft/main';
 
 const baseUrl = 'https://api.modrinth.com/';

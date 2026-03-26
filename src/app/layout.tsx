@@ -1,14 +1,14 @@
-import { ReactNode } from 'react';
-import { Inter } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/react';
+import type { ReactNode } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
+import Script from 'next/script';
+import { Inter, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 
-import Header from '@/components/Header/header';
+import { Header } from '@/components/Header/header';
 import Footer from '@/components/Footer/footer';
 
 import '../app.css';
-import Script from 'next/script';
 
 const inter = Inter({
 	weight: 'variable',
@@ -18,9 +18,25 @@ const inter = Inter({
 	subsets: ['latin'],
 });
 
+const instrumentSerif = Instrument_Serif({
+	weight: ['400'],
+	style: ['normal', 'italic'],
+	display: 'swap',
+	variable: '--font-instrument-serif',
+	subsets: ['latin'],
+});
+
+const jetBrainsMono = JetBrains_Mono({
+	weight: 'variable',
+	style: ['normal', 'italic'],
+	display: 'swap',
+	variable: '--font-jetbrains-mono',
+	subsets: ['latin'],
+});
+
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
-		<html lang='en' suppressHydrationWarning className={inter.className}>
+		<html lang='en' suppressHydrationWarning className={`${inter.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable}`}>
 			<head>
 				{process.env.NODE_ENV === 'development' && (
 					<Script
@@ -34,7 +50,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				<ThemeProvider attribute='class'>
 					<div id='root' className='flex min-h-svh flex-col'>
 						<Header />
-						<main className='breakout-wrapper w-full grow pt-16'>{children}</main>
+						<main className='breakout-wrapper w-full grow'>{children}</main>
 						<Footer />
 						<Analytics />
 						<SpeedInsights />

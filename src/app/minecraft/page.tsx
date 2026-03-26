@@ -1,12 +1,13 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { z } from 'zod';
+import { cn } from '@/lib/cn';
 import { GetCollection, GetProjects, GetVersions } from '@/api/modrinth/main';
+import { pageTitle } from '@/lib/pageTitle';
 import { versionSchema } from '@/schema/minecraft/main';
 import { TProject } from '@/types/minecraft/main';
-import { cn, pageTitle } from '@/lib/util';
 import { LinkButton } from '@/components/ui/link';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
 	title: pageTitle('Minecraft Mods'),
@@ -166,7 +167,7 @@ async function GetMod({ project, className }: TGetMod) {
 				isButton
 			>
 				{latestVersion
-					? `Fabric ${latestVersion.game_versions[0]} ${latestVersion.game_versions.length > 1 && ` - ${latestVersion.game_versions[latestVersion.game_versions.length - 1]}`}`
+					? `Fabric ${latestVersion.game_versions[0]} ${latestVersion.game_versions.length > 1 ? ` - ${latestVersion.game_versions[latestVersion.game_versions.length - 1]}` : ''}`
 					: 'NaN'
 				}
 			</LinkButton>
@@ -190,7 +191,7 @@ export default async function Page() {
 	}
 
 	return (
-		<section className='grid gap-8 py-8 pt-16'>
+		<section className='grid gap-8 py-8 pt-(--header-offset)'>
 			<div className='grid justify-items-center text-center'>
 				<h1>Minecraft Mods</h1>
 				<p>Mods listed bellow is what i recommend or use, look at the section that explains what the different colors means if you are confused</p>

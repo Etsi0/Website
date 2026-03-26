@@ -1,19 +1,9 @@
 'use client';
 import { useCallback, useEffect, useRef, useSyncExternalStore } from 'react';
-import { useGSAP } from '@gsap/react';
-import { cn } from '@/lib/util';
 import Image, { type StaticImageData } from 'next/image';
 import gsap from 'gsap';
-
-type ImageSource = StaticImageData | string;
-
-function isStaticImageData(src: ImageSource): src is StaticImageData {
-	return typeof src === 'object' && src !== null && 'height' in src && 'width' in src;
-}
-
-function isSvg(src: ImageSource): boolean {
-	return typeof src === 'string' && src.endsWith('.svg');
-}
+import { useGSAP } from '@gsap/react';
+import { cn } from '@/lib/cn';
 
 /**
  *
@@ -34,12 +24,12 @@ export function InfinityScroll({
 	className: string[];
 	pxPerSec: number;
 	gap: number;
-	images: ImageSource[];
+	images: (StaticImageData | string)[];
 	size: number;
 }) {
 	const emptySubscribe = useCallback(() => () => {}, []);
 	const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
-	const refContainer = useRef<HTMLDivElement>(null);
+	const refContainer = useRef<HTMLElement>(null);
 	const imagesRef = useRef(images);
 	const { contextSafe } = useGSAP({ scope: refContainer });
 	useEffect(() => {
@@ -51,15 +41,6 @@ export function InfinityScroll({
 	/*==================================================
 		Helpers
 	==================================================*/
-	function GetSize(height: number, width: number): { height: number; width: number } {
-		const finalHeight = (height / width) * size;
-		if (finalHeight <= size) {
-			return { height: finalHeight, width: size };
-		} else {
-			return { height: size, width: (width / height) * size };
-		}
-	}
-
 	function Position(index: number): number {
 		return (size + gap) * index;
 	}
@@ -81,32 +62,37 @@ export function InfinityScroll({
 	useEffect(() => {
 		function runResize() {
 			const currentImages = imagesRef.current;
-			function PositionLocal(index: number): number {
-				return (size + gap) * index;
-			}
+			requestAnimationFrame(() => {
+				const containerWidth = refContainer.current?.clientWidth ?? 0;
+				const startX = Math.max(totalWidth, containerWidth);
 
-			function AnimationDelay(index: number): number {
-				return ((finalDuration * PositionLocal(currentImages.length - 1 - index)) / totalWidth) * -1;
-			}
+				function PositionLocal(index: number): number {
+					return (size + gap) * index;
+				}
 
-			currentImages.forEach((_, index) => {
-				gsap.killTweensOf(`.horizontalScroll-${index}`);
-			});
+				function AnimationDelay(index: number): number {
+					return ((finalDuration * PositionLocal(currentImages.length - 1 - index)) / totalWidth) * -1;
+				}
 
-			currentImages.forEach((_, index) => {
-				gsap.fromTo(
-					`.horizontalScroll-${index}`,
-					{
-						x: Math.max(totalWidth, refContainer.current?.clientWidth || 0),
-					},
-					{
-						ease: 'none',
-						delay: AnimationDelay(index),
-						duration: finalDuration,
-						repeat: -1,
-						x: -size,
-					}
-				);
+				currentImages.forEach((_, index) => {
+					gsap.killTweensOf(`.horizontalScroll-${index}`);
+				});
+
+				currentImages.forEach((_, index) => {
+					gsap.fromTo(
+						`.horizontalScroll-${index}`,
+						{
+							x: startX,
+						},
+						{
+							ease: 'none',
+							delay: AnimationDelay(index),
+							duration: finalDuration,
+							repeat: -1,
+							x: -size,
+						}
+					);
+				});
 			});
 		}
 
@@ -125,47 +111,22 @@ export function InfinityScroll({
 		XML
 	==================================================*/
 	return (
-		<>
-			<section
-				className='col-full breakout-wrapper my-12  py-4 bg-body-100'
-				id='experience'
-			>
-				<div
-					className={cn('relative overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_25px,_black_calc(100%-25px),transparent_100%)]', className[0])}
-					ref={refContainer}
-				>
-					{images.map((item, index) => {
-						const imgHeight = isStaticImageData(item) ? item.height : size;
-						const imgWidth = isStaticImageData(item) ? item.width : size;
-						const { height, width } = GetSize(imgHeight, imgWidth);
-						const src = typeof item === 'string' ? item : item.src;
-						return (
-							<div
-								className={cn(`horizontalScroll-${index} absolute left-0 grid place-items-center opacity-75 grayscale`, className[1])}
-								key={index}
-								style={{left: isMounted ? '' : FallbackPosition(index)}}
-							>
-							{isSvg(item) ? (
-								// eslint-disable-next-line @next/next/no-img-element
-								<img
-									alt="Gray scale version of a company logo"
-									height={height}
-									src={src}
-									width={width}
-								/>
-							) : (
-									<Image
-										alt="Gray scale version of a company logo"
-										height={height}
-										src={item}
-										width={width}
-									/>
-								)}
-							</div>
-						);
-					})}
-				</div>
-			</section>
-		</>
+		<section
+			id='experience'
+			className={cn('overflow-clip relative my-16 mask-[linear-gradient(to_right,transparent_0,black_1.5rem,black_calc(100%-1.5rem),transparent_100%)]', className[0])}
+			ref={refContainer}
+		>
+			{images.map((item, index) => (
+				<Image
+					key={index}
+					className={cn(`horizontalScroll-${index} object-contain absolute left-0 opacity-75 grayscale`, className[1])}
+					style={{left: isMounted ? '' : FallbackPosition(index)}}
+					src={item}
+					alt="Gray scale version of a company logo"
+					height={size}
+					width={size}
+				/>
+			))}
+		</section>
 	);
 }

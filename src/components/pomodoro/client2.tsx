@@ -1,12 +1,13 @@
 'use client';
 import { useEffect, useState, useSyncExternalStore } from 'react';
+import { cn } from '@/lib/cn';
+import { pageTitle } from '@/lib/pageTitle';
 import { LinkButton } from '@/components/ui/link';
 import { NoScript } from '@/components/ui/noScript';
-import SkipNext from '@/svg/materialDesignIcons/skip_next.svg';
-import Settings from '@/svg/materialDesignIcons/settings.svg';
-import { cn, pageTitle } from '@/lib/util';
 import { useTimer } from '@/components/pomodoro/useTimer';
 import { SettingsDialog } from '@/components/pomodoro/settingsDialog';
+import SkipNext from '@/svg/materialDesignIcons/rounded/skip_next.svg';
+import Settings from '@/svg/materialDesignIcons/rounded/settings.svg';
 
 export type TOptions = {
 	pomodoro: number;
@@ -48,7 +49,7 @@ export default function Client() {
 
 	return (
 		<>
-			<section className='heroSection grid place-items-center'>
+			<section className='grid place-items-center min-h-[min(62.5rem,100svh)]'>
 				<NoScript />
 				<div className={cn('gap-4', isMounted ? 'grid' : 'hidden')}>
 					<div className='mx-auto'>{index}</div>
@@ -68,7 +69,7 @@ export default function Client() {
 					</h1>
 					<div className='mt-4 flex items-center justify-center gap-8'>
 						<LinkButton aria-label='Settings' onClick={() => setIsSettingsOpen(true)}>
-							<Settings className='size-[calc(1.25em_+_1rem)] fill-text-700' />
+							<Settings className='size-[calc(1.25em+1rem)] fill-text-700' />
 						</LinkButton>
 
 						<LinkButton
@@ -89,7 +90,7 @@ export default function Client() {
 						</LinkButton>
 
 						<LinkButton aria-label='Skip' onClick={() => handleStateTransition()}>
-							<SkipNext className='size-[calc(1.25em_+_1rem)] fill-text-700' />
+							<SkipNext className='size-[calc(1.25em+1rem)] fill-text-700' />
 						</LinkButton>
 					</div>
 				</div>

@@ -1,84 +1,97 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/util';
-
+import { useEffect, useRef, useState } from 'react';
+import { cn } from '@/lib/cn';
 import PhadoniaLogo from '@/svg/phadonia.svg';
 import { DarkMode } from '@/components/Header/darkMode';
-import { Navigation } from '@/components/Header/navbar';
 import { LinkButton } from '@/components/ui/link';
 
-export default function App() {
-	const [isNavOpen, setIsNavOpen] = useState<boolean | undefined>(undefined);
-	const [currentPath, setCurrentPath] = useState<string>('');
-	const headerRef = useRef<HTMLDivElement>(null);
-	const pathname = usePathname();
+const link: Record<string, string> = {
+	About: '/about',
+	Settings: '/settings/vscode',
+	'Minecraft Mods': '/minecraft',
+	Pomodoro: '/pomodoro',
+};
+
+/* max(logo, themeSwitcher) * 2 + nav + gap * 2 = calc(1rem * (max(75.95, 24) * 2 + 358.567) / 16 + 2rem * 2) ≈ 36rem */
+const wrapperClass = '@[36rem]:grid-cols-[1fr_auto_1fr] @[36rem]:gap-0';
+const hamburgerClass = '@[36rem]:hidden';
+const navWrapper = '@[36rem]:contents';
+const navClass = '@[36rem]:flex';
+
+export function Header() {
+	const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+	const headerRef = useRef<HTMLElement | null>(null);
 
 	useEffect(() => {
-		if (window.location.hash) {
-			setCurrentPath(pathname + window.location.hash);
-			console.log(pathname + window.location.hash);
-		}
-	}, [pathname]);
+		const header = headerRef.current;
+		if (!header) return;
+		const handler = () => setIsNavOpen(header.matches(':popover-open'));
+		header.addEventListener('toggle', handler);
+		return () => header.removeEventListener('toggle', handler);
+	}, []);
 
 	return (
-		<>
-			<header className='pointer-events-none flex flex-col items-end fixed h-svh w-full z-50' ref={headerRef}>
-				<div className='breakout-wrapper pointer-events-auto w-full bg-body-50/90 backdrop-blur-xl'>
-					<div className='flex h-14 items-center justify-between p-3'>
-						{/*==================================================
-							Page icon
-						==================================================*/}
-						<LinkButton href='/' aria-label='Phadonia'>
-							<PhadoniaLogo className='h-8 *:fill-text-900' />
+		<header ref={headerRef} id="header" className='breakout-wrapper [--header-height:1.5rem] bg-transparent w-full top-7.5 z-50 [&:popover-open_>_div]:grid-rows-[1fr]' popover="">
+			<div
+				className='col-sm @container overflow-clip relative grid grid-rows-[0fr] px-[calc(var(--header-height)*1.5)] py-[calc(var(--header-height)*0.75)] corner-shape-6 transition-[grid-template-rows,padding-block] duration-300'
+			>
+				<div className='absolute bg-body-50/25 w-screen h-[200%] left-1/2 top-0 border border-body-50/25 -translate-x-1/2 -translate-y-1/4 backdrop-blur-xl -z-10'></div>
+				<div className={cn('grid items-center gap-8 min-h-(--header-height)', wrapperClass)}>
+					<div className='flex items-center justify-between'>
+						<LinkButton
+							className='rounded-xs outline-offset-4'
+							href='/'
+							aria-label='Phadonia'
+						>
+							<PhadoniaLogo className='h-(--header-height) *:fill-text-900' />
 						</LinkButton>
-						{/*==================================================
-							Hamburger icon
-						==================================================*/}
-						<div className='flex h-full gap-1'>
-							<DarkMode />
-							{/* !!! I did not make this hamburgerBtn, https://codepen.io/ainalem/pen/wvKOEMV !!! */}
-							<LinkButton
-								className='hamburger-button aspect-square h-full rounded-md'
-								aria-label={isNavOpen ? 'Close menu' : 'Open menu'}
-								aria-expanded={isNavOpen}
-								onClick={() => setIsNavOpen((current) => !current)}
-							>
+						{/* !!! I did not make this hamburgerBtn, https://codepen.io/ainalem/pen/wvKOEMV !!! */}
+						<LinkButton
+							className={cn('hamburger-button rounded-sm', hamburgerClass)}
+							aria-label={isNavOpen ? 'Close menu' : 'Open menu'}
+							aria-expanded={isNavOpen}
+							onClick={() => setIsNavOpen((prev) => !prev)}
+							command="toggle-popover"
+							commandfor="header"
+						>
 							<svg
+								className='size-(--header-height) scale-150 text-text-900 *:transition-[stroke-dashoffset,stroke-dasharray] *:duration-500'
 								viewBox='0 0 100 100'
 								xmlns='http://www.w3.org/2000/svg'
 								stroke='currentColor'
 								strokeWidth={6.4}
 								fill='none'
-								className={cn('scale-125 *:transition-[stroke-dashoffset,stroke-dasharray] *:duration-500', 'text-text-900')}
-								suppressHydrationWarning
 							>
-									<path
-										className='path1'
-										d='M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058'
-									/>
-									<path className='path2' d='M 20,50 H 80' />
-									<path
-										className='path3'
-										d='M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942'
-									/>
-								</svg>
-							</LinkButton>
+								<path
+									className='path1'
+									d='M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058'
+								/>
+								<path className='path2' d='M 20,50 H 80' />
+								<path
+									className='path3'
+									d='M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942'
+								/>
+							</svg>
+						</LinkButton>
+					</div>
+					<div className={cn('flex justify-between items-end', navWrapper)}>
+						<nav aria-label='Main navigation'>
+							<ul className={cn('grid gap-x-6 gap-y-4', navClass)}>
+								{Object.entries(link).map(([label, path]) => (
+									<li key={label}>
+										<LinkButton className='rounded-xs outline-offset-4' href={path}>
+											{label}
+										</LinkButton>
+									</li>
+								))}
+							</ul>
+						</nav>
+						<div className='justify-self-end [&_svg]:size-(--header-height)'>
+							<DarkMode />
 						</div>
 					</div>
 				</div>
-				<hr className='w-full' />
-				{/*==================================================
-					nav with all the links in it
-				==================================================*/}
-				<Navigation
-					setIsNavOpen={setIsNavOpen}
-					isNavOpen={isNavOpen}
-					setCurrentPath={setCurrentPath}
-					currentPath={currentPath}
-					ref={headerRef}
-				/>
-			</header>
-		</>
+			</div>
+		</header>
 	);
 }

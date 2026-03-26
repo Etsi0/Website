@@ -1,6 +1,7 @@
 import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 import Link from 'next/link';
-import { cn, whenHoveringButton, whenHoveringLink, disableFocusing } from '@/lib/util';
+import { whenHoveringButton, whenHoveringLink, disableFocusing } from '@/lib/util';
+import { cn } from '@/lib/cn';
 
 type TStandard = {
 	className?: string;
@@ -18,6 +19,8 @@ type TA = AnchorHTMLAttributes<HTMLAnchorElement> & TStandard & {
 type TButton = ButtonHTMLAttributes<HTMLButtonElement> & TStandard & {
 	href?: never;
 	isButton?: never;
+	command?: string
+	commandfor?: string
 }
 
 type TLinkButton = TA | TButton
@@ -72,9 +75,10 @@ export function LinkButton({ ...props }: TLinkButton): ReactNode {
 	const { className, isHoverable = true, isFocusable = true, children, disabled = false, type = 'button', ...restProps } = props as TButton;
 	const clazz = [
 		standard,
+		'cursor-pointer',
 		...(disabled
 			? ['cursor-not-allowed opacity-50']
-			: [isHoverable && whenHoveringButton, isFocusable && disableFocusing]
+			: [isHoverable && whenHoveringButton, !isFocusable && disableFocusing]
 		),
 		className
 	];

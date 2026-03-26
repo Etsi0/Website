@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 import { neon } from '@neondatabase/serverless';
 import { z } from 'zod';
-import { MDXRemote } from 'next-mdx-remote/rsc';
+import { pageTitle } from '@/lib/pageTitle';
 import { schemaWishlist } from '@/schema/wishlist/main';
 import Play from '@/svg/play.svg';
 import { LinkButton } from '@/components/ui/link';
-import { pageTitle } from '@/lib/util';
 
 // Cache for 24 hours (86400 seconds)
 export const revalidate = 86400;
@@ -65,7 +65,7 @@ export default async function page() {
 
 	return (
 		<>
-			<div className='m-8 grid justify-center gap-3 text-center'>
+			<div className='pt-(--header-offset) grid justify-center gap-3 text-center'>
 				<h1>Wishlist</h1>
 				<p>If you are on this page and do not know me IRL, then why are you here</p>
 			</div>
