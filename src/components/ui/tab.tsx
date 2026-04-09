@@ -27,8 +27,8 @@ export function Tabs({ name, items, width, startIndex }: TTabsProps) {
 					name={name}
 					className='
 						[--tabs-index:sibling-index()] grid grid-cols-subgrid grid-rows-subgrid col-span-full row-[1/span_2]
-						details-content:col-span-full details-content:row-start-2 details-content:z-1
-						open:[&_>_summary]:text-primary-950 open:[&_>_summary]:bg-primary-400 open:[&_>_summary]:border-primary-300 dark:open:[&_>_summary]:text-primary-50 dark:open:[&_>_summary]:bg-primary-600 dark:open:[&_>_summary]:border-primary-700
+						details-content:col-span-full details-content:row-start-2
+						open:[&_>_summary]:text-primary-950 open:[&_>_summary]:bg-primary-400 open:[&_>_summary]:border-primary-300 open:details-content:z-1 dark:open:[&_>_summary]:text-primary-50 dark:open:[&_>_summary]:bg-primary-600 dark:open:[&_>_summary]:border-primary-700
 					'
 					style={{ '--tabs-index': index + 1 } as CSSProperties}
 					open={index === startIndex}

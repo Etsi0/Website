@@ -29,14 +29,14 @@
 	Better border-radius
 ==================================================*/
 @utility corner-shape-* {
-	border-radius: --value([*]);
-	border-radius: calc(var(--spacing) * --value(number, [number]));
+	border-radius: --value([length], [*]);
+	border-radius: calc(var(--spacing) * --value(number));
 
 	@supports (corner-shape: superellipse(1)) {
 		--compensation: 0.9;
 		--exponent: 1.6;
-		border-radius: calc(--value([*]) * var(--exponent) * var(--compensation));
-		border-radius: calc(var(--spacing) * --value(number, [number]) * var(--exponent) * var(--compensation));
+		border-radius: calc(--value([length], [*]) * var(--exponent) * var(--compensation));
+		border-radius: calc(var(--spacing) * --value(number) * var(--exponent) * var(--compensation));
 		corner-shape: superellipse(var(--exponent));
 	}
 }
@@ -63,6 +63,42 @@
 	--color-primary-800: oklch(var(--primary-lightness-800) var(--primary-chroma-800) var(--hue-color));
 	--color-primary-900: oklch(var(--primary-lightness-900) var(--primary-chroma-900) var(--hue-color));
 	--color-primary-950: oklch(var(--primary-lightness-950) var(--primary-chroma-950) var(--hue-color));
+
+	--color-error-50: oklch(from var(--color-primary-50) l c 30);
+	--color-error-100: oklch(from var(--color-primary-100) l c 30);
+	--color-error-200: oklch(from var(--color-primary-200) l c 30);
+	--color-error-300: oklch(from var(--color-primary-300) l c 30);
+	--color-error-400: oklch(from var(--color-primary-400) l c 30);
+	--color-error-500: oklch(from var(--color-primary-500) l c 30);
+	--color-error-600: oklch(from var(--color-primary-600) l c 30);
+	--color-error-700: oklch(from var(--color-primary-700) l c 30);
+	--color-error-800: oklch(from var(--color-primary-800) l c 30);
+	--color-error-900: oklch(from var(--color-primary-900) l c 30);
+	--color-error-950: oklch(from var(--color-primary-950) l c 30);
+
+	--color-warning-50: oklch(from var(--color-primary-50) l c 70);
+	--color-warning-100: oklch(from var(--color-primary-100) l c 70);
+	--color-warning-200: oklch(from var(--color-primary-200) l c 70);
+	--color-warning-300: oklch(from var(--color-primary-300) l c 70);
+	--color-warning-400: oklch(from var(--color-primary-400) l c 70);
+	--color-warning-500: oklch(from var(--color-primary-500) l c 70);
+	--color-warning-600: oklch(from var(--color-primary-600) l c 70);
+	--color-warning-700: oklch(from var(--color-primary-700) l c 70);
+	--color-warning-800: oklch(from var(--color-primary-800) l c 70);
+	--color-warning-900: oklch(from var(--color-primary-900) l c 70);
+	--color-warning-950: oklch(from var(--color-primary-950) l c 70);
+
+	--color-ok-50: oklch(from var(--color-primary-50) l c 145);
+	--color-ok-100: oklch(from var(--color-primary-100) l c 145);
+	--color-ok-200: oklch(from var(--color-primary-200) l c 145);
+	--color-ok-300: oklch(from var(--color-primary-300) l c 145);
+	--color-ok-400: oklch(from var(--color-primary-400) l c 145);
+	--color-ok-500: oklch(from var(--color-primary-500) l c 145);
+	--color-ok-600: oklch(from var(--color-primary-600) l c 145);
+	--color-ok-700: oklch(from var(--color-primary-700) l c 145);
+	--color-ok-800: oklch(from var(--color-primary-800) l c 145);
+	--color-ok-900: oklch(from var(--color-primary-900) l c 145);
+	--color-ok-950: oklch(from var(--color-primary-950) l c 145);
 
 	--color-text-100: oklch(var(--text-lightness-100) var(--neutral-chroma) var(--hue-color));
 	--color-text-200: oklch(var(--text-lightness-200) var(--neutral-chroma) var(--hue-color));

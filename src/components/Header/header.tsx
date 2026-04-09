@@ -79,7 +79,7 @@ export function Header() {
 							<ul className={cn('grid gap-x-6 gap-y-4', navClass)}>
 								{Object.entries(link).map(([label, path]) => (
 									<li key={label}>
-										<LinkButton className='rounded-xs outline-offset-4' href={path}>
+										<LinkButton className='text-text-800 rounded-xs outline-offset-4' href={path}>
 											{label}
 										</LinkButton>
 									</li>

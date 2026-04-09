@@ -1,16 +1,53 @@
-'use client';
-
 import type { ReactNode } from 'react';
+import { cn } from '@/lib/cn';
+import { DesignToolCompareCell, DesignToolCompareLegend } from '@/components/Tph/tphDesignToolCompareCell';
+import { InlineCode } from '@/components/ui/inlineCode';
 import { LinkButton } from '@/components/ui/link';
 import { Tabs } from '@/components/ui/tab';
-
-function noteClass() {
-	return 'text-text-600 text-sm pl-4 border-l-2 border-primary-400 my-4 spacing-y-3';
-}
+import Error from '@/svg/materialDesignIcons/rounded/error.svg';
+import Warning from '@/svg/materialDesignIcons/rounded/warning.svg';
+import Ok from '@/svg/materialDesignIcons/rounded/check_circle.svg';
 
 type TTphHubProps = {
 	gitCommands: ReactNode;
 };
+
+type TVariant = 'error' | 'warning' | 'ok' | 'info';
+const NOTE_VARIANT: Record<TVariant, { icon?: typeof Error, classes: string }> = {
+	error: {
+		icon: Error,
+		classes: 'bg-[linear-gradient(to_bottom,transparent_.5rem,var(--color-error-500)_.5rem_100%)] fill-error-500',
+	},
+	warning: {
+		icon: Warning,
+		classes: 'bg-[linear-gradient(to_bottom,transparent_.5rem,var(--color-warning-500)_.5rem_100%)] fill-warning-500',
+	},
+	ok: {
+		icon: Ok,
+		classes: 'bg-[linear-gradient(to_bottom,transparent_.5rem,var(--color-ok-500)_.5rem_100%)] fill-ok-500',
+	},
+	info: {
+		icon: undefined,
+		classes: 'bg-primary-500',
+	},
+};
+
+function Note({ variant, children }: { variant: TVariant, children: ReactNode }) {
+	const Svg = NOTE_VARIANT[variant].icon;
+	const color = NOTE_VARIANT[variant].classes;
+
+	return (
+		<article className='grid grid-cols-[auto_1fr] gap-2'>
+				<div className='flex flex-col items-center w-5'>
+					{Svg && <Svg className={cn('size-5', color, 'bg-none')} />}
+					<div className={cn('grow w-[2px]', color)}></div>
+				</div>
+				<div className='self-center'>
+					{children}
+				</div>
+		</article>
+	)
+}
 
 export function TphHub({ gitCommands }: TTphHubProps) {
 	return (
@@ -20,285 +57,297 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 				<p className='mx-auto'>Curated links for the Discord server — pick a track below.</p>
 			</div>
 			<Tabs
-				name="test"
+				name="tabs"
 				items={[
 					{
 						title: "Design",
 						content: (
-							<>
+							<div className='space-y-8'>
 								<div className='space-y-2'>
-									<h2>Design tools</h2>
-									<p>Use these for UI work, icons, and vector assets. Export or hand off assets for the web when you move into front end.</p>
-									<ul className='list-disc pl-4 space-y-2'>
-										<li>
-											<LinkButton href='https://www.figma.com/'>Figma</LinkButton>
-										</li>
-										<li>
-											<LinkButton href='https://penpot.app/'>Penpot</LinkButton>
-										</li>
-										<li>
-											<LinkButton href='https://www.affinity.studio/'>Affinity</LinkButton>
-										</li>
-										<li>
-											<LinkButton href='https://inkscape.org/'>Inkscape</LinkButton>
-										</li>
-									</ul>
+									<h2 id="Design tools">Design tools</h2>
+									<p>Use one of these tools if you want to make UI, icons or vector assets</p>
+									<table className='w-full border-collapse text-left text-sm'>
+										<caption className='sr-only'>Comparison of design tools: Figma, Penpot, Affinity, and Inkscape</caption>
+										<thead>
+											<tr className='border-b border-body-200 bg-body-100'>
+												<th scope='col' className='p-3 font-medium text-text-800 text-center' />
+												<th scope='col' className='p-3 font-medium text-text-800 text-center'>
+													<LinkButton href='https://www.figma.com/'>Figma</LinkButton>
+												</th>
+												<th scope='col' className='p-3 font-medium text-text-800 text-center'>
+													<LinkButton href='https://penpot.app/'>Penpot</LinkButton>
+												</th>
+												<th scope='col' className='p-3 font-medium text-text-800 text-center'>
+													<LinkButton href='https://www.affinity.studio/'>Affinity</LinkButton>
+												</th>
+												<th scope='col' className='p-3 font-medium text-text-800 text-center'>
+													<LinkButton href='https://inkscape.org/'>Inkscape</LinkButton>
+												</th>
+											</tr>
+										</thead>
+										<tbody className='text-text-900'>
+											<tr className='border-b border-body-200'>
+												<th scope='row' className='p-3 font-normal text-text-800'>
+													Good for web design <DesignToolCompareLegend variant='quality' />
+												</th>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
+											</tr>
+											<tr className='border-b border-body-200'>
+												<th scope='row' className='p-3 font-normal text-text-800'>
+													Good for SVGs (vectors) <DesignToolCompareLegend variant='quality' />
+												</th>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+											</tr>
+											<tr className='border-b border-body-200'>
+												<th scope='row' className='p-3 font-normal text-text-800'>
+													Easy developer handoff <DesignToolCompareLegend variant='quality' />
+												</th>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
+											</tr>
+											<tr className='border-b border-body-200'>
+												<th scope='row' className='p-3 font-normal text-text-800'>
+													Real-time collaboration <DesignToolCompareLegend variant='quality' />
+												</th>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
+											</tr>
+											<tr className='border-b border-body-200'>
+												<th scope='row' className='p-3 font-normal text-text-800'>
+													Used within companies <DesignToolCompareLegend variant='quality' />
+												</th>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
+											</tr>
+											<tr className='border-b border-body-200'>
+												<th scope='row' className='p-3 font-normal text-text-800'>
+													Offline workflow <DesignToolCompareLegend variant='quality' />
+												</th>
+												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+											</tr>
+											<tr className='border-b border-body-200'>
+												<th scope='row' className='p-3 font-normal text-text-800'>
+													Plugin support <DesignToolCompareLegend variant='quality' />
+												</th>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
+											</tr>
+											<tr className='border-b border-body-200'>
+												<th scope='row' className='p-3 font-normal text-text-800'>
+													Open source <DesignToolCompareLegend variant='quality' />
+												</th>
+												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
+											</tr>
+											<tr>
+												<th scope='row' className='p-3 font-normal text-text-800'>
+													Cost <DesignToolCompareLegend variant='cost' />
+												</th>
+												<td className="text-center"><DesignToolCompareCell rating='subscription' />*</td>
+												<td className="text-center"><DesignToolCompareCell rating='free' /></td>
+												<td className="text-center"><DesignToolCompareCell rating='purchase' />*</td>
+												<td className="text-center"><DesignToolCompareCell rating='free' /></td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 								<div className='space-y-2'>
-									<h2>SVG</h2>
+									<h2 id="SVG">SVG</h2>
 									<ul className='list-disc pl-4 space-y-2'>
 										<li>
 											<LinkButton href='https://www.joshwcomeau.com/svg/friendly-introduction-to-svg/'>
-												Friendly introduction to SVG (Josh Comeau)
+												Friendly introduction to SVG
 											</LinkButton>
 										</li>
 										<li>
-											<LinkButton href='https://svgomg.net/'>SVGOMG — optimizer</LinkButton>
+											<LinkButton href='https://svgomg.net/'>SVGOMG</LinkButton> {'<-'} Optimize and minify SVG(s)
 										</li>
 									</ul>
 								</div>
-							</>
+							</div>
 						)
 					},
 					{
 						title: "Front end",
 						content: (
 							<>
-								<h2 className='text-center'>🚨 Do not use AI if you actually want to learn how to code 🚨</h2>
+								<p className='font-serif text-text-900 text-custom-4xl text-center mx-auto'>🚨 Do not use AI if you actually want to learn how to code 🚨</p>
 
-								<div>
-									<h2 className='text-text-900 text-lg font-semibold'>Docs</h2>
-									<ul className='list-disc pl-5 space-y-2 mt-2'>
-										<li>
-											<LinkButton href='https://developer.mozilla.org/en-US/'>MDN</LinkButton> (Mozilla) {'<-'} personal favorit
-										</li>
-										<li>
-											<LinkButton href='https://web.dev/learn/'>web.dev</LinkButton> (Google)
-										</li>
-									</ul>
-									<div className={noteClass()}>
-										<p>Avoid W3Schools — some information there is outdated.</p>
-										<p>
-											Bonus: add
-											{' '}
-											<code className='text-xs bg-body-100 px-1 rounded-sm'>
-												-site:w3schools.com
-											</code>
-											{' '}
-											to searches to filter W3Schools out (may not work on every search engine). Or use a custom
-											search URL — replace
-											{' '}
-											<code className='text-xs bg-body-100 px-1 rounded-sm'>
-												%s
-											</code>
-											{' '}
-											with your query in the browser&apos;s keyword search settings:
-										</p>
-										<ul className='list-disc pl-5 space-y-1'>
-											<li><LinkButton href='https://www.google.com/search?udm=14&q=%s%20-site:w3schools.com'>https://www.google.com/search?udm=14&q=%s%20-site:w3schools.com</LinkButton> (example template)</li>
-											<li><LinkButton href='https://search.brave.com/search?q=%s%20-w3schools'>https://search.brave.com/search?q=%s%20-w3schools</LinkButton> (different operator example)</li>
-											<li><LinkButton href='https://search.phadonia.com/?q=%s%20-site:w3schools.com'>https://search.phadonia.com/?q=%s%20-site:w3schools.com</LinkButton> (personal default)</li>
-										</ul>
-										<p>
-											<span className='font-medium text-text-800'>How do I add a custom search engine?</span>{' '}
-											Search it up — your browser&apos;s docs explain keyword URLs.
-										</p>
-									</div>
-								</div>
-
-								<div>
-									<h2 className='text-text-900 text-lg font-semibold'>Courses / roadmaps</h2>
-									<ul className='list-disc pl-5 space-y-2 mt-2'>
-										<li><LinkButton href='https://www.youtube.com/watch?v=1L2YiWdaUDM&list=PL4-IK0AVhVjOJs_UjdQeyEZ_cmEV3uJvx'>YouTube course (playlist)</LinkButton></li>
-										<li><LinkButton href='https://www.theodinproject.com/'>The Odin Project</LinkButton></li>
-										<li><LinkButton href='https://www.freecodecamp.org/'>freeCodeCamp</LinkButton></li>
-										<li><LinkButton href='https://roadmap.sh/'>roadmap.sh</LinkButton></li>
-										<li><LinkButton href='https://pll.harvard.edu/course/cs50-introduction-computer-science'>CS50x</LinkButton> (not web-specific)</li>
-									</ul>
-									<p className={noteClass()}>
-										Don{"'"}t follow the instructor blindly, ask yourself why they did what they did. If you
-										don{"'"}t understand what they did, read
-										{' '}
-										<LinkButton href='https://developer.mozilla.org/en-US/'>MDN</LinkButton> or
-										{' '}
-										<LinkButton href='https://web.dev/learn/'>web.dev</LinkButton>; if you are still stuck, ask your question on
-										{' '}
-										<LinkButton href='https://discord.gg/programming'>TPH</LinkButton>.
-									</p>
-								</div>
-
-								<div>
-									<h2 className='text-text-900 text-lg font-semibold'>Resources</h2>
-
-									<h3 className='text-text-900 font-medium mt-4 mb-2'>CSS</h3>
-									<ul className='list-disc pl-5 space-y-3'>
-										<li>
-											<strong className='text-text-800'>Selectors</strong>
-											<ul className='list-disc pl-5 mt-1 space-y-1'>
-												<li>
-													Game:{' '}
-													<LinkButton href='https://flukeout.github.io/'>CSS Diner</LinkButton>
-												</li>
-												<li>
-													Article:{' '}
-													<LinkButton href='https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Selectors'>
-														MDN — CSS selectors
-													</LinkButton>
-												</li>
-											</ul>
-										</li>
-										<li>
-											<strong className='text-text-800'>Units</strong>
-											<ul className='list-disc pl-5 mt-1 space-y-1'>
-												<li>
-													Diagram: <LinkButton href='https://whatunit.com/'>whatunit.com</LinkButton>
-												</li>
-												<li>
-													Article:{' '}
-													<LinkButton href='https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units'>
-														MDN — values and units
-													</LinkButton>
-												</li>
-											</ul>
-										</li>
-										<li>
-											<strong className='text-text-800'>
-												<code className='text-sm bg-body-200 px-1 rounded-sm'>
-													clamp()
-												</code>
-											</strong>
-											<ul className='list-disc pl-5 mt-1 space-y-1'>
-												<li>
-													Calculator:{' '}
-													<LinkButton href='https://utopia.fyi/clamp/calculator/'>Utopia clamp calculator</LinkButton>
-												</li>
-											</ul>
-										</li>
-										<li>
-											<strong className='text-text-800'>
-												<code className='text-sm bg-body-200 px-1 rounded-sm'>
-													display: grid
-												</code>
-											</strong>
-											<ul className='list-disc pl-5 mt-1 space-y-1'>
-												<li>
-													Game:{' '}
-													<LinkButton href='http://cssgridgarden.com/'>Grid Garden</LinkButton>
-												</li>
-												<li>
-													Article:{' '}
-													<LinkButton href='https://www.joshwcomeau.com/css/interactive-guide-to-grid/'>
-														Interactive guide to grid
-													</LinkButton>
-												</li>
-											</ul>
-										</li>
-										<li>
-											<strong className='text-text-800'>
-												<code className='text-sm bg-body-200 px-1 rounded-sm'>
-													display: flex
-												</code>
-											</strong>
-											<ul className='list-disc pl-5 mt-1 space-y-1'>
-												<li>
-													Game:{' '}
-													<LinkButton href='https://flexboxfroggy.com/'>Flexbox Froggy</LinkButton>
-												</li>
-												<li>
-													Article:{' '}
-													<LinkButton href='https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/'>
-														Interactive guide to flexbox
-													</LinkButton>
-												</li>
-											</ul>
-										</li>
-									</ul>
-									<div className={noteClass()}>
-										<p className='font-medium text-text-800'>When to use grid vs flex — videos</p>
-										<ul className='list-disc pl-5 space-y-1'>
+								<div className='grid gap-8'>
+									<div className='space-y-2'>
+										<h2 id="Docs">Docs</h2>
+										<ul className='list-disc pl-5 space-y-0.5'>
 											<li>
-												<LinkButton href='https://www.youtube.com/watch?v=aKFB5Bjk6KM'>YouTube (1)</LinkButton>
+												<LinkButton href='https://developer.mozilla.org/en-US/'>MDN</LinkButton> (Mozilla) {'<-'} personal favorit
 											</li>
 											<li>
-												<LinkButton href='https://www.youtube.com/watch?v=vO-1eseQ-kc'>YouTube (2)</LinkButton>
-											</li>
-											<li>
-												<LinkButton href='https://www.youtube.com/watch?v=3elGSZSWTbM'>YouTube (3)</LinkButton>
+												<LinkButton href='https://web.dev/learn/'>web.dev</LinkButton> (Google)
 											</li>
 										</ul>
-									</div>
-								</div>
-
-								<div>
-									<h2 className='text-text-900 text-lg font-semibold'>Tools</h2>
-									<ul className='list-disc pl-5 space-y-2 mt-2'>
-										<li>
-											axe DevTools
-											<ul className='list-disc pl-5 space-y-2 mt-2'>
-												<li>
-													<LinkButton href='https://chromewebstore.google.com/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd'>
-														Chrome
-													</LinkButton>
-												</li>
-												<li>
-													<LinkButton href='https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/'>
-														Firefox
-													</LinkButton>
-												</li>
+										<Note variant='warning'>
+											<p>Avoid W3Schools — some information there is outdated.</p>
+											<p>
+												Bonus: add
+												{' '}
+												<code className='text-xs bg-body-100 px-1 rounded-sm'>
+													-site:w3schools.com
+												</code>
+												{' '}
+												to searches to filter W3Schools out (may not work on every search engine). Or use a custom
+												search URL — replace
+												{' '}
+												<code className='text-xs bg-body-100 px-1 rounded-sm'>
+													%s
+												</code>
+												{' '}
+												with your query in the browser&apos;s keyword search settings:
+											</p>
+											<ul className='list-disc pl-5 space-y-1'>
+												<li><LinkButton href='https://www.google.com/search?udm=14&q=%s%20-site:w3schools.com'>https://www.google.com/search?udm=14&q=%s%20-site:w3schools.com</LinkButton> (example template)</li>
+												<li><LinkButton href='https://search.brave.com/search?q=%s%20-w3schools'>https://search.brave.com/search?q=%s%20-w3schools</LinkButton> (different operator example)</li>
+												<li><LinkButton href='https://search.phadonia.com/?q=%s%20-site:w3schools.com'>https://search.phadonia.com/?q=%s%20-site:w3schools.com</LinkButton> (personal default)</li>
 											</ul>
-										</li>
-										<li>
-											<LinkButton href='/settings/vscode'>VS Code extensions &amp; settings</LinkButton>
-										</li>
-									</ul>
-									<p className={noteClass()}>
-										<strong>DO NOT</strong> install any extension before knowing what it does.
-									</p>
-								</div>
+											<p>
+												<span className='font-medium text-text-800'>How do I add a custom search engine?</span>{' '}
+												Search it up — your browser&apos;s docs explain keyword URLs.
+											</p>
+										</Note>
+									</div>
 
-								<div>
-									<h2 className='text-text-900 text-lg font-semibold'>Challenges</h2>
-									<p className='mt-2'>
-									Challenges are meant to test your skills, so try solving them on your own before asking for help. You can find more info <LinkButton href='https://discord.com/channels/244230771232079873/353544874034855936/1300432565471285312'>here</LinkButton>.
-									</p>
-									<ul className='list-disc pl-5 space-y-2 mt-2'>
-										<li>
-											<LinkButton href='https://cssbattle.dev/'>CSSBattle</LinkButton>
-										</li>
-										<li>
-											<LinkButton href='https://www.frontendmentor.io/'>Frontend Mentor</LinkButton>
-										</li>
-									</ul>
-								</div>
+									<div className='space-y-2'>
+										<h2 id="Courses / roadmaps">Courses / roadmaps</h2>
+										<ul className='list-disc pl-5 space-y-0.5'>
+											<li><LinkButton href='https://www.youtube.com/watch?v=1L2YiWdaUDM&list=PL4-IK0AVhVjOJs_UjdQeyEZ_cmEV3uJvx'>YouTube course (playlist)</LinkButton> {'<-'} personal recommendation</li>
+											<li><LinkButton href='https://www.theodinproject.com/'>The Odin Project</LinkButton></li>
+											<li><LinkButton href='https://www.freecodecamp.org/'>freeCodeCamp</LinkButton></li>
+											<li><LinkButton href='https://roadmap.sh/'>roadmap.sh</LinkButton></li>
+											<li><LinkButton href='https://pll.harvard.edu/course/cs50-introduction-computer-science'>CS50x</LinkButton> (not web-specific)</li>
+										</ul>
+										<Note variant='warning'>
+											Don{"'"}t do any of these courses without ask yourself why they did what they did. If you
+											don{"'"}t understand what they did, read
+											{' '}
+											<LinkButton href='https://developer.mozilla.org/en-US/'>MDN</LinkButton> or
+											{' '}
+											<LinkButton href='https://web.dev/learn/'>web.dev</LinkButton>; if you are still stuck, ask your question on
+											{' '}
+											<LinkButton href='https://discord.gg/programming'>TPH</LinkButton>.
+										</Note>
+									</div>
 
-								<div>
-									<h2 className='text-text-900 text-lg font-semibold'>CSS reset</h2>
-									<ul className='list-disc pl-5 space-y-2 mt-2'>
-										<li>
-											<LinkButton href='https://www.joshwcomeau.com/css/custom-css-reset/#four-add-accessible-line-height-5'>
-												Josh Comeau — custom CSS reset
-											</LinkButton>
-										</li>
-										<li>
-											<LinkButton href='https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/preflight.css'>
-												Tailwind preflight (reference)
-											</LinkButton>
-										</li>
-									</ul>
-									<div className={noteClass()}>
-										<p className='font-medium text-text-800'>
-											Before using Tailwind or other CSS/JS frameworks, you should be able to check these off:
+									<div className='space-y-2'>
+										<h2 id="Resources">Resources</h2>
+
+										<h3 className='text-text-900 font-medium'>CSS</h3>
+										<ul className='list-disc pl-5 space-y-1'>
+											<li className='space-y-1'>
+												<strong className='text-text-800'>Selectors</strong>
+												<ul className='list-disc pl-5 space-y-0.5'>
+													<li>Game: <LinkButton href='https://flukeout.github.io/'>CSS Diner</LinkButton></li>
+													<li>Article: <LinkButton href='https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Selectors'>MDN</LinkButton></li>
+												</ul>
+											</li>
+											<li className='space-y-1'>
+												<strong className='text-text-800'>Units</strong>
+												<ul className='list-disc pl-5 space-y-0.5'>
+													<li>Diagram: <LinkButton href='https://whatunit.com/'>What CSS length unit should you use?</LinkButton></li>
+													<li>Article: <LinkButton href='https://web.dev/learn/css/sizing'>web.dev</LinkButton></li>
+												</ul>
+											</li>
+											<li className='space-y-1'>
+												<strong className='text-text-800'><code className='text-sm bg-body-200 px-[calc(1em/3)] py-[calc(1em/6)] rounded-sm'>clamp()</code></strong>
+												<ul className='list-disc pl-5 space-y-0.5'>
+													<li>Calculator: <LinkButton href='https://utopia.fyi/clamp/calculator/'>Utopia clamp calculator</LinkButton></li>
+												</ul>
+											</li>
+											<li className='space-y-1'>
+												<strong className='text-text-800'><code className='text-sm bg-body-200 px-[calc(1em/3)] py-[calc(1em/6)] rounded-sm'>display: grid</code></strong>
+												<ul className='list-disc pl-5 space-y-0.5'>
+													<li>Game: <LinkButton href='http://cssgridgarden.com/'>Grid Garden</LinkButton></li>
+													<li>Article: <LinkButton href='https://www.joshwcomeau.com/css/interactive-guide-to-grid/'>An interactive guide to css grid</LinkButton></li>
+												</ul>
+											</li>
+											<li className='space-y-1'>
+												<strong className='text-text-800'><code className='text-sm bg-body-200 px-[calc(1em/3)] py-[calc(1em/6)] rounded-sm'>display: flex</code></strong>
+												<ul className='list-disc pl-5 space-y-0.5'>
+													<li>Game: <LinkButton href='https://flexboxfroggy.com/'>Flexbox Froggy</LinkButton></li>
+													<li>Article: <LinkButton href='https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/'>An interactive guide to flexbox</LinkButton></li>
+												</ul>
+											</li>
+										</ul>
+										<Note variant='info'>
+											<p className='font-medium text-text-800 mb-1'>When to use grid/flex</p>
+											<ul className='list-disc pl-5 space-y-1'>
+												<li><LinkButton href='https://www.youtube.com/watch?v=aKFB5Bjk6KM'>YouTube (1)</LinkButton></li>
+												<li><LinkButton href='https://www.youtube.com/watch?v=vO-1eseQ-kc'>YouTube (2)</LinkButton></li>
+												<li><LinkButton href='https://www.youtube.com/watch?v=3elGSZSWTbM'>YouTube (3)</LinkButton></li>
+											</ul>
+										</Note>
+									</div>
+
+									<div className='space-y-2'>
+										<h2 id="Tools">Tools</h2>
+										<ul className='list-disc pl-5 space-y-0.5'>
+											<li>
+												axe DevTools
+												<ul className='list-disc pl-5 space-y-0.5'>
+													<li><LinkButton href='https://chromewebstore.google.com/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd'>Chrome</LinkButton></li>
+													<li><LinkButton href='https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/'>Firefox</LinkButton></li>
+												</ul>
+											</li>
+											<li><LinkButton href='/settings/vscode'>VS Code extensions &amp; settings</LinkButton></li>
+										</ul>
+										<Note variant='warning'>
+											<strong>DO NOT</strong> install any extensions before knowing what they do.
+										</Note>
+									</div>
+
+									<div className='space-y-2'>
+										<h2 id="Challenges">Challenges</h2>
+										<p className='mt-2'>
+										Challenges are meant to test your skills, so try solving them on your own before asking for help. You can find more info <LinkButton href='https://discord.com/channels/244230771232079873/353544874034855936/1300432565471285312'>here</LinkButton>.
 										</p>
-										<ol className='list-decimal pl-5 mt-2 space-y-2'>
+										<ul className='list-disc pl-5 space-y-0.5'>
+											<li><LinkButton href='https://cssbattle.dev/'>CSSBattle</LinkButton></li>
+											<li><LinkButton href='https://www.frontendmentor.io/'>Frontend Mentor</LinkButton></li>
+										</ul>
+									</div>
+
+									<div className='space-y-2'>
+										<h2 id="CSS reset">CSS reset</h2>
+										<ul className='list-disc pl-5 space-y-0.5'>
+											<li><LinkButton href='https://www.joshwcomeau.com/css/custom-css-reset/#four-add-accessible-line-height-5'>Josh Comeau{"'"}s reset</LinkButton></li>
+											<li><LinkButton href='https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/preflight.css'>Tailwind preflight</LinkButton></li>
+										</ul>
+									</div>
+
+									<div className='space-y-2'>
+										<h2 id="When can i start using frameworks and libs">When can i start using frameworks and libs</h2>
+										<ol className='list-decimal pl-5 space-y-2'>
 											<li>
 												You don{"'"}t suffer from{' '}
 												<LinkButton href='https://en.wiktionary.org/wiki/divitis'>divitis</LinkButton>.
 											</li>
-											<li>
-												You know{' '}
-												<code className='text-sm bg-body-100 px-1 rounded-sm'>display: flex</code> and{' '}
-												<code className='text-sm bg-body-100 px-1 rounded-sm'>display: grid</code>.
-											</li>
+											<li>You know <InlineCode>display: flex</InlineCode> and <InlineCode>display: grid</InlineCode>.</li>
 											<li>
 												You can build responsive layouts (preferably mobile first) (
 												<LinkButton href='https://discord.com/channels/244230771232079873/244242279865384963/1240390358538522695'>
@@ -314,46 +363,30 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												).
 											</li>
 											<li>You can ship sites that look consistent across browsers (<LinkButton href='https://caniuse.com/'>Can I use…</LinkButton>).</li>
-											<li>You can explain how your HTML and CSS work to a six-year-old.</li>
+											<li>You can explain how your HTML and CSS work to a six year old.</li>
 										</ol>
-										<p className='mt-3'>
-											<strong className='text-text-800'>Do not</strong> reach for frameworks until you can check all of these boxes.
-										</p>
+										<Note variant='ok'>
+											<strong className='text-text-800'>It{"'"}s okay</strong> if you reach for frameworks or libs if you could check all of these boxes.
+										</Note>
+										<Note variant='error'>
+											<strong className='text-text-800'>Do not</strong> reach for frameworks or libs if you couldn{"'"}t check all these boxes.
+										</Note>
 									</div>
 								</div>
 							</>
 						)
 					},
 					{
-						title: "Backend",
+						title: "Git",
 						content: (
-							<>
-								<h2 className='text-text-900 text-lg font-semibold'>Backend</h2>
-								<p>
-									No curated list here yet. When you add server-side topics (languages, HTTP APIs, databases,
-									auth), this tab is the place for them.
-								</p>
-							</>
-						)
-					},
-					{
-						title: "Dev ops",
-						content: (
-							<>
-								<div>
-									<h2 className='text-text-900 text-lg font-semibold'>Git</h2>
-									<p className='mt-2'>
-										Recommended: learn Git with the official docs at{' '}
-										<LinkButton href='https://git-scm.com/'>git-scm.com</LinkButton>.
-									</p>
-									<p className='mt-4 font-medium text-text-800'>Frequently used commands</p>
+							<div className='space-y-8'>
+								<div className='space-y-2'>
+									<h2 id="Git">Git</h2>
+									<p className='max-w-full'>Recommend learning git regardless of what you are doing. You can find git docs here: <LinkButton href='https://git-scm.com/'>git-scm.com</LinkButton>.</p>
+									<p className='font-medium text-text-800'>My frequently used commands</p>
 									{gitCommands}
 								</div>
-								<h2 className='text-text-900 text-lg font-semibold'>More DevOps</h2>
-								<p>
-									CI/CD, hosting, and observability links can go here when you have them.
-								</p>
-							</>
+							</div>
 						)
 					},
 				]}

@@ -81,7 +81,11 @@ function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 								<Badge tabIndex={0} className='peer px-[0.35rem]' style={{ anchorName }}>+{badges.length - 1}</Badge>
 								<div
 									popover=""
-									className='flex flex-wrap gap-2 bg-body-100 p-3 border border-body-200 corner-shape-[1.6875rem] mx-8 mb-3 shadow-xl opacity-0 transition-opacity [.peer:hover+&]:opacity-100 [.peer:focus-visible+&]:opacity-100'
+									className={cn(
+										'invisible flex flex-wrap gap-2 bg-body-100 p-3 border border-body-200 corner-shape-[1.6875rem] mx-8 mb-3 shadow-xl opacity-0 [transition:opacity_150ms_ease,visibility_0ms_150ms]',
+										'[.peer:hover+&]:visible [.peer:hover+&]:opacity-100 [.peer:hover+&]:[transition:opacity_150ms_ease,visibility_0ms]',
+										'[.peer:focus-visible+&]:visible [.peer:focus-visible+&]:opacity-100 [.peer:focus-visible+&]:[transition:opacity_150ms_ease,visibility_0ms]',
+									)}
 									style={{ positionAnchor: anchorName, positionArea: "top" }}
 								>
 									{badges.slice(1).sort((a, b) => (a.text || '').localeCompare(b.text || '')).map((badge, index) => (
