@@ -35,13 +35,20 @@ const userSettings = `{
 	],
 	"gitlens.hovers.enabled": false,
 
+	/*==================================================
+		calculate lightness: (lightestLightness - darkestLightness) * (i / (totalAmountOfColors - 1)) + darkestLightness
+		calculate chroma: (primaryChroma / primaryLightness) * (primaryLightness - abs(currentLightness - primaryLightness))
+
+		(0.4375 - 0.3009) * (i / (5 - 1)) + 0.3009
+		(0.1 / 0.4375) * (0.4375 - abs(currentLightness - 0.4375))
+	==================================================*/
 	"indentRainbow.colors": [
-		"oklch(40.09% 0.0628 274.11)",
-		"oklch(40.09% 0.0785 274.11)",
-		"oklch(40.09% 0.0942 274.11)",
-		"oklch(40.09% 0.1099 274.11)",
-		"oklch(40.09% 0.0942 274.11)",
-		"oklch(40.09% 0.0785 274.11)",
+		"oklch(0.33505 0.07658 274.11)",
+		"oklch(0.3692  0.08439 274.11)",
+		"oklch(0.40335 0.09220 274.11)",
+		"oklch(0.4375  0.1     274.11)",
+		"oklch(0.40335 0.09220 274.11)",
+		"oklch(0.3692  0.08439 274.11)"
 	],
 	"indentRainbow.indicatorStyle": "light",
 	"indentRainbow.lightIndicatorStyleLineWidth": 4,
