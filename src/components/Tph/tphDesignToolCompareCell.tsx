@@ -35,23 +35,23 @@ type TDesignToolCompareLegendProps = {
 export function DesignToolCompareLegend({ variant }: TDesignToolCompareLegendProps) {
 	if (variant === 'quality') {
 		return (
-			<>
+			<span className="float-right">
 				(
 				<DesignToolCompareCell rating="good"/>
 				<DesignToolCompareCell rating="neutral"/>
 				<DesignToolCompareCell rating="bad"/>
 				)
-			</>
+			</span>
 		);
 	}
 
 	return (
-		<>
+		<span className="float-right">
 			(
 			<DesignToolCompareCell rating="free"/>
 			<DesignToolCompareCell rating="purchase"/>
 			<DesignToolCompareCell rating="subscription"/>
 			)
-		</>
+		</span>
 	);
 }

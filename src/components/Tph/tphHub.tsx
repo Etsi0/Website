@@ -54,7 +54,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 		<section className='pt-(--header-offset) space-y-8 [&_a]:text-primary-600 dark:[&_a]:text-primary-400'>
 			<div className='text-center space-y-3'>
 				<h1>TPH learning resources</h1>
-				<p className='mx-auto'>Curated links for the Discord server — pick a track below.</p>
+				<p className='text-center text-custom-xl mx-auto'>🚨 Do not use AI if you actually want to learn 🚨</p>
 			</div>
 			<Tabs
 				name="tabs"
@@ -66,28 +66,29 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 								<div className='space-y-2'>
 									<h2 id="Design tools">Design tools</h2>
 									<p>Use one of these tools if you want to make UI, icons or vector assets</p>
-									<table className='w-full border-collapse text-left text-sm'>
+									<div className='overflow-x-auto w-full'>
+									<table className='max-w-full w-full table-fixed border-collapse text-nowrap text-left text-sm'>
 										<caption className='sr-only'>Comparison of design tools: Figma, Penpot, Affinity, and Inkscape</caption>
 										<thead>
 											<tr className='border-b border-body-200 bg-body-100'>
-												<th scope='col' className='p-3 font-medium text-text-800 text-center' />
-												<th scope='col' className='p-3 font-medium text-text-800 text-center'>
+												<th scope='col' className='p-2 font-medium text-text-800 text-center' />
+												<th scope='col' className='p-2 font-medium text-text-800 text-center'>
 													<LinkButton href='https://www.figma.com/'>Figma</LinkButton>
 												</th>
-												<th scope='col' className='p-3 font-medium text-text-800 text-center'>
+												<th scope='col' className='p-2 font-medium text-text-800 text-center'>
 													<LinkButton href='https://penpot.app/'>Penpot</LinkButton>
 												</th>
-												<th scope='col' className='p-3 font-medium text-text-800 text-center'>
+												<th scope='col' className='p-2 font-medium text-text-800 text-center'>
 													<LinkButton href='https://www.affinity.studio/'>Affinity</LinkButton>
 												</th>
-												<th scope='col' className='p-3 font-medium text-text-800 text-center'>
+												<th scope='col' className='p-2 font-medium text-text-800 text-center'>
 													<LinkButton href='https://inkscape.org/'>Inkscape</LinkButton>
 												</th>
 											</tr>
 										</thead>
 										<tbody className='text-text-900'>
 											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-3 font-normal text-text-800'>
+												<th scope='row' className='p-2 font-normal text-text-800'>
 													Good for web design <DesignToolCompareLegend variant='quality' />
 												</th>
 												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
@@ -96,7 +97,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
 											</tr>
 											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-3 font-normal text-text-800'>
+												<th scope='row' className='p-2 font-normal text-text-800'>
 													Good for SVGs (vectors) <DesignToolCompareLegend variant='quality' />
 												</th>
 												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
@@ -105,7 +106,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
 											</tr>
 											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-3 font-normal text-text-800'>
+												<th scope='row' className='p-2 font-normal text-text-800'>
 													Easy developer handoff <DesignToolCompareLegend variant='quality' />
 												</th>
 												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
@@ -114,7 +115,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
 											</tr>
 											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-3 font-normal text-text-800'>
+												<th scope='row' className='p-2 font-normal text-text-800'>
 													Real-time collaboration <DesignToolCompareLegend variant='quality' />
 												</th>
 												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
@@ -123,7 +124,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
 											</tr>
 											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-3 font-normal text-text-800'>
+												<th scope='row' className='p-2 font-normal text-text-800'>
 													Used within companies <DesignToolCompareLegend variant='quality' />
 												</th>
 												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
@@ -132,7 +133,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
 											</tr>
 											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-3 font-normal text-text-800'>
+												<th scope='row' className='p-2 font-normal text-text-800'>
 													Offline workflow <DesignToolCompareLegend variant='quality' />
 												</th>
 												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
@@ -141,7 +142,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
 											</tr>
 											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-3 font-normal text-text-800'>
+												<th scope='row' className='p-2 font-normal text-text-800'>
 													Plugin support <DesignToolCompareLegend variant='quality' />
 												</th>
 												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
@@ -150,7 +151,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
 											</tr>
 											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-3 font-normal text-text-800'>
+												<th scope='row' className='p-2 font-normal text-text-800'>
 													Open source <DesignToolCompareLegend variant='quality' />
 												</th>
 												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
@@ -159,7 +160,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
 											</tr>
 											<tr>
-												<th scope='row' className='p-3 font-normal text-text-800'>
+												<th scope='row' className='p-2 font-normal text-text-800'>
 													Cost <DesignToolCompareLegend variant='cost' />
 												</th>
 												<td className="text-center"><DesignToolCompareCell rating='subscription' />*</td>
@@ -169,17 +170,26 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 											</tr>
 										</tbody>
 									</table>
+									</div>
 								</div>
 								<div className='space-y-2'>
-									<h2 id="SVG">SVG</h2>
-									<ul className='list-disc pl-4 space-y-2'>
+									<h2 id="Design fundamentals">Design fundamentals</h2>
+
+									<ul className='list-disc pl-5'>
 										<li>
-											<LinkButton href='https://www.joshwcomeau.com/svg/friendly-introduction-to-svg/'>
-												Friendly introduction to SVG
-											</LinkButton>
+											<LinkButton href='https://www.colorpsychology.org/'>Color Psychology</LinkButton>
 										</li>
 										<li>
-											<LinkButton href='https://svgomg.net/'>SVGOMG</LinkButton> {'<-'} Optimize and minify SVG(s)
+											<LinkButton href='https://en.wikipedia.org/wiki/Gestalt_psychology#Principles'>Gestalt Principles</LinkButton>
+										</li>
+										<li>
+											<LinkButton href='https://www.youtube.com/watch?v=UWwNIMHFdW4'>60/30/10 rule</LinkButton>
+										</li>
+										<li>
+											<LinkButton href='https://www.thedesignership.com/blog/the-ultimate-spacing-guide-for-ui-designers'>4-point grid system</LinkButton>
+										</li>
+										<li>
+											<LinkButton href='https://jakub.kr/work/concentric-border-radius'>Concentric Borders</LinkButton>
 										</li>
 									</ul>
 								</div>
@@ -190,7 +200,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 						title: "Front end",
 						content: (
 							<>
-								<p className='font-serif text-text-900 text-custom-4xl text-center mx-auto'>🚨 Do not use AI if you actually want to learn how to code 🚨</p>
+								
 
 								<div className='grid gap-8'>
 									<div className='space-y-2'>
@@ -205,31 +215,13 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 										</ul>
 										<Note variant='warning'>
 											<p>Avoid W3Schools — some information there is outdated.</p>
-											<p>
-												Bonus: add
-												{' '}
-												<code className='text-xs bg-body-100 px-1 rounded-sm'>
-													-site:w3schools.com
-												</code>
-												{' '}
-												to searches to filter W3Schools out (may not work on every search engine). Or use a custom
-												search URL — replace
-												{' '}
-												<code className='text-xs bg-body-100 px-1 rounded-sm'>
-													%s
-												</code>
-												{' '}
-												with your query in the browser&apos;s keyword search settings:
-											</p>
+											<p>Bonus: add <InlineCode>-site:w3schools.com</InlineCode> to searches to filter W3Schools out (may not work on every search engine). Or use a custom search URL — replace <InlineCode>%s</InlineCode> with your query in the browser&apos;s keyword search settings:</p>
 											<ul className='list-disc pl-5 space-y-1'>
 												<li><LinkButton href='https://www.google.com/search?udm=14&q=%s%20-site:w3schools.com'>https://www.google.com/search?udm=14&q=%s%20-site:w3schools.com</LinkButton> (example template)</li>
 												<li><LinkButton href='https://search.brave.com/search?q=%s%20-w3schools'>https://search.brave.com/search?q=%s%20-w3schools</LinkButton> (different operator example)</li>
 												<li><LinkButton href='https://search.phadonia.com/?q=%s%20-site:w3schools.com'>https://search.phadonia.com/?q=%s%20-site:w3schools.com</LinkButton> (personal default)</li>
 											</ul>
-											<p>
-												<span className='font-medium text-text-800'>How do I add a custom search engine?</span>{' '}
-												Search it up — your browser&apos;s docs explain keyword URLs.
-											</p>
+											<p><span className='font-medium text-text-800'>How do I add a custom search engine?</span> Search it up — your browser&apos;s docs explain keyword URLs.</p>
 										</Note>
 									</div>
 
@@ -274,20 +266,14 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												</ul>
 											</li>
 											<li className='space-y-1'>
-												<strong className='text-text-800'><code className='text-sm bg-body-200 px-[calc(1em/3)] py-[calc(1em/6)] rounded-sm'>clamp()</code></strong>
-												<ul className='list-disc pl-5 space-y-0.5'>
-													<li>Calculator: <LinkButton href='https://utopia.fyi/clamp/calculator/'>Utopia clamp calculator</LinkButton></li>
-												</ul>
-											</li>
-											<li className='space-y-1'>
-												<strong className='text-text-800'><code className='text-sm bg-body-200 px-[calc(1em/3)] py-[calc(1em/6)] rounded-sm'>display: grid</code></strong>
+												<strong className='text-text-800'><InlineCode>display: grid</InlineCode></strong>
 												<ul className='list-disc pl-5 space-y-0.5'>
 													<li>Game: <LinkButton href='http://cssgridgarden.com/'>Grid Garden</LinkButton></li>
 													<li>Article: <LinkButton href='https://www.joshwcomeau.com/css/interactive-guide-to-grid/'>An interactive guide to css grid</LinkButton></li>
 												</ul>
 											</li>
 											<li className='space-y-1'>
-												<strong className='text-text-800'><code className='text-sm bg-body-200 px-[calc(1em/3)] py-[calc(1em/6)] rounded-sm'>display: flex</code></strong>
+												<strong className='text-text-800'><InlineCode>display: flex</InlineCode></strong>
 												<ul className='list-disc pl-5 space-y-0.5'>
 													<li>Game: <LinkButton href='https://flexboxfroggy.com/'>Flexbox Froggy</LinkButton></li>
 													<li>Article: <LinkButton href='https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/'>An interactive guide to flexbox</LinkButton></li>
@@ -302,6 +288,15 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												<li><LinkButton href='https://www.youtube.com/watch?v=3elGSZSWTbM'>YouTube (3)</LinkButton></li>
 											</ul>
 										</Note>
+
+										<h3 id="SVG">SVG</h3>
+										<ul className='list-disc pl-4 space-y-2'>
+											<li>
+												<LinkButton href='https://www.joshwcomeau.com/svg/friendly-introduction-to-svg/'>
+													Friendly introduction to SVG
+												</LinkButton>
+											</li>
+										</ul>
 									</div>
 
 									<div className='space-y-2'>
@@ -313,6 +308,12 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 													<li><LinkButton href='https://chromewebstore.google.com/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd'>Chrome</LinkButton></li>
 													<li><LinkButton href='https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/'>Firefox</LinkButton></li>
 												</ul>
+											</li>
+											<li>
+												<LinkButton href='https://utopia.fyi/clamp/calculator/'>Utopia clamp calculator</LinkButton>
+											</li>
+											<li>
+												<LinkButton href='https://svgomg.net/'>SVGOMG - Optimize and minify SVG(s)</LinkButton>
 											</li>
 											<li><LinkButton href='/settings/vscode'>VS Code extensions &amp; settings</LinkButton></li>
 										</ul>
