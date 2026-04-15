@@ -18,7 +18,7 @@ export function Details({ name, title, children, className }: TDetails) {
 				className
 			)}
 		>
-			<summary className="cursor-pointer flex items-center justify-between text-text-800 px-5 py-4 focus-visible:outline-transparent">{title}<Plus className='fill-current size-5 transition-transform duration-300' /></summary>
+			<summary className="cursor-pointer flex items-center justify-between text-text-800 px-5 py-4 focus-visible:outline-transparent">{title}<Plus className='shrink-0 fill-current size-5 transition-transform duration-300' /></summary>
 			<div className='px-5 pb-4'>
 				{children}
 			</div>
