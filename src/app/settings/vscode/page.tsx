@@ -142,9 +142,9 @@ export default async function Page() {
 					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
 						<summary>What{"'"}s the benefit of using tabs over spaces?</summary>
 						<p className='pt-2'>
-							For me, it comes down to fewer keystrokes and personal preference. I{"'"}ve always used tabs, find them more efficient, and I happen to agree with Linus Torvalds <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#indentation"><q>spaces are never used for indentation</q></LinkButton>.
+							For me, it comes down to fewer keystrokes and personal preference. I{"'"}ve always used tabs, find them more efficient, and I happen to agree with Linus Torvalds <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#:~:text=spaces%20are%20never%20used%20for%20indentation"><q>spaces are never used for indentation</q></LinkButton>.
 							<br />
-							He also said, <q>Get a decent editor and don{"'"}t leave whitespace at the end of lines.</q> That{"'"}s why I use <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=sidp.strict-whitespace">Strict Whitespace</LinkButton>. I can{"'"}t stand mixed indentation or stray whitespace hanging around at the end of a line.
+							He also said, <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#:~:text=Get%20a%20decent%20editor%20and%20don%E2%80%99t%20leave%20whitespace%20at%20the%20end%20of%20lines"><q>Get a decent editor and don{"'"}t leave whitespace at the end of lines.</q></LinkButton> That{"'"}s why I use <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=sidp.strict-whitespace">Strict Whitespace</LinkButton>. I can{"'"}t stand mixed indentation or stray whitespace hanging around at the end of a line.
 						</p>
 					</details>
 					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
