@@ -4,6 +4,7 @@ import { pageTitle } from '@/lib/pageTitle';
 import json from '@/json/settings/vscode/extensions.json';
 import { LinkButton } from '@/components/ui/link';
 import { ShikiCodeBlock } from '@/components/ui/shikiCodeBlock';
+import { InlineCode } from '@/components/ui/inlineCode';
 
 export const metadata: Metadata = {
 	title: pageTitle('VS Code Settings'),
@@ -114,39 +115,41 @@ export default async function Page() {
 			<div className='space-y-5'>
 				<h2 className="text-center">FAQ</h2>
 				<div className='space-y-2'>
-					<details name="details-group" className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
 						<summary>Why aren{"'"}t you using any formatters?</summary>
-						I used <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</LinkButton> for 5+ years. Then I started working for a company that didn{"'"}t use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <code className='px-1 bg-black/15 border-body-400 dark:border-body-300 border rounded-md'>.vscode/settings.json</code> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.
-						<br />
-						<b className='text-sm'>I do recommend using a formatter if you are new to coding or unsure how to format code</b>
+						<div className='pt-2'>
+							I used <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</LinkButton> for 5+ years. Then I started working for a company that didn{"'"}t use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <InlineCode>.vscode/settings.json</InlineCode> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.
+							<br />
+							<b className='text-sm'>I do recommend using a formatter if you are new to coding or unsure how to format code</b>
+						</div>
 					</details>
-					<details name="details-group" className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
 						<summary>Is Error Lens distracting with all the inline error highlighting?</summary>
-						No. It makes development more convenient since you don{"'"}t need to hover over problematic code to see what{"'"}s wrong.
+						<div className="pt-2">No. It makes development more convenient since you don{"'"}t need to hover over problematic code to see what{"'"}s wrong.</div>
 					</details>
-					<details name="details-group" className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
 						<summary>How does GitLens compare to the built-in Git features?</summary>
-						I primarily use GitLens to see who made changes, when they were made, and which commit introduced them.
+						<div className="pt-2">I primarily use GitLens to see who made changes, when they were made, and which commit introduced them.</div>
 					</details>
-					<details name="details-group" className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
 						<summary>Why disable the minimap?</summary>
-						It takes up screen space without providing valuable information. I prefer maximizing the code editing area.
+						<div className="pt-2">It takes up screen space without providing valuable information. I prefer maximizing the code editing area.</div>
 					</details>
-					<details name="details-group" className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
 						<summary>Why turn off explorer auto-reveal?</summary>
-						I want my file explorer to stay clean and organized. I navigate primarily using <code className='px-1 bg-black/15 border rounded-md'>Ctrl + Shift + P</code> (Command Palette) anyway.
+						<div className="pt-2">I want my file explorer to stay clean and organized. I navigate primarily using <InlineCode>Ctrl + Shift + P</InlineCode> (Command Palette) anyway.</div>
 					</details>
-					<details name="details-group" className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
 						<summary>What{"'"}s the benefit of using tabs over spaces?</summary>
-						<p>
+						<p className='pt-2'>
 							For me, it comes down to fewer keystrokes and personal preference. I{"'"}ve always used tabs, find them more efficient, and I happen to agree with Linus Torvalds <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#indentation"><q>spaces are never used for indentation</q></LinkButton>.
 							<br />
 							He also said, <q>Get a decent editor and don{"'"}t leave whitespace at the end of lines.</q> That{"'"}s why I use <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=sidp.strict-whitespace">Strict Whitespace</LinkButton>. I can{"'"}t stand mixed indentation or stray whitespace hanging around at the end of a line.
 						</p>
 					</details>
-					<details name="details-group" className='bg-body-200 px-3 py-1 rounded-md max-w-prose mx-auto'>
+					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
 						<summary>Why use JetBrains Mono font?</summary>
-						I have dyslexia, and this font significantly improves readability for me.
+						<div className="pt-2">I have dyslexia, and this font significantly improves readability for me.</div>
 					</details>
 				</div>
 			</div>

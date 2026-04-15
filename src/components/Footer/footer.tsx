@@ -31,9 +31,9 @@ export default function Footer() {
 								<p>Every project here started with the same thought: “This should be better.” So I made it better and shared it with the world.</p>
 								<nav>
 									<ul className='flex gap-3'>
-										<li><LinkButton href="#" aria-label="Linkedin"><Linkedin className="text-text-600 size-6" /></LinkButton></li>
-										<li><LinkButton href="#" aria-label="Github"><GitHub className="fill-text-600 size-6" /></LinkButton></li>
-										<li><LinkButton href="#" aria-label="Discord"><Discord className="*:fill-text-600 size-6" /></LinkButton></li>
+										<li><LinkButton href="https://www.linkedin.com/in/albinkarlsson2003/" aria-label="Linkedin"><Linkedin className="text-text-600 size-6" /></LinkButton></li>
+										<li><LinkButton href="https://github.com/Etsi0" aria-label="Github"><GitHub className="fill-text-600 size-6" /></LinkButton></li>
+										<li><LinkButton href="https://discordapp.com/users/850433812089012335" aria-label="Discord"><Discord className="*:fill-text-600 size-6" /></LinkButton></li>
 									</ul>
 								</nav>
 							</div>

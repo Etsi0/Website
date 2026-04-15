@@ -436,6 +436,7 @@
 		counter-reset: step;
 		counter-increment: step 0;
 
+		overflow-x: auto;
 		padding: 1rem;
 		border-radius: 0.5rem;
 	}
