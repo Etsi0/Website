@@ -5,6 +5,7 @@ import json from '@/json/settings/vscode/extensions.json';
 import { LinkButton } from '@/components/ui/link';
 import { ShikiCodeBlock } from '@/components/ui/shikiCodeBlock';
 import { InlineCode } from '@/components/ui/inlineCode';
+import { Details } from '@/components/ui/details';
 
 export const metadata: Metadata = {
 	title: pageTitle('VS Code Settings'),
@@ -113,44 +114,61 @@ export default async function Page() {
 				<ShikiCodeBlock lang='jsonc'>{workspaceSettings}</ShikiCodeBlock>
 			</div>
 			<div className='space-y-5'>
-				<h2 className="text-center">FAQ</h2>
+				<h2 className="text-center">Frequently asked questions</h2>
 				<div className='space-y-2'>
-					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
-						<summary>Why aren{"'"}t you using any formatters?</summary>
-						<div className='pt-2'>
-							I used <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</LinkButton> for 5+ years. Then I started working for a company that didn{"'"}t use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <InlineCode>.vscode/settings.json</InlineCode> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.
-							<br />
-							<b className='text-sm'>I do recommend using a formatter if you are new to coding or unsure how to format code</b>
-						</div>
-					</details>
-					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
-						<summary>Is Error Lens distracting with all the inline error highlighting?</summary>
-						<div className="pt-2">No. It makes development more convenient since you don{"'"}t need to hover over problematic code to see what{"'"}s wrong.</div>
-					</details>
-					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
-						<summary>How does GitLens compare to the built-in Git features?</summary>
-						<div className="pt-2">I primarily use GitLens to see who made changes, when they were made, and which commit introduced them.</div>
-					</details>
-					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
-						<summary>Why disable the minimap?</summary>
-						<div className="pt-2">It takes up screen space without providing valuable information. I prefer maximizing the code editing area.</div>
-					</details>
-					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
-						<summary>Why turn off explorer auto-reveal?</summary>
-						<div className="pt-2">I want my file explorer to stay clean and organized. I navigate primarily using <InlineCode>Ctrl + Shift + P</InlineCode> (Command Palette) anyway.</div>
-					</details>
-					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
-						<summary>What{"'"}s the benefit of using tabs over spaces?</summary>
-						<p className='pt-2'>
-							For me, it comes down to fewer keystrokes and personal preference. I{"'"}ve always used tabs, find them more efficient, and I happen to agree with Linus Torvalds <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#:~:text=spaces%20are%20never%20used%20for%20indentation"><q>spaces are never used for indentation</q></LinkButton>.
-							<br />
-							He also said, <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#:~:text=Get%20a%20decent%20editor%20and%20don%E2%80%99t%20leave%20whitespace%20at%20the%20end%20of%20lines"><q>Get a decent editor and don{"'"}t leave whitespace at the end of lines.</q></LinkButton> That{"'"}s why I use <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=sidp.strict-whitespace">Strict Whitespace</LinkButton>. I can{"'"}t stand mixed indentation or stray whitespace hanging around at the end of a line.
-						</p>
-					</details>
-					<details name="details-group" className='bg-body-200 px-4 py-3 rounded-2xl max-w-prose mx-auto'>
-						<summary>Why use JetBrains Mono font?</summary>
-						<div className="pt-2">I have dyslexia, and this font significantly improves readability for me.</div>
-					</details>
+					<Details
+						name='details-group'
+						title="Why aren't you using any formatters?"
+						className='max-w-prose mx-auto'
+					>
+						I used <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</LinkButton> for 5+ years. Then I started working for a company that didn{"'"}t use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <InlineCode>.vscode/settings.json</InlineCode> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.
+						<br />
+						<b className='text-sm'>I do recommend using a formatter if you are new to coding or unsure how to format code</b>
+					</Details>
+					<Details
+						name="details-group"
+						title="Is Error Lens distracting with all the inline error highlighting?"
+						className="max-w-prose mx-auto"
+					>
+						No. It makes development more convenient since you don{"'"}t need to hover over problematic code to see what{"'"}s wrong.
+					</Details>
+					<Details
+						name="details-group"
+						title="How does GitLens compare to the built-in Git features?"
+						className="max-w-prose mx-auto"
+					>
+						I primarily use GitLens to see who made changes, when they were made, and which commit introduced them.
+					</Details>
+					<Details
+						name="details-group"
+						title="Why disable the minimap?"
+						className="max-w-prose mx-auto"
+					>
+						It takes up screen space without providing valuable information. I prefer maximizing the code editing area.
+					</Details>
+					<Details
+						name="details-group"
+						title="Why turn off explorer auto-reveal?"
+						className="max-w-prose mx-auto"
+					>
+						I want my file explorer to stay clean and organized. I navigate primarily using <InlineCode>Ctrl + Shift + P</InlineCode> (Command Palette) anyway.
+					</Details>
+					<Details
+						name="details-group"
+						title="What's the benefit of using tabs over spaces?"
+						className="max-w-prose mx-auto"
+					>
+						For me, it comes down to fewer keystrokes and personal preference. I{"'"}ve always used tabs, find them more efficient, and I happen to agree with Linus Torvalds <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#:~:text=spaces%20are%20never%20used%20for%20indentation"><q>spaces are never used for indentation</q></LinkButton>.
+						<br />
+						He also said, <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#:~:text=Get%20a%20decent%20editor%20and%20don%E2%80%99t%20leave%20whitespace%20at%20the%20end%20of%20lines"><q>Get a decent editor and don{"'"}t leave whitespace at the end of lines.</q></LinkButton> That{"'"}s why I use <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=sidp.strict-whitespace">Strict Whitespace</LinkButton>. I can{"'"}t stand mixed indentation or stray whitespace hanging around at the end of a line.
+					</Details>
+					<Details
+						name="details-group"
+						title="Why use JetBrains Mono font?"
+						className="max-w-prose mx-auto"
+					>
+						I have dyslexia, and this font significantly improves readability for me.
+					</Details>
 				</div>
 			</div>
 		</section>

@@ -410,24 +410,25 @@
 	/*==================================================
 		Animated details
 	==================================================*/
-	details:not(.\[--tabs-index\:sibling-index\(\)\]) {
-		overflow: hidden;
-	}
+	@supports (interpolate-size: allow-keywords) {
+		details:not(.\[--tabs-index\:sibling-index\(\)\]) {
+			overflow: hidden;
+		}
 
-	/*! don't add margin or padding here !*/
-	details:not(.\[--tabs-index\:sibling-index\(\)\])::details-content {
-		block-size: 0;
-		transition-property: block-size, content-visibility;
-		transition-duration: 0.3s;
-		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-		transition-behavior: allow-discrete;
-	}
+		/*! don't add margin or padding here !*/
+		details:not(.\[--tabs-index\:sibling-index\(\)\])::details-content {
+			block-size: 0;
+			transition-property: block-size, content-visibility;
+			transition-duration: 0.3s;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+			transition-behavior: allow-discrete;
+		}
 
-	/*! don't add margin or padding here !*/
-	details:not(.\[--tabs-index\:sibling-index\(\)\]):open::details-content {
-		block-size: auto;
+		/*! don't add margin or padding here !*/
+		details:not(.\[--tabs-index\:sibling-index\(\)\]):open::details-content {
+			block-size: auto;
+		}
 	}
-
 
 	/*==================================================
 		Code blocks
