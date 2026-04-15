@@ -33,7 +33,7 @@ export function Tabs({ name, items, width, startIndex }: TTabsProps) {
 					style={{ '--tabs-index': index + 1 } as CSSProperties}
 					open={index === startIndex}
 				>
-					<summary className={cn('grid place-content-center col-[calc(var(--tabs-index)+1)] row-1 cursor-pointer select-none bg-body-200 py-[0.75em] corner-shape-3.5 border-body-300 z-1 transition-colors duration-200', clazz)}>{item.title}</summary>
+					<summary className={cn('grid place-content-center col-[calc(var(--tabs-index)+1)] row-1 cursor-pointer select-none text-center bg-body-100 py-[0.75em] corner-shape-3.5 border-body-200 z-1 transition-colors duration-200', clazz)}>{item.title}</summary>
 					{item.content}
 				</details>
 			))}

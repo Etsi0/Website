@@ -1,26 +1,45 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import { cn } from '@/lib/cn';
-import PhadoniaLogo from '@/svg/phadonia.svg';
-import { DarkMode } from '@/components/Header/darkMode';
-import { LinkButton } from '@/components/ui/link';
 
-const link: Record<string, string> = {
-	About: '/about',
-	Settings: '/settings/vscode',
-	'Minecraft Mods': '/minecraft',
-	Pomodoro: '/pomodoro',
+import { useEffect, useRef, useState } from 'react';
+
+import { cn } from '@/lib/cn';
+import { DarkMode } from '@/components/Header/darkMode';
+import { HEADER_NAV_LINKS } from '@/components/Header/navLinks';
+import { LinkButton } from '@/components/ui/link';
+import PhadoniaLogo from '@/svg/phadonia.svg';
+
+const cq = {
+	grid: 'ph-header-wide__grid',
+	hamburger: 'ph-header-wide__hamburger',
+	navRow: 'ph-header-wide__nav-row',
+	navList: 'ph-header-wide__nav-list',
+} as const;
+
+type THeaderProps = {
+	wideBreakpointRem: number;
 };
 
-/* max(logo, themeSwitcher) * 2 + nav + gap * 2 = calc(1rem * (max(75.95, 24) * 2 + 358.567) / 16 + 2rem * 2) ≈ 36rem */
-const wrapperClass = '@[36rem]:grid-cols-[1fr_auto_1fr] @[36rem]:gap-0';
-const hamburgerClass = '@[36rem]:hidden';
-const navWrapper = '@[36rem]:contents';
-const navClass = '@[36rem]:flex';
-
-export function Header() {
+export function Header({ wideBreakpointRem }: THeaderProps) {
 	const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
 	const headerRef = useRef<HTMLElement | null>(null);
+
+	const styles = `
+		@container (min-width: ${wideBreakpointRem}rem) {
+			.${cq.grid} {
+				grid-template-columns: 1fr auto 1fr;
+				gap: 0;
+			}
+			.${cq.hamburger} {
+				display: none;
+			}
+			.${cq.navRow} {
+				display: contents;
+			}
+			.${cq.navList} {
+				display: flex;
+			}
+		}
+	`;
 
 	useEffect(() => {
 		const header = headerRef.current;
@@ -32,11 +51,12 @@ export function Header() {
 
 	return (
 		<header ref={headerRef} id="header" className='breakout-wrapper [--header-height:1.5rem] bg-transparent w-full top-7.5 z-50 [&:popover-open_>_div]:grid-rows-[1fr]' popover="">
+			<style>{styles}</style>
 			<div
 				className='col-sm @container overflow-clip relative grid grid-rows-[0fr] px-[calc(var(--header-height)*1.5)] py-[calc(var(--header-height)*0.75)] corner-shape-6 transition-[grid-template-rows] duration-300 h-fit'
 			>
 				<div className='absolute bg-body-50/25 w-screen h-[200%] left-1/2 top-0 border border-body-50/25 -translate-x-1/2 -translate-y-1/4 backdrop-blur-xl -z-10'></div>
-				<div className={cn('grid items-center gap-8 min-h-(--header-height)', wrapperClass)}>
+				<div className={cn('grid items-center gap-8 min-h-(--header-height)', cq.grid)}>
 					<div className='flex items-center justify-between'>
 						<LinkButton
 							className='rounded-xs outline-offset-4'
@@ -47,9 +67,10 @@ export function Header() {
 						</LinkButton>
 						{/* !!! I did not make this hamburgerBtn, https://codepen.io/ainalem/pen/wvKOEMV !!! */}
 						<LinkButton
-							className={cn('hamburger-button rounded-sm', hamburgerClass)}
-							aria-label={isNavOpen ? 'Close menu' : 'Open menu'}
+							className={cn('hamburger-button rounded-sm', cq.hamburger)}
+							aria-label={isNavOpen ? 'Close navigation menu' : 'Open navigation menu'}
 							aria-expanded={isNavOpen}
+							aria-controls="header"
 							onClick={() => setIsNavOpen((prev) => !prev)}
 							command="toggle-popover"
 							commandfor="header"
@@ -74,10 +95,10 @@ export function Header() {
 							</svg>
 						</LinkButton>
 					</div>
-					<div className={cn('flex justify-between items-end', navWrapper)}>
+					<div className={cn('flex justify-between items-end', cq.navRow)}>
 						<nav aria-label='Main navigation'>
-							<ul className={cn('grid gap-x-6 gap-y-4', navClass)}>
-								{Object.entries(link).map(([label, path]) => (
+							<ul className={cn('grid gap-x-6 gap-y-4', cq.navList)}>
+								{Object.entries(HEADER_NAV_LINKS).map(([label, path]) => (
 									<li key={label}>
 										<LinkButton className='text-text-800 rounded-xs outline-offset-4' href={path}>
 											{label}

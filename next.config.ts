@@ -9,6 +9,7 @@ const withMdx = nextMdx({
 });
 
 const nextConfig: NextConfig = withMdx({
+	serverExternalPackages: ['@napi-rs/canvas'],
 	productionBrowserSourceMaps: true,
 	images: {
 		remotePatterns: [

@@ -5,6 +5,7 @@ import Script from 'next/script';
 import { Inter, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 
+import { getHeaderWideBreakpointRem } from '@/lib/headerWideBreakpoint';
 import { Header } from '@/components/Header/header';
 import Footer from '@/components/Footer/footer';
 
@@ -35,6 +36,8 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+	const wideBreakpointRem = getHeaderWideBreakpointRem();
+
 	return (
 		<html lang='en' suppressHydrationWarning className={`${inter.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable}`}>
 			<head>
@@ -49,7 +52,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			<body className='bg-body-50'>
 				<ThemeProvider attribute='class'>
 					<div id='root' className='flex min-h-svh flex-col'>
-						<Header />
+						<Header wideBreakpointRem={wideBreakpointRem} />
 						<main className='breakout-wrapper w-full grow'>{children}</main>
 						<Footer />
 						<Analytics />

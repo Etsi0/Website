@@ -7,6 +7,7 @@ import { Tabs } from '@/components/ui/tab';
 import Error from '@/svg/materialDesignIcons/rounded/error.svg';
 import Warning from '@/svg/materialDesignIcons/rounded/warning.svg';
 import Ok from '@/svg/materialDesignIcons/rounded/check_circle.svg';
+import { Table, Tbody, Td, Tfoot, Th, Thead, Tr } from '@/components/ui/table';
 
 type TTphHubProps = {
 	gitCommands: ReactNode;
@@ -66,111 +67,92 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 								<div className='space-y-2'>
 									<h2 id="Design tools">Design tools</h2>
 									<p>Use one of these tools if you want to make UI, icons or vector assets</p>
-									<div className='overflow-x-auto w-full'>
-									<table className='max-w-full w-full table-fixed border-collapse text-nowrap text-left text-sm'>
+									<Table className='w-full'>
 										<caption className='sr-only'>Comparison of design tools: Figma, Penpot, Affinity, and Inkscape</caption>
-										<thead>
-											<tr className='border-b border-body-200 bg-body-100'>
-												<th scope='col' className='p-2 font-medium text-text-800 text-center' />
-												<th scope='col' className='p-2 font-medium text-text-800 text-center'>
-													<LinkButton href='https://www.figma.com/'>Figma</LinkButton>
-												</th>
-												<th scope='col' className='p-2 font-medium text-text-800 text-center'>
-													<LinkButton href='https://penpot.app/'>Penpot</LinkButton>
-												</th>
-												<th scope='col' className='p-2 font-medium text-text-800 text-center'>
-													<LinkButton href='https://www.affinity.studio/'>Affinity</LinkButton>
-												</th>
-												<th scope='col' className='p-2 font-medium text-text-800 text-center'>
-													<LinkButton href='https://inkscape.org/'>Inkscape</LinkButton>
-												</th>
-											</tr>
-										</thead>
-										<tbody className='text-text-900'>
-											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-2 font-normal text-text-800'>
-													Good for web design <DesignToolCompareLegend variant='quality' />
-												</th>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
-											</tr>
-											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-2 font-normal text-text-800'>
-													Good for SVGs (vectors) <DesignToolCompareLegend variant='quality' />
-												</th>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-											</tr>
-											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-2 font-normal text-text-800'>
-													Easy developer handoff <DesignToolCompareLegend variant='quality' />
-												</th>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
-											</tr>
-											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-2 font-normal text-text-800'>
-													Real-time collaboration <DesignToolCompareLegend variant='quality' />
-												</th>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
-											</tr>
-											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-2 font-normal text-text-800'>
-													Used within companies <DesignToolCompareLegend variant='quality' />
-												</th>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
-											</tr>
-											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-2 font-normal text-text-800'>
-													Offline workflow <DesignToolCompareLegend variant='quality' />
-												</th>
-												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-											</tr>
-											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-2 font-normal text-text-800'>
-													Plugin support <DesignToolCompareLegend variant='quality' />
-												</th>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='neutral' /></td>
-											</tr>
-											<tr className='border-b border-body-200'>
-												<th scope='row' className='p-2 font-normal text-text-800'>
-													Open source <DesignToolCompareLegend variant='quality' />
-												</th>
-												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='bad' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='good' /></td>
-											</tr>
-											<tr>
-												<th scope='row' className='p-2 font-normal text-text-800'>
-													Cost <DesignToolCompareLegend variant='cost' />
-												</th>
-												<td className="text-center"><DesignToolCompareCell rating='subscription' />*</td>
-												<td className="text-center"><DesignToolCompareCell rating='free' /></td>
-												<td className="text-center"><DesignToolCompareCell rating='purchase' />*</td>
-												<td className="text-center"><DesignToolCompareCell rating='free' /></td>
-											</tr>
-										</tbody>
-									</table>
-									</div>
+										<Thead>
+											<Tr>
+												<Th scope='col'></Th>
+												<Th className='text-center' scope='col'><LinkButton href='https://www.figma.com/'>Figma</LinkButton></Th>
+												<Th className='text-center' scope='col'><LinkButton href='https://penpot.app/'>Penpot</LinkButton></Th>
+												<Th className='text-center' scope='col'><LinkButton href='https://www.affinity.studio/'>Affinity</LinkButton></Th>
+												<Th className='text-center' scope='col'><LinkButton href='https://inkscape.org/'>Inkscape</LinkButton></Th>
+											</Tr>
+										</Thead>
+										<Tbody>
+											<Tr>
+												<Th scope="row">Good for web design <DesignToolCompareLegend variant='quality' /></Th>
+												<Td className='text-center'><DesignToolCompareCell rating='good' /></Td>
+												<Td className='text-center'><DesignToolCompareCell rating='good' /></Td>
+												<Td className='text-center'><DesignToolCompareCell rating='bad' /></Td>
+												<Td className='text-center'><DesignToolCompareCell rating='bad' /></Td>
+											</Tr>
+											<Tr>
+												<Th scope="row">Good for SVGs (vectors) <DesignToolCompareLegend variant='quality' /></Th>
+												<Td className='text-center'><DesignToolCompareCell rating='good' /></Td>
+												<Td className='text-center'><DesignToolCompareCell rating='good' /></Td>
+												<Td className='text-center'><DesignToolCompareCell rating='good' /></Td>
+												<Td className='text-center'><DesignToolCompareCell rating='good' /></Td>
+											</Tr>
+											<Tr>
+												<Th scope="row">Easy developer handoff <DesignToolCompareLegend variant='quality' /></Th>
+												<Td className='text-center'><DesignToolCompareCell rating='good' /></Td>
+												<Td className='text-center'><DesignToolCompareCell rating='neutral' /></Td>
+												<Td className='text-center'><DesignToolCompareCell rating='bad' /></Td>
+												<Td className='text-center'><DesignToolCompareCell rating='bad' /></Td>
+											</Tr>
+											<Tr>
+												<Th scope="row">Real-time collaboration <DesignToolCompareLegend variant='quality' /></Th>
+												<Td className="text-center"><DesignToolCompareCell rating='good' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='neutral' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='bad' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='bad' /></Td>
+											</Tr>
+											<Tr>
+												<Th scope="row">Used within companies <DesignToolCompareLegend variant='quality' /></Th>
+												<Td className="text-center"><DesignToolCompareCell rating='good' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='bad' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='neutral' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='bad' /></Td>
+											</Tr>
+											<Tr>
+												<Th scope="row">Offline workflow <DesignToolCompareLegend variant='quality' /></Th>
+												<Td className="text-center"><DesignToolCompareCell rating='neutral' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='neutral' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='good' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='good' /></Td>
+											</Tr>
+											<Tr>
+												<Th scope="row">Plugin support <DesignToolCompareLegend variant='quality' /></Th>
+												<Td className="text-center"><DesignToolCompareCell rating='good' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='neutral' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='neutral' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='neutral' /></Td>
+											</Tr>
+											<Tr>
+												<Th scope="row">Open source <DesignToolCompareLegend variant='quality' /></Th>
+												<Td className="text-center"><DesignToolCompareCell rating='bad' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='good' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='bad' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='good' /></Td>
+											</Tr>
+											<Tr>
+												<Th scope="row">Cost <DesignToolCompareLegend variant='cost' /></Th>
+												<Td className="text-center"><DesignToolCompareCell rating='subscription' />*</Td>
+												<Td className="text-center"><DesignToolCompareCell rating='free' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='purchase' />*</Td>
+												<Td className="text-center"><DesignToolCompareCell rating='free' /></Td>
+											</Tr>
+										</Tbody>
+										<Tfoot>
+											<Tr>
+												<Th scope="row"></Th>
+												<Td className="text-center">👑</Td>
+												<Td className="text-center"></Td>
+												<Td className="text-center"></Td>
+												<Td className="text-center"></Td>
+											</Tr>
+										</Tfoot>
+									</Table>
 								</div>
 								<div className='space-y-2'>
 									<h2 id="Design fundamentals">Design fundamentals</h2>

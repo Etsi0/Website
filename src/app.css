@@ -242,7 +242,8 @@
 		outline: solid 2px var(--color-primary-500);
 	}
 
-	::selection {
+	::selection,
+	::target-text {
 		color: var(--color-primary-50);
 		background: var(--color-primary-500);
 	}

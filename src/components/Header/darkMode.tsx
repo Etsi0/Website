@@ -29,7 +29,6 @@ export function DarkMode() {
 	};
 
 	function toggleDarkMode() {
-		console.log(theme);
 		setTheme(themeIs());
 	}
 
