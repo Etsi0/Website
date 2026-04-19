@@ -217,7 +217,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 											<li><LinkButton href='https://pll.harvard.edu/course/cs50-introduction-computer-science'>CS50x</LinkButton> (not web-specific)</li>
 										</ul>
 										<Note variant='warning'>
-											Don{"'"}t do any of these courses without ask yourself why they did what they did. If you
+											Don{"'"}t do any of these courses without asking yourself why they did what they did. If you
 											don{"'"}t understand what they did, read
 											{' '}
 											<LinkButton href='https://developer.mozilla.org/en-US/'>MDN</LinkButton> or
