@@ -125,7 +125,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 												<Th scope="row">Plugin support <DesignToolCompareLegend variant='quality' /></Th>
 												<Td className="text-center"><DesignToolCompareCell rating='good' /></Td>
 												<Td className="text-center"><DesignToolCompareCell rating='neutral' /></Td>
-												<Td className="text-center"><DesignToolCompareCell rating='neutral' /></Td>
+												<Td className="text-center"><DesignToolCompareCell rating='bad' /></Td>
 												<Td className="text-center"><DesignToolCompareCell rating='neutral' /></Td>
 											</Tr>
 											<Tr>
@@ -137,9 +137,9 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 											</Tr>
 											<Tr>
 												<Th scope="row">Cost <DesignToolCompareLegend variant='cost' /></Th>
-												<Td className="text-center"><DesignToolCompareCell rating='subscription' />*</Td>
+												<Td className="text-center"><DesignToolCompareCell rating='free' /><LinkButton href="#Design tools 1"><sup>[1]</sup></LinkButton></Td>
 												<Td className="text-center"><DesignToolCompareCell rating='free' /></Td>
-												<Td className="text-center"><DesignToolCompareCell rating='purchase' />*</Td>
+												<Td className="text-center"><DesignToolCompareCell rating='free' /></Td>
 												<Td className="text-center"><DesignToolCompareCell rating='free' /></Td>
 											</Tr>
 										</Tbody>
@@ -153,6 +153,7 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 											</Tr>
 										</Tfoot>
 									</Table>
+									<p id="Design tools 1"><LinkButton href='#Design tools 1'><sup>[1]</sup></LinkButton> Need to pay a subscription fee to get all features. Not necessary in my option</p>
 								</div>
 								<div className='space-y-2'>
 									<h2 id="Design fundamentals">Design fundamentals</h2>
@@ -182,8 +183,6 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 						title: "Front end",
 						content: (
 							<>
-								
-
 								<div className='grid gap-8'>
 									<div className='space-y-2'>
 										<h2 id="Docs">Docs</h2>
