@@ -348,10 +348,10 @@ export function TphHub({ gitCommands }: TTphHubProps) {
 											<li>You can explain how your HTML and CSS work to a six year old.</li>
 										</ol>
 										<Note variant='ok'>
-											<strong className='text-text-800'>It{"'"}s okay</strong> if you reach for frameworks or libs if you could check all of these boxes.
+											If you <strong className='text-text-800'>can</strong> check all these boxes, it{"'"}s okay to reach for a framework or library.
 										</Note>
 										<Note variant='error'>
-											<strong className='text-text-800'>Do not</strong> reach for frameworks or libs if you couldn{"'"}t check all these boxes.
+											If you <strong className='text-text-800'>can{"'"}t</strong> check all these boxes, don{"'"}t reach for a framework or library.
 										</Note>
 									</div>
 								</div>
