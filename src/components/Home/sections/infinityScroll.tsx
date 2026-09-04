@@ -116,17 +116,23 @@ export function InfinityScroll({
 			className={cn('overflow-clip relative my-16 mask-[linear-gradient(to_right,transparent_0,black_1.5rem,black_calc(100%-1.5rem),transparent_100%)]', className[0])}
 			ref={refContainer}
 		>
-			{images.map((item, index) => (
-				<Image
-					key={index}
-					className={cn(`horizontalScroll-${index} object-contain absolute left-0 opacity-75 grayscale`, className[1])}
-					style={{left: isMounted ? '' : FallbackPosition(index)}}
-					src={item}
-					alt="Gray scale version of a company logo"
-					height={size}
-					width={size}
-				/>
-			))}
+			{images.map((item, index) => {
+				const src = typeof item === 'string' ? item : item.src;
+				const isDuplicate = images.findIndex((img) => (typeof img === 'string' ? img : img.src) === src) !== index;
+
+				return (
+					<Image
+						key={index}
+						className={cn(`horizontalScroll-${index} object-contain absolute left-0 opacity-75 grayscale`, className[1])}
+						style={{left: isMounted ? '' : FallbackPosition(index)}}
+						src={item}
+						alt="Gray scale version of a company logo"
+						aria-hidden={isDuplicate || undefined}
+						height={size}
+						width={size}
+					/>
+				);
+			})}
 		</section>
 	);
 }
