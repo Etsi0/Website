@@ -3,7 +3,8 @@ import json from '@/json/settings/vscode/extensions.json';
 import { LinkButton } from '@/components/ui/link';
 import { ShikiCodeBlock } from '@/components/ui/shikiCodeBlock';
 
-const aboutConfig = `browser.compactmode.show	true
+const aboutConfig = `
+browser.compactmode.show	true
 browser.tabs.closeWindowWithLastTab	false
 devtools.cache.disabled	true
 devtools.inspector.showAllAnonymousContent	true
@@ -13,7 +14,8 @@ full-screen-api.transition-duration.enter	0 0
 full-screen-api.transition-duration.leave	0 0
 full-screen-api.warning.timeout	0
 toolkit.legacyUserProfileCustomizations.stylesheets	true
-network.IDN_show_punycode	true` as const;
+network.IDN_show_punycode	true
+` as const;
 
 export default async function Page() {
 	return (

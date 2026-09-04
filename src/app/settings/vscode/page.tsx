@@ -12,7 +12,8 @@ export const metadata: Metadata = {
 	description: "Are there something you want to stop doing? Then you can use this to see when you should do that thing or when you shouldn't do that thing",
 };
 
-const userSettings = `{
+const userSettings = `
+{
 	"C_Cpp.default.compilerPath": "",
 	"cSpell.language": "en,sv",
 
@@ -62,9 +63,11 @@ const userSettings = `{
 
 	"workbench.colorTheme": "Material Theme Palenight High Contrast",
 	"workbench.iconTheme": "material-icon-theme",
-}` as const;
+}
+` as const;
 
-const workspaceSettings = `{
+const workspaceSettings = `
+{
 	"diffEditor.ignoreTrimWhitespace": false,
 	"editor.formatOnPaste": false,
 	"editor.formatOnSave": false,
@@ -80,7 +83,8 @@ const workspaceSettings = `{
 	"workbench.editorAssociations": {
 		"*.svg": "default"
 	}
-}` as const;
+}
+` as const;
 
 export default async function Page() {
 	return (

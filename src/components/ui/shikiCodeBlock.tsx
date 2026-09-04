@@ -10,7 +10,7 @@ type TShikiCodeBlockProps = {
 };
 
 export async function ShikiCodeBlock({ children, lang, className }: TShikiCodeBlockProps) {
-	const html = await codeToHtml(children, {
+	const html = await codeToHtml(children.trim(), {
 		lang,
 		themes: {
 			dark: 'material-theme-palenight',
