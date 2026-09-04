@@ -5,7 +5,7 @@ import { pageTitle } from '@/lib/pageTitle';
 import { LinkButton } from '@/components/ui/link';
 import { NoScript } from '@/components/ui/noScript';
 import { useTimer } from '@/components/pomodoro/useTimer';
-import { SettingsDialog } from '@/components/pomodoro/settingsDialog';
+import { SETTINGS_DIALOG_ID, SettingsDialog } from '@/components/pomodoro/settingsDialog';
 import SkipNext from '@/svg/materialDesignIcons/rounded/skip_next.svg';
 import Settings from '@/svg/materialDesignIcons/rounded/settings.svg';
 
@@ -34,7 +34,6 @@ const emptySubscribe = () => () => {};
 export default function Client() {
 	const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
 	const [options, setOptions] = useState<TOptions>(DEFAULT_OPTIONS);
-	const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
 	const { state, isRunning, setIsRunning, timeLeft, index, handleStateTransition } = useTimer('pomodoro', options);
 
@@ -51,25 +50,25 @@ export default function Client() {
 		<>
 			<section className='grid place-items-center min-h-[min(62.5rem,100svh)]'>
 				<NoScript />
-				<div className={cn('gap-4', isMounted ? 'grid' : 'hidden')}>
+				<div className={cn('gap-12', isMounted ? 'grid' : 'hidden')}>
 					<div className='mx-auto'>{index}</div>
 					<div className='flex items-center justify-center gap-4'>
 						{STATES.map((item) => (
 							<LinkButton
 								key={item}
-								className='rounded-md bg-primary-200 border border-primary-100 px-6 py-1 text-primary-600 dark:bg-body-100 dark:border-body-200 dark:text-text-600'
+								className='rounded-md bg-primary-200 border border-primary-100 px-6 py-1 text-primary-600 dark:bg-body-900 dark:border-body-800 dark:text-body-400'
 								{...(state === item ? { disabled: true } : { onClick: () => handleStateTransition(item) })}
 							>
 								{item.replace(/([A-Z])/g, ' $1').replace(/(^\w)/g, (c) => c.toUpperCase())}
 							</LinkButton>
 						))}
 					</div>
-					<h1 className='text-center text-9xl'>
+					<h1 className='text-center text-9xl [text-box:trim-both_cap_alphabetic]'>
 						{minutes}:{seconds}
 					</h1>
-					<div className='mt-4 flex items-center justify-center gap-8'>
-						<LinkButton aria-label='Settings' onClick={() => setIsSettingsOpen(true)}>
-							<Settings className='size-[calc(1.25em+1rem)] fill-text-700' />
+					<div className='flex items-center justify-center gap-8'>
+						<LinkButton aria-label='Settings' command='show-modal' commandfor={SETTINGS_DIALOG_ID}>
+							<Settings className='size-[calc(1.25em+1rem)] fill-body-700 dark:fill-body-300' />
 						</LinkButton>
 
 						<LinkButton
@@ -90,13 +89,13 @@ export default function Client() {
 						</LinkButton>
 
 						<LinkButton aria-label='Skip' onClick={() => handleStateTransition()}>
-							<SkipNext className='size-[calc(1.25em+1rem)] fill-text-700' />
+							<SkipNext className='size-[calc(1.25em+1rem)] fill-body-700 dark:fill-body-300' />
 						</LinkButton>
 					</div>
 				</div>
 			</section>
 
-			<SettingsDialog isOpen={isSettingsOpen} options={options} setOptions={setOptions} onClose={() => setIsSettingsOpen(false)} />
+			<SettingsDialog options={options} setOptions={setOptions} />
 		</>
 	);
 }

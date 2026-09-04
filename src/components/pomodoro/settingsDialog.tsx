@@ -1,29 +1,30 @@
 import { useEffect, useRef } from 'react';
-import { cn } from '@/lib/cn';
 import type { TOptions } from '@/components/pomodoro/client2';
 import { LinkButton } from '@/components/ui/link';
 import { Dialog } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 
-export const SettingsDialog = ({ isOpen, options, setOptions, onClose }: { isOpen: boolean; options: TOptions; setOptions: (options: TOptions) => void; onClose: () => void }) => {
+export const SETTINGS_DIALOG_ID = 'pomodoro-settings';
+
+export function SettingsDialog({ options, setOptions }: { options: TOptions; setOptions: (options: TOptions) => void }) {
 	const dialogRef = useRef<HTMLDialogElement>(null);
 
 	useEffect(() => {
 		const dialog = dialogRef.current;
 		if (!dialog) return;
 
-		if (isOpen) {
-			dialog.showModal();
-		} else {
-			dialog.close();
-		}
+		const syncOverflow = () => {
+			document.documentElement.classList.toggle('overflow-hidden', dialog.open);
+		};
 
-		document.documentElement.classList.toggle('overflow-hidden', isOpen);
-
-		const handleEscape = () => onClose();
-		dialog.addEventListener('close', handleEscape);
-		return () => dialog.removeEventListener('close', handleEscape);
-	}, [isOpen, onClose]);
+		dialog.addEventListener('toggle', syncOverflow);
+		dialog.addEventListener('close', syncOverflow);
+		return () => {
+			dialog.removeEventListener('toggle', syncOverflow);
+			dialog.removeEventListener('close', syncOverflow);
+			document.documentElement.classList.remove('overflow-hidden');
+		};
+	}, []);
 
 	const handleNumberChange = (key: keyof TOptions) => (event: React.ChangeEvent<HTMLInputElement>) => {
 		setOptions({ ...options, [key]: Number(event.target.value) });
@@ -34,7 +35,7 @@ export const SettingsDialog = ({ isOpen, options, setOptions, onClose }: { isOpe
 	};
 
 	return (
-		<Dialog ref={dialogRef} className={cn('gap-4', isOpen && 'grid')}>
+		<Dialog ref={dialogRef} id={SETTINGS_DIALOG_ID} className='gap-4 open:grid'>
 			{(['pomodoro', 'shortBreak', 'longBreak'] as const).map((setting) => (
 				<Label key={setting} className='flex items-center justify-between' type='horizontal'>
 					{setting.charAt(0).toUpperCase() + setting.slice(1).replace(/([A-Z])/g, ' $1')}
@@ -54,9 +55,9 @@ export const SettingsDialog = ({ isOpen, options, setOptions, onClose }: { isOpe
 				<input className='rounded-md p-2' type='number' value={options.longBreakInterval} min={1} max={999} onChange={handleNumberChange('longBreakInterval')} />
 			</Label>
 
-			<LinkButton className='justify-self-end rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-primary-100' onClick={onClose}>
+			<LinkButton className='justify-self-end rounded-md bg-primary-500 px-[1.5em] py-[0.75em] text-primary-100' command='close' commandfor={SETTINGS_DIALOG_ID}>
 				Close
 			</LinkButton>
 		</Dialog>
 	);
-};
+}
