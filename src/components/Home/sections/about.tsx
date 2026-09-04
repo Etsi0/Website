@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/cn';
 import Docs from '@/svg/materialDesignIcons/rounded/docs.svg';
@@ -12,21 +13,30 @@ export function About({ className, heading = 'h2' }: { className?: string; headi
 		<>
 			<section id='about' className={cn('grid place-items-center gap-3 pt-32 py-16 lg:flex lg:justify-between', className)}>
 				<div className='grid justify-items-start gap-[calc(1rem*sqrt(2.5214515486*1)/1.5)] my-auto'>
-					<Heading>A bit about <span className='italic text-text-800'>myself</span></Heading>
+					<Heading>A bit about <span className='italic text-body-850 dark:text-body-150'>myself</span></Heading>
 					<p>
-						Hi! I{"'"}m Albin Karlsson, a full-stack developer from Sweden who can{"'"}t resist improving things. I have a habit of building tools to solve my own problems, and I{"'"}m always looking for ways to make workflows faster and more efficient.
+						Hi! I{"'"}m Albin Karlsson, a full-stack developer from Sweden. Professionally I work in LAMP on a payroll system, where the data has to be right. On my own time I write TypeScript, and I pick Vite, Preact, or Next.js depending on what the project actually needs.
 					</p>
-					<LinkButton
-						className='flex items-center gap-1 text-text-800 bg-body-50 px-[1.5em] py-[0.75em] border border-body-100 rounded-full'
-						href='/Albin_Karlsson_CV.pdf'
-						download="Albin Karlsson's CV"
-						isButton
-					>
-						<Docs className='size-4 fill-current' /> View My CV
-					</LinkButton>
+					<div className='flex gap-2'>
+						<LinkButton
+							className='flex items-center gap-1 text-body-850 bg-body-50 px-[1.5em] py-[0.75em] border border-body-100 rounded-full dark:text-body-150 dark:bg-body-950 dark:border-body-900'
+							href='/Albin_Karlsson_CV.pdf'
+							download="Albin Karlsson's CV"
+							isButton
+						>
+							<Docs className='size-4 fill-current' /> View My CV
+						</LinkButton>
+						<LinkButton
+							className='flex items-center gap-1 text-body-850 bg-body-50 px-[1.5em] py-[0.75em] border border-body-100 rounded-full dark:text-body-150 dark:bg-body-950 dark:border-body-900'
+							href='/about'
+							isButton
+						>
+							More about me
+						</LinkButton>
+					</div>
 				</div>
 				<Image
-					className='object-cover object-bottom w-full max-w-prose aspect-373/434 rounded-2xl lg:w-[calc(1rem*373/16)]'
+					className='object-cover object-bottom inline-full max-inline-[calc(1rem*373/16)] aspect-373/434 rounded-2xl'
 					src={CasualSelfie}
 					alt='Portrait of a young man wearing a student cap and a black suit with a red tie.'
 					width={373}

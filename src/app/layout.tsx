@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	const wideBreakpointRem = getHeaderWideBreakpointRem();
 
 	return (
-		<html lang='en' suppressHydrationWarning className={`${inter.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable}`}>
+		<html lang='en' data-scroll-behavior="smooth" suppressHydrationWarning className={`${inter.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable}`}>
 			<head>
 				{process.env.NODE_ENV === 'development' && (
 					<Script

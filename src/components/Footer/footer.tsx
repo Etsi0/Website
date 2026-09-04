@@ -13,8 +13,9 @@ const links = {
 	],
 	About: [
 		{ path: '/about#hero', name: 'Myself' },
-		{ path: '/about#skills', name: 'Skills' },
-		{ path: '/about#tools', name: 'Tools' },
+		{ path: '/about#payroll', name: 'Work' },
+		{ path: '/about#stack', name: 'Stack' },
+		{ path: '/about#contact', name: 'Contact' },
 	]
 };
 
