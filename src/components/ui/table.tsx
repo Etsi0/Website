@@ -23,7 +23,7 @@ export function Thead({ children, className, ...props }: TThead) {
 	return (
 		<thead
 			className={cn(
-				'[&_th,&_td]:bg-body-100',
+				'[&_th,&_td]:bg-body-100 dark:[&_th,&_td]:bg-body-900',
 				'after:table-row after:h-4',
 				className
 			)}
@@ -41,8 +41,8 @@ type TTbody = {
 export function Tbody({ children, className, ...props }: TTbody) {
 	return (
 		<tbody className={cn(
-			'[&_tr:hover_>_*]:bg-body-100',
-			'[&_tr]:not-first:border-t [&_tr]:not-first:border-t-[color-mix(var(--color-body-100),var(--color-body-200))]',
+			'[&_tr:hover_>_*]:bg-body-100 dark:[&_tr:hover_>_*]:bg-body-900',
+			'[&_tr]:not-first:border-t [&_tr]:not-first:border-t-body-150 dark:[&_tr]:not-first:border-t-body-850',
 			className
 		)} {...props}>
 			{children}
@@ -58,7 +58,7 @@ export function Tfoot({ children, className, ...props }: TTfoot) {
 	return (
 		<tfoot
 			className={cn(
-				'[&_th,&_td]:bg-body-100',
+				'[&_th,&_td]:bg-body-100 dark:[&_th,&_td]:bg-body-900',
 				'before:table-row before:h-4',
 				className
 			)}

@@ -19,11 +19,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 function Card({ product }: { product: z.infer<typeof schemaWishlist>[number] }) {
 	return (
-		<div className='flex w-72 flex-col gap-3 self-stretch rounded-lg bg-body-100 border border-body-200 p-4 shadow-lg'>
+		<div className='flex w-72 flex-col gap-3 self-stretch rounded-lg bg-body-100 border border-body-200 p-4 shadow-lg dark:bg-body-900 dark:border-body-800'>
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<img
 				alt={`Image of a product called '${product.title}'`}
-				className='mx-auto aspect-square w-48 rounded-md bg-primary-50 object-cover dark:bg-body-300'
+				className='mx-auto aspect-square w-48 rounded-md bg-primary-50 object-cover dark:bg-body-700'
 				decoding='async'
 				loading='lazy'
 				src={product.img}

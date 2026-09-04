@@ -39,7 +39,7 @@ export function DarkMode() {
 			onClick={toggleDarkMode}
 			suppressHydrationWarning
 		>
-			<svg className='text-text-900' xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'>
+			<svg className='text-body-900 dark:text-body-100' xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'>
 				<path
 					id='Sun'
 					className='block dark:hidden'

@@ -22,25 +22,25 @@ export const revalidate = 86400
 export default function Footer() {
 	return (
 		<>
-			<footer className='[--big-text:clamp(0rem,-0.85rem+21.25vw,17rem)] [--move:calc(var(--big-text)*0.4)] breakout-wrapper isolate overflow-clip bg-[linear-gradient(to_bottom,transparent_calc(var(--move)+4rem),var(--color-body-200)_calc(var(--move)+4rem)_calc(var(--move)+4rem+1px),var(--color-body-100)_calc(var(--move)+4rem+1px))]'>
+			<footer className='[--big-text:clamp(0rem,-0.85rem+21.25vw,17rem)] [--move:calc(var(--big-text)*0.25)] [--footer-line:var(--color-body-150)] [--footer-bg:var(--color-body-white)] [--fade:var(--color-body-100)] dark:[--footer-line:var(--color-body-850)] dark:[--footer-bg:var(--color-body-900)] dark:[--fade:transparent] breakout-wrapper isolate overflow-clip bg-[linear-gradient(to_bottom,transparent,var(--fade)_calc(var(--move)+4rem),var(--footer-line)_calc(var(--move)+4rem)_calc(var(--move)+4rem+1px),var(--footer-bg)_calc(var(--move)+4rem+1px))]'>
 				<div className='grid gap-8 translate-y-(--move)'>
-					<Card as='section' className='grid gap-8 bg-body-200 border-body-300 p-16'>
+					<Card as='section' className='grid gap-8 bg-body-50 border-body-100 p-16 dark:bg-body-850 dark:border-body-800'>
 						<div className='flex gap-4 flex-wrap justify-between'>
 							<div className='grid gap-4'>
-								<Phadonia className="*:fill-text-900 h-6"/>
+								<Phadonia className="*:fill-body-900 dark:*:fill-body-100 h-6"/>
 								<p>Every project here started with the same thought: “This should be better.” So I made it better and shared it with the world.</p>
 								<nav>
 									<ul className='flex gap-3'>
-										<li><LinkButton href="https://www.linkedin.com/in/albinkarlsson2003/" aria-label="Linkedin"><Linkedin className="text-text-600 size-6" /></LinkButton></li>
-										<li><LinkButton href="https://github.com/Etsi0" aria-label="Github"><GitHub className="fill-text-600 size-6" /></LinkButton></li>
-										<li><LinkButton href="https://discordapp.com/users/850433812089012335" aria-label="Discord"><Discord className="*:fill-text-600 size-6" /></LinkButton></li>
+										<li><LinkButton href="https://www.linkedin.com/in/albinkarlsson2003/" aria-label="Linkedin"><Linkedin className="text-body-600 dark:text-body-400 size-6" /></LinkButton></li>
+										<li><LinkButton href="https://github.com/Etsi0" aria-label="Github"><GitHub className="fill-body-600 dark:fill-body-400 size-6" /></LinkButton></li>
+										<li><LinkButton href="https://discordapp.com/users/850433812089012335" aria-label="Discord"><Discord className="*:fill-body-600 dark:*:fill-body-400 size-6" /></LinkButton></li>
 									</ul>
 								</nav>
 							</div>
 							<nav className='flex gap-x-24 gap-y-4 flex-wrap'>
 								{Object.entries(links).map(([groupName, groupLinks]) => (
 									<div key={groupName}>
-										<h3 className='text-text-800 mb-4'>{groupName}</h3>
+										<h3 className='text-body-800 dark:text-body-200 mb-4'>{groupName}</h3>
 										<ul className='grid gap-3'>
 											{groupLinks.map((item, i) => (
 												<li key={i}>
@@ -52,10 +52,10 @@ export default function Footer() {
 								))}
 							</nav>
 						</div>
-						<hr className='border-body-300' />
-						<p>© {new Date().getFullYear()} <span className="text-text-800">Phadonia</span>. All rights reserved</p>
+						<hr className='border-body-300 dark:border-body-700' />
+						<p>© {new Date().getFullYear()} <span className="text-body-800 dark:text-body-200">Phadonia</span>. All rights reserved</p>
 					</Card>
-					<h2 className='font-(family-name:--sarif) text-transparent text-(length:--big-text) text-center font-black bg-[linear-gradient(to_bottom,var(--color-body-200),transparent_calc(100%*0.67))] bg-clip-text'>
+					<h2 className='[text-box:trim-both_text_alphabetic] supports-[text-box:trim-both_ideographic-ink_alphabetic]:[text-box:trim-both_ideographic-ink_alphabetic] font-(family-name:--sarif) text-transparent text-(length:--big-text) text-center font-black bg-[linear-gradient(to_bottom,var(--footer-line),transparent_calc(100%-.5ex))] bg-clip-text'>
 						Phadonia
 					</h2>
 				</div>

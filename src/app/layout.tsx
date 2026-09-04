@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					/>
 				)}
 			</head>
-			<body className='bg-body-50'>
+			<body className='bg-body-50 dark:bg-body-950'>
 				<ThemeProvider attribute='class'>
 					<div id='root' className='flex min-h-svh flex-col'>
 						<Header wideBreakpointRem={wideBreakpointRem} />

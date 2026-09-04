@@ -134,10 +134,10 @@ async function GetMod({ project, className }: TGetMod) {
 	];
 
 	return (
-		<div id={project.id === '' ? project.title : project.id} className='flex w-72 flex-col gap-3 rounded-lg bg-body-100 border border-body-200 p-4 shadow-lg'>
+		<div id={project.id === '' ? project.title : project.id} className='flex w-72 flex-col gap-3 rounded-lg bg-body-100 border border-body-200 p-4 shadow-lg dark:bg-body-900 dark:border-body-800'>
 			{(project.icon_url && (
-				<Image src={project.icon_url} alt={`logo for the mod called '${project.title}'`} width={192} height={192} className='mx-auto rounded-md bg-primary-50 dark:bg-body-200' unoptimized={true} />
-			)) || <div className='mx-auto aspect-square w-48 rounded-md bg-primary-100 dark:bg-body-300'></div>}
+				<Image src={project.icon_url} alt={`logo for the mod called '${project.title}'`} width={192} height={192} className='mx-auto rounded-md bg-primary-50 dark:bg-body-800' unoptimized={true} />
+			)) || <div className='mx-auto aspect-square w-48 rounded-md bg-primary-100 dark:bg-body-700'></div>}
 			<h2 className='overflow-hidden text-ellipsis text-center text-3xl'>{project.title}</h2>
 			<ul className='grow'>
 				{liContent
@@ -160,7 +160,7 @@ async function GetMod({ project, className }: TGetMod) {
 			<LinkButton
 				href={latestVersion?.files[0].url ?? ''}
 				className={cn(
-					latestVersion && `w-full rounded-md bg-primary-500 p-3 text-center text-text-800 dark:text-text-200 ${className}`,
+					latestVersion && `w-full rounded-md bg-primary-500 p-3 text-center text-body-800 ${className}`,
 					!latestVersion && 'w-full cursor-not-allowed rounded-md bg-slate-500 p-3 text-slate-400'
 				)}
 				disabled={!latestVersion}
@@ -196,7 +196,7 @@ export default async function Page() {
 				<h1>Minecraft Mods</h1>
 				<p>Mods listed bellow is what i recommend or use, look at the section that explains what the different colors means if you are confused</p>
 			</div>
-			<div className='grid gap-3 rounded-lg bg-body-100 border border-body-200 dark:bg-body-100 p-6'>
+			<div className='grid gap-3 rounded-lg bg-body-100 border border-body-200 dark:bg-body-900 dark:border-body-800 p-6'>
 				<DoneCategoryWrapper className={StrToColor['green']}>This icon indicates that i recommend these mods</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['yellow']}>This icon indicates that these mods are a dependency for another mod on this list</DoneCategoryWrapper>
 				<DoneCategoryWrapper className={StrToColor['red']}>

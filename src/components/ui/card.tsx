@@ -7,7 +7,7 @@ type TCard<T extends CardElement = "article"> = { as?: T } & ComponentPropsWitho
 
 export function Card<T extends CardElement = "article">({ as = "article" as T, children, className, ...props }: TCard<T>) {
 	const componentProps = {
-		className: cn('corner-shape-[3rem] bg-body-100 p-2 border border-body-200', className),
+		className: cn('corner-shape-12 bg-body-white p-2 border border-white dark:bg-body-900 dark:border-body-800', className),
 		...props,
 		children,
 	};

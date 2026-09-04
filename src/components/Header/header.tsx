@@ -55,7 +55,7 @@ export function Header({ wideBreakpointRem }: THeaderProps) {
 			<div
 				className='col-sm @container overflow-clip relative grid grid-rows-[0fr] px-[calc(var(--header-height)*1.5)] py-[calc(var(--header-height)*0.75)] corner-shape-6 transition-[grid-template-rows] duration-300 h-fit'
 			>
-				<div className='absolute bg-body-50/25 w-screen h-[200%] left-1/2 top-0 border border-body-50/25 -translate-x-1/2 -translate-y-1/4 backdrop-blur-xl -z-10'></div>
+				<div className='absolute bg-body-50/25 w-screen h-[200%] left-1/2 top-0 border border-body-50/25 -translate-x-1/2 -translate-y-1/4 backdrop-blur-xl -z-10 dark:bg-body-950/25 dark:border-body-950/25'></div>
 				<div className={cn('pointer-events-auto grid items-center gap-8 min-h-(--header-height)', cq.grid)}>
 					<div className='flex items-center justify-between'>
 						<LinkButton
@@ -63,7 +63,7 @@ export function Header({ wideBreakpointRem }: THeaderProps) {
 							href='/'
 							aria-label='Phadonia'
 						>
-							<PhadoniaLogo className='h-(--header-height) *:fill-text-900' />
+							<PhadoniaLogo className='h-(--header-height) *:fill-body-950 dark:*:fill-body-50' />
 						</LinkButton>
 						{/* !!! I did not make this hamburgerBtn, https://codepen.io/ainalem/pen/wvKOEMV !!! */}
 						<LinkButton
@@ -76,7 +76,7 @@ export function Header({ wideBreakpointRem }: THeaderProps) {
 							commandfor="header"
 						>
 							<svg
-								className='size-(--header-height) scale-150 text-text-900 *:transition-[stroke-dashoffset,stroke-dasharray] *:duration-500'
+								className='size-(--header-height) scale-150 text-body-900 dark:text-body-100 *:transition-[stroke-dashoffset,stroke-dasharray] *:duration-500'
 								viewBox='0 0 100 100'
 								xmlns='http://www.w3.org/2000/svg'
 								stroke='currentColor'
@@ -100,7 +100,7 @@ export function Header({ wideBreakpointRem }: THeaderProps) {
 							<ul className={cn('grid gap-x-6 gap-y-4', cq.navList)}>
 								{Object.entries(HEADER_NAV_LINKS).map(([label, path]) => (
 									<li key={label}>
-										<LinkButton className='text-text-800 rounded-xs outline-offset-4' href={path}>
+										<LinkButton className='text-body-800 dark:text-body-200 rounded-xs outline-offset-4' href={path}>
 											{label}
 										</LinkButton>
 									</li>

@@ -13,7 +13,7 @@ export function SilkWrapper({ children }: THeroWrapper) {
 					speed={5}
 					scale={1}
 					fg="var(--color-primary-100) dark:var(--color-primary-800)"
-					bg="var(--color-body-50) dark:var(--color-body-100)"
+					bg="var(--color-body-50) dark:var(--color-body-900)"
 					noiseIntensity={1.33}
 					rotation={6}
 				/>

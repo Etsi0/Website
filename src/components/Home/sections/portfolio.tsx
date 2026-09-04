@@ -19,7 +19,7 @@ import Phadonia from '@/svg/phadonia.svg';
 import CvMaker from '@/svg/cv-maker.svg';
 import { Card } from '@/components/ui/card';
 
-const clazz = 'grow shrink-0 basis-[calc(50%-0.25rem)] text-nowrap text-center px-[1.5em] py-[0.75em] corner-shape-[1.3125rem] border';
+const clazz = 'grow shrink-0 basis-[calc(50%-0.25rem)] text-nowrap text-center px-[1.5em] py-[0.75em] corner-shape-[1.3125rem]';
 const bgIconClass = 'object-contain aspect-video scale-500 filter-[url(#light-figma-fx)] dark:filter-[url(#dark-figma-fx)]';
 const iconClass = 'object-contain aspect-square scale-62';
 
@@ -39,7 +39,7 @@ type TBadge = { children: ReactNode, className?: string } & ComponentPropsWithou
 function Badge({ children, className, ...props }: TBadge) {
 	return (
 		<div
-			className={cn('flex items-center gap-1 text-text-700 text-sm bg-body-200 px-3 py-1 border border-body-300 corner-shape-9999', className)}
+			className={cn('flex items-center gap-1 text-body-700 text-sm bg-[color-mix(in_oklch,var(--color-body-100),var(--color-body-50))] px-3 py-1 rounded-full dark:text-body-300 dark:bg-body-800 dark:border-body-700', className)}
 			{...props}
 		>
 			{ children }
@@ -54,11 +54,11 @@ function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 
 	return (
 		<Card className='@container grid gap-4'>
-			<div className='corner-shape-[2.5rem] overflow-clip grid place-items-center border border-body-200 *:col-1 *:row-1'>
+			<div className='corner-shape-[2.5rem] overflow-clip grid place-items-center border border-body-50 dark:border-body-850 *:col-1 *:row-1'>
 				{typeof Icon === 'function' && (
 					<>
-						<Icon className={cn(bgIconClass, '*:fill-text-900')} />
-						<Icon className={cn(iconClass, '*:fill-text-900')} />
+						<Icon className={cn(bgIconClass, '*:fill-body-950 dark:*:fill-body-50')} />
+						<Icon className={cn(iconClass, '*:fill-body-950 dark:*:fill-body-50')} />
 					</>
 				)}
 				{(typeof Icon === 'object' && Icon !== null && 'src' in Icon && 'height' in Icon && 'width' in Icon) && (
@@ -74,7 +74,7 @@ function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 					<p>{text}</p>
 					<div className='flex flex-wrap items-start gap-2 font-mono'>
 						<Badge>
-							{<badge.svg className='fill-text-700 size-[1em] *:fill-current!' />} {badge.text}
+							{<badge.svg className='fill-body-700 dark:fill-body-300 size-[1em] *:fill-current!' />} {badge.text}
 						</Badge>
 						{badges.length > 1 && (
 							<>
@@ -82,7 +82,7 @@ function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 								<div
 									popover=""
 									className={cn(
-										'invisible flex flex-wrap gap-2 bg-body-100 p-3 border border-body-200 corner-shape-[1.6875rem] mx-8 mb-3 shadow-xl opacity-0 [transition:opacity_150ms_ease,visibility_0ms_150ms]',
+										'invisible flex flex-wrap gap-2 bg-body-100 p-3 border border-body-150 corner-shape-[1.6875rem] mx-8 mb-3 shadow-xl opacity-0 [transition:opacity_150ms_ease,visibility_0ms_150ms] dark:bg-body-900 dark:border-body-850',
 										'[.peer:hover+&]:visible [.peer:hover+&]:opacity-100 [.peer:hover+&]:[transition:opacity_150ms_ease,visibility_0ms]',
 										'[.peer:focus-visible+&]:visible [.peer:focus-visible+&]:opacity-100 [.peer:focus-visible+&]:[transition:opacity_150ms_ease,visibility_0ms]',
 									)}
@@ -90,7 +90,7 @@ function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 								>
 									{badges.slice(1).sort((a, b) => (a.text || '').localeCompare(b.text || '')).map((badge, index) => (
 										<Badge key={index} className='flex-[0_0_0]'>
-											{<badge.svg className='fill-text-800 size-[1em] *:fill-current!' />} {badge.text}
+											{<badge.svg className='fill-body-850 dark:fill-body-150 size-[1em] *:fill-current!' />} {badge.text}
 										</Badge>
 									))}
 								</div>
@@ -101,7 +101,7 @@ function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 				<div className='flex flex-wrap gap-2 leading-none px-[calc(2.5rem-21px)] pb-[calc(2.5rem-21px)]'>
 					<LinkButton
 						href={live}
-						className={cn(clazz, 'text-primary-50 bg-primary-500 border-primary-400 dark:bg-primary-600 dark:border-primary-700')}
+						className={cn(clazz, 'text-primary-50 bg-primary-500')}
 						disabled={!live}
 						isButton
 					>
@@ -109,11 +109,11 @@ function Cards({ src, title, text, badges, live = '', source = '' }: TCards) {
 					</LinkButton>
 					<LinkButton
 						href={source}
-						className={cn(clazz, 'text-text-800 bg-body-200 border-body-300')}
+						className={cn(clazz, 'text-body-800 bg-body-50 border border-body-100 dark:text-body-200 dark:bg-body-850 dark:border-body-800')}
 						disabled={!source}
 						isButton
 					>
-						<CodeBlock className='inline-block align-center fill-text-800 size-[1em]' /> Source
+						<CodeBlock className='inline-block align-center fill-body-800 dark:fill-body-200 size-[1em]' /> Source
 					</LinkButton>
 				</div>
 			</div>
@@ -170,10 +170,10 @@ export function Portfolio() {
 			</svg>
 			<section id='portfolio' className='grid gap-8 py-16 mx-auto'>
 				<div className='flex justify-between items-center'>
-					<h2>Highlighted <span className='italic text-text-800'>Projects</span></h2>
+					<h2>Highlighted <span className='italic text-body-850 dark:text-body-150'>Projects</span></h2>
 					<LinkButton
 						href='#'
-						className='text-text-800 text-custom-lg rounded-xs tracking-wider'
+						className='text-body-850 dark:text-body-150 text-custom-lg rounded-xs tracking-wider'
 						isButton
 					>
 						View All <ArrowOutward className="inline-block fill-current" />

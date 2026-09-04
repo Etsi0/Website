@@ -20,7 +20,7 @@ export default function Page() {
 					<h1 className='text-[clamp(0rem,0rem+9.2vw,5.75rem)]'>
 						Building my own
 						{' '}
-						<span className='text-text-800 italic'>solutions,</span>
+						<span className='text-body-800 dark:text-body-200 italic'>solutions,</span>
 						{' '}
 						one
 						{' '}
@@ -31,10 +31,11 @@ export default function Page() {
 					<p>Every project here started with the same thought: “This should be better.” So I made it better and shared it with the world.</p>
 					<LinkButton
 						className='
-							animate-[animatedButtonBorder_15s_linear_infinite] font-mono text-custom-lg uppercase [background:linear-gradient(var(--color-body-50),var(--color-body-50))_padding-box,conic-gradient(from_var(--turn),var(--color-body-100)_0deg_5deg,var(--color-primary-500)_5deg_38.33deg,var(--color-body-100)_38.33deg_43.33deg)_border-box] w-[30ch] px-[1.5em] py-[0.75em] border border-transparent rounded-full
-							hover:text-text-600
-							focus-visible:text-text-600
-							active:text-text-500
+							[--btn-bg:var(--color-body-50)] [--btn-border:var(--color-body-100)] dark:[--btn-bg:var(--color-body-950)] dark:[--btn-border:var(--color-body-900)]
+							animate-[animatedButtonBorder_15s_linear_infinite] font-mono text-custom-lg uppercase [background:linear-gradient(var(--btn-bg),var(--btn-bg))_padding-box,conic-gradient(from_var(--turn),var(--btn-border)_0deg_5deg,var(--color-primary-500)_5deg_38.33deg,var(--btn-border)_38.33deg_43.33deg)_border-box] w-[30ch] px-[1.5em] py-[0.75em] border border-transparent rounded-full
+							hover:text-body-600 dark:hover:text-body-400
+							focus-visible:text-body-600 dark:focus-visible:text-body-400
+							active:text-body-500
 						'
 						isHoverable={false}
 					>

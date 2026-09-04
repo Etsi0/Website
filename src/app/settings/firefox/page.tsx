@@ -30,7 +30,7 @@ export default async function Page() {
 					{json
 						.sort((a, b) => a.title.localeCompare(b.title))
 						.map((items, index) => (
-							<LinkButton key={index} href={items.link} className='grid place-items-center space-y-4 rounded-md bg-body-50 p-4 text-center dark:bg-body-200'>
+							<LinkButton key={index} href={items.link} className='grid place-items-center space-y-4 rounded-md bg-body-50 p-4 text-center dark:bg-body-800'>
 								<div className='aspect-square content-center'>
 									<Image src={`/img/settings/vscode/${items.icon}`} alt='' width={128} height={128} />
 								</div>
