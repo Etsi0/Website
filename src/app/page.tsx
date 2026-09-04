@@ -3,14 +3,18 @@ import type { Metadata } from 'next';
 import { SilkWrapper } from '@/components/ui/silkWrapper';
 import { GridWrapper } from '@/components/ui/gridWrapper';
 import { About } from '@/components/Home/sections/about';
-import { InfinityScrollWrapper } from '@/components/Home/sections/infinityScrollWrapper';
 import { Portfolio } from '@/components/Home/sections/portfolio';
 import { LinkButton } from '@/components/ui/link';
+import { Marquee } from '@/components/ui/marquee';
 
 export const metadata: Metadata = {
 	title: 'Phadonia',
 	description: 'Harnessing JavaScript to create game-changing digital experiences. Discover the innovation of a young Swedish developer.',
 };
+
+const Farsight = '/img/production/companies/Farsight.webp';
+const MaxPA = '/img/production/companies/MaxPA.svg';
+const HCLTech = '/img/production/companies/HCLTech.svg';
 
 export default function Page() {
 	return (
@@ -46,7 +50,12 @@ export default function Page() {
 			<div className='col-full bg-linear-to-r from-primary-100 via-primary-300 to-primary-100 via-[calc(50%-20rem)] h-[2px] dark:from-primary-900 dark:via-primary-700 dark:to-primary-900'></div>
 			<GridWrapper>
 				<About />
-				<InfinityScrollWrapper />
+				<Marquee
+					className={['h-[100px]', 'size-[100px] brightness-1000 invert dark:invert-0']}
+					gap='3.125rem'
+					images={[MaxPA, Farsight, HCLTech, MaxPA, Farsight, HCLTech, MaxPA, Farsight, HCLTech]}
+					size={100}
+				/>
 			</GridWrapper>
 			<Portfolio />
 		</>
