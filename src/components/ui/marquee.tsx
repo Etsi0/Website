@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import Image, { type StaticImageData } from 'next/image';
 import { cn } from '@/lib/cn';
 
@@ -15,8 +16,8 @@ export function Marquee({
 }) {
 	const STYLE = `
 		@keyframes marquee {
-			from { translate: calc((100% + ${gap}) * (sibling-count() + 1 - sibling-index())); }
-			to   { translate: calc((100% + ${gap}) * sibling-index() * -1); }
+			from { translate: calc((100% + ${gap}) * (var(--total) + 1 - var(--index))); }
+			to   { translate: calc((100% + ${gap}) * var(--index) * -1); }
 		}
 	`;
 
@@ -34,14 +35,16 @@ export function Marquee({
 				return (
 					<Image
 						key={index}
-						className={cn('object-contain opacity-75 grayscale', className[1])}
+						className={cn('object-contain opacity-75 grayscale [--total:sibling-count()] [--index:sibling-index()]', className[1])}
 						style={{
+							'--total': images.length,
+							'--index': index + 1,
 							animationName: 'marquee',
 							animationDuration: `${SPEED * images.length}s`,
-							animationDelay: `calc(-1 * ${SPEED}s * (sibling-count() - sibling-index()))`,
+							animationDelay: `calc(-1 * ${SPEED}s * (var(--total) - var(--index)))`,
 							animationTimingFunction: 'linear',
 							animationIterationCount: 'infinite',
-						}}
+						} as CSSProperties}
 						src={item}
 						alt="Gray scale version of a company logo"
 						aria-hidden={isDuplicate || undefined}
