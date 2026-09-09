@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import type { ComponentPropsWithoutRef, FC, ReactNode, SVGProps } from 'react';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
@@ -46,6 +47,12 @@ type TProjectCard = TProject & {
 export function ProjectCard({ src, title, text, badges, live = '', source = '', heading: Heading = 'h3' }: TProjectCard) {
 	const Icon = src;
 	const badge = badges[0];
+	const extraId = useId();
+	const extraButtonId = `${extraId}-trigger`;
+	const extraListId = `${extraId}-list`;
+	const extraBadges = badges.slice(1).sort((a, b) => (a.text || '').localeCompare(b.text || ''));
+	const extraCount = extraBadges.length;
+	const extraLabel = `${extraCount} more technolog${extraCount === 1 ? 'y' : `ies`}`;
 	const anchorName = `--card-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}` as const;
 
 	return (
@@ -72,24 +79,36 @@ export function ProjectCard({ src, title, text, badges, live = '', source = '', 
 						<Badge>
 							<badge.svg className='fill-body-700 dark:fill-body-300 size-[1em] *:fill-current!' aria-hidden="true" /> {badge.text}
 						</Badge>
-						{badges.length > 1 && (
+						{extraCount > 0 && (
 							<>
-								<Badge tabIndex={0} className='peer px-[0.35rem]' style={{ anchorName }}>+{badges.length - 1}</Badge>
-								<div
-									popover=""
+								<button
+									id={extraButtonId}
+									type="button"
+									className={cn(badgeClass, 'peer cursor-pointer px-[0.35rem]')}
+									style={{ anchorName }}
+									aria-label={extraLabel}
+									aria-controls={extraListId}
+								>
+									<span aria-hidden="true">{`+${extraCount}`}</span>
+								</button>
+								<ul
+									id={extraListId}
+									aria-labelledby={extraButtonId}
 									className={cn(
-										'invisible flex flex-wrap gap-2 bg-body-100 p-3 border border-body-150 corner-shape-[1.6875rem] mx-8 mb-3 shadow-xl opacity-0 [transition:opacity_150ms_ease,visibility_0ms_150ms] dark:bg-body-900 dark:border-body-850',
-										'[.peer:hover+&]:visible [.peer:hover+&]:opacity-100 [.peer:hover+&]:[transition:opacity_150ms_ease,visibility_0ms]',
-										'[.peer:focus-visible+&]:visible [.peer:focus-visible+&]:opacity-100 [.peer:focus-visible+&]:[transition:opacity_150ms_ease,visibility_0ms]',
+										'pointer-events-none absolute flex flex-wrap gap-2 bg-body-100 p-3 border border-body-150 corner-shape-[1.6875rem] mx-8 mb-3 shadow-xl opacity-0 transition-opacity duration-150 dark:bg-body-900 dark:border-body-850',
+										'[.peer:hover+&]:opacity-100 [.peer:hover+&]:pointer-events-auto',
+										'[.peer:focus-visible+&]:opacity-100 [.peer:focus-visible+&]:pointer-events-auto',
 									)}
 									style={{ positionAnchor: anchorName, positionArea: "top" }}
 								>
-									{badges.slice(1).sort((a, b) => (a.text || '').localeCompare(b.text || '')).map((badge, index) => (
-										<Badge key={index} className='flex-[0_0_0]'>
-											<badge.svg className='fill-body-850 dark:fill-body-150 size-[1em] *:fill-current!' aria-hidden="true" /> {badge.text}
-										</Badge>
+									{extraBadges.map((item) => (
+										<li key={item.text} className='flex-[0_0_0]'>
+											<Badge>
+												<item.svg className='fill-body-850 dark:fill-body-150 size-[1em] *:fill-current!' aria-hidden="true" /> {item.text}
+											</Badge>
+										</li>
 									))}
-								</div>
+								</ul>
 							</>
 						)}
 					</div>
