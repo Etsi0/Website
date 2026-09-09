@@ -212,7 +212,7 @@ export default function Silk({ speed = 5, scale = 1, fg = DEFAULT_FG, bg = DEFAU
 
 	return (
 		<Canvas
-			dpr={[1, 2]}
+			dpr={typeof window === 'undefined' ? 1 : window.devicePixelRatio}
 			frameloop="always"
 			aria-hidden="true"
 			onCreated={({ gl }) => {
