@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { cn } from '@/lib/cn';
 import Docs from '@/svg/materialDesignIcons/rounded/docs.svg';
+import ArrowOutward from '@/svg/materialDesignIcons/outline/folder_supervised.svg';
 import CasualSelfie from '@/../public/img/production/casual_selfie/test.png';
 import { LinkButton } from '@/components/ui/link';
 
@@ -36,7 +37,7 @@ export function About({ className, heading = 'h2', showAboutMeLink = true }: Abo
 								href='/about'
 								isButton
 							>
-								More about me
+								<ArrowOutward className='size-4 fill-current' aria-hidden="true" /> More about me
 							</LinkButton>
 						)}
 					</div>
