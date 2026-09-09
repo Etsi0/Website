@@ -52,9 +52,16 @@ export default function Page() {
 				<About />
 				<Marquee
 					className={['h-[100px]', 'size-[100px] brightness-1000 invert dark:invert-0']}
+					id='experience'
+					label="Companies I've worked with"
 					gap='3.125rem'
-					images={[MaxPA, Farsight, HCLTech, MaxPA, Farsight, HCLTech, MaxPA, Farsight, HCLTech]}
 					size={100}
+					images={[
+						{ src: MaxPA, alt: 'MaxPA' },
+						{ src: Farsight, alt: 'Farsight' },
+						{ src: HCLTech, alt: 'HCLTech' },
+					]}
+					shadowCopies={2}
 				/>
 			</GridWrapper>
 			<Portfolio />
