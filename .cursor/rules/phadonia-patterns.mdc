@@ -1,0 +1,60 @@
+---
+description: Phadonia codebase conventions — imports, components, types, styling
+alwaysApply: true
+---
+# !!!READ ALL OF THE TEXT BELLOW, DON'T SKIP ANYTHING!!!
+
+# Phadonia project patterns
+
+Use these conventions when editing this codebase.
+
+## Code style
+
+- **Always check `.vscode/settings.json`** before editing and match the project’s formatting.
+When in doubt, re-read `.vscode/settings.json` and apply the same style.
+
+## Imports
+
+- Use `import type` for type-only imports.
+- Order: React first, then Vercel, then Next, then third-party, then `@/api/...`, then `@/lib/...`, then `@/schema/...`, then `@/json/...`, then `@/` imports.
+
+```tsx
+// ✅ GOOD
+import { Analytics } from '@vercel/analytics/react';
+import type { Metadata } from 'next';
+import { cn } from '@/lib/cn';
+import { SilkWrapper } from '@/components/ui/silkWrapper';
+```
+
+## Components
+
+- Use functional components only.
+- Named exports for reusable components: (e.g `export function Card(...)`).
+- Default export only for route components (`page.tsx`, `layout.tsx`).
+
+## Types
+
+- ~~Prefix type names with `T`: `TCard`, `TLinkButton`, `TProps`, `TRequest`.~~
+- Prefer `type` over `interface`; only use `interface` when you need declaration merging or extendable object shapes.
+
+## Styling (Tailwind v4)
+
+- Use `cn()` from `@/lib/cn` for conditional or merged class names.
+- Use project design tokens from `app.css`:
+  - Surfaces: `body-50` - `body-500`.
+  - Accent: `primary-50` - `primary-950`.
+  - Text: `text-100` - `text-900`.
+- Use custom utility classes when applicable (app.css): `corner-shape-*`, `breakout-wrapper`, `col-full`, `col-sm`, `col-content`, etc.
+- For links/buttons, use `@/component/ui/link`.
+
+## Structure
+
+- Components: `src/components/` with feature folders (`Header/`, `Footer/`, `Home/sections/`); primitives in `components/ui/`.
+- Shared constants/tokens: `@/lib/util.ts`.
+- Schema and types: `@/schema/` with feature folders (`minecraft/`, `wishlist/`).
+- Legacy types: `@/types/` with feature folders (`home/`, `minecraft/`), should transition to schema folder.
+- SVGR components: `@/svg/...`.
+
+## Other
+
+- Validate external data with Zod; use `validate()` from `@/lib/validate` or `apiFetch()` from `@/lib/apiFetch` when fetching.
