@@ -27,6 +27,14 @@ export function Marquee({
 			from { translate: calc((100% + ${gap}) * (var(--total) + 1 - var(--index))); }
 			to   { translate: calc((100% + ${gap}) * var(--index) * -1); }
 		}
+		@media (prefers-reduced-motion: reduce) {
+			.marquee img {
+				animation: none !important;
+			}
+			.marquee img[aria-hidden] {
+				display: none;
+			}
+		}
 	`;
 	const track = Array.from({ length: shadowCopies + 1 }, () => images).flat();
 
