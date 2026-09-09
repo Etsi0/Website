@@ -1,14 +1,11 @@
-import { clsx } from 'clsx';
-import type { ClassValue } from 'clsx';
-import { extendTailwindMerge } from 'tailwind-merge';
+import { createCn, validators } from 'cn/config';
 
-const twMerge = extendTailwindMerge<'corner-shape'>({
+export const cn = createCn({
 	extend: {
 		classGroups: {
 			'corner-shape': [
 				{
-					// eslint-disable-next-line @typescript-eslint/no-unused-vars
-					'corner-shape': [(_: string) => true],
+					'corner-shape': [validators.isNumber, validators.isArbitraryValue]
 				},
 			],
 		},
@@ -18,7 +15,3 @@ const twMerge = extendTailwindMerge<'corner-shape'>({
 		},
 	},
 });
-
-export function cn(...input: ClassValue[]) {
-	return twMerge(clsx(input));
-}
