@@ -8,7 +8,7 @@ type THeroWrapper = {
 export function SilkWrapper({ children }: THeroWrapper) {
 	return (
 		<div className="col-full relative">
-			<div className="absolute grid inset-0 -z-10 *:col-1 *:row-1">
+			<div className="absolute grid inset-0 -z-10 *:col-1 *:row-1" aria-hidden="true">
 				<Silk
 					speed={5}
 					scale={1}

@@ -15,7 +15,7 @@ export function Portfolio() {
 						className='text-body-850 dark:text-body-150 text-custom-lg rounded-xs tracking-wider'
 						isButton
 					>
-						View All <ArrowOutward className="inline-block fill-current" />
+						View All <ArrowOutward className="inline-block fill-current" aria-hidden="true" />
 					</LinkButton>
 				</div>
 				<div className='[--max-width:21.24rem] grid gap-5 grid-cols-[minmax(0,var(--max-width))] justify-center w-full lg:grid-cols-[repeat(3,minmax(0,var(--max-width)))]'>

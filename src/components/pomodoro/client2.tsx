@@ -68,7 +68,7 @@ export default function Client() {
 					</h1>
 					<div className='flex items-center justify-center gap-8'>
 						<LinkButton aria-label='Settings' command='show-modal' commandfor={SETTINGS_DIALOG_ID}>
-							<Settings className='size-[calc(1.25em+1rem)] fill-body-700 dark:fill-body-300' />
+							<Settings className='size-[calc(1.25em+1rem)] fill-body-700 dark:fill-body-300' aria-hidden="true" />
 						</LinkButton>
 
 						<LinkButton
@@ -89,7 +89,7 @@ export default function Client() {
 						</LinkButton>
 
 						<LinkButton aria-label='Skip' onClick={() => handleStateTransition()}>
-							<SkipNext className='size-[calc(1.25em+1rem)] fill-body-700 dark:fill-body-300' />
+							<SkipNext className='size-[calc(1.25em+1rem)] fill-body-700 dark:fill-body-300' aria-hidden="true" />
 						</LinkButton>
 					</div>
 				</div>
