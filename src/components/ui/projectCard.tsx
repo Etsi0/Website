@@ -96,7 +96,7 @@ export function ProjectCard({ src, title, text, badges, live = '', source = '', 
 				<div className='flex flex-wrap gap-2 leading-none px-[calc(2.5rem-21px)] pb-[calc(2.5rem-21px)]'>
 					<LinkButton
 						href={live}
-						className={cn(clazz, 'text-primary-50 bg-primary-500')}
+						className={cn(clazz, 'text-white bg-primary-550')}
 						disabled={!live}
 						isButton
 					>
