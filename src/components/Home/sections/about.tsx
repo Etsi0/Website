@@ -20,7 +20,7 @@ export function About({ className, heading = 'h2', showAboutMeLink = true }: Abo
 				<div className='grid justify-items-start gap-[calc(1rem*sqrt(2.5214515486*1)/1.5)] my-auto'>
 					<Heading>A bit about <span className='italic text-body-850 dark:text-body-150'>myself</span></Heading>
 					<p>
-						Hi! I{"'"}m Albin Karlsson, a full-stack developer from Sweden. Professionally I work in LAMP on a payroll system, where the data has to be right. On my own time I write TypeScript, and I pick Vite, Preact, or Next.js depending on what the project actually needs.
+						Hi! I&apos;m Albin Karlsson, a full-stack developer from Sweden. Professionally I work in LAMP on a payroll system, where the data has to be right. On my own time I write TypeScript, and I pick Vite, Preact, or Next.js depending on what the project actually needs.
 					</p>
 					<div className='flex gap-2'>
 						<LinkButton

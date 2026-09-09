@@ -125,7 +125,7 @@ export default async function Page() {
 						title="Why aren't you using any formatters?"
 						className='max-w-prose mx-auto'
 					>
-						I used <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</LinkButton> for 5+ years. Then I started working for a company that didn{"'"}t use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <InlineCode>.vscode/settings.json</InlineCode> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.
+						I used <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</LinkButton> for 5+ years. Then I started working for a company that didn&apos;t use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <InlineCode>.vscode/settings.json</InlineCode> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.
 						<br />
 						<b className='text-sm'>I do recommend using a formatter if you are new to coding or unsure how to format code</b>
 					</Details>
@@ -134,7 +134,7 @@ export default async function Page() {
 						title="Is Error Lens distracting with all the inline error highlighting?"
 						className="max-w-prose mx-auto"
 					>
-						No. It makes development more convenient since you don{"'"}t need to hover over problematic code to see what{"'"}s wrong.
+						No. It makes development more convenient since you don&apos;t need to hover over problematic code to see what&apos;s wrong.
 					</Details>
 					<Details
 						name="details-group"
@@ -162,9 +162,9 @@ export default async function Page() {
 						title="What's the benefit of using tabs over spaces?"
 						className="max-w-prose mx-auto"
 					>
-						For me, it comes down to fewer keystrokes and personal preference. I{"'"}ve always used tabs, find them more efficient, and I happen to agree with Linus Torvalds <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#:~:text=spaces%20are%20never%20used%20for%20indentation"><q>spaces are never used for indentation</q></LinkButton>.
+						For me, it comes down to fewer keystrokes and personal preference. I&apos;ve always used tabs, find them more efficient, and I happen to agree with Linus Torvalds <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#:~:text=spaces%20are%20never%20used%20for%20indentation"><q>spaces are never used for indentation</q></LinkButton>.
 						<br />
-						He also said, <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#:~:text=Get%20a%20decent%20editor%20and%20don%E2%80%99t%20leave%20whitespace%20at%20the%20end%20of%20lines"><q>Get a decent editor and don{"'"}t leave whitespace at the end of lines.</q></LinkButton> That{"'"}s why I use <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=sidp.strict-whitespace">Strict Whitespace</LinkButton>. I can{"'"}t stand mixed indentation or stray whitespace hanging around at the end of a line.
+						He also said, <LinkButton className='text-primary-500' href="https://www.kernel.org/doc/html/v4.10/process/coding-style.html#:~:text=Get%20a%20decent%20editor%20and%20don%E2%80%99t%20leave%20whitespace%20at%20the%20end%20of%20lines"><q>Get a decent editor and don&apos;t leave whitespace at the end of lines.</q></LinkButton> That&apos;s why I use <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=sidp.strict-whitespace">Strict Whitespace</LinkButton>. I can&apos;t stand mixed indentation or stray whitespace hanging around at the end of a line.
 					</Details>
 					<Details
 						name="details-group"
