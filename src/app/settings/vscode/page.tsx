@@ -125,7 +125,7 @@ export default async function Page() {
 						title="Why aren't you using any formatters?"
 						className='max-w-prose mx-auto'
 					>
-						I used <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</LinkButton> for 5+ years. Then I started working for a company that didn&apos;t use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <InlineCode>.vscode/settings.json</InlineCode> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.
+						I used <LinkButton className='text-primary-500' href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</LinkButton> for 5+ years. Then I started working for a company that didn&apos;t use formatters, and after a while I got frustrated that Prettier wanted to split lines into multiple lines when those lines could fit on just one line without scrolling. I disabled Prettier on my personal projects and instead configured my <InlineCode className="dark:bg-body-850">.vscode/settings.json</InlineCode> to handle formatting manually. This gives me full control over code appearance without the opinionated line-breaking behavior of formatters.
 						<br />
 						<b className='text-sm'>I do recommend using a formatter if you are new to coding or unsure how to format code</b>
 					</Details>
@@ -155,7 +155,7 @@ export default async function Page() {
 						title="Why turn off explorer auto-reveal?"
 						className="max-w-prose mx-auto"
 					>
-						I want my file explorer to stay clean and organized. I navigate primarily using <InlineCode>Ctrl + Shift + P</InlineCode> (Command Palette) anyway.
+						I want my file explorer to stay clean and organized. I navigate primarily using <InlineCode className="dark:bg-body-850">Ctrl + Shift + P</InlineCode> (Command Palette) anyway.
 					</Details>
 					<Details
 						name="details-group"
