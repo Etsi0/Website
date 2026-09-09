@@ -41,8 +41,8 @@ export function LinkButton({ ...props }: TLinkButton): ReactNode {
 		const clazz = [
 			standard,
 			isHoverable && (isButton
-				? `${whenHoveringButton} transition-opacity`
-				: `${whenHoveringLink} transition-colors`
+				? `${whenHoveringButton}`
+				: `${whenHoveringLink}`
 			),
 			!isFocusable && disableFocusing,
 			className
