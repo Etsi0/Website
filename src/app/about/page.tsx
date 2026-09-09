@@ -35,7 +35,7 @@ export default function Page() {
 	return (
 		<>
 			<SilkWrapper>
-				<About className='min-h-[min(62.5rem,100svh)]' heading='h1' />
+				<About className='min-h-[min(62.5rem,100svh)]' heading='h1' showAboutMeLink={false} />
 			</SilkWrapper>
 			<div className='col-full bg-linear-to-r from-primary-100 via-primary-300 to-primary-100 via-[calc(50%-20rem)] h-[2px] dark:from-primary-900 dark:via-primary-700 dark:to-primary-900'></div>
 			<section id='tools' className='grid gap-8 py-16'>

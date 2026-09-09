@@ -1,14 +1,18 @@
-import type { ReactNode } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/cn';
 import Docs from '@/svg/materialDesignIcons/rounded/docs.svg';
 import CasualSelfie from '@/../public/img/production/casual_selfie/test.png';
 import { LinkButton } from '@/components/ui/link';
 
-type THeading = 'h1' | 'h2';
+type AboutProp = {
+	className?: string;
+	heading?: 'h1' | 'h2';
+	showAboutMeLink?: boolean;
+};
 
-export function About({ className, heading = 'h2' }: { className?: string; heading?: THeading }) {
+export function About({ className, heading = 'h2', showAboutMeLink = true }: AboutProp) {
 	const Heading = heading;
+
 	return (
 		<>
 			<section id='about' className={cn('grid place-items-center gap-3 pt-32 py-16 lg:flex lg:justify-between', className)}>
@@ -26,13 +30,15 @@ export function About({ className, heading = 'h2' }: { className?: string; headi
 						>
 							<Docs className='size-4 fill-current' /> View My CV
 						</LinkButton>
-						<LinkButton
-							className='flex items-center gap-1 text-body-850 bg-body-50 px-[1.5em] py-[0.75em] border border-body-100 rounded-full dark:text-body-150 dark:bg-body-950 dark:border-body-900'
-							href='/about'
-							isButton
-						>
-							More about me
-						</LinkButton>
+						{showAboutMeLink && (
+							<LinkButton
+								className='flex items-center gap-1 text-body-850 bg-body-50 px-[1.5em] py-[0.75em] border border-body-100 rounded-full dark:text-body-150 dark:bg-body-950 dark:border-body-900'
+								href='/about'
+								isButton
+							>
+								More about me
+							</LinkButton>
+						)}
 					</div>
 				</div>
 				<Image
