@@ -55,7 +55,7 @@ export const projects: TProject[] = [
 	{
 		src: ClassCollapse,
 		title: 'Class Collapse',
-		text: 'A VSCode extension with 8K+ downloads that allows you to collapse section of code.',
+		text: 'A VSCode extension with 9K+ downloads that allows you to collapse section of code.',
 		badges: [badges.ts, badges.vscode],
 		live: 'https://marketplace.visualstudio.com/items?itemName=Etsi0.class-collapse',
 		source: 'https://github.com/Etsi0/class-collapse',
