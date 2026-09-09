@@ -19,7 +19,7 @@ export default function Page() {
 				</div>
 				<div className='[--max-width:21.24rem] grid gap-5 grid-cols-[minmax(0,var(--max-width))] justify-center w-full md:grid-cols-[repeat(2,minmax(0,var(--max-width)))] lg:grid-cols-[repeat(3,minmax(0,var(--max-width)))]'>
 					{projects.map((project) => (
-						<ProjectCard key={project.title} {...project} />
+						<ProjectCard key={project.title} {...project} heading='h2' />
 					))}
 				</div>
 			</section>

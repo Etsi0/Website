@@ -38,7 +38,11 @@ function Badge({ children, className, ...props }: TBadge) {
 	);
 }
 
-export function ProjectCard({ src, title, text, badges, live = '', source = '' }: TProject) {
+type TProjectCard = TProject & {
+	heading?: 'h2' | 'h3';
+};
+
+export function ProjectCard({ src, title, text, badges, live = '', source = '', heading: Heading = 'h3' }: TProjectCard) {
 	const Icon = src;
 	const badge = badges[0];
 	const anchorName = `--card-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}` as const;
@@ -61,7 +65,7 @@ export function ProjectCard({ src, title, text, badges, live = '', source = '' }
 			</div>
 			<div className='flex grow flex-col gap-3'>
 				<div className='px-[calc(2.5rem*0.9)] grow space-y-2'>
-					<h3 className='text-custom-2xl'>{title}</h3>
+					<Heading className='text-custom-2xl'>{title}</Heading>
 					<p>{text}</p>
 					<div className='flex flex-wrap items-start gap-2 font-mono'>
 						<Badge>
