@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				<ThemeProvider attribute='class'>
 					<div id='root' className='flex min-h-svh flex-col'>
 						<Header wideBreakpointRem={wideBreakpointRem} />
-						<main className='breakout-wrapper w-full grow'>{children}</main>
+						<main id='main-content' tabIndex={-1} className='breakout-wrapper w-full grow'>{children}</main>
 						<Footer />
 						<Analytics />
 						<SpeedInsights />

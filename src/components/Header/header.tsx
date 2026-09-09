@@ -52,6 +52,12 @@ export function Header({ wideBreakpointRem }: THeaderProps) {
 	return (
 		<header ref={headerRef} id="header" className=' pointer-events-none breakout-wrapper [--header-height:1.5rem] bg-transparent w-full top-7.5 z-50 [&:popover-open_>_div]:grid-rows-[1fr]' popover="">
 			<style>{styles}</style>
+			<a
+				href='#main-content'
+				className='skip-link col-sm pointer-events-auto rounded-full bg-body-50 px-[1.5em] py-[0.75em] text-body-900 border border-body-100 dark:bg-body-950 dark:text-body-100 dark:border-body-900'
+			>
+				Skip to content
+			</a>
 			<div
 				className='col-sm @container overflow-clip relative grid grid-rows-[0fr] px-[calc(var(--header-height)*1.5)] py-[calc(var(--header-height)*0.75)] corner-shape-6 transition-[grid-template-rows] duration-300 h-fit'
 			>
