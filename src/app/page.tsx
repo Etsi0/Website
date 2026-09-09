@@ -34,6 +34,7 @@ export default function Page() {
 					</h1>
 					<p>Every project here started with the same thought: “This should be better.” So I made it better and shared it with the world.</p>
 					<LinkButton
+						href="#portfolio"
 						className='
 							[--btn-bg:var(--color-body-50)] [--btn-border:var(--color-body-100)] dark:[--btn-bg:var(--color-body-950)] dark:[--btn-border:var(--color-body-900)]
 							animate-[animatedButtonBorder_15s_linear_infinite] font-mono text-custom-lg uppercase [background:linear-gradient(var(--btn-bg),var(--btn-bg))_padding-box,conic-gradient(from_var(--turn),var(--btn-border)_0deg_5deg,var(--color-primary-500)_5deg_38.33deg,var(--btn-border)_38.33deg_43.33deg)_border-box] w-[30ch] px-[1.5em] py-[0.75em] border border-transparent rounded-full
