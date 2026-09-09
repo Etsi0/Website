@@ -10,6 +10,7 @@ import { LinkButton } from '@/components/ui/link';
 const clazz = 'grow shrink-0 basis-[calc(50%-0.25rem)] text-nowrap text-center px-[1.5em] py-[0.75em] corner-shape-[1.3125rem]';
 const bgIconClass = 'object-contain aspect-video scale-500 filter-[url(#light-figma-fx)] dark:filter-[url(#dark-figma-fx)]';
 const iconClass = 'object-contain aspect-square scale-62';
+const badgeClass = 'flex items-center gap-1 text-body-700 text-sm bg-[color-mix(in_oklch,var(--color-body-100),var(--color-body-50))] px-3 py-1 rounded-full dark:text-body-300 dark:bg-body-800 dark:border-body-700';
 
 export type TProjectBadge = {
 	svg: FC<SVGProps<SVGElement>>;
@@ -30,7 +31,7 @@ type TBadge = { children: ReactNode, className?: string } & ComponentPropsWithou
 function Badge({ children, className, ...props }: TBadge) {
 	return (
 		<div
-			className={cn('flex items-center gap-1 text-body-700 text-sm bg-[color-mix(in_oklch,var(--color-body-100),var(--color-body-50))] px-3 py-1 rounded-full dark:text-body-300 dark:bg-body-800 dark:border-body-700', className)}
+			className={cn(badgeClass, className)}
 			{...props}
 		>
 			{ children }
