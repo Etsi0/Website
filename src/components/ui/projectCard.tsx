@@ -48,14 +48,14 @@ export function ProjectCard({ src, title, text, badges, live = '', source = '' }
 			<div className='corner-shape-[2.5rem] overflow-clip grid place-items-center border border-body-50 dark:border-body-850 *:col-1 *:row-1'>
 				{typeof Icon === 'function' && (
 					<>
-						<Icon className={cn(bgIconClass, 'w-full h-auto *:fill-body-950 dark:*:fill-body-50')} />
-						<Icon className={cn(iconClass, 'w-full h-auto *:fill-body-950 dark:*:fill-body-50')} />
+						<Icon className={cn(bgIconClass, 'w-full h-auto *:fill-body-950 dark:*:fill-body-50')} aria-hidden="true" />
+						<Icon className={cn(iconClass, 'w-full h-auto *:fill-body-950 dark:*:fill-body-50')} aria-hidden="true" />
 					</>
 				)}
 				{(typeof Icon === 'object' && Icon !== null && 'src' in Icon && 'height' in Icon && 'width' in Icon) && (
 					<>
-						<Image className={bgIconClass} width={Icon.width} height={Icon.height} src={Icon} alt='' aria-hidden />
-						<Image className={iconClass} width={Icon.width} height={Icon.height} src={Icon} alt={`Icon for ${title}`} />
+						<Image className={bgIconClass} width={Icon.width} height={Icon.height} src={Icon} alt='' aria-hidden="true" />
+						<Image className={iconClass} width={Icon.width} height={Icon.height} src={Icon} alt="" aria-hidden="true" />
 					</>
 				)}
 			</div>
@@ -65,7 +65,7 @@ export function ProjectCard({ src, title, text, badges, live = '', source = '' }
 					<p>{text}</p>
 					<div className='flex flex-wrap items-start gap-2 font-mono'>
 						<Badge>
-							{<badge.svg className='fill-body-700 dark:fill-body-300 size-[1em] *:fill-current!' />} {badge.text}
+							<badge.svg className='fill-body-700 dark:fill-body-300 size-[1em] *:fill-current!' aria-hidden="true" /> {badge.text}
 						</Badge>
 						{badges.length > 1 && (
 							<>
@@ -81,7 +81,7 @@ export function ProjectCard({ src, title, text, badges, live = '', source = '' }
 								>
 									{badges.slice(1).sort((a, b) => (a.text || '').localeCompare(b.text || '')).map((badge, index) => (
 										<Badge key={index} className='flex-[0_0_0]'>
-											{<badge.svg className='fill-body-850 dark:fill-body-150 size-[1em] *:fill-current!' />} {badge.text}
+											<badge.svg className='fill-body-850 dark:fill-body-150 size-[1em] *:fill-current!' aria-hidden="true" /> {badge.text}
 										</Badge>
 									))}
 								</div>
@@ -96,7 +96,7 @@ export function ProjectCard({ src, title, text, badges, live = '', source = '' }
 						disabled={!live}
 						isButton
 					>
-						<Public className='inline-block align-center fill-primary-50 size-[1em]' /> Live
+						<Public className='inline-block align-center fill-primary-50 size-[1em]' aria-hidden="true" /> Live
 					</LinkButton>
 					<LinkButton
 						href={source}
@@ -104,7 +104,7 @@ export function ProjectCard({ src, title, text, badges, live = '', source = '' }
 						disabled={!source}
 						isButton
 					>
-						<CodeBlock className='inline-block align-center fill-body-800 dark:fill-body-200 size-[1em]' /> Source
+						<CodeBlock className='inline-block align-center fill-body-800 dark:fill-body-200 size-[1em]' aria-hidden="true" /> Source
 					</LinkButton>
 				</div>
 			</div>
@@ -118,7 +118,7 @@ export function ProjectCard({ src, title, text, badges, live = '', source = '' }
  */
 export function ProjectCardFilters() {
 	return (
-		<svg className='absolute' width="0" height="0" aria-hidden>
+		<svg className='absolute' width="0" height="0" aria-hidden="true">
 			{/* Dark mode: darken → blur → contrast */}
 			<filter
 				id="dark-figma-fx"

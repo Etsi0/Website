@@ -47,7 +47,7 @@ export default function Page() {
 							className={cn('@container-size grid place-items-center', className)}
 							aria-label={name}
 						>
-							<Icon className='size-[50cqmin] fill-current' />
+							<Icon className='size-[50cqmin] fill-current' aria-hidden="true" />
 						</Card>
 					))}
 				</div>

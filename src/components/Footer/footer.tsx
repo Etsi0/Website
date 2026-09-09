@@ -33,14 +33,14 @@ export default function Footer() {
 									href='/'
 									aria-label='Home, Phadonia'
 								>
-									<Phadonia className="*:fill-body-900 dark:*:fill-body-100 h-6" />
+									<Phadonia className="*:fill-body-900 dark:*:fill-body-100 h-6" aria-hidden="true" />
 								</LinkButton>
 								<p>Every project here started with the same thought: “This should be better.” So I made it better and shared it with the world.</p>
 								<nav id='contact' aria-label="Socials">
 									<ul className='flex gap-3'>
-										<li><LinkButton href="https://www.linkedin.com/in/albinkarlsson2003/" aria-label="LinkedIn"><Linkedin className="text-body-600 dark:text-body-400 size-6" /></LinkButton></li>
-										<li><LinkButton href="https://github.com/Etsi0" aria-label="GitHub"><GitHub className="fill-body-600 dark:fill-body-400 size-6" /></LinkButton></li>
-										<li><LinkButton href="https://discordapp.com/users/850433812089012335" aria-label="Discord"><Discord className="*:fill-body-600 dark:*:fill-body-400 size-6" /></LinkButton></li>
+										<li><LinkButton href="https://www.linkedin.com/in/albinkarlsson2003/" aria-label="LinkedIn"><Linkedin className="text-body-600 dark:text-body-400 size-6" aria-hidden="true" /></LinkButton></li>
+										<li><LinkButton href="https://github.com/Etsi0" aria-label="GitHub"><GitHub className="fill-body-600 dark:fill-body-400 size-6" aria-hidden="true" /></LinkButton></li>
+										<li><LinkButton href="https://discordapp.com/users/850433812089012335" aria-label="Discord"><Discord className="*:fill-body-600 dark:*:fill-body-400 size-6" aria-hidden="true" /></LinkButton></li>
 									</ul>
 								</nav>
 							</div>

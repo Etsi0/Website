@@ -211,7 +211,14 @@ export default function Silk({ speed = 5, scale = 1, fg = DEFAULT_FG, bg = DEFAU
 	}), [noiseIntensity, rotation, scale, speed]);
 
 	return (
-		<Canvas dpr={[1, 2]} frameloop="always">
+		<Canvas
+			dpr={[1, 2]}
+			frameloop="always"
+			aria-hidden="true"
+			onCreated={({ gl }) => {
+				gl.domElement.setAttribute('aria-hidden', 'true');
+			}}
+		>
 			<SilkPlane ref={meshRef} uniforms={uniforms} resolvedFg={resolvedFg} resolvedBg={resolvedBg} />
 		</Canvas>
 	);

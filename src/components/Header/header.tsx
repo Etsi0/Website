@@ -69,7 +69,7 @@ export function Header({ wideBreakpointRem }: THeaderProps) {
 							href='/'
 							aria-label='Home, Phadonia'
 						>
-							<PhadoniaLogo className='h-(--header-height) *:fill-body-950 dark:*:fill-body-50' />
+							<PhadoniaLogo className='h-(--header-height) *:fill-body-950 dark:*:fill-body-50' aria-hidden="true" />
 						</LinkButton>
 						{/* !!! I did not make this hamburgerBtn, https://codepen.io/ainalem/pen/wvKOEMV !!! */}
 						<LinkButton
@@ -88,6 +88,7 @@ export function Header({ wideBreakpointRem }: THeaderProps) {
 								stroke='currentColor'
 								strokeWidth={6.4}
 								fill='none'
+								aria-hidden="true"
 							>
 								<path
 									className='path1'

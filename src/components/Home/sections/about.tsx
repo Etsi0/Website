@@ -29,7 +29,7 @@ export function About({ className, heading = 'h2', showAboutMeLink = true }: Abo
 							download="Albin Karlsson's CV"
 							isButton
 						>
-							<Docs className='size-4 fill-current' /> View My CV
+							<Docs className='size-4 fill-current' aria-hidden="true" /> View My CV
 						</LinkButton>
 						{showAboutMeLink && (
 							<LinkButton
