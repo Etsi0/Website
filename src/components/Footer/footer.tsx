@@ -12,10 +12,10 @@ const links = {
 		{ path: '/settings/obsidian', name: 'Obsidian' },
 	],
 	About: [
-		{ path: '/about#hero', name: 'Myself' },
-		{ path: '/about#payroll', name: 'Work' },
-		{ path: '/about#stack', name: 'Stack' },
-		{ path: '/about#contact', name: 'Contact' },
+		{ path: '/about#about', name: 'Myself' },
+		{ path: '/about#about', name: 'Work' },
+		{ path: '/about#tools', name: 'Stack' },
+		{ path: '#contact', name: 'Contact' },
 	]
 };
 
@@ -36,7 +36,7 @@ export default function Footer() {
 									<Phadonia className="*:fill-body-900 dark:*:fill-body-100 h-6" />
 								</LinkButton>
 								<p>Every project here started with the same thought: “This should be better.” So I made it better and shared it with the world.</p>
-								<nav>
+								<nav id='contact'>
 									<ul className='flex gap-3'>
 										<li><LinkButton href="https://www.linkedin.com/in/albinkarlsson2003/" aria-label="Linkedin"><Linkedin className="text-body-600 dark:text-body-400 size-6" /></LinkButton></li>
 										<li><LinkButton href="https://github.com/Etsi0" aria-label="Github"><GitHub className="fill-body-600 dark:fill-body-400 size-6" /></LinkButton></li>
