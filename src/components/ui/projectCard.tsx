@@ -49,7 +49,7 @@ export function ProjectCard({ src, title, text, badges, live = '', source = '', 
 
 	return (
 		<Card className='@container grid gap-4'>
-			<div className='corner-shape-[2.5rem] overflow-clip grid place-items-center border border-body-50 dark:border-body-850 *:col-1 *:row-1'>
+			<div className='corner-shape-[2.5rem] aspect-square overflow-clip grid place-items-center border border-body-50 dark:border-body-850 *:col-1 *:row-1'>
 				{typeof Icon === 'function' && (
 					<>
 						<Icon className={cn(bgIconClass, 'w-full h-auto *:fill-body-950 dark:*:fill-body-50')} aria-hidden="true" />
