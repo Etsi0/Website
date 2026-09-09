@@ -27,8 +27,14 @@ export default function Footer() {
 				<div className='grid gap-8 translate-y-(--move)'>
 					<Card as='section' className='grid gap-8 bg-body-50 border-body-100 p-16 dark:bg-body-850 dark:border-body-800'>
 						<div className='flex gap-4 flex-wrap justify-between'>
-							<div className='grid gap-4'>
-								<Phadonia className="*:fill-body-900 dark:*:fill-body-100 h-6"/>
+							<div className='grid gap-4 justify-items-start content-start'>
+								<LinkButton
+									className='rounded-xs outline-offset-4'
+									href='/'
+									aria-label='Home, Phadonia'
+								>
+									<Phadonia className="*:fill-body-900 dark:*:fill-body-100 h-6" />
+								</LinkButton>
 								<p>Every project here started with the same thought: “This should be better.” So I made it better and shared it with the world.</p>
 								<nav>
 									<ul className='flex gap-3'>

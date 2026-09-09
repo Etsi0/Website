@@ -67,7 +67,7 @@ export function Header({ wideBreakpointRem }: THeaderProps) {
 						<LinkButton
 							className='rounded-xs outline-offset-4'
 							href='/'
-							aria-label='Phadonia'
+							aria-label='Home, Phadonia'
 						>
 							<PhadoniaLogo className='h-(--header-height) *:fill-body-950 dark:*:fill-body-50' />
 						</LinkButton>
