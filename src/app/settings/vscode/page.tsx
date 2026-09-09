@@ -6,6 +6,7 @@ import { LinkButton } from '@/components/ui/link';
 import { ShikiCodeBlock } from '@/components/ui/shikiCodeBlock';
 import { InlineCode } from '@/components/ui/inlineCode';
 import { Details } from '@/components/ui/details';
+import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
 	title: pageTitle('VS Code Settings'),
@@ -99,14 +100,17 @@ export default async function Page() {
 					{json
 						.sort((a, b) => a.title.localeCompare(b.title))
 						.map((items, index) => (
-							<LinkButton key={index} href={items.link} className='grid place-items-center space-y-4 rounded-md bg-body-100 border border-body-200 p-4 text-center dark:bg-body-900 dark:border-body-800'>
-								<div className='aspect-square content-center'>
-									<Image src={`/img/settings/vscode/${items.icon}`} alt='' width={128} height={128} />
-								</div>
-								<h3>{items.title}</h3>
-								<p>{items.description}</p>
+							<LinkButton key={index} href={items.link} className="grid hover:brightness-112">
+								<Card className='grid place-items-center content-start gap-4 text-center p-12'>
+									<div className='aspect-square content-center'>
+										<Image src={`/img/settings/vscode/${items.icon}`} alt='' width={128} height={128} />
+									</div>
+									<h3 className='truncate w-full'>{items.title}</h3>
+									<p>{items.description}</p>
+								</Card>
 							</LinkButton>
-						))}
+						))
+					}
 				</div>
 			</div>
 			<div className='space-y-5'>
