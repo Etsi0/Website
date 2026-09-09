@@ -22,15 +22,11 @@ export default function Page() {
 			<SilkWrapper>
 				<section id="home" className="grid place-content-center place-items-center min-h-[min(62.5rem,100svh)] text-center gap-[calc(1rem*sqrt(5.75*1)/1.5)] border-primary-500">
 					<h1 className='text-[clamp(0rem,0rem+9.2vw,5.75rem)]'>
-						Building my own
-						{' '}
-						<span className='text-body-800 dark:text-body-200 italic'>solutions,</span>
-						{' '}
-						one
-						{' '}
-						<span className='text-black dark:text-white'>program</span>
-						{' '}
-						after another
+						Building my own <span className='text-body-800 dark:text-body-200 italic'>
+							solutions,
+						</span> one <span className='text-black dark:text-white'>
+							program
+						</span> after another
 					</h1>
 					<p>Every project here started with the same thought: “This should be better.” So I made it better and shared it with the world.</p>
 					<LinkButton
