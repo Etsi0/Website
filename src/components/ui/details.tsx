@@ -11,8 +11,8 @@ type TDetails = {
 export function Details({ name, title, children, className }: TDetails) {
 	return (
 		<details name={name} className={cn(
-				'leading-normal bg-body-200 rounded-2xl dark:bg-body-800',
-				'[&:has(summary:hover)]:bg-body-300 dark:[&:has(summary:hover)]:bg-body-700',
+				'leading-normal bg-body-white rounded-2xl transition-[filter] dark:bg-body-900',
+				'[&:has(summary:hover)]:brightness-112',
 				'[&:has(summary:focus-visible)]:outline-primary-500',
 				'open:[&_>_summary_>_svg]:-rotate-45',
 				className
