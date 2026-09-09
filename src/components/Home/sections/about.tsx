@@ -45,7 +45,7 @@ export function About({ className, heading = 'h2', showAboutMeLink = true }: Abo
 				<Image
 					className='object-cover object-bottom inline-full max-inline-[calc(1rem*373/16)] aspect-373/434 rounded-2xl'
 					src={CasualSelfie}
-					alt='Portrait of a young man wearing a student cap and a black suit with a red tie.'
+					alt='Portrait of me in a brown hoodie looking at the camera straight on.'
 					width={373}
 					height={434}
 					sizes='(max-width: 1024px) 100%, 449px'
