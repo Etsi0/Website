@@ -62,9 +62,9 @@ export default function Footer() {
 						<hr className='border-body-300 dark:border-body-700' />
 						<p>© {new Date().getFullYear()} <span className="text-body-800 dark:text-body-200">Phadonia</span>. All rights reserved</p>
 					</Card>
-					<h2 className='[text-box:trim-both_text_alphabetic] supports-[text-box:trim-both_ideographic-ink_alphabetic]:[text-box:trim-both_ideographic-ink_alphabetic] font-(family-name:--sarif) text-transparent text-(length:--big-text) text-center font-black bg-[linear-gradient(to_bottom,var(--footer-line),transparent_calc(100%-.5ex))] bg-clip-text'>
+					<div aria-hidden="true" className='[text-box:trim-both_text_alphabetic] supports-[text-box:trim-both_ideographic-ink_alphabetic]:[text-box:trim-both_ideographic-ink_alphabetic] font-(family-name:--sarif) text-transparent text-(length:--big-text) text-center font-black bg-[linear-gradient(to_bottom,var(--footer-line),transparent_calc(100%-.5ex))] bg-clip-text'>
 						Phadonia
-					</h2>
+					</div>
 				</div>
 			</footer>
 		</>
