@@ -13,6 +13,7 @@ devtools.inspector.showUserAgentStyles	true
 full-screen-api.transition-duration.enter	0 0
 full-screen-api.transition-duration.leave	0 0
 full-screen-api.warning.timeout	0
+gfx.color_management.mode	1
 toolkit.legacyUserProfileCustomizations.stylesheets	true
 network.IDN_show_punycode	true
 ` as const;
