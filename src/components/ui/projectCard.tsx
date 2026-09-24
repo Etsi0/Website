@@ -9,7 +9,7 @@ import { Card } from '@/components/ui/card';
 import { LinkButton } from '@/components/ui/link';
 
 const clazz = 'grow shrink-0 basis-[calc(50%-0.25rem)] text-nowrap text-center px-[1.5em] py-[0.75em] corner-shape-[1.3125rem]';
-const bgIconClass = 'object-contain aspect-video scale-500 filter-[url(#light-figma-fx)] dark:filter-[url(#dark-figma-fx)]';
+const bgIconClass = 'object-contain aspect-video scale-500 filter-[brightness(1.5)_invert(1)_brightness(0.5)_invert(1)_blur(6.25px)] dark:filter-[brightness(0.5)_contrast(2)_blur(6.25px)]';
 const iconClass = 'object-contain aspect-square scale-62';
 const badgeClass = 'flex items-center gap-1 text-body-700 text-sm bg-[color-mix(in_oklch,var(--color-body-100),var(--color-body-50))] px-3 py-1 rounded-full dark:text-body-300 dark:bg-body-800 dark:border-body-700';
 
@@ -133,58 +133,5 @@ export function ProjectCard({ src, title, text, badges, live = '', source = '', 
 				</div>
 			</div>
 		</Card>
-	);
-}
-
-/**
- * SVG filters used by the blurred background icon inside of `ProjectCard`.
- * Render this once per page that uses `ProjectCard`.
- */
-export function ProjectCardFilters() {
-	return (
-		<svg className='absolute' width="0" height="0" aria-hidden="true">
-			{/* Dark mode: darken → blur → contrast */}
-			<filter
-				id="dark-figma-fx"
-				colorInterpolationFilters="sRGB"
-				x="-50%"
-				y="-50%"
-				width="200%"
-				height="200%"
-			>
-				<feComponentTransfer result="gamma">
-					<feFuncR type="gamma" amplitude="0.5" exponent="1" offset="0"/>
-					<feFuncG type="gamma" amplitude="0.5" exponent="1" offset="0"/>
-					<feFuncB type="gamma" amplitude="0.5" exponent="1" offset="0"/>
-				</feComponentTransfer>
-				<feComponentTransfer in="gamma" result="linear">
-					<feFuncR type="linear" slope="2" intercept="-0.5"/>
-					<feFuncG type="linear" slope="2" intercept="-0.5"/>
-					<feFuncB type="linear" slope="2" intercept="-0.5"/>
-				</feComponentTransfer>
-				<feGaussianBlur in="linear" stdDeviation="6.25"/>
-			</filter>
-			{/* Light mode: soft blur, no heavy darkening — subtle tint behind icon */}
-			<filter
-				id="light-figma-fx"
-				colorInterpolationFilters="sRGB"
-				x="-50%"
-				y="-50%"
-				width="200%"
-				height="200%"
-			>
-				<feComponentTransfer result="gamma">
-					<feFuncR type="gamma" amplitude="1.5" exponent="1" offset="0"/>
-					<feFuncG type="gamma" amplitude="1.5" exponent="1" offset="0"/>
-					<feFuncB type="gamma" amplitude="1.5" exponent="1" offset="0"/>
-				</feComponentTransfer>
-				<feComponentTransfer in="gamma" result="linear">
-					<feFuncR type="linear" slope="0.5" intercept="0.5"/>
-					<feFuncG type="linear" slope="0.5" intercept="0.5"/>
-					<feFuncB type="linear" slope="0.5" intercept="0.5"/>
-				</feComponentTransfer>
-				<feGaussianBlur stdDeviation="6.25" in="linear"/>
-			</filter>
-		</svg>
 	);
 }
