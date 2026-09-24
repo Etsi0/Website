@@ -47,21 +47,11 @@ function Card({ product }: { product: z.infer<typeof schemaWishlist>[number] }) 
 export default async function page() {
 	'use server';
 	const sql = neon(`${process.env.POSTGRES_URL}`);
-	const rows = await sql`SELECT * FROM wishlist`;
+	const rows = await sql`SELECT * FROM wishlist ORDER BY priority ASC`;
 	const parsedRows = schemaWishlist.safeParse(rows);
 	if (!parsedRows.success) {
 		return <>Something when wrong please contact admin</>;
 	}
-
-	parsedRows.data.sort((a, b) => {
-		// Handle null priorities
-		if (a.priority === null && b.priority === null) return 0;
-		if (a.priority === null) return 1; // null values go to the end
-		if (b.priority === null) return -1;
-
-		// Normal number comparison
-		return a.priority - b.priority;
-	});
 
 	return (
 		<>
